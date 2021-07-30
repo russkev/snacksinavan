@@ -1,0 +1,111 @@
+[{
+  "_id": {
+    "$oid": "6078ffdcab146f9254432807"
+  },
+  "vanName": "Tasty Trailer",
+  "password": "$2a$10$Ygksnbfs24vSGSUx.xFjqetj7wQmQyqwio2IY8xYgIsVels6xu.FW",
+  "readyForOrders": true,
+  "latitude": -37.7946,
+  "locationDescription": "Test Place ",
+  "longitude": 144.9653
+},{
+  "_id": {
+    "$oid": "60a77976e256e824b0f299f6"
+  },
+  "vanName": "Henry",
+  "password": "$2a$10$swOBVejKylWM6nCZl8m7XeuHBTonSfMNvJCm57g4m/AMKewOWCrrO",
+  "readyForOrders": true,
+  "latitude": -37.78796493977932,
+  "locationDescription": "MacArthur Road. North side of Royal Park, east of the junction with Elliott Ave.",
+  "longitude": 144.95329651336672
+},{
+  "_id": {
+    "$oid": "60a779a8e256e824b0f299f8"
+  },
+  "vanName": "Thelma",
+  "password": "$2a$10$swOBVejKylWM6nCZl8m7XeuHBTonSfMNvJCm57g4m/AMKewOWCrrO",
+  "readyForOrders": true,
+  "latitude": -37.795558,
+  "locationDescription": "Outside Australian College of Optometry",
+  "longitude": 144.966636
+},{
+  "_id": {
+    "$oid": "60a779d4e256e824b0f299f9"
+  },
+  "vanName": "Louise",
+  "password": "$2a$10$swOBVejKylWM6nCZl8m7XeuHBTonSfMNvJCm57g4m/AMKewOWCrrO",
+  "readyForOrders": true,
+  "latitude": -37.79860509857024,
+  "locationDescription": "Barkly Street, outside Whitten Oval, opposite The Learning Sanctuary.",
+  "longitude": 144.88755020599362
+},{
+  "_id": {
+    "$oid": "60a779f6e256e824b0f299fa"
+  },
+  "vanName": "Ronaldo",
+  "password": "$2a$10$swOBVejKylWM6nCZl8m7XeuHBTonSfMNvJCm57g4m/AMKewOWCrrO",
+  "readyForOrders": true,
+  "latitude": -37.75751969079551,
+  "locationDescription": "Moreland Road, on the bridge over Merri Creek",
+  "longitude": 144.98048338394167
+},{
+  "_id": {
+    "$oid": "60a77a1fe256e824b0f299fb"
+  },
+  "vanName": "Jimmy",
+  "password": "$2a$10$swOBVejKylWM6nCZl8m7XeuHBTonSfMNvJCm57g4m/AMKewOWCrrO",
+  "readyForOrders": true,
+  "latitude": -37.74197845461942,
+  "locationDescription": "Bell St. Outside East Coburg Tennis Club.",
+  "longitude": 144.9732306907654
+},{
+  "_id": {
+    "$oid": "60a77a48e256e824b0f299fc"
+  },
+  "vanName": "Sandra",
+  "password": "$2a$10$swOBVejKylWM6nCZl8m7XeuHBTonSfMNvJCm57g4m/AMKewOWCrrO",
+  "readyForOrders": true,
+  "latitude": -37.836430953048115,
+  "locationDescription": "Millers Road, opposite Dr Paws Altona North Veterinary Clinic",
+  "longitude": 144.84726342659
+},{
+  "_id": {
+    "$oid": "60a77a68e256e824b0f299fd"
+  },
+  "vanName": "Jones",
+  "password": "$2a$10$swOBVejKylWM6nCZl8m7XeuHBTonSfMNvJCm57g4m/AMKewOWCrrO",
+  "readyForOrders": false,
+  "latitude": -37.80323054625055,
+  "locationDescription": "Napier Sreet outside Yarra Youth Centre, opposite Atherton Reserve",
+  "longitude": 144.97995230655673
+},{
+  "_id": {
+    "$oid": "60a77a8ce256e824b0f299fe"
+  },
+  "vanName": "Deklan",
+  "password": "$2a$10$swOBVejKylWM6nCZl8m7XeuHBTonSfMNvJCm57g4m/AMKewOWCrrO",
+  "readyForOrders": true,
+  "latitude": -38.075,
+  "locationDescription": "Hope Street, outside the playground on Gillion Oval",
+  "longitude": 145.3254
+},{
+  "_id": {
+    "$oid": "60a77aa7e256e824b0f299ff"
+  },
+  "vanName": "Julie",
+  "password": "$2a$10$swOBVejKylWM6nCZl8m7XeuHBTonSfMNvJCm57g4m/AMKewOWCrrO",
+  "readyForOrders": true,
+  "latitude": -37.766188110510654,
+  "locationDescription": "Victoria Street, outside Clifton Park, near the skate park",
+  "longitude": 144.95472881298068
+},{
+  "_id": {
+    "$oid": "60b03bc851a21438246ff07f"
+  },
+  "vanName": "Test",
+  "password": "$2a$10$Ygksnbfs24vSGSUx.xFjqetj7wQmQyqwio2IY8xYgIsVels6xu.FW",
+  "readyForOrders": false,
+  "latitude": -36.70050795561098,
+  "locationDescription": "Pascoe Vale Rd, Outside the Queens Park playground. Opposite Wilson Street.",
+  "longitude": 144.86010108825252
+}]

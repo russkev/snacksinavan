@@ -1,0 +1,73 @@
+[{
+  "_id": {
+    "$oid": "60755881f0ecddc11494a350"
+  },
+  "name": "Cappuccino",
+  "price": 4.3,
+  "category": "drink",
+  "photo": "https://source.unsplash.com/tZKwLRO904E",
+  "description": "Our lovely Cappuccino is a delightful drink with ingredients!"
+},{
+  "_id": {
+    "$oid": "60755881f0ecddc11494a351"
+  },
+  "name": "Latte",
+  "price": 4.3,
+  "category": "drink",
+  "photo": "https://source.unsplash.com/00QEr9tsXJE",
+  "description": "Our Latte is a must try! Contains milk."
+},{
+  "_id": {
+    "$oid": "60755881f0ecddc11494a352"
+  },
+  "name": "Flat white",
+  "price": 4.3,
+  "category": "drink",
+  "photo": "https://source.unsplash.com/1Sphewst6ak",
+  "description": "The Flat white is a favourite among our customers. Give it a try!"
+},{
+  "_id": {
+    "$oid": "60755881f0ecddc11494a353"
+  },
+  "name": "Long black",
+  "price": 3.8,
+  "category": "drink",
+  "photo": "https://source.unsplash.com/JNhaaPEz3FY",
+  "description": "For our seasoned coffee drinkers."
+},{
+  "_id": {
+    "$oid": "60755881f0ecddc11494a354"
+  },
+  "name": "Plain biscuit",
+  "price": 5,
+  "category": "food",
+  "photo": "https://source.unsplash.com/vs_FdRrN-SA",
+  "description": "Just need a biscuit? We have the biscuit for you!"
+},{
+  "_id": {
+    "$oid": "60755881f0ecddc11494a355"
+  },
+  "name": "Fancy biscuit",
+  "price": 7.9,
+  "category": "food",
+  "photo": "https://source.unsplash.com/x6VuEH2npHw",
+  "description": "If you're feeling better than our Plain biscuit then our Fancy biscuit is for you!"
+},{
+  "_id": {
+    "$oid": "60755881f0ecddc11494a356"
+  },
+  "name": "Small cake",
+  "price": 7,
+  "category": "food",
+  "photo": "https://source.unsplash.com/6SHd7Q-l1UQ",
+  "description": "Our Small cake is a great treat!"
+},{
+  "_id": {
+    "$oid": "60755881f0ecddc11494a357"
+  },
+  "name": "Big cake",
+  "price": 12,
+  "category": "food",
+  "photo": "https://source.unsplash.com/hcEDfkiVmMI",
+  "description": "A Big cake perfect for celebrating an event!"
+}]

@@ -1,0 +1,8 @@
+[{
+  "_id": {
+    "$oid": "60ae030104a42f3445858d0f"
+  },
+  "discountTime": 15,
+  "cancelTime": 10,
+  "delayDiscount": 0.2
+}]
