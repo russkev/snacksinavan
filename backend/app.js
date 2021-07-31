@@ -12,7 +12,7 @@ const globalsRoute = require("./routes/api/globals.route")
 require('./models');
 const logger = require("./middleware/logger");
 const authenticateSocket = require("./middleware/authenticate.socket")
-const origins = ["http://localhost:5000","https://whelk.herokuapp.com","http://localhost:3000","http://whelk.herokuapp.com"]
+const origins = ["http://localhost:5000","https://snacks-in-a-van.netlify.app","http://localhost:3000"]
 
 
 const app = express();
