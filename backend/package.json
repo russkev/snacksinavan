@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app",
-    "test": "jest --forceExit"
+    "test": "jest --forceExit",
+    "eject": "react-scripts eject"
   },
   "author": "",
   "license": "ISC",
