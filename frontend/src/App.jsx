@@ -1,7 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import "./App.css";
-import "./VanApp.css";
+// import "./App.css";
+// import "./VanApp.css";
+import "./styling/button.css"
 import { RoutesMap } from "./routes/routes";
 import { VanRoutesMap } from "./routes/van.routes";
 import { UserContextProvider } from "./contexts/user.context";

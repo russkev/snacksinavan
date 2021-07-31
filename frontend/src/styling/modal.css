@@ -1,0 +1,41 @@
+#modal-window {
+  visibility: hidden;
+  background: var(--background-blue);
+  width: min-content;
+  border-radius: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+@media screen and (max-width: 500px) {
+  #modal-window {
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0px;
+  }
+
+  /* .cancel-modal-buttons{
+    flex-direction: column;
+  }
+  .yes-cancel{
+    margin: 10px 0;
+  }
+  .no-cancel{
+    margin: 10px 0;
+  } */
+}
+
+.show-modal-window{
+  visibility: visible !important;
+  animation: window-fade-in 0.5s;
+}
+
+.visible-modal-window{
+  visibility: visible !important;
+}
+
+.hide-modal-window{
+  animation: window-fade-out 0.5s;
+}

@@ -14,7 +14,7 @@ export default function LoginButton() {
   } else {
     return (
       <>
-        <div className="nav-login" onClick={toggleLoginIsOpen}>Login</div>
+        <div className="login" onClick={toggleLoginIsOpen}>Login</div>
       </>
     );
   }

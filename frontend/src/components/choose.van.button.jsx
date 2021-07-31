@@ -14,24 +14,28 @@ export default function ChooseVanButton(props) {
   }
   if(Object.keys(cart).length !== 0 && cartSize() !== 0){
     return (
-      <Link onClick={() => chooseVan()}
+      <Link
+        onClick={() => chooseVan()}
         to={{
           pathname: "/cart",
         }}
-        className="choose-van-button">
-          Select
+        className="primary button soft-shadow"
+      >
+        Select
       </Link>
-    )
+    );
   } else {
     return (
-      <Link onClick={() => chooseVan()}
+      <Link
+        onClick={() => chooseVan()}
         to={{
           pathname: "/menu",
         }}
-        className="choose-van-button">
-          Select
+        className="primary button soft-shadow"
+      >
+        Select
       </Link>
-    )
+    );
   }
   
 }

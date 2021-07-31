@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Autocomplete } from "@react-google-maps/api";
+import "../styling/address.search.css"
 
 export default function SearchLocation({ setCurrentLocation }) {
   const [autocomplete, setAutocomplete] = useState();
@@ -35,22 +36,24 @@ export default function SearchLocation({ setCurrentLocation }) {
   };
 
   return (
-    <div className="my-van-address-search">
-      <fieldset className="search-element-fieldset">
-        <legend className="search-element-legend">Search</legend>
+    <div className="address-search">
+      <fieldset>
+        <legend>Search</legend>
         <Autocomplete
           onLoad={onLoad}
           onPlaceChanged={onPlaceChanged}
-          className="my-van-address-search-input"
         >
           <input type="text" />
         </Autocomplete>
         <div />
       </fieldset>
-        <button onClick={onUseLocationClick} className="icon-button use-my-location">
-          Use my location
-          <span className="material-icons-outlined margin-left-small">my_location</span>
-        </button>
+      <button onClick={onUseLocationClick} className="icon-button use-my-location">
+        <div>
+
+        Use my location
+        <span className="material-icons-outlined margin-left-small">my_location</span>
+        </div>
+      </button>
     </div>
   );
 }

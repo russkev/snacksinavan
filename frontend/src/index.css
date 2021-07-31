@@ -1,10 +1,14 @@
 :root {
+  --header-height: 50px;
   --background-blue: #eff5f9;
   --background-white: #ffffff;
-  --background-darker: #CCE2F1;
-  --dark-text: #001339;
+  --background-darker: #e0e8ed;
+  --dark-text: #10254f;
+  --light-text: #4f5e7c;
+  --shadow: #00133933;
   --link-text: #002e8a;
-  --focus: #0038a9;
+  --focus: #296ea2;
+  --un-focus: #b6c8d5;
   --orange: #c95100;
   --underline: rgba(0, 19, 57, 0.8);
   --avatar-width: 128px;
@@ -18,28 +22,52 @@
   --history-mid: #7477BB;
   --history-strong: #8378E4;
   --my-van-strong: #5DB68B;
+
+  --primary: #FF740F;
+  --primary-dark: #e36308;
+}
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  background-color: var(--background-blue);
+  background-color: var(--background-white);
   font-family: "Poppins", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 1.6em;
+  color: var(--dark-text)
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
+h1 {
+  font-size: 3.6rem;
+  font-weight: normal;
+  margin: 1.5rem 0;
+}
+
+h3 {
+  font-size: 2.6rem;
+  font-weight: normal;
+  margin: 0;
+}
+
+
 h2 {
   margin: 30px;
 }
 
 h4 {
-  font-size: 14pt;
+  font-size: 1.4rem;
   margin: 0;
   color: var(--dark-text);
+  font-weight: 600;
 }
 
 h5 {
@@ -57,14 +85,16 @@ h6 {
 }
 
 p {
-  color: var(--dark-text);
-  padding: 30px;
-  padding-top: 10px;
+  color: var(--light-text);
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
 }
 
 ul {
   list-style-type: none;
-  padding: 1em;
   display: flex;
   justify-content: space-evenly;
 }
@@ -104,29 +134,18 @@ hr {
   margin: 30px;
 }
 
-button {
-  border-radius: 10px;
-  text-align: center;
-  font-size: 16px;
-  font-family: "Poppins", sans-serif;
-  border: hidden;
-  padding: 5px 20px;
-  background-color: var(--orange);
-  color: var(--background-white);
-  cursor: pointer;
-}
-
 input {
   font-size: 14px;
   font-family: "Poppins", sans-serif;
   border: none;
-  background-color: var(--background-white);
-  padding: 1em;
-  margin: 1em 0;
-  border-radius: 10px;
   outline: none;
+  background: none;
+  margin: 0.9rem 1.8rem;
+  border-radius: 100px;
   width: 100%;
-  box-sizing: border-box;
+  width: stretch;
+  width: -moz-available;
+  width: -webkit-fill-available;
 }
 
 textarea {

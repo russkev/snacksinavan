@@ -1,0 +1,57 @@
+button, a.button{
+  border-radius: 10rem;
+  text-align: center;
+  font-size: 1.4rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  border: 2px solid transparent;
+  background-color: var(--background-blue);
+  color: var(--link-text);
+  cursor: 2px solid transparent;
+  height: 4.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition-duration: 0.2s;
+  display: inline-flex;
+  cursor: pointer;
+}
+
+button:hover, a.button:hover {
+  background-color: var(--background-darker)
+}
+
+button:focus, a.button:focus {
+  border: 2px solid var(--focus);
+  outline: none;
+}
+
+.icon-button {
+  display: inline-flex;
+  color: var(--link-text);
+}
+
+button.primary, a.button.primary {
+  background-color: var(--primary);
+  color: var(--background-white);
+}
+
+button.primary:focus, a.button.primary:focus {
+  border: 2px solid;
+}
+
+button.primary:hover, a.button.primary:hover {
+  background-color: var(--primary-dark);
+}
+
+button.soft-shadow, a.soft-shadow {
+  box-shadow: 1rem 1rem 2rem var(--shadow);
+}
+
+button.soft-shadow:hover, a.soft-shadow:hover {
+  box-shadow: 0.8rem 0.8rem 1.6rem var(--shadow);
+}
+
+button.soft-shadow:active, a.soft-shadow:active {
+  box-shadow: 0.4rem 0.4rem 0.8rem var(--shadow);
+}
