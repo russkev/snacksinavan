@@ -85,8 +85,8 @@ function NavModal() {
             <Link onClick={toggleMobileNav} className="nav-button" to={Routes.HOME.path}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                height="3rem"
-                width="3rem"
+                height="30px"
+                width="30px"
                 viewBox="0 0 24 24"
                 fill="var(--dark-text)"
               >
@@ -97,7 +97,7 @@ function NavModal() {
             <Link onClick={toggleMobileNav} className="nav-button" to={Routes.SNACKS_MENU.path}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                enable-background="new 0 0 24 24"
+                enableBackground="new 0 0 24 24"
                 height="30px"
                 width="30px"
                 viewBox="0 0 24 24"

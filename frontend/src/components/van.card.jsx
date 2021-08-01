@@ -7,7 +7,7 @@ export default function VanCard(props){
   return (
       <div className="van-card" id={props.van.vanName}>
         <div>
-          <h3>{props.van.vanName}</h3>
+          <h2>{props.van.vanName}</h2>
           {distance < 1000 ? <h4>{distance}m</h4> : <h4>{(distance / 1000).toFixed(1)}km</h4>}
         </div>
         <div>

@@ -8,8 +8,6 @@ export default function ChooseVanButton(props) {
   const { cart, cartSize } = useCart();
   const {setVan} = useContext(VanContext);
   function chooseVan(){
-    var heading = document.getElementById("main-map-heading");
-    heading.scrollIntoView();
     setVan(props.van.vanName);
   }
   if(Object.keys(cart).length !== 0 && cartSize() !== 0){

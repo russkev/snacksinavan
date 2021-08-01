@@ -3,6 +3,7 @@
   --background-blue: #eff5f9;
   --background-white: #ffffff;
   --background-darker: #e0e8ed;
+  --background-card: #F6F8F9;
   --dark-text: #10254f;
   --light-text: #4f5e7c;
   --shadow: #00133933;
@@ -49,18 +50,21 @@ code {
 h1 {
   font-size: 3.6rem;
   font-weight: normal;
-  margin: 1.5rem 0;
+  margin: 0;
+  padding: 1.5rem 0;
 }
 
 h3 {
-  font-size: 2.6rem;
+  font-size: 2.1rem;
   font-weight: normal;
   margin: 0;
 }
 
 
 h2 {
+  font-size: 2.6rem;
   font-weight: normal;
+  margin: 0;
 }
 
 h4 {

@@ -1,5 +1,4 @@
 import React from "react";
-import Avatar from "./avatar";
 import useCart from "../hooks/useCart";
 
 export default function CartItemCard({ snack, cart}) {
@@ -11,7 +10,7 @@ export default function CartItemCard({ snack, cart}) {
   return (
     <div className="menu-item-holder">
       <div className="menu-item-card no-click cart-card">
-        <Avatar imageUrl={snack.photo} width="128px" hardRight={true} />
+        {/* <Avatar imageUrl={snack.photo} width="128px" hardRight={true} /> */}
         <div className="menu-item-card-details">
           <div className="menu-item-card-heading">
             <h4>{snack.name}</h4>
