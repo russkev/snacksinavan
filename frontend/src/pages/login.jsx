@@ -5,7 +5,9 @@ import useUser from "../hooks/useUser";
 import Loading from "../components/loading";
 import { handleShowSnackbar, Snackbar } from "../components/snackbar";
 import Routes from "../routes/routes";
-
+import InputContainer from "../components/input.container";
+import "../styling/login.css";
+import "../styling/input.css";
 //TODO:
 //  MyInfo page loads when not logged in but shouldn't
 //  Login window appears on logout
@@ -26,7 +28,6 @@ export default function Login() {
     redirectToPath,
   } = useLogin();
 
-
   const { isAuthenticated } = useUser();
   const [signupRedirect, setSignupRedirect] = useState(false);
 
@@ -39,7 +40,7 @@ export default function Login() {
   };
 
   const handleSignupRedirect = (event) => {
-    event.preventDefault()
+    event.preventDefault();
     setSignupRedirect(true);
     setTimeout(function () {
       setLoginIsOpen(false);
@@ -53,38 +54,42 @@ export default function Login() {
   } else {
     return (
       <>
-        <div>
-          <h5 id="login-title">Sign in</h5>
-          <button 
-            type="button" 
-            className="nav-modal-close-button dark-color"
-            onClick= {() => setLoginIsOpen(false)}
+        <div className="login-window">
+          <h1>Sign in</h1>
+          <button
+            type="button"
+            className="close"
+            onClick={() => setLoginIsOpen(false)}
           >
             &times;
           </button>
-          <div className="auth">
+          <div>
             <h4>Please enter your details</h4>
             <form onSubmit={handleLoginSubmitAndAlert}>
-              <input
-                type="email"
-                id="username"
-                placeholder="username"
-                value={username}
-                onChange={onUsernameChange}
-              />
-              <input
-                type="password"
-                id="password"
-                placeholder="password"
-                value={password}
-                onChange={onPasswordChange}
-              />
-                <button type="submit" id="login-button" className="submit-button">
-                  Okay
-                </button>
+              <InputContainer label="Username" value={username}>
+                <input
+                  type="email"
+                  id="username"
+                  placeholder="username"
+                  value={username}
+                  onChange={onUsernameChange}
+                />
+              </InputContainer>
+              <InputContainer label="Password" value={password}>
+                <input
+                  type="password"
+                  id="password"
+                  placeholder="password"
+                  value={password}
+                  onChange={onPasswordChange}
+                />
+              </InputContainer>
+              <button type="submit" className="primary soft-shadow">
+                Okay
+              </button>
               <div className="sign-in-bottom-div">
                 <p>
-                  Don't have an account? 
+                  Don't have an account?
                   <button className="text-button" onClick={handleSignupRedirect}>
                     Sign up here
                   </button>

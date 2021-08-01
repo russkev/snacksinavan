@@ -8,7 +8,7 @@ import Routes from "../../routes/routes";
 import Logout from "./logout.button";
 import { toggleMobileNav } from "../../hooks/useModal";
 
-function Modal() {
+function NavModal() {
   const { isAuthenticated } = useUser();
   const { toggleLoginIsOpen } = useLogin();
 
@@ -22,8 +22,8 @@ function Modal() {
 
   if (isAuthenticated) {
     return ReactDOM.createPortal(
-      <React.Fragment>
-        <div id="mobile-nav-modal-element" className="nav-modal-wrapper" tabIndex={-1}>
+      <>
+        <div id="mobile-nav" className="nav-modal" tabIndex={-1}>
           <button
             type="button"
             className="nav-modal-close-button nav-modal-close-button-menu"
@@ -66,16 +66,16 @@ function Modal() {
             </div>
           </div>
         </div>
-      </React.Fragment>,
+      </>,
       document.body
     );
   } else {
     return ReactDOM.createPortal(
-      <React.Fragment>
-        <div id="mobile-nav-modal-element" className="nav-modal-wrapper" tabIndex={-1}>
+      <>
+        <div id="mobile-nav" className="nav-modal" tabIndex={-1}>
           <button
             type="button"
-            className="nav-modal-close-button nav-modal-close-button-menu"
+            className="close"
             onClick={toggleMobileNav}
           >
             &times;
@@ -105,10 +105,10 @@ function Modal() {
             </Link>
           </div>
         </div>
-      </React.Fragment>,
+      </>,
       document.body
     );
   } 
 }
 
-export default Modal;
+export default NavModal;

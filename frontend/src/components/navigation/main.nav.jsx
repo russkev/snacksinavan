@@ -13,7 +13,7 @@ export default function MainNav() {
   //   <div className="nav">
   return (
     <nav>
-      {/* <MobileNav /> */}
+      <MobileNav />
       <ul>
         <li>
           <Link className="nav-link" to={Routes.HOME.path}>

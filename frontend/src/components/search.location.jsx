@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Autocomplete } from "@react-google-maps/api";
-import "../styling/address.search.css"
+import "../styling/address.search.css";
+import "../styling/input.css";
 
 export default function SearchLocation({ setCurrentLocation }) {
   const [autocomplete, setAutocomplete] = useState();

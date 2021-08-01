@@ -9,6 +9,17 @@ import "../styling/customer.css";
 
 const lib = ["places"];
 
+async function selectVan(vanName) {
+  let vanCards = document.getElementsByClassName("van-card");
+  Array.from(vanCards).forEach((vanCard) => {
+    vanCard.classList.remove("highlighted");
+  })
+  var vanCard = document.getElementById(vanName);
+  vanCard.classList.add("highlighted");
+  vanCard.scrollIntoView();
+}
+
+
 export default function Home() {
   const { loading, vans, error } = useVans();
   const [location, setLocation] = useState({ lat: -37.81494, lng: 144.96867 });
@@ -58,6 +69,7 @@ export default function Home() {
                 return (
                   <Marker
                     key={van.vanName}
+                    label={van.vanName}
                     position={{ lat: van.latitude, lng: van.longitude }}
                     onClick={() => selectVan(van.vanName)}
                     icon={{
@@ -76,13 +88,4 @@ export default function Home() {
       </LoadScript>
     </div>
   );
-}
-
-async function selectVan(vanName) {
-  const delay = (ms) => new Promise((res) => setTimeout(res, ms));
-  var vanCard = document.getElementById(vanName);
-  vanCard.classList.add("highlighted");
-  vanCard.scrollIntoView();
-  await delay(5000);
-  vanCard.classList.remove("highlighted");
 }

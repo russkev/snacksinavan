@@ -1,12 +1,12 @@
 #modal-window {
   visibility: hidden;
-  background: var(--background-blue);
+  background: var(--background-white);
   width: min-content;
-  border-radius: 10px;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
+  border: 2px solid var(--light-text);
 }
 
 @media screen and (max-width: 500px) {
@@ -38,4 +38,14 @@
 
 .hide-modal-window{
   animation: window-fade-out 0.5s;
+}
+
+@keyframes window-fade-in {
+  from {top: 25%; opacity: 0;}
+  to {top: 50%; opacity: 1;}
+}
+
+@keyframes window-fade-out {
+  from {top: 50%; opacity: 1;}
+  to {top: 25%; opacity: 0;}
 }

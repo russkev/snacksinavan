@@ -5,6 +5,7 @@ button, a.button{
   font-family: "Poppins", sans-serif;
   font-weight: 500;
   border: 2px solid transparent;
+  outline: 2px solid transparent;
   background-color: var(--background-blue);
   color: var(--link-text);
   cursor: 2px solid transparent;
@@ -17,13 +18,39 @@ button, a.button{
   cursor: pointer;
 }
 
-button:hover, a.button:hover {
-  background-color: var(--background-darker)
+button.close {
+  border: none;
+  outline: none;
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 4.2rem;
+  font-size: 4rem;
+  font-weight: 200;
+  color: var(--dark-text);
+  background: none;
+}
+
+button.close:hover, button.close:focus {
+  background-color: var(--background-blue);
+  border: none;
+}
+
+
+button:hover, a.button:hover, button:focus, a.button:focus {
+  background-color: var(--background-darker);
+  border: 2px solid transparent;
+
+  /* border: none; */
+  /* outline: none; */
 }
 
 button:focus, a.button:focus {
-  border: 2px solid var(--focus);
-  outline: none;
+  /* border: 2px solid var(--focus);  */
+  /* border: none; */
+  /* outline: none; */
+  /* background-color: var() */
+  border: 2px solid red;
 }
 
 .icon-button {
@@ -31,14 +58,19 @@ button:focus, a.button:focus {
   color: var(--link-text);
 }
 
+.icon-button:focus {
+  border: 2px solid transparent;
+  outline: 2px solid transparent;
+}
+
 button.primary, a.button.primary {
   background-color: var(--primary);
   color: var(--background-white);
 }
 
-button.primary:focus, a.button.primary:focus {
+/* button.primary:focus, a.button.primary:focus {
   border: 2px solid;
-}
+} */
 
 button.primary:hover, a.button.primary:hover {
   background-color: var(--primary-dark);
@@ -54,4 +86,18 @@ button.soft-shadow:hover, a.soft-shadow:hover {
 
 button.soft-shadow:active, a.soft-shadow:active {
   box-shadow: 0.4rem 0.4rem 0.8rem var(--shadow);
+}
+
+.text-button{
+  background-color: inherit;
+  color: var(--link-text);
+  padding: 8px;
+  display: inline-block;
+}
+
+.text-button:hover, .text-button:focus{
+  background-color: inherit;
+  text-decoration: underline;
+  border: none;
+  outline: none;
 }

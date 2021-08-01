@@ -1,5 +1,5 @@
 import React from "react";
-import Modal from "./nav.modal";
+import NavModal from "./nav.modal";
 import useModal from "../../hooks/useModal";
 import { toggleMobileNav } from "../../hooks/useModal";
 
@@ -13,7 +13,7 @@ export default function MobileNav() {
         &#9776;
       </span>
       <span className="mobile-nav-title">Snacks in a Van</span>
-      <Modal isShowing={isShowing} hide={toggleMobileNav} />
+      <NavModal isShowing={isShowing} hide={toggleMobileNav} />
     </div>
   );
   }

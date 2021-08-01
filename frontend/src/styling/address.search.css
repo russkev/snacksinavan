@@ -7,21 +7,6 @@
 
 .address-search fieldset{
   border: 2px solid var(--un-focus);
-  padding: 0;
-  box-sizing: border-box;
-  margin: 0;
-  border-radius: 10rem;
-}
-
-.address-search fieldset:focus-within{
-  border: 2px solid var(--focus);
-}
-
-.address-search legend{
-  margin-left: 2rem;
-  margin-bottom: -1rem;
-  position: relative;
-  font-size: 9pt;
 }
 
 .use-my-location div{

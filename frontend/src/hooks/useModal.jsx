@@ -2,12 +2,12 @@
 import { useState } from "react";
 
 export function toggleMobileNav() {
-  const nodalElement = document.getElementById("mobile-nav-modal-element");
+  const nodalElement = document.getElementById("mobile-nav");
   if (nodalElement) {
     if (nodalElement.className.includes("expanded")) {
-      nodalElement.className = "nav-modal-wrapper";
+      nodalElement.className = "nav-modal";
     } else {
-      nodalElement.className = "nav-modal-wrapper nav-modal-wrapper-expanded";
+      nodalElement.className = "nav-modal expanded";
     }
   }
 }

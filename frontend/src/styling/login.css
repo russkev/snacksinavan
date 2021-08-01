@@ -1,0 +1,22 @@
+div.login-window {
+  width: calc(100vw - 6rem);
+  max-width: 40rem;
+  padding: 3rem;
+}
+
+div.login-window fieldset {
+  background-color: var(--background-blue);
+}
+
+div.login-window fieldset:nth-child(n+2) {
+  margin-top: 2rem;
+}
+
+div.login-window h4 {
+  margin-bottom: 0.3rem;
+}
+
+div.login-window form > button {
+  width: 100%;
+  margin: 2.5rem 0;
+}
