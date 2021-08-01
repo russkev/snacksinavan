@@ -7,6 +7,8 @@ import { Link } from "react-router-dom";
 import Routes from "../../routes/routes";
 import Logout from "./logout.button";
 import { toggleMobileNav } from "../../hooks/useModal";
+import MenuBookIcon from "../../media/menu.book.icon"
+import SearchIcon from "../../media/search.icon";
 
 function NavModal() {
   const { isAuthenticated } = useUser();
@@ -56,7 +58,8 @@ function NavModal() {
             </Link>
             <Link
               onClick={toggleMobileNav}
-              className="mobile-nav-link mobile-link-right" to={Routes.MY_INFO.path}
+              className="mobile-nav-link mobile-link-right"
+              to={Routes.MY_INFO.path}
             >
               My Account
             </Link>
@@ -73,34 +76,49 @@ function NavModal() {
     return ReactDOM.createPortal(
       <>
         <div id="mobile-nav" className="nav-modal" tabIndex={-1}>
-          <button
-            type="button"
-            className="close"
-            onClick={toggleMobileNav}
-          >
+          <button type="button" className="close" onClick={toggleMobileNav}>
             &times;
           </button>
-          <div className="mobile-nav-flex">
+          <div>
+            <h2>Snacks in a van</h2>
             <hr className="nav-line" />
-            <Link
-              onClick={toggleMobileNav}
-              className="mobile-nav-link mobile-link-right"
-              to={Routes.HOME.path}
-            >
+            <Link onClick={toggleMobileNav} className="nav-button" to={Routes.HOME.path}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="3rem"
+                width="3rem"
+                viewBox="0 0 24 24"
+                fill="var(--dark-text)"
+              >
+                <SearchIcon/>
+              </svg>
               Find a van
             </Link>
-            <Link
-              onClick={toggleMobileNav}
-              className="mobile-nav-link mobile-link-right"
-              to={Routes.SNACKS_MENU.path}
-            >
+            <Link onClick={toggleMobileNav} className="nav-button" to={Routes.SNACKS_MENU.path}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                enable-background="new 0 0 24 24"
+                height="30px"
+                width="30px"
+                viewBox="0 0 24 24"
+                fill="var(--dark-text)"
+              >
+                <MenuBookIcon />
+              </svg>
               Menu
             </Link>
             <hr className="lower-nav-line" />
-            <Link to="#" onClick={handleLoginClicked} className="mobile-nav-link mobile-link-left">
+            </div>
+            <div>
+            <Link to="#" onClick={handleLoginClicked} className="button">
               Login
             </Link>
-            <Link onClick={toggleMobileNav} className="mobile-nav-link mobile-link-left" id="logged-out-mobile-nav-signup" to={Routes.SIGNUP.path}>
+            <Link
+              onClick={toggleMobileNav}
+              className="primary button soft-shadow"
+              id="logged-out-mobile-nav-signup"
+              to={Routes.SIGNUP.path}
+            >
               Signup
             </Link>
           </div>
@@ -108,7 +126,7 @@ function NavModal() {
       </>,
       document.body
     );
-  } 
+  }
 }
 
 export default NavModal;
