@@ -1,24 +1,31 @@
 <svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
-<circle cx="255.5" cy="255.5" r="211" stroke="black" stroke-width="11"/>
-<circle cx="255.5" cy="255.5" r="145.5" fill="#EDCF96"/>
-<circle cx="180.159" cy="190.523" r="7.17534" fill="#E6B964"/>
-<circle cx="230.386" cy="190.523" r="7.17534" fill="#E6B964"/>
-<circle cx="280.614" cy="190.523" r="7.17534" fill="#E6B964"/>
-<circle cx="330.841" cy="190.523" r="7.17534" fill="#E6B964"/>
-<circle cx="180.159" cy="223.211" r="7.17534" fill="#E6B964"/>
-<circle cx="230.386" cy="223.211" r="7.17534" fill="#E6B964"/>
-<circle cx="280.614" cy="223.211" r="7.17534" fill="#E6B964"/>
-<circle cx="330.841" cy="223.211" r="7.17534" fill="#E6B964"/>
-<circle cx="180.159" cy="255.899" r="7.17534" fill="#E6B964"/>
-<circle cx="230.386" cy="255.899" r="7.17534" fill="#E6B964"/>
-<circle cx="280.614" cy="255.899" r="7.17534" fill="#E6B964"/>
-<circle cx="330.841" cy="255.899" r="7.17534" fill="#E6B964"/>
-<circle cx="180.159" cy="288.586" r="7.17534" fill="#E6B964"/>
-<circle cx="230.386" cy="288.586" r="7.17534" fill="#E6B964"/>
-<circle cx="280.614" cy="288.586" r="7.17534" fill="#E6B964"/>
-<circle cx="330.841" cy="288.586" r="7.17534" fill="#E6B964"/>
-<circle cx="180.159" cy="321.274" r="7.17534" fill="#E6B964"/>
-<circle cx="230.386" cy="321.274" r="7.17534" fill="#E6B964"/>
-<circle cx="280.614" cy="321.274" r="7.17534" fill="#E6B964"/>
-<circle cx="330.841" cy="321.274" r="7.17534" fill="#E6B964"/>
+<rect width="512" height="512" rx="108" fill="url(#paint0_linear)"/>
+<circle cx="255.5" cy="256.5" r="170" stroke="#FF740F" stroke-width="11"/>
+<circle cx="255.5" cy="256.5" r="117.946" fill="#EDCF96"/>
+<circle cx="194.427" cy="203.018" r="5.8165" fill="#E6B964"/>
+<circle cx="235.142" cy="203.018" r="5.8165" fill="#E6B964"/>
+<circle cx="275.858" cy="203.018" r="5.8165" fill="#E6B964"/>
+<circle cx="316.573" cy="203.018" r="5.8165" fill="#E6B964"/>
+<circle cx="194.427" cy="229.515" r="5.8165" fill="#E6B964"/>
+<circle cx="235.142" cy="229.515" r="5.8165" fill="#E6B964"/>
+<circle cx="275.858" cy="229.515" r="5.8165" fill="#E6B964"/>
+<circle cx="316.573" cy="229.515" r="5.8165" fill="#E6B964"/>
+<circle cx="194.427" cy="256.013" r="5.8165" fill="#E6B964"/>
+<circle cx="235.142" cy="256.013" r="5.8165" fill="#E6B964"/>
+<circle cx="275.858" cy="256.013" r="5.8165" fill="#E6B964"/>
+<circle cx="316.573" cy="256.013" r="5.8165" fill="#E6B964"/>
+<circle cx="194.427" cy="282.51" r="5.8165" fill="#E6B964"/>
+<circle cx="235.142" cy="282.51" r="5.8165" fill="#E6B964"/>
+<circle cx="275.858" cy="282.51" r="5.8165" fill="#E6B964"/>
+<circle cx="316.573" cy="282.51" r="5.8165" fill="#E6B964"/>
+<circle cx="194.427" cy="309.007" r="5.8165" fill="#E6B964"/>
+<circle cx="235.142" cy="309.007" r="5.8165" fill="#E6B964"/>
+<circle cx="275.858" cy="309.007" r="5.8165" fill="#E6B964"/>
+<circle cx="316.573" cy="309.007" r="5.8165" fill="#E6B964"/>
+<defs>
+<linearGradient id="paint0_linear" x1="471.365" y1="4.48152e-05" x2="1.21101e-06" y2="512" gradientUnits="userSpaceOnUse">
+<stop stop-color="#585858"/>
+<stop offset="1"/>
+</linearGradient>
+</defs>
 </svg>

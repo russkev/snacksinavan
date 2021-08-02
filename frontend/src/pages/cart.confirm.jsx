@@ -15,7 +15,6 @@ import { Link } from "react-router-dom";
 import useOrders from "../hooks/useOrders";
 import Loading from "../components/loading";
 
-
 export default function ConfirmCart() {
   const { toggleLoginIsOpen } = useLogin();
   const { isAuthenticated } = useUser();
@@ -27,7 +26,12 @@ export default function ConfirmCart() {
   const { van } = useContext(VanContext);
   var cantUpdate = false;
   if (orderId) {
-    if (order && (order.isFulfilled || Math.floor((new Date().getTime() - new Date(order.updatedAt).getTime()) / 1000)  > globals.cancelTime * 60 + 2)) {
+    if (
+      order &&
+      (order.isFulfilled ||
+        Math.floor((new Date().getTime() - new Date(order.updatedAt).getTime()) / 1000) >
+          globals.cancelTime * 60 + 2)
+    ) {
       cantUpdate = true;
     }
   }
@@ -38,69 +42,49 @@ export default function ConfirmCart() {
   } else {
     var heading;
     if (!orderId) {
-      heading = "Confirm checkout";
+      heading = "Cart";
     } else {
       heading = "Confirm order change";
     }
     return (
-      <>
-      <div className="container">
-        <div className="container-margin">
-          <h5> {heading} </h5>
-          {Object.keys(cart).length !== 0 ? (
+      <div className="cart">
+        <h1> {heading} </h1>
+        <section>
+          {Object.keys(cart).map((cartItem) => {
+            return <CartItemCard key={cartItem} snackName={cartItem} />;
+          })}
+        </section>
+        <section>
+          <TotalPrice total={total} setTotal={setTotal} />
+          {/* <div className="cart-price-card">
+            <h3 className="van-confirm-cart-subheading">Van</h3>
+            {van ? (
+              <div className="van-confirm-cart-info">
+                <span>Ordering From: {van}</span>
+              </div>
+            ) : (
+              <div className="van-confirm-cart-info">
+                <span>Ordering From: </span>
+                <span id="no-van">No Van Selected</span>
+              </div>
+            )}
+            {van ? <SelectVanButton isAVan={true} /> : <SelectVanButton isAVan={false} />}
+          </div> */}
+          {!isAuthenticated ? (
             <>
-              {snacks.length > 0 ? (
-                snacks.map((menuItem) => (
-                  <CartItemCard
-                    key={menuItem.name}
-                    snack={menuItem}
-                    cart={cart}
-                    setCart={setCart}
-                    total={total}
-                    setTotal={setTotal}
-                  />
-                ))
-              ) : (
-                <></>
-              )}
-              <div className="cart-price-card">
-                <TotalPrice total={total} setTotal={setTotal} />
+              <div className="please-login">
+                <span>You must be logged in to place an order</span>
+                <br />
+                <Link to="#" onClick={toggleLoginIsOpen}>
+                  Login
+                </Link>{" "}
+                or <Link to={Routes.SIGNUP.path}>make an account</Link>
               </div>
-              <div className="cart-price-card">
-                <h3 className="van-confirm-cart-subheading">Van</h3>
-                <hr className="van-confirm-cart-line"></hr>
-                {van ? (
-                  <div className="van-confirm-cart-info">
-                    <span>Ordering From: {van}</span>
-                  </div>
-                ) : (
-                  <div className="van-confirm-cart-info">
-                    <span>Ordering From: </span>
-                    <span id="no-van">No Van Selected</span>
-                  </div>
-                )}
-                {van ? <SelectVanButton isAVan={true} /> : <SelectVanButton isAVan={false} />}
-              </div>
-              {!isAuthenticated ? (
-                <>
-                  <div className="please-login">
-                    <span>You must be logged in to place an order</span>
-                    <br />
-                    <Link onClick={toggleLoginIsOpen}>Login</Link> or{" "}
-                    <Link to={Routes.SIGNUP.path}>make an account</Link>
-                  </div>
-                </>
-              ) : (
-                <></>
-              )}
             </>
           ) : (
-            <div className="horizontal-margin">
-              <h4>Your shopping cart is empty.</h4>
-              <>Please visit add items to your cart in order to continue</>
-            </div>
+            <></>
           )}
-          <BackButton to={Routes.SNACKS_MENU.path} />
+          {/* <BackButton to={Routes.SNACKS_MENU.path} /> */}
           {cantUpdate ? (
             <>
               <div className="horizontal-margin">
@@ -122,10 +106,11 @@ export default function ConfirmCart() {
             </>
           )}
           <div className="blank-bottom" />
-        </div>
+          {/* </div> */}
+          {/* </div> */}
+          <Loading isLoading={submitLoading} />
+        </section>
       </div>
-      <Loading isLoading={submitLoading} />
-</>
     );
   }
 }

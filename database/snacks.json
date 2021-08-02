@@ -5,7 +5,7 @@
   "name": "Cappuccino",
   "price": 4.3,
   "category": "drink",
-  "photo": "https://source.unsplash.com/tZKwLRO904E",
+  "photo": "snacks/Cappuccino.svg",
   "description": "Our lovely Cappuccino is a delightful drink with ingredients!"
 },{
   "_id": {
@@ -14,7 +14,7 @@
   "name": "Latte",
   "price": 4.3,
   "category": "drink",
-  "photo": "https://source.unsplash.com/00QEr9tsXJE",
+  "photo": "snacks/Latte.svg",
   "description": "Our Latte is a must try! Contains milk."
 },{
   "_id": {
@@ -23,7 +23,7 @@
   "name": "Flat white",
   "price": 4.3,
   "category": "drink",
-  "photo": "https://source.unsplash.com/1Sphewst6ak",
+  "photo": "snacks/FlatWhite.svg",
   "description": "The Flat white is a favourite among our customers. Give it a try!"
 },{
   "_id": {
@@ -32,42 +32,42 @@
   "name": "Long black",
   "price": 3.8,
   "category": "drink",
-  "photo": "https://source.unsplash.com/JNhaaPEz3FY",
+  "photo": "snacks/LongBlack.svg",
   "description": "For our seasoned coffee drinkers."
 },{
   "_id": {
     "$oid": "60755881f0ecddc11494a354"
   },
-  "name": "Plain biscuit",
+  "name": "Shortcrust Biscuit",
   "price": 5,
   "category": "food",
-  "photo": "https://source.unsplash.com/vs_FdRrN-SA",
+  "photo": "snacks/Shortcrust.svg",
   "description": "Just need a biscuit? We have the biscuit for you!"
 },{
   "_id": {
     "$oid": "60755881f0ecddc11494a355"
   },
-  "name": "Fancy biscuit",
+  "name": "Choc Chip Cookie",
   "price": 7.9,
   "category": "food",
-  "photo": "https://source.unsplash.com/x6VuEH2npHw",
+  "photo": "snacks/ChocolateChip.svg",
   "description": "If you're feeling better than our Plain biscuit then our Fancy biscuit is for you!"
 },{
   "_id": {
     "$oid": "60755881f0ecddc11494a356"
   },
-  "name": "Small cake",
+  "name": "Carrot Cake",
   "price": 7,
   "category": "food",
-  "photo": "https://source.unsplash.com/6SHd7Q-l1UQ",
+  "photo": "snacks/CarrotCake.svg",
   "description": "Our Small cake is a great treat!"
 },{
   "_id": {
     "$oid": "60755881f0ecddc11494a357"
   },
-  "name": "Big cake",
+  "name": "Chocolate Mud Cake",
   "price": 12,
   "category": "food",
-  "photo": "https://source.unsplash.com/hcEDfkiVmMI",
+  "photo": "snacks/ChocolateMudCake.svg",
   "description": "A Big cake perfect for celebrating an event!"
 }]

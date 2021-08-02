@@ -1,11 +1,10 @@
 :root {
   --header-height: 50px;
-  --background-blue: #eff5f9;
+  --background-blue: #F6F8F9;
   --background-white: #ffffff;
   --background-darker: #e0e8ed;
-  --background-card: #F6F8F9;
-  --dark-text: #10254f;
-  --light-text: #4f5e7c;
+  --dark-text: #3c4048;
+  --light-text: #696f7c;
   --shadow: #00133933;
   --link-text: #002e8a;
   --focus: #296ea2;
@@ -26,6 +25,8 @@
 
   --primary: #FF740F;
   --primary-dark: #e36308;
+
+  --warning: #bf0101;
 }
 
 html {

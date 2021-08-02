@@ -1,0 +1,80 @@
+.cart-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 0;
+}
+
+.cart-item > div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.cart-item .quantity > span {
+  margin: 0.3rem 0.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: unset;
+}
+
+.cart-item .quantity > button {
+  width: 2.8rem;
+  height: 2.8rem;
+}
+
+.cart-item img {
+  margin: 0 1.5rem;
+}
+
+.cart-item h4 {
+  font-size: 2rem;
+}
+
+.cart-item svg {
+  fill: var(--dark-text);
+  cursor: pointer;
+}
+
+.cart-item svg:hover, .cart-item svg:focus {
+  fill: var(--warning);
+}
+
+.cart {
+  display: grid;
+  height: 100%;
+  grid-template-rows: max-content auto max-content;
+  box-sizing: border-box;
+}
+
+.cart > * {
+  padding: 1.5rem;
+}
+
+.cart > section:nth-child(2) {
+  overflow-y: auto;
+}
+
+.cart > section:nth-child(3) {
+  background-color: var(--background-blue);
+  border-radius: 20px 20px 0 0;
+}
+
+.cart > section:nth-child(3) > div:first-child {
+  display: grid;
+  grid-template-columns: auto max-content;
+}
+
+.cart > section:nth-child(3) > div:first-child :nth-child(2n) {
+  text-align: right;
+}
+
+.cart button.primary {
+  width: 100%;
+}
+
+div.please-login {
+  font-size: 1.4rem;
+  margin: 1.5rem 0;
+}

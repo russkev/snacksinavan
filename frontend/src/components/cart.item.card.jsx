@@ -1,51 +1,56 @@
 import React from "react";
 import useCart from "../hooks/useCart";
+import useSnacks from "../hooks/useSnacks";
+import useGlobals from "../hooks/useGlobals";
+import DeleteIcon from "../media/delete.icon";
+import "../styling/cart.css";
 
-export default function CartItemCard({ snack, cart}) {
-  const { updateCart } = useCart();
+export default function CartItemCard({ snackName }) {
+  const { updateCart, deleteFromCart, cart } = useCart();
+  const { snackFromName } = useSnacks();
+  const { globals } = useGlobals();
 
-  if (typeof cart[snack.name] === "undefined") {
-    return null;
-  }
+  const snack = snackFromName(snackName);
   return (
-    <div className="menu-item-holder">
-      <div className="menu-item-card no-click cart-card">
-        {/* <Avatar imageUrl={snack.photo} width="128px" hardRight={true} /> */}
-        <div className="menu-item-card-details">
-          <div className="menu-item-card-heading">
-            <h4>{snack.name}</h4>
-            <h4>{cart[snack.name]}</h4>
+    <div className="cart-item">
+      <div>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          height="24px"
+          viewBox="0 0 24 24"
+          width="24px"
+          fill="var(--dark-text)"
+          onClick={() => deleteFromCart(snackName)}
+        >
+          <DeleteIcon />
+        </svg>
+        <img src={snack.photo} width="50px" alt={snackName} />
+        <section>
+          {snackName}
+          <div className="quantity">
+            <button
+              onClick={() => {
+                if (cart[snackName] > 1) {
+                  updateCart(snack, -1);
+                }
+              }}
+            >
+              <span>&#8722;</span>
+            </button>
+            <span>{cart[snackName]}</span>
+            <button
+              onClick={() => {
+                if (cart[snackName] < globals.maxItems) {
+                  updateCart(snack, 1);
+                }
+              }}
+            >
+              <span>&#43;</span>
+            </button>
           </div>
-          <div>
-            <hr className="menu-item-card-hr" />
-            <p className="cart-card-description">
-              {(snack.price * cart[snack.name]).toFixed(2)}
-            </p>
-          </div>
-        </div>
-        <div className="cart-buttons">
-          <button
-            onClick={() => {
-              updateCart(snack, 1);
-            }}
-            className="cart-button"
-          >
-            {" "}
-            <span className="cart-button-words">Add 1</span>
-            <span className="cart-button-symbols">+</span>{" "}
-          </button>
-          <button
-            onClick={() => {
-              updateCart(snack, -1);
-            }}
-            className="cart-button"
-          >
-            {" "}
-            <span className="cart-button-words">Remove 1</span>
-            <span className="cart-button-symbols">-</span>
-          </button>
-        </div>
+        </section>
       </div>
+      <h4>${(snack.price * cart[snackName]).toFixed(2)}</h4>
     </div>
   );
 }

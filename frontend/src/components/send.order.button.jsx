@@ -6,13 +6,13 @@ export default function SendOrderButton(props) {
 
   if (cartSize() > 0 && props.enabled) {
     return (
-      <button onClick={submitCart} className="checkout-button checkout-button-confirm">
+      <button onClick={submitCart} className="primary soft-shadow">
         Confirm
       </button>
     );
   } else {
     return (
-      <button disabled className="checkout-button checkout-button-confirm de-emphasised border submit-button greyed-out">
+      <button disabled className="primary soft-shadow disabled">
         Confirm
       </button>
     );

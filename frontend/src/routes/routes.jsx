@@ -1,6 +1,7 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import Menu from "../pages/snacks.menu";
+// import Menu from "../pages/snacks.menu";
+import MenuCart from "../pages/menu.cart";
 import Home from "../pages/home";
 import Signup from "../pages/signup";
 import Login from "../pages/login";
@@ -32,7 +33,7 @@ const Routes = {
   },
   SNACKS_MENU: {
     path: "/menu",
-    component: Menu,
+    component: MenuCart,
     access: availability.ALL,
   },
   CART: {

@@ -105,6 +105,19 @@ export default function useCart() {
     setTotal(total + snack.price * currCount);
   }
 
+  function appendCart(snack, count) {
+    const snackName = snack["name"];
+    const oldCount = cart[snackName] ? cart[snackName] : 0;
+    setCart({...cart, [snackName]: count})
+    setTotal(total - oldCount * snack.price + count * snack.price)
+  }
+
+  function deleteFromCart(snack) {
+    const {[snack]: _, ...newCart} = cart;
+    console.log(newCart)
+    setCart(newCart);
+  }
+
   async function submitCart(event) {
     setSubmitLoading(true)
     if (isAuthenticated) {
@@ -168,6 +181,7 @@ export default function useCart() {
     setTotal,
     orderId,
     updateCart,
+    deleteFromCart,
     submitCart,
     cartSize,
     setOrderCart,
@@ -175,5 +189,6 @@ export default function useCart() {
     order,
     resetCart,
     submitLoading,
+    appendCart,
   };
 }

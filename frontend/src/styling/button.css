@@ -72,11 +72,19 @@ button.primary, a.button.primary {
   border: 2px solid;
 } */
 
-button.primary:hover, a.button.primary:hover, button.primary:focus, a.button.primary:focus {
+button.primary:hover, 
+a.button.primary:hover, 
+button.primary:focus, 
+a.button.primary:focus {
   background-color: var(--primary-dark);
 }
 
-button.soft-shadow, a.soft-shadow {
+button.soft-shadow, 
+a.soft-shadow, 
+button.soft-shadow.disabled:hover, 
+button.soft-shadow.disabled:focus,
+a.soft-shadow.disabled:hover, 
+a.soft-shadow.disabled:focus {
   box-shadow: 1rem 1rem 2rem var(--shadow);
 }
 
@@ -100,4 +108,37 @@ button.soft-shadow:active, a.soft-shadow:active {
   text-decoration: underline;
   border: none;
   outline: none;
+}
+
+div.quantity {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+div.quantity > button {
+  width: 3.5rem;
+  height: 3.5rem;
+  font-size: 2.5rem;
+  font-weight: 300;
+}
+
+div.quantity > span {
+  width: 6rem;
+  height: 6rem;
+  background-color: var(--background-blue);
+  display: inline-flex;
+  border-radius: 100%;
+  justify-content: center;
+  align-items: center;
+  margin: 1.5rem;
+}
+
+button.disabled {
+  opacity: 50%;
+  cursor: unset;
+}
+
+button.primary.disabled:hover, button.primary.disabled:focus {
+  background-color: var(--primary);
 }

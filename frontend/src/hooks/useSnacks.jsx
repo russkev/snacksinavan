@@ -37,13 +37,13 @@ function moveSelectorLeft(selector) {
  */
 export default function useSnacks() {
   const { snacks, loading, error } = useContext(SnackContext);
+  const [mouseIsOver, setMouseIsOver] = useState(false);
   const [category, setCategory] = useState(0);
   const selector = document.getElementById("category-selector");
   const menuItems = document.getElementById("menu-list-1");
 
   useEffect(() => {
     if (selector) {
-      console.log("UPDATING")
       // selector.style.animationDuration = 0;
       setTimeout(() => {
         selector.style.animationDuration = "0.35s";
@@ -53,7 +53,10 @@ export default function useSnacks() {
 
   useEffect(() => {
     if (menuItems) {
-      menuItems.scrollLeft = 0;
+
+      // menuItems.onmouseover = {() => {setMouseIsOver(true)}}
+      // menuItems.onmouseout = () => {setMouseIsOver(false)}
+      // menuItems.scrollLeft = 0;
     }
   }, [menuItems])
 
@@ -69,11 +72,17 @@ export default function useSnacks() {
             moveSelectorLeft(selector)
           }
         });
-        window.addEventListener("wheel", function(e) {
-          e.deltaY > 0 ? menuItems.scrollLeft += 500 : menuItems.scrollLeft -= 500;
-        })
+        
       }
   }, 1000);
+
+  useDebounceEffect(() => {
+    if (menuItems) {
+      window.addEventListener("wheel", function (e) {
+        e.deltaY > 0 && mouseIsOver ? (menuItems.scrollLeft += 500) : (menuItems.scrollLeft -= 500);
+      });
+    }
+  }, 100)
 
   function updateCategory(newCategory) {
     const categoryCards = getCategoryCards();
@@ -104,5 +113,6 @@ export default function useSnacks() {
     snackFromId,
     snackFromName,
     updateCategory,
+    setMouseIsOver,
   };
 }

@@ -16,6 +16,10 @@ export default function useVans() {
   const [vans, setVans] = useState([]);
   const [error, setError] = useState(null);
 
+  function vanFromName(vanName) {
+    return vans.find((van) => van.vanName === vanName);
+  }
+
   useEffect(() => {
     let mounted = true
 
@@ -42,6 +46,7 @@ export default function useVans() {
   return {
     loading,
     vans,
-    error
+    error,
+    vanFromName
   };
 }
