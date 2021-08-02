@@ -82,6 +82,18 @@ export default function useCart() {
     setOrder();
   }
 
+  function displayCart() {
+    const confirmCart = document.getElementById("confirm-cart");
+    confirmCart.classList.remove("slide-menu")
+    confirmCart.classList.add("slide-cart")
+  }
+
+  function displayMenu() {
+    const confirmCart = document.getElementById("confirm-cart");
+    confirmCart.classList.remove("slide-cart");
+    confirmCart.classList.add("slide-menu");
+  }
+
   function updateCart(snack, count) {
     const snackName = snack["name"];
     let currCount = 0;
@@ -190,5 +202,7 @@ export default function useCart() {
     resetCart,
     submitLoading,
     appendCart,
+    displayCart,
+    displayMenu,
   };
 }

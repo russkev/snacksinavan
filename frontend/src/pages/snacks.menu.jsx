@@ -1,20 +1,18 @@
 import React from "react";
 import useSnacks from "../hooks/useSnacks";
 import MenuItemCard from "../components/menu.item.card";
-import CheckoutButton from "../components/checkout.button";
-import BackButton from "../components/navigation/back.button";
 import useCart from "../hooks/useCart";
 import useVans from "../hooks/useVans";
-import Routes from "../routes/routes";
 import "../styling/snack.menu.css";
 import EditIcon from "../media/edit.icon";
 import { Link } from "react-router-dom";
 import LocationIcon from "../media/location.icon";
+import CartIcon from "../media/cart.icon";
 
 export default function Menu() {
   const { loading, snacks, error, updateCategory, setMouseIsOver } = useSnacks();
-  const { cart, setCart, total, setTotal, /*orderId,*/ van } = useCart();
-  const { vanFromName, vans } = useVans();
+  const { van, displayCart, cartSize } = useCart();
+  const { vanFromName} = useVans();
   if (loading) {
     return <p>Loading...</p>;
   }
@@ -30,9 +28,6 @@ export default function Menu() {
   // }
 
   function VanInfo() {
-    // console.log(van)
-    // console.log(vanFromName(van))
-
     const vanObject = vanFromName(van);
     if (van && vanObject) {
       return (
@@ -52,7 +47,6 @@ export default function Menu() {
   }
 
   return (
-    // <div className="container">
     <>
       <h1>Menu</h1>
       <nav className="categories">
@@ -87,7 +81,7 @@ export default function Menu() {
       {/* <BackButton to={Routes.HOME.path} /> */}
       {/* <CheckoutButton cart={cart} /> */}
       <div className="menu-van">
-        <div style={van ? {} : {border: "2px solid var(--warning)"}}>
+        <div style={van ? {} : { border: "2px solid var(--warning)" }}>
           <Link to="/" className="soft-shadow button">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -107,9 +101,22 @@ export default function Menu() {
             <VanInfo />
           </section>
         </div>
+        <button onClick={displayCart} className="cart-button primary soft-shadow mobile-only">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="24px"
+            viewBox="0 0 24 24"
+            width="24px"
+            fill="#000000"
+          >
+            <CartIcon />
+          </svg>
+          <div>
+            {cartSize()}
+          </div>
+        </button>
       </div>
       <div className="blank-bottom" />
     </>
-    // </div>
   );
 }

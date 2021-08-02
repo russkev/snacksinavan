@@ -9,7 +9,7 @@ export default function MenuCart() {
         <article>
           <Menu/>
         </article>
-        <article>
+        <article id="confirm-cart" className="slide-menu">
           <ConfirmCart/>
         </article>
       </div>

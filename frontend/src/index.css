@@ -152,6 +152,9 @@ textarea {
   resize: none;
 }
 
+svg {
+  fill: var(--dark-text);
+}
 
 .material-icons-outlined {
   font-family: 'Material Icons';

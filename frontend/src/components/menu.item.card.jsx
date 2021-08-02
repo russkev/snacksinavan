@@ -7,7 +7,7 @@ import useGlobals from "../hooks/useGlobals";
 
 export default function MenuItemCard({ snack }) {
   const { isShowing, toggle } = useModal();
-  const { cart, setCart, total, setTotal, updateCart, appendCart } = useCart();
+  const { cart, appendCart } = useCart();
   const [count, setCount] = useState(1);
   const { globals } = useGlobals();
   // !!! count should check existing cart
@@ -16,7 +16,7 @@ export default function MenuItemCard({ snack }) {
     if (cart[snack.name] && cart[snack.name]) {
       setCount(cart[snack.name]);
     }
-  }, [cart])
+  }, [cart, snack.name])
 
   return (
     <>
