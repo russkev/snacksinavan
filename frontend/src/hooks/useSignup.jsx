@@ -77,22 +77,22 @@ export default function useSignup() {
   
 
   const handleSignupSubmit = async (event) => {
+    if (event) {
+      event.preventDefault()
+    }
     
     if (!isValidPassword(userDetails.password)) {
-      event.preventDefault();
       setError("Passwords must be 8 characters long and include one letter and one number!");
       return false;
     }
 
     if (userDetails.password !== userDetails.passwordConfirm)
     {
-      event.preventDefault();
       setError("Passwords do not match");
       return false;
     }
 
     setLoading(true)
-    event.preventDefault();
     try {
       await postSignup(
         userDetails.firstName,
@@ -183,5 +183,6 @@ export default function useSignup() {
     onPasswordConfirmChange,
     handleEmailCheck,
     handleSignupSubmit,
+    setUserDetails,
   };
 }

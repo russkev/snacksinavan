@@ -12,7 +12,7 @@ import useLogin from "../hooks/useLogin";
 import { Link } from "react-router-dom";
 import useOrders from "../hooks/useOrders";
 import Loading from "../components/loading";
-import ChevronRightIcon from "../media/chevron.left.icon.jsx";
+import ChevronLeftIcon from "../media/chevron.left.icon.jsx";
 
 export default function ConfirmCart() {
   const { toggleLoginIsOpen } = useLogin();
@@ -49,8 +49,8 @@ export default function ConfirmCart() {
       <div className="cart">
         <div>
           <button className="mobile-only close-cart" onClick={displayMenu}>
-            <svg xmlns="http://www.w3.org/2000/svg" enableBackground="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px">
-              <ChevronRightIcon />
+            <svg>
+              <ChevronLeftIcon />
             </svg>
           </button>
           <h1> {heading} </h1>

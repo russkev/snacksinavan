@@ -1,16 +1,19 @@
 // Heavily inspired by https://upmostly.com/tutorials/modal-components-react-custom-hooks
 import { useState } from "react";
 
-export function toggleMobileNav() {
-  const nodalElement = document.getElementById("mobile-nav");
-  if (nodalElement) {
-    if (nodalElement.className.includes("expanded")) {
-      nodalElement.className = "nav-modal";
+export function toggleMobileNav(setIsShowing) {
+  const modalElement = document.getElementById("mobile-nav");
+  if (modalElement) {
+    if (modalElement.classList.contains("expanded")) {
+      modalElement.classList.remove("expanded");
+      setIsShowing(false)
     } else {
-      nodalElement.className = "nav-modal expanded";
+      modalElement.classList.add("expanded");
+      setIsShowing(true)
     }
   }
 }
+
 
 function useModal() {
   const [isShowing, setIsShowing] = useState(false);
@@ -19,9 +22,12 @@ function useModal() {
     setIsShowing(!isShowing);
   }
 
+
+
   // Return the isShowing state and function to toggle if it is showing
   return {
     isShowing,
+    setIsShowing,
     toggle,
   };
 }

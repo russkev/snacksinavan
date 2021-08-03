@@ -48,12 +48,17 @@
   box-sizing: border-box;
 }
 
+.cart h1 {
+  padding: 0;
+}
+
 .cart > * {
   padding: 1.5rem;
 }
 
 .cart > section:nth-child(2) {
   overflow-y: auto;
+  padding-top: 0;
 }
 
 .cart > section:nth-child(3) {
@@ -90,6 +95,11 @@ div.please-login {
   width: 4.2rem;
   height: 4.2rem;
   margin-right: 1.5rem;
+}
+
+.close-cart svg {
+  width: 2.4rem;
+  height: 2.4rem;
 }
 
 .cart-button {
@@ -138,10 +148,11 @@ div.please-login {
     position: absolute;
     top: 0;
     bottom: 0;
-    transition-duration: 0.5s;
-    transition-timing-function: cubic-bezier(1, 0, 0, 1);
+    transition-duration: 0.3s;
+    /* transition-timing-function: cubic-bezier(1, 0, 0, 1); */
     width: 500px;
     max-width: 100%;
+    transition-timing-function: ease-in-out;
   }
 
   .menu-cart .slide-cart {

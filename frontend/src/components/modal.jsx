@@ -24,7 +24,7 @@ export default function Modal({ toggleOpen, isOpen, children }) {
 
   if (isOpen) {
     return (
-      <div className="fill-loading" onClick={toggleOpen}>
+      <div className="fill loading" onClick={toggleOpen}>
         <div
           onClick={(event) => {
             event.stopPropagation();

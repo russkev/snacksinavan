@@ -5,6 +5,8 @@
     Team Whelk - Snacks in a Van app
 <h1>
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/7413316f-2cdd-4979-9018-b1d09dac8c17/deploy-status)](https://app.netlify.com/sites/snacks-in-a-van/deploys)
+
 # Welcome
 
 This is a food van app designed as a group project for INFO30005 – Web Information Technologies

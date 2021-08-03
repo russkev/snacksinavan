@@ -13,13 +13,21 @@ export const handleShowSnackbar = () => {
 export const Snackbar = ({ message, isSuccess }) => {
   if (isSuccess) {
     return (
-      <div id="snackbar" className="snackbar-base snackbar" style={{ color: "darkgreen", borderColor: "darkgreen" }}>
+      <div
+        id="snackbar"
+        className="snackbar-base snackbar"
+        style={{ color: "darkgreen", borderColor: "darkgreen" }}
+      >
         {message}
       </div>
     );
   } else {
     return (
-      <div id="snackbar" className="snackbar-base snackbar" style={{ color: "darkred", borderColor: "darkred" }}>
+      <div
+        id="snackbar"
+        className="snackbar-base snackbar"
+        style={{ color: "darkred", borderColor: "darkred" }}
+      >
         {message}
       </div>
     );

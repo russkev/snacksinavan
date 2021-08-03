@@ -67,32 +67,6 @@ nav .login {
   box-shadow: 0px 10px 10px var(--shadow);
 }
 
-
-.nav-modal-close-button {
-  position: absolute;
-  top: 1%;
-  right: 1%;
-  font-size: 4rem;
-  font-weight: 700;
-  line-height: 1;
-  color: var(--background-white);
-  background-color: transparent;
-  cursor: pointer;
-  border: none;
-  width: 80px;
-  height: 60px;
-  padding: 0px 2rem 0 2rem;
-  display: inline-block;
-
-}
-
-.nav-modal-close-button-menu {
-  position: unset;
-  margin-left: auto;
-  margin-right: 15px;
-  margin-top: 15px;
-}
-
 .nav-modal > div{
   display: flex;
   flex-direction: column;
@@ -106,7 +80,9 @@ nav .login {
 }
 
 .nav-modal hr {
-  margin: 1.5rem 0;
+  /* margin: 1.5rem 0; */
+  margin: 1rem 0;
+  margin-top: 0.5rem;
 }
 
 .nav-button {
@@ -160,6 +136,39 @@ nav .login {
   margin: 1.5rem 0;
 }
 
+button.logout {
+  margin-top: 1rem;
+}
+
+#mobile-nav {
+  z-index: 3000;
+}
+
+#mobile-nav button.close svg {
+  width: 2.2rem;
+  height: 2.2rem;
+  transform: rotate(180deg)
+}
+
+li.account {
+  position: relative
+}
+
+#account-popover {
+  display: none;
+}
+
+#account-popover section {
+  position: absolute;
+  z-index: 4000;
+  width: 300px;
+  background-color: var(--background-white);
+  right: 0;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
 @media screen and (max-width: 800px) {
   nav ul {
     display: none;
@@ -176,4 +185,10 @@ nav .login {
   .mobile-nav span:nth-child(n+2) {
     display: none;
   } 
+}
+
+@media screen and (max-height: 600px) {
+  .nav-button.mobile {
+    padding: 0.8rem 1.2rem;
+  }
 }

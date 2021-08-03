@@ -3,10 +3,12 @@
   --background-blue: #F6F8F9;
   --background-white: #ffffff;
   --background-darker: #e0e8ed;
+  --background-warning: #fae8e8;
+  --background-warning-dark: #f0dbdb;
   --dark-text: #3c4048;
   --light-text: #696f7c;
   --shadow: #00133933;
-  --link-text: #002e8a;
+  --link-text: #435a8a;
   --focus: #296ea2;
   --un-focus: #b6c8d5;
   --orange: #c95100;
@@ -40,7 +42,7 @@ body {
   font-family: "Poppins", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-size: 1.6em;
+  font-size: 1.4em;
   color: var(--dark-text)
 }
 
@@ -50,7 +52,7 @@ code {
 
 h1 {
   font-size: 3.6rem;
-  font-weight: normal;
+  font-weight: 300;
   margin: 0;
   padding: 1.5rem 0;
 }
