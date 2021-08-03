@@ -2,12 +2,10 @@ import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import Routes from "../../routes/routes";
 import MobileNav from "./mobile.nav";
-import LoginButton from "./login.button";
 import Logout from "./logout.button";
 import useUser from "../../hooks/useUser";
 import useLogin from "../../hooks/useLogin";
 import "../../styling/nav.css";
-import { toggleMobileNav } from "../../hooks/useModal";
 import MenuBookIcon from "../../media/menu.book.icon";
 import SearchIcon from "../../media/search.icon";
 
@@ -70,7 +68,7 @@ export default function MainNav() {
         )}
         <li>
           {/* <LoginButton /> */}
-          <Link onClick={handleLoginClicked} className="button">
+          <Link onClick={handleLoginClicked} className="button" to="#">
             Login
           </Link>
           <Link className="primary button" to={Routes.SIGNUP.path}>
