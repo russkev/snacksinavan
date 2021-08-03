@@ -3,7 +3,6 @@ import useSnacks from "../hooks/useSnacks";
 import MenuItemCard from "../components/menu.item.card";
 import useCart from "../hooks/useCart";
 import useVans from "../hooks/useVans";
-import "../styling/snack.menu.css";
 import EditIcon from "../media/edit.icon";
 import { Link } from "react-router-dom";
 import LocationIcon from "../media/location.icon";

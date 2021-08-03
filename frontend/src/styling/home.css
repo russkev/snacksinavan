@@ -16,37 +16,9 @@
   padding: 0 3rem;
 }
 
-@media screen and  (min-width: 1000px) {
-  .split {
-    grid-template-columns: 1fr 1fr;
-  }
-  .split section:first-child {
-    grid-row: 1;
-    grid-column: 1;
-  }
-}
-
-@media screen and (max-width: 500px) {
-  .split section:first-child {
-    padding: 0 1.5rem;
-  }
-}
-
 .map > div {
   height: 30vh;
   width: 100%;
-}
-
-@media screen and  (min-width: 1000px) {
-  .map > div {
-    height: calc(100vh - var(--header-height));
-  }
-
-  .map {
-    position: absolute;
-    left: 50%;
-    right: 0;
-  }
 }
 
 /* .map canvas {
@@ -59,4 +31,30 @@
 
 .highlighted {
   background-color: var(--background-blue);
+}
+
+@media screen and  (min-width: 800px) {
+  .split {
+    grid-template-columns: 1fr 1fr;
+  }
+  .split section:first-child {
+    grid-row: 1;
+    grid-column: 1;
+  }
+
+    .map > div {
+    height: calc(100vh - var(--header-height));
+  }
+
+  .map {
+    position: absolute;
+    left: 50%;
+    right: 0;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .split section:first-child {
+    padding: 0 1.5rem;
+  }
 }

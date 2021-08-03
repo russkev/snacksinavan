@@ -3,7 +3,6 @@ import useCart from "../hooks/useCart";
 import useSnacks from "../hooks/useSnacks";
 import useGlobals from "../hooks/useGlobals";
 import DeleteIcon from "../media/delete.icon";
-import "../styling/cart.css";
 
 export default function CartItemCard({ snackName }) {
   const { updateCart, deleteFromCart, cart } = useCart();

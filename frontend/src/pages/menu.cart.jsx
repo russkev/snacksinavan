@@ -1,6 +1,8 @@
 import React from "react";
 import ConfirmCart from "./cart.confirm";
 import Menu from "./snacks.menu"
+import "../styling/snack.menu.css";
+import "../styling/cart.css";
 
 export default function MenuCart() {
   return (

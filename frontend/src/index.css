@@ -133,7 +133,7 @@ tr:first-child th {
 }
 
 hr {
-  background: var(--underline);
+  background: var(--background-darker);
   height: 2px;
   border: 0px;
   margin: 30px;

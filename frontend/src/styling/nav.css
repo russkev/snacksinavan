@@ -1,11 +1,19 @@
-nav ul {
+nav ul, .mobile-nav {
   margin: 0;
   align-items: center;
   background-color: var(--background-white);
   margin-bottom: 2px;
   height: calc(var(--header-height) - 2px);
   outline: 2px solid var(--background-darker);
+}
 
+nav ul a.button {
+  width: 100px;
+  height: 30px;
+}
+
+nav ul a.button.primary {
+  margin-left: 1.5rem;
 }
 
 nav a {
@@ -13,16 +21,13 @@ nav a {
   text-decoration: none;
 }
 
-
 nav .login {
   cursor: pointer;
 }
 
 .mobile-nav {
-  position: absolute;
-  z-index: 10;
   font-size: 2rem;
-  padding-top: 1.5rem;
+  /* padding-top: 1.5rem; */
   display: none;
 }
 
@@ -31,31 +36,13 @@ nav .login {
   cursor: pointer;
 }
 
-@media screen and (max-width: 420px) {
-  nav ul {
-    display: none;
-  }
-  .mobile-nav {
-    display: block;
-  }
-  .container {
-    height: 100vh;
-  }
-}
-
-@media screen and (max-width: 300px) {
-  .mobile-nav span:nth-child(n+2) {
-    display: none;
-  } 
-}
-
-
 .nav-modal {
   position: fixed;
   top: 0;
   left: -100%;
   z-index: 1050;
   width: 100%;
+  max-width: 400px;
   height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
@@ -77,6 +64,7 @@ nav .login {
 
 .expanded {
   left: 0;
+  box-shadow: 0px 10px 10px var(--shadow);
 }
 
 
@@ -113,24 +101,51 @@ nav .login {
 }
 
 .nav-modal h2 {
-  margin-top: 5rem;
+  margin-top: 4rem;
+  margin-bottom: 1.5rem;
 }
 
 .nav-modal hr {
-  background: var(--light-text);
   margin: 1.5rem 0;
 }
 
 .nav-button {
-  font-size: 2rem;
   color: var(--dark-text);
   display: flex;
   align-items: center;
   justify-content: flex-start;
   background-color: var(--background-blue);
   border-radius: .5rem;
+}
+
+.nav-button.mobile {
+  font-size: 2rem;
   padding: 1.5rem 3rem;
-  margin: 1.5rem 0;
+  margin: 0.8rem 0;
+}
+
+.nav-button.desktop {
+  padding: 0.3rem 0rem;
+  width: 17rem;
+  justify-content: center;
+}
+
+.nav-modal svg, nav ul svg {
+  width: 3rem;
+  height: 3rem;
+}
+
+.nav-button.active {
+  background-color: var(--light-text);
+  color: var(--background-white);
+}
+
+.nav-button.active svg {
+  fill: var(--background-white);
+}
+
+.nav-button.active:hover, .nav-button.active:focus {
+  background-color: var(--dark-text);
 }
 
 .nav-button:hover, .nav-button:focus {
@@ -143,4 +158,22 @@ nav .login {
 
 .nav-modal .button {
   margin: 1.5rem 0;
+}
+
+@media screen and (max-width: 800px) {
+  nav ul {
+    display: none;
+  }
+  .mobile-nav {
+    display: flex;
+  }
+  /* .container {
+    height: 100vh;
+  } */
+}
+
+@media screen and (max-width: 300px) {
+  .mobile-nav span:nth-child(n+2) {
+    display: none;
+  } 
 }
