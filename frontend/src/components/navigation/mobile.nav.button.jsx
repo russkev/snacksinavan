@@ -2,9 +2,13 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 export default function MobileNavButton({ path, icon, name, toggle }) {
+  
+  // Popup menu doesn't work without delay
+  const toggleWithDelay = () => setTimeout(() => toggle(), 10)
+  
   return (
     <NavLink
-      onClick={toggle}
+      onClick={toggleWithDelay}
       className="nav-button mobile"
       activeClassName="active"
       exact

@@ -29,6 +29,7 @@
   --primary-dark: #e36308;
 
   --warning: #bf0101;
+  --success: #008800;
 }
 
 html {
@@ -138,7 +139,7 @@ hr {
   background: var(--background-darker);
   height: 2px;
   border: 0px;
-  margin: 30px;
+  margin: 0.5rem 0 1rem;
 }
 
 textarea {
@@ -152,6 +153,10 @@ textarea {
   border-radius: 10px;
   box-sizing: border-box;
   resize: none;
+}
+
+fieldset {
+  background-color: var(--background-blue);
 }
 
 svg {

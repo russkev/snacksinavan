@@ -3,7 +3,7 @@ import generateUniqueId from "generate-unique-id";
 import useSignup from "../hooks/useSignup";
 
 export default function DemoCreate() {
-  const { setUserDetails, handleSignupSubmit } = useSignup();
+  const { handleSignupSubmit } = useSignup();
 
   function handleDemoCreate() {
     const start = generateUniqueId({
@@ -23,15 +23,13 @@ export default function DemoCreate() {
     })
     const user = start.toUpperCase() + middle + end;
 
-    setUserDetails({
+    handleSignupSubmit(null, {
       firstName: user,
       lastName: "",
       username: `${user}@mail.com`,
       password: user,
       passwordConfirm: user,
-    })
-
-    handleSignupSubmit()
+    });
     // const userDetails = {
     //   firstName: randomString
     // }

@@ -44,20 +44,51 @@ export default function useUserDetails() {
     passwordConfirm: "",
   });
 
+  const infoSection = {
+    PERSONAL_DETAILS: 0,
+    SECURITY: 1,
+  };
+
+  const [currentSection, setCurrentSection] = useState(infoSection.PERSONAL_DETAILS)
+  const [isMobile, setIsMobile] = useState(false)
+
+
+  const handleSectionChange = (event, section) => {
+    if (event) {
+      event.preventDefault()
+    }
+    setCurrentSection(section)
+  }
+
+  useEffect(() => {
+    function handleResize() {
+      const myInfoNavElement = document.getElementById("my-info-nav");
+      if (myInfoNavElement) {
+        setIsMobile(getComputedStyle(myInfoNavElement).display === "none");
+      }
+    }
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [])
+
   useEffect(() => {
     let mounted = true;
     if (mounted && username && newUserDetails) {
       getInfo(username)
-      .then(userInfo => {
-        setInfo(userInfo);
-        setNewUserDetails((prevState) => ({...prevState, lastName: userInfo.lastName, firstName: userInfo.firstName}));
-        setLoading(false);
-      })
-      .catch(e => {
-        console.log(e);
-        setError(e);
-        setLoading(false);
-      });
+        .then((userInfo) => {
+          setInfo(userInfo);
+          setNewUserDetails((prevState) => ({
+            ...prevState,
+            lastName: userInfo.lastName,
+            firstName: userInfo.firstName,
+          }));
+          setLoading(false);
+        })
+        .catch((e) => {
+          console.log(e);
+          setError(e);
+          setLoading(false);
+        });
     }
     return function cleanup() {
       mounted = false;
@@ -85,20 +116,23 @@ export default function useUserDetails() {
       setLoading(true);
       event.preventDefault();
       try {
-        await postUpdateDetails(
+        const result = await postUpdateDetails(
           username,
           newUserDetails.firstName,
           newUserDetails.lastName,
           newUserDetails.password
         );
         setLoading(false);
-        setMessage("Successfully updated information!");
+        setMessage(result.msg);
         setIsSuccess(true);
         setNewUserDetails({ ...newUserDetails, passwordConfirm: "", password: "" });
         setFetchNew(!fetchNew);
         return true;
       } catch (err) {
         setError(err);
+        setIsSuccess(false);
+        setMessage(err);
+        setLoading(false);
       }
     } else {
       if (
@@ -109,19 +143,28 @@ export default function useUserDetails() {
         setError("Information unchanged");
         setMessage("Information unchanged");
         setIsSuccess(false);
-        return false;
-      }
-      setLoading(true);
-      event.preventDefault();
-      try {
-        await postUpdateDetails(username, newUserDetails.firstName, newUserDetails.lastName, "");
-        setMessage("Successfully updated information!");
-        setIsSuccess(true);
-        setFetchNew(!fetchNew);
         setLoading(false);
-        return true;
-      } catch (err) {
-        setError(err);
+        return false;
+      } else {
+        setLoading(true);
+        event.preventDefault();
+        try {
+          const result = await postUpdateDetails(
+            username,
+            newUserDetails.firstName,
+            newUserDetails.lastName,
+            ""
+          );
+          setMessage(result.msg);
+          setIsSuccess(true);
+          setFetchNew(!fetchNew);
+          setLoading(false);
+          return true;
+        } catch (err) {
+          setError(err);
+          setMessage(err);
+          setLoading(false);
+        }
       }
     }
   };
@@ -142,6 +185,14 @@ export default function useUserDetails() {
     setNewUserDetails({ ...newUserDetails, passwordConfirm: event.target.value });
   };
 
+  const onSelectPersonalDetails = (event) => {
+    handleSectionChange(event, infoSection.PERSONAL_DETAILS)
+  }
+
+  const onSelectSecurity = (event) => {
+    handleSectionChange(event, infoSection.SECURITY)
+  }
+
   return {
     loading,
     info,
@@ -154,5 +205,11 @@ export default function useUserDetails() {
     handleUpdateInfoSubmit,
     message,
     isSuccess,
+    infoSection,
+    currentSection,
+    handleSectionChange,
+    onSelectPersonalDetails,
+    onSelectSecurity,
+    isMobile,
   };
 }

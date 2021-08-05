@@ -6,6 +6,8 @@ import { Snackbar, handleShowSnackbar } from "../components/snackbar";
 import useLogin from "../hooks/useLogin";
 import Loading from "../components/loading";
 import backButtonIcon from "../media/back_arrow.svg";
+import InputContainer from "../components/input.container";
+import "../styling/account.details.css";
 
 export default function MyInfo() {
   const {
@@ -19,6 +21,11 @@ export default function MyInfo() {
     handleUpdateInfoSubmit,
     message,
     isSuccess,
+    currentSection,
+    infoSection,
+    onSelectPersonalDetails,
+    onSelectSecurity,
+    isMobile,
   } = useUserDetails();
   const { redirectFromPath } = useLogin();
 
@@ -30,68 +37,105 @@ export default function MyInfo() {
 
   return (
     <>
-      <div className="fill-bg-with-nav">
+      <div className="my-info">
         <div className="container">
-          <h5 id="my-info-title">My Account</h5>
-          <div className="auth auth-signup">
-            <div className="card-light">
-              <form onSubmit={handleUpdateAndAlert}>
-                <h4>Personal Details</h4>
-                <div className="my-info-fields">
-                  <hr className="my-info-line"></hr>
-                  <h6 className="my-info-subheading">Email:</h6>
-                  {info ? <h3 className="my-info-subheading">{info.username}</h3> : <></>}
-                  <h6 className="my-info-subheading">First name:</h6>
-                  <input
-                    required
-                    type="name"
-                    id="firstName"
-                    placeholder="first name*"
-                    value={newUserDetails.firstName}
-                    onChange={onFirstNameChange}
-                  />
-                  <h6 className="my-info-subheading">Surname:</h6>
-                  <input
-                    type="name"
-                    id="lastName"
-                    placeholder="last name"
-                    value={newUserDetails.lastName}
-                    onChange={onLastNameChange}
-                  />
-                  <h4>Security</h4>
-                  <h6 id="leave-blank-instructions" className="my-info-subheading">
+          <h1>Settings</h1>
+          <article>
+            <nav id="my-info-nav">
+              <ul>
+                <li
+                  onClick={onSelectPersonalDetails}
+                  className={currentSection === infoSection.PERSONAL_DETAILS ? "selected" : ""}
+                >
+                  Account
+                </li>
+                <li
+                  onClick={onSelectSecurity}
+                  className={currentSection === infoSection.SECURITY ? "selected" : ""}
+                >
+                  Security
+                </li>
+              </ul>
+            </nav>
+            <form onSubmit={handleUpdateAndAlert} autoComplete="off">
+              {currentSection === infoSection.PERSONAL_DETAILS || isMobile ? (
+                <section>
+                  <h3>Personal Details</h3>
+                  <hr />
+                  <InputContainer label="email" value={info ? info.username : ""}>
+                    <input
+                      required
+                      type="email"
+                      id="email"
+                      value={info ? info.username : ""}
+                      disabled
+                    />
+                  </InputContainer>
+                  <InputContainer label="First name" value={newUserDetails.firstName}>
+                    <input
+                      required
+                      type="name"
+                      id="firstName"
+                      placeholder="first name*"
+                      value={newUserDetails.firstName}
+                      onChange={onFirstNameChange}
+                    />
+                  </InputContainer>
+                  <InputContainer label="Last name" value={newUserDetails.lastName}>
+                    <input
+                      type="name"
+                      id="lastName"
+                      placeholder="last name"
+                      value={newUserDetails.lastName}
+                      onChange={onLastNameChange}
+                    />
+                  </InputContainer>
+                </section>
+              ) : (
+                <></>
+              )}
+              {currentSection === infoSection.SECURITY || isMobile ? (
+                <section>
+                  <h3>Password</h3>
+                  <p>
                     Please leave password fields blank if you do not wish to change your password
-                  </h6>
-                  <hr className="my-info-line"></hr>
+                  </p>
+                  <hr />
 
-                  <h6 className="my-info-subheading">New Password:</h6>
-                  <input
-                    type="password"
-                    id="password"
-                    placeholder="password"
-                    value={newUserDetails.password}
-                    onChange={onPasswordChange}
-                  />
-                  <h6 className="my-info-subheading">Confirm New Password:</h6>
-                  <input
-                    type="password"
-                    id="passwordConfirm"
-                    placeholder="confirm password"
+                  <InputContainer label="New password" value={newUserDetails.password}>
+                    <input
+                      type="password"
+                      id="password"
+                      placeholder="New password"
+                      value={newUserDetails.password}
+                      onChange={onPasswordChange}
+                      autoComplete="new-password"
+                    />
+                  </InputContainer>
+                  <InputContainer
+                    label="Confirm new password"
                     value={newUserDetails.passwordConfirm}
-                    onChange={onPasswordConfirmChange}
-                  />
-                </div>
-                <div className="my-info-submit-button">
-                  <button type="submit" className="my-info-submit">
-                    Update
-                  </button>
-                </div>
-              </form>
-              <Link to={redirectFromPath}>
-                <button className="de-emphasised border full-width">Back</button>
-              </Link>
-            </div>
-          </div>
+                  >
+                    <input
+                      type="password"
+                      id="passwordConfirm"
+                      placeholder="Confirm new password"
+                      value={newUserDetails.passwordConfirm}
+                      onChange={onPasswordConfirmChange}
+                      autoComplete="new-password"
+                    />
+                  </InputContainer>
+                </section>
+              ) : (
+                <></>
+              )}
+              <section>
+                <button type="submit" className="primary soft-shadow">
+                  Update
+                </button>
+              </section>
+            </form>
+          </article>
         </div>
       </div>
       <div>

@@ -76,17 +76,19 @@ export default function useSignup() {
   const { getSocketConnection } = useOrders();
   
 
-  const handleSignupSubmit = async (event) => {
+  const handleSignupSubmit = async (event, argDetails) => {
     if (event) {
       event.preventDefault()
     }
+
+    const detailsToSubmit = argDetails ? argDetails : userDetails;
     
-    if (!isValidPassword(userDetails.password)) {
+    if (!isValidPassword(detailsToSubmit.password)) {
       setError("Passwords must be 8 characters long and include one letter and one number!");
       return false;
     }
 
-    if (userDetails.password !== userDetails.passwordConfirm)
+    if (detailsToSubmit.password !== detailsToSubmit.passwordConfirm)
     {
       setError("Passwords do not match");
       return false;
@@ -95,12 +97,12 @@ export default function useSignup() {
     setLoading(true)
     try {
       await postSignup(
-        userDetails.firstName,
-        userDetails.lastName,
-        userDetails.username,
-        userDetails.password
+        detailsToSubmit.firstName,
+        detailsToSubmit.lastName,
+        detailsToSubmit.username,
+        detailsToSubmit.password
       );
-      const result = await postLogin(userDetails.username, userDetails.password);
+      const result = await postLogin(detailsToSubmit.username, detailsToSubmit.password);
       handleAuthenticate(result);
       getSocketConnection(result.username, result.token, true)
       setPage(1)

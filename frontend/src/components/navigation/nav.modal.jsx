@@ -9,7 +9,7 @@ import Routes from "../../routes/routes";
 import MenuBookIcon from "../../media/menu.book.icon";
 import SearchIcon from "../../media/search.icon";
 import ChevronLeftIcon from "../../media/chevron.left.icon";
-import MobileNavButton from "../mobile.nav.button";
+import MobileNavButton from "./mobile.nav.button";
 import AccountNav from "./account.nav";
 
 function NavModal({ toggleMobileNav, isShowing }) {

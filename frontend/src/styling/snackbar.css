@@ -1,0 +1,79 @@
+#snackbar {
+  max-width: 600px;
+  min-width: 200px;
+  background-color: var(--background-white);
+  color: var(--warning);
+  border: 2px solid var(--warning);
+  width: calc(100vw - 60px);
+  text-align: left;
+  border-radius: 10px;
+  position: fixed;
+  z-index: 10000;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 50px;
+  box-sizing: border-box;
+
+  display: grid;
+  grid-template-columns: 60px auto 60px;
+  overflow: clip;
+
+  visibility: hidden;
+  opacity: 0;
+}
+
+#snackbar.show {
+  visibility: visible;
+  opacity: 1;
+  animation: snackbarFadeIn 0.5s, snackbarFadeOut 2s 2.5s;
+}
+
+#snackbar svg {
+  width: 24px;
+  height: 24px;
+}
+
+#snackbar section:nth-child(odd) {
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#snackbar section:first-child {
+  background-color: inherit;
+}
+
+#snackbar section:nth-child(n+2) {
+  background-color: var(--background-white);
+}
+
+#snackbar section:first-child svg {
+  fill: var(--background-white);
+
+}
+
+#snackbar section:nth-child(2) {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#snackbar button.close {
+  position: unset;
+  border-radius: 0;
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes snackbarFadeIn {
+  from {bottom: 25px; opacity: 0;}
+  to {bottom: 50px; opacity: 1;}
+}
+
+@keyframes snackbarFadeOut {
+  from {bottom: 50px; opacity: 1;}
+  25% {bottom: 25px; opacity: 0;}
+  to {bottom: 25px; opacity: 0;}
+}

@@ -1,5 +1,5 @@
 import React from "react";
-import useSnacks from "../hooks/useSnacks";
+import useSnacks, { category } from "../hooks/useSnacks";
 import MenuItemCard from "../components/menu.item.card";
 import useCart from "../hooks/useCart";
 import useVans from "../hooks/useVans";
@@ -54,15 +54,15 @@ export default function Menu() {
             updateCategory(0);
           }}
         >
-          <h2>Drinks</h2>
-          <div id="category-selector" className="category-left"></div>
+          <h2 className="category">Drinks</h2>
+          <div id="category-selector" className={`category-${category.drinks}`}></div>
         </div>
         <div
           onClick={() => {
             updateCategory(1);
           }}
         >
-          <h2>Food</h2>
+          <h2 className="category inactive">Food</h2>
         </div>
       </nav>
       <div
@@ -70,6 +70,8 @@ export default function Menu() {
         id="menu-list-1"
         onMouseEnter={() => setMouseIsOver(true)}
         onMouseLeave={() => setMouseIsOver(false)}
+        // onMouseEnter={() => console.log("ENTER")}
+        // onMouseLeave={() => console.log("LEAVE")}
       >
         {snacks.length > 0 ? (
           snacks.map((menuItem) => <MenuItemCard key={menuItem.name} snack={menuItem} />)

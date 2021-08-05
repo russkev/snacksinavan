@@ -3,6 +3,7 @@ nav.categories {
   grid-template-columns: 10rem 10rem;
   justify-content: center;
   text-align: center;
+  height: 40px;
 }
 
 nav.categories > div {
@@ -10,12 +11,22 @@ nav.categories > div {
   flex-direction: column;
   position: relative;
   cursor: pointer;
+  justify-content: flex-end;
 }
 
 nav.categories > div > div {
   background-color: var(--primary);
   /* width: 100%; */
   height: 4px;
+}
+
+nav.categories h2 {
+  transition-duration: 0.3s;
+}
+
+nav.categories h2.inactive {
+  color: var(--light-text);
+  font-size: 1.8rem;
 }
 
 #category-selector {
@@ -58,17 +69,17 @@ nav.categories > div > div {
   }
 }
 
-.category-right {
-  right: -60%;
-  left: 140%;
-  animation-name: leftToRight;
-  width: unset !important;
-}
-
-.category-left {
+.category-0 {
   left: 40%;
   right: 40%;
   animation-name: rightToLeft;
+  width: unset !important;
+}
+
+.category-1 {
+  right: -60%;
+  left: 140%;
+  animation-name: leftToRight;
   width: unset !important;
 }
 
