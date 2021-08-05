@@ -16,8 +16,10 @@ export function orderCompare(orderA, orderB) {
 async function getOrders(socket, setOrders, setError, setLoading) {
   socket.emit("requestCustomerOrders");
   socket.on("orderListCustomer", (currentOrders) => {
-    const sortedOrders = currentOrders.sort(orderCompare);
-    setOrders(sortedOrders);
+    if (currentOrders) {
+      const sortedOrders = currentOrders.sort(orderCompare);
+      setOrders(sortedOrders);
+    }
     setLoading(false);
   });
   socket.on("error", (error) => {

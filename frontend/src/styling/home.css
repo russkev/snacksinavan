@@ -25,7 +25,7 @@
   transform: translateY(-30px);
 } */
 
-.map img {
+.map img, .order-map img {
   filter: grayscale(80%) opacity(70%);
 }
 

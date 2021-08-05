@@ -1,6 +1,5 @@
 import { useContext, useState, useEffect } from "react";
 import { SnackContext } from "../contexts/snack.context";
-// import { useDebounceEffect } from "../hooks/useDebounceEffect";
 
 export const category = {
   drinks: 0,
@@ -30,20 +29,6 @@ function getCategoryCards() {
   return categoryCards;
 }
 
-// function moveSelectorRight(selector) {
-//   if (selector.classList.contains("category-left")) {
-//     selector.classList.remove("category-left");
-//     selector.classList.add("category-right");
-//   }
-// }
-
-// function moveSelectorLeft(selector) {
-//   if (selector.classList.contains("category-right")) {
-//     selector.classList.remove("category-right");
-//     selector.classList.add("category-left");
-//   }
-// }
-
 function moveSelectorTo(selector, target) {
   const titles = document.getElementsByClassName("category");
   Array.from(titles).forEach((title, index) => {
@@ -56,7 +41,6 @@ function moveSelectorTo(selector, target) {
     selector.classList.remove(`category-${value}`);
   }
   selector.classList.add(`category-${target}`);
-  // console.log(selector);
 }
 
 /**
@@ -66,44 +50,6 @@ export default function useSnacks() {
   const { snacks, loading, error } = useContext(SnackContext);
   const [mouseIsOver, setMouseIsOver] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState(category.drinks);
-  // const menuItems = document.getElementById("menu-list-1");
-
-  // const [tempState, setTempState] = useState(() => {
-  //   console.log("blah");
-  //   return false;
-  // });
-  // useEffect(() => {
-  //   if (selector) {
-  //     // selector.style.animationDuration = 0;
-  //     setTimeout(() => {
-  //       selector.style.animationDuration = "0.35s";
-  //     }, 1000);
-  //   }
-  // }, [selector]);
-
-  // useEffect(() => {
-  //   if (menuItems) {
-  //     // menuItems.onmouseover = {() => {setMouseIsOver(true)}}
-  //     // menuItems.onmouseout = () => {setMouseIsOver(false)}
-  //     // menuItems.scrollLeft = 0;
-  //   }
-  // }, [menuItems]);
-
-  // useDebounceEffect(() => {
-  //     const categoryCards = getCategoryCards();
-  //     if (menuItems && categoryCards[1]) {
-  //       menuItems.addEventListener("scroll", function (e) {
-  //         if (isScrolledIntoView(categoryCards[1]) && category !== 1) {
-  //           setCategory(1);
-  //           moveSelectorRight(selector)
-  //         } else if (!isScrolledIntoView(categoryCards[1]) && category === 1) {
-  //           setCategory(0);
-  //           moveSelectorLeft(selector)
-  //         }
-  //       });
-
-  //     }
-  // }, 1000);
 
   useEffect(() => {
     const menuItems = document.getElementById("menu-list-1");
@@ -129,21 +75,6 @@ export default function useSnacks() {
       }
     }
 
-    function handleWheel(event) {
-      if (mouseIsOver) {
-        menuItems.scrollLeft += event.deltaY*5;
-      }
-      // console.log(event.deltaY)
-      // event.deltaY > 0 && mouseIsOver
-      //   ? (menuItems.scrollLeft += 500)
-      //   : (menuItems.scrollLeft -= 500);
-    }
-
-    if (menuItems) {
-      menuItems.addEventListener("scroll", handleSelectorMove);
-      window.addEventListener("wheel", handleWheel);
-    }
-
     if (selector) {
       setTimeout(() => {
         const titles = document.getElementsByClassName("category");
@@ -155,21 +86,34 @@ export default function useSnacks() {
     }
     handleSelectorMove();
 
+    if (menuItems) {
+      menuItems.addEventListener("scroll", handleSelectorMove);
+    }
+
     return () => {
       if (menuItems) {
         menuItems.removeEventListener("scroll", handleSelectorMove);
-        window.removeEventListener("wheel", handleWheel);
       }
     };
-  }, [loading, selectedCategory, mouseIsOver]);
+  }, [loading, selectedCategory]);
 
-  // useDebounceEffect(() => {
-  //   if (menuItems) {
-  //     window.addEventListener("wheel", function (e) {
-  //       e.deltaY > 0 && mouseIsOver ? (menuItems.scrollLeft += 500) : (menuItems.scrollLeft -= 500);
-  //     });
-  //   }
-  // }, 100);
+  useEffect(() => {
+    const menuItems = document.getElementById("menu-list-1");
+
+    function handleWheel(event) {
+      if (mouseIsOver) {
+        menuItems.scrollLeft += event.deltaY * 5;
+      }
+    }
+
+    if (menuItems) {
+      window.addEventListener("wheel", handleWheel);
+    }
+
+    return () => {
+      window.removeEventListener("wheel", handleWheel);
+    };
+  }, [loading, mouseIsOver]);
 
   function updateCategory(newCategory) {
     const categoryCards = getCategoryCards();

@@ -5,7 +5,7 @@ import Routes from "../routes/routes";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import groupSnacks from "../components/group.snacks";
 import orderTimeLeft from "../components/order.time.left";
-import OrderDetailsHeading from "../components/order.details.heading";
+// import OrderDetailsHeading from "../components/order.details.heading";
 import OrderStatusBar from "../components/order.status.bar";
 import InfoCard from "../components/info.card";
 import CancelModal from "../components/cancel.order.modal";
@@ -15,8 +15,9 @@ import useGlobals from "../hooks/useGlobals";
 import useOrder from "../hooks/useOrder";
 import { useHistory } from "react-router-dom";
 import Rating from "@material-ui/lab/Rating";
-const lib = ["places"];
+import "../styling/order.details.css";
 
+const lib = ["places"];
 /* Displays the full details of a single order matched by its id.
  */
 export default function OrderDetails() {
@@ -65,17 +66,26 @@ export default function OrderDetails() {
       setLocation({ lat: order.van.latitude, lng: order.van.longitude });
     }
     return (
-      <div className="order-details-container">
-        <OrderDetailsHeading />
+      <div className="order container">
+        <h1>Order Details</h1>
         <OrderStatusBar order={order} orderStatus={orderStatus} />
-        <div className="order-details-split">
-          <div className="order-map-container">
+        <article className="order-details">
+          <section className="order-map">
             <LoadScript googleMapsApiKey={process.env.REACT_APP_MAP_KEY} libraries={lib}>
               {!order.isCompleted ? (
                 <GoogleMap mapContainerClassName="order-map" zoom={zoom} center={location}>
-                  <Marker
+                  {/* <Marker
                     label={order.van.vanName}
+                  /> */}
+                  <Marker
                     position={{ lat: order.van.latitude, lng: order.van.longitude }}
+                    icon={{
+                      path: "M24 9C24 11.3051 23.1334 13.4077 21.7083 15C20.0604 16.8412 16 28 15 30C14 28 9.64996 16.6963 8 14.6573C6.65889 13 6 11.1433 6 9C6 4.02944 10.0294 0 15 0C19.9706 0 24 4.02944 24 9Z",
+                      fillColor: "#FF740F",
+                      strokeColor: "white",
+                      fillOpacity: 1,
+                      strokeWeight: 1,
+                    }}
                   />
                 </GoogleMap>
               ) : (
@@ -83,45 +93,47 @@ export default function OrderDetails() {
               )}
             </LoadScript>
             <InfoCard heading={`Van: ${order.van.vanName}`}>
-              <div className="info-description"><span >{order.van.locationDescription}</span></div>
-            </InfoCard>
-          </div>
-
-          <div className="order-info-container">
-            <InfoCard heading={"Order Details"}>
-              <div className="snacks-in-order info-description">
-                {groupedSnacks.map((snack) => (
-                  <span key={snack[0].name} className="info-totals-span">
-                    <div>
-                      <b>{snack.length}x</b> {snack[0].name}
-                    </div>
-                    <div>{`$${(snack.length * snack[0].price).toFixed(2)}`}</div>
-                  </span>
-                ))}
-                {orderTotals ? (
-                  <>
-                    <span className="info-totals-span info-vertical-space">
-                      <div>Subtotal</div>
-                      <div>{`$${orderTotals.subtotal.toFixed(2)}`}</div>
-                    </span>
-                    <span className="info-totals-span">
-                      <div>Discount</div>
-                      <div>{`$${orderTotals.discount.toFixed(2)}`}</div>
-                    </span>
-                    <span className="info-totals-span">
-                      <div>
-                        <b>Total</b>
-                      </div>
-                      <div>
-                        <b>{`$${orderTotals.total.toFixed(2)}`}</b>
-                      </div>
-                    </span>
-                  </>
-                ) : (
-                  <></>
-                )}
+              <div className="info-description">
+                <span>{order.van.locationDescription}</span>
               </div>
             </InfoCard>
+          </section>
+
+          <section>
+            {/* <InfoCard heading={"Order Details"}> */}
+            {/* <div> */}
+              {groupedSnacks.map((snack) => (
+                <div key={snack[0].name}>
+                  <span>
+                    <strong>{snack.length}x</strong> {snack[0].name}
+                  </span>
+                  <span>{`$${(snack.length * snack[0].price).toFixed(2)}`}</span>
+                </div>
+              ))}
+              {orderTotals ? (
+                <summary className="order-totals">
+                  <div>
+                    <span>Subtotal</span>
+                    <span>{`$${orderTotals.subtotal.toFixed(2)}`}</span>
+                  </div>
+                  <div className="info-totals-span">
+                    <span>Discount</span>
+                    <span>{`$${orderTotals.discount.toFixed(2)}`}</span>
+                  </div>
+                  <div className="info-totals-span">
+                    <span>
+                      <b>Total</b>
+                    </span>
+                    <span>
+                      <b>{`$${orderTotals.total.toFixed(2)}`}</b>
+                    </span>
+                  </div>
+                </summary>
+              ) : (
+                <></>
+              )}
+            {/* </div> */}
+            {/* </InfoCard> */}
             {!order.isFulfilled ? (
               <InfoCard heading="Modify Order">
                 {timeLeftDisplay !== 0 ? (
@@ -134,7 +146,7 @@ export default function OrderDetails() {
                         className="changeOrderButton de-emphasised border"
                         onClick={() => {
                           setOrderCart(order);
-                          history.push("/cart/");
+                          history.push(Routes.SNACKS_MENU.path);
                         }}
                       >
                         Change Order
@@ -146,7 +158,9 @@ export default function OrderDetails() {
                   </>
                 ) : (
                   <span className="info-totals-span">
-                    <div className="info-description">No time left to change or cancel your order. Sorry!</div>
+                    <div className="info-description">
+                      No time left to change or cancel your order. Sorry!
+                    </div>
                   </span>
                 )}
               </InfoCard>
@@ -181,8 +195,8 @@ export default function OrderDetails() {
             ) : (
               <></>
             )}
-          </div>
-        </div>
+          </section>
+        </article>
         <div className="blank-bottom" />
         <BackButton to={Routes.CUSTOMER_ORDERS.path} />
         <CancelModal isShowing={isShowing} hide={toggle} order={order} />

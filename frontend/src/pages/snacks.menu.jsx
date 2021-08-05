@@ -80,7 +80,6 @@ export default function Menu() {
         )}
       </div>
       {/* <BackButton to={Routes.HOME.path} /> */}
-      {/* <CheckoutButton cart={cart} /> */}
       <div className="menu-van">
         <div style={van ? {} : { border: "2px solid var(--warning)" }}>
           <Link to="/" className="soft-shadow button">

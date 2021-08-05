@@ -1,12 +1,10 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-// import Menu from "../pages/snacks.menu";
 import MenuCart from "../pages/menu.cart";
 import Home from "../pages/home";
 import Signup from "../pages/signup";
 import Login from "../pages/login";
 import MyInfo from "../pages/my.info";
-import ConfirmCart from "../pages/cart.confirm";
 
 import { LoggedInRoute, LoggedOutRoute } from "./protected.routes";
 import LoginModal from "../components/login.modal";
@@ -34,11 +32,6 @@ const Routes = {
   SNACKS_MENU: {
     path: "/menu",
     component: MenuCart,
-    access: availability.ALL,
-  },
-  CART: {
-    path: "/cart",
-    component: ConfirmCart,
     access: availability.ALL,
   },
   SIGNUP: {

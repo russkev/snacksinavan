@@ -62,7 +62,6 @@ export default function Home() {
             <GoogleMap
               zoom={zoom}
               center={location}
-              mapContainerClassName="map-main"
               options={{mapTypeControl: false}}
             >
               {closestVans.map((van, index) => {

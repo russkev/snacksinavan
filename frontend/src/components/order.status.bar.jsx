@@ -14,31 +14,27 @@ export default function OrderStatusBar({ order, orderStatus }) {
     secsLeft = currentTimeLeft.minutes * 60 + currentTimeLeft.seconds;
     readyIn = currentTimeLeft.minutes.toString() + " Minutes!";
   }
+
   if (orderStatus && orderStatus.comment) {
     return (
-      <div className="order-status-bar">
-        <div className="ready-in">
-          <div>
+      <div className="order-status">
             {orderStatus.comment.map((line, i) => {
               if (i === 1) {
                 return (
-                  <h4 key={line} style={{ fontSize: "18pt" }}>
+                  <p key={line}>
                     {line}
-                  </h4>
+                  </p>
                 );
               } else {
-                return <h4 key={line}>{line}</h4>;
+                return <p key={line}>{line}</p>;
               }
             })}
-          </div>
           {!order.isFulfilled && !order.isCompleted && !order.isCancelled ? (
-            <h4 id="time-left">{readyIn}</h4>
+            <p><strong>{readyIn}</strong></p>
           ) : <></>}
-        </div>
         {!order.isCompleted && !order.isFulfilled ? (
-          <div className="progress-bar">
+          <div className="progress">
             <div
-              className="progress"
               style={{
                 width:
                   (
@@ -46,14 +42,13 @@ export default function OrderStatusBar({ order, orderStatus }) {
                     100
                   ).toString() + "%",
               }}
-            ></div>
+            />
           </div>
         ) : !order.isCompleted ? 
-        <div className="progress-bar">
+        <div className="progress">
           <div
-          className="progress"
           style={{
-            width: "100%", backgroundColor: "green",
+            width: "100%", backgroundColor: "var(--success)",
             }}
         ></div></div> :
           <></>}
