@@ -2,19 +2,12 @@ import { useContext, useEffect } from "react";
 import { OrderContext } from "../contexts/order.context";
 import { useState } from "react";
 
-const ORDERS_PER_PAGE = 10;
+const ORDERS_PER_PAGE = 3;
 
 /* Continuously says we are loading until the orders are received or an error occurs */
 export default function useOrders() {
-  const {
-    orders,
-    currentOrderId,
-    setCurrentOrderId,
-    loading,
-    error,
-    socket,
-    getSocketConnection,
-  } = useContext(OrderContext);
+  const { orders, currentOrderId, setCurrentOrderId, loading, error, socket, getSocketConnection } =
+    useContext(OrderContext);
 
   const [orderSnacks, setOrderSnacks] = useState();
   const [pageInfo, setPageInfo] = useState({ current: 1, total: 1 });
@@ -63,7 +56,12 @@ export default function useOrders() {
   // Initialize pageInfo
   useEffect(() => {
     if (orders) {
-      setPageInfo({ ...pageInfo, total: Math.ceil(orders.length / ORDERS_PER_PAGE) });
+      setPageInfo({
+        ...pageInfo,
+        total: Math.ceil(orders.length / ORDERS_PER_PAGE),
+        from: 1,
+        to: Math.min(ORDERS_PER_PAGE, orders.length),
+      });
     }
     // Including pageInfo in the dependency array will cause an infinite loop
     // eslint-disable-next-line
@@ -71,26 +69,29 @@ export default function useOrders() {
 
   // Initialize current page
   useEffect(() => {
+    const from = ORDERS_PER_PAGE * (pageInfo.current - 1);
+    const to = ORDERS_PER_PAGE * pageInfo.current;
     if (orders) {
-      setPageOrders(
-        orders.slice(ORDERS_PER_PAGE * (pageInfo.current - 1), ORDERS_PER_PAGE * pageInfo.current)
-      );
+      setPageOrders(orders.slice(from, to));
     }
+    // setPageInfo({...pageInfo, from: from+1, to: to})
     // Including pageInfo in the dependency array will cause an infinite loop
     // eslint-disable-next-line
   }, [orders]);
 
   const onNextPage = (event) => {
+    const from = ORDERS_PER_PAGE * pageInfo.current;
+    const to = ORDERS_PER_PAGE * (pageInfo.current + 1);
     event.preventDefault();
     if (pageInfo.current < pageInfo.total) {
-      setPageOrders(
-        orders.slice(ORDERS_PER_PAGE * pageInfo.current, ORDERS_PER_PAGE * (pageInfo.current + 1))
-      );
-      setPageInfo({ ...pageInfo, current: pageInfo.current + 1 });
+      setPageOrders(orders.slice(from, to));
+      setPageInfo({ ...pageInfo, current: pageInfo.current + 1, from: from + 1, to: Math.min(to, orders.length) });
     }
   };
 
   const onPrevPage = (event) => {
+    const from = ORDERS_PER_PAGE * (pageInfo.current - 2);
+    const to = ORDERS_PER_PAGE * (pageInfo.current - 1); 
     event.preventDefault();
     if (pageInfo.current > 1) {
       setPageOrders(
@@ -99,7 +100,7 @@ export default function useOrders() {
           ORDERS_PER_PAGE * (pageInfo.current - 1)
         )
       );
-      setPageInfo({ ...pageInfo, current: pageInfo.current - 1 });
+      setPageInfo({ ...pageInfo, current: pageInfo.current - 1, from: from + 1, to: to });
     }
   };
 

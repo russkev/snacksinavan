@@ -70,8 +70,6 @@ export default function Menu() {
         id="menu-list-1"
         onMouseEnter={() => setMouseIsOver(true)}
         onMouseLeave={() => setMouseIsOver(false)}
-        // onMouseEnter={() => console.log("ENTER")}
-        // onMouseLeave={() => console.log("LEAVE")}
       >
         {snacks.length > 0 ? (
           snacks.map((menuItem) => <MenuItemCard key={menuItem.name} snack={menuItem} />)

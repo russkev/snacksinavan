@@ -29,7 +29,7 @@ const orderListCustomer = async (socket) => {
       try {
         const customer = await userModel.findOne({ username: socket.handshake.auth.username });
         const orders = await orderModel
-          .find({ customer: customer.id, isCancelled: false })
+          .find({ customer: customer.id })
           .populate(["snacks", "van"]);
         socket.emit("orderListCustomer", orders);
       } catch (error) {
@@ -246,7 +246,7 @@ const getOrder = async (socket) => {
     if (info.orderId) {
       try {
         const savedOrder = await orderModel
-          .findOne({ _id: info.orderId, isCancelled: false })
+          .findOne({ _id: info.orderId })
           .populate(["snacks", "van"]);
         socket.emit("order", savedOrder);
       } catch (error) {

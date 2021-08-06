@@ -33,7 +33,7 @@ export default function MenuItemCard({ snack }) {
         </div>
       </div>
 
-      <Modal toggleLogin={toggle} isOpen={isShowing}>
+      <Modal toggleOpen={toggle} isOpen={isShowing}>
         <div className="menu-item-modal">
           <h3>{snack.name}</h3>
           <button type="button" className="close" onClick={toggle}>

@@ -105,7 +105,7 @@ exports.login = (req, res) => {
               },
               process.env.AUTH_KEY,
               {
-                expiresIn: "2h",
+                expiresIn: "5d",
               }
             );
             res.json({

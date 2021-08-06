@@ -11,14 +11,13 @@ import useUser from "../hooks/useUser";
 import useLogin from "../hooks/useLogin";
 import { Link } from "react-router-dom";
 import useOrders from "../hooks/useOrders";
-import Loading from "../components/loading";
 import ChevronLeftIcon from "../media/chevron.left.icon.jsx";
 
 export default function ConfirmCart() {
   const { toggleLoginIsOpen } = useLogin();
   const { isAuthenticated } = useUser();
   const { globals } = useGlobals();
-  const { cart, total, setTotal, orderId, resetCart, submitLoading, displayMenu } = useCart();
+  const { cart, total, setTotal, orderId, resetCart, displayMenu } = useCart();
   const { orderFromId } = useOrders();
   const order = orderId ? orderFromId(orderId) : null;
   const { loading, error } = useSnacks();
@@ -114,7 +113,7 @@ export default function ConfirmCart() {
           <div className="blank-bottom" />
           {/* </div> */}
           {/* </div> */}
-          <Loading isLoading={submitLoading} />
+          {/* <Loading isLoading={submitLoading} /> */}
         </section>
       </div>
     );

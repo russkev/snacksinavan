@@ -7,14 +7,17 @@ import useLogin from "./useLogin";
 import useUser from "./useUser";
 
 async function postOrder(socket, cart, van, onOrderSuccess) {
-  var sendArr = [];
-  for (var i in cart) {
-    for (var j = 0; j < cart[i]; j++) {
-      sendArr.push(i);
-    }
-  }
+  // console.log(cart)
+  // var sendArr = [];
+  // for (var i in cart) {
+  //   for (var j = 0; j < cart[i]; j++) {
+  //     sendArr.push(i);
+  //   }
+  // }
+
+  // console.log(sendArr)
   const toSend = {
-    snacks: sendArr,
+    snacks: cart,
     vanName: van,
   };
 

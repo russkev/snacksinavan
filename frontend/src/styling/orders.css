@@ -1,0 +1,158 @@
+
+
+.orders table {
+  width: 100%;
+  border-collapse: collapse;
+  box-sizing: border-box;
+}
+
+.orders > div {
+  padding: 1.5rem;
+}
+
+.orders td, .orders th {
+  padding: 1.5rem;
+}
+
+.orders thead {
+  background-color: var(--background-blue);
+  text-align: left;
+}
+
+.orders img, .orders img+span {
+  width: 30px;
+  height: 30px;
+  margin: 5px;
+  border-radius: 100%;
+}
+
+
+.orders img+span {
+  display: inline-flex;
+  background: var(--background-darker);
+  align-items: center;
+  justify-content: center;
+}
+
+.orders .items {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.orders .overlapping {
+  margin-left: -18px;
+}
+
+.orders span.red {
+  color: var(--warning);
+  background-color: var(--background-warning);
+}
+
+.orders span.green {
+  color: var(--success);
+  background-color: var(--background-success);
+}
+
+.orders span.orange {
+  color: var(--primary);
+  background-color: var(--background-primary)
+}
+
+.orders span.black {
+  color: var(--dark-text);
+  background-color: var(--background-darker)
+}
+
+.orders button {
+  width: 100%;
+  border-radius: 5px;
+  /* background-color: var(--background-darker); */
+}
+
+.orders .status {
+  width: 10rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  padding: 0.5rem;
+}
+
+.orders .mobile {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  cursor: pointer;
+}
+
+.orders .mobile span:first-child {
+  margin-left: 0;
+}
+
+.orders .mobile > span {
+  display: inline-flex;
+  flex-direction: column;
+  min-width: 80px;
+  margin: 0.5rem;
+}
+
+.orders .mobile svg {
+  width: 25px;
+  height: 25px;
+  margin-left: 1rem;
+}
+
+.orders .mobile > span:nth-child(4) {
+  min-width: min-content;
+}
+
+.orders div.pages {
+  display: flex;
+  background-color: var(--background-blue);
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
+  margin: 1rem;
+}
+
+.orders div.pages > * {
+  padding: 1rem;
+}
+
+.pages button {
+  width: 3rem;
+  height: 3rem;
+  background: var(--background-white);
+  margin: 3px;
+}
+
+.pages button:hover, .pages button:focus {
+  background-color: var(--background-darker);
+}
+
+.pages button.disabled:hover, pages button.disabled:focus {
+  background-color: var(--background-white);
+}
+
+@media screen and (max-width: 800px) {
+  .orders > div {
+    padding: 1rem;
+  }
+
+  .orders h1 {
+    margin: 0 1rem;
+  }
+
+  .orders img, .orders img+span {
+    margin: 0.5rem 0.3rem;
+  }
+
+  .orders .status {
+    width: 8rem;
+  }
+
+}

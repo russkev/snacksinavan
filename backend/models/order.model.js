@@ -4,9 +4,15 @@ const orderSchema = new mongoose.Schema(
   {
     snacks: [
       {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Snack",
-        required: true,
+        quantity: {
+          type: Number,
+          required: true,
+        },
+        snack: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Snack",
+          required: true,
+        },
       },
     ],
     isFulfilled: {
@@ -50,7 +56,7 @@ const orderSchema = new mongoose.Schema(
       required: false,
       default: "",
     },
-    
+
     customer: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",

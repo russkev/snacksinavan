@@ -29,10 +29,15 @@ export function calculateOrderTotals(order, setOrderTotals, delayDiscount) {
     } else {
       order.snacks.forEach((snack) => (subTotal += snack.price));
     }
-    const discount = order.isDiscounted ? -delayDiscount * subTotal : 0;
+    const lateDiscount = order.isDiscounted ? -delayDiscount * subTotal : 0;
+    const cancelledDiscount =
+      !order.isFulfilled && order.isCancelled ? -(subTotal + lateDiscount) : 0;
+    const discount = lateDiscount + cancelledDiscount;
     const total = subTotal + discount;
     setOrderTotals({
       subtotal: subTotal,
+      lateDiscount: lateDiscount,
+      cancelledDiscount: cancelledDiscount,
       discount: discount,
       total: total,
     });
@@ -73,9 +78,9 @@ export default function useVanOrder(order) {
 
   useEffect(() => {
     if (order) {
-      calculateTimeLeft(order, globals.discountTime, setTimeLeft, setOrderColor)
+      calculateTimeLeft(order, globals.discountTime, setTimeLeft, setOrderColor);
     }
-  }, [order, globals.discountTime])
+  }, [order, globals.discountTime]);
 
   // Initialize order totals
   useEffect(() => {

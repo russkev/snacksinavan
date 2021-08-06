@@ -14,7 +14,10 @@ const globalsModel = require("../models/globals.model");
 // Helper function for createOrder
 exports.getSnackIds = async (snackNames) => {
   let ids = [];
-  for (var snackName of snackNames) {
+  console.log(snackNames)
+  console.log(Object.keys(snackNames));
+  for (var snackName of Object.keys(snackNames)) {
+    console.log(`SNACK NAME: ${snackName}`)
     try {
       snack = await snackModel.findOne({ name: snackName });
       ids.push(snack.id);

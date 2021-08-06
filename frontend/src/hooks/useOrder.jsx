@@ -9,7 +9,7 @@ import useOrders from "./useOrders";
     the discounted status if appropriate. */
 function calculateOrderStatus(order, globals) {
   let status = { 
-    color: "var(--orange)", 
+    color: "orange", 
     text: "Preparing...",
     longText: "Order is being prepared",
     comment: ["Your order will be ready in:"],
@@ -24,7 +24,7 @@ function calculateOrderStatus(order, globals) {
   if (order.isCancelled) {
     status.text = "Cancelled";
     status.longText = "Order has been cancelled"
-    status.color = "darkRed";
+    status.color = "red";
     status.comment = ["Your order has been cancelled"]
   } else if (order.isCompleted) {
     status.text = "Completed";
@@ -32,7 +32,7 @@ function calculateOrderStatus(order, globals) {
     status.color = "black";
     status.comment = ["Thank you for ordering from Snacks in a Van"]
   } else if (order.isFulfilled) {
-    status.text = "Ready for collection";
+    status.text = "Ready";
     status.longText = "Order is ready for collection"
     status.color = "green";
     status.comment = ["Your order is ready for collection"]
@@ -40,18 +40,10 @@ function calculateOrderStatus(order, globals) {
   return status;
 }
 
-async function postOrderRating(socket, order, rating, comment) {
-  
-  const toSend = {
-    orderId: order._id,
-    rating: rating,
-    feedback: comment,
-  }
-  socket.emit("rateOrder", toSend);
-  socket.on("error", (error) => {
-    console.log(error)
-  })
-
+async function postOrderCancelled(socket, orderId) {
+  const info = {orderId: orderId, isCancelled: true};
+  socket.emit("cancelOrder", info);
+  socket.on("error", (error) => console.log(error));
 }
 
 const calculateTimeStatus = (updatedAt) => {
@@ -83,9 +75,9 @@ export default function useOrder(order) {
   const [orderTotals, setOrderTotals] = useState({ subtotal: 0, discount: 0, total: 0 });
   const { globals } = useGlobals();
   const [orderStatus, setOrderStatus] = useState({});
-  const [rating, setRating] = useState(0)
+  // const [rating, setRating] = useState(0)
   const { socket } = useOrders();
-  const [comment, setComment] = useState("");
+  // const [comment, setComment] = useState("");
   const history = useHistory();
 
   // Regularly update the amount of time left
@@ -118,28 +110,16 @@ export default function useOrder(order) {
     history.push("/customer/orders/" + order._id);
   }
 
-  function handleRatingSubmit(event) {
-    postOrderRating(socket, order, rating, comment)
-    setComment("");
-    setRating(0);
-    if (event) {
-      event.preventDefault()
-    }
-  }
 
-  const onCommentChange = (event) => {
-    setComment(event.target.value);
-  };
+  function handleOrderCancel(event) {
+    postOrderCancelled(socket, order._id);
+  }
 
   return {
     timeValue,
     orderTotals,
     orderStatus,
     handleOrderSelect,
-    handleRatingSubmit,
-    rating,
-    setRating,
-    comment,
-    onCommentChange,
+    handleOrderCancel,
   };
 }

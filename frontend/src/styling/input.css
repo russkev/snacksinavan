@@ -1,21 +1,25 @@
-input {
+input, textarea {
   font-size: 14px;
   font-family: "Poppins", sans-serif;
   border: none;
   outline: none;
   background: none;
   margin: 0.9rem 1.8rem;
-  border-radius: 100px;
+  /* border-radius: 100px; */
   width: 100%;
   width: -webkit-fill-available;
   width: stretch;
   width: -moz-available;
 }
 
+textarea {
+  resize: vertical;
+}
+
 fieldset{
   padding: 0;
   margin: 0;
-  border-radius: 10rem;
+  border-radius: 1.5rem;
   border: 2px solid transparent;
 }
 

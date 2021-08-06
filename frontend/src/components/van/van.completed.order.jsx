@@ -21,7 +21,7 @@ export default function CompletedOrder({ order }) {
             </div>
             <ul className="van-order-snack-list van-order-items">
                 {order.snacks.map((snack)=>(
-                    <li colspan="2">{snack.length} x {snack[0].name}</li>
+                    <li colspan="2" key={snack[0].name}>{snack.length} x {snack[0].name}</li>
                 ))}
             </ul>
             <div className="van-order-details" id={`detailsID${order._id}`}>

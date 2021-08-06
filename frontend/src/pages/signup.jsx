@@ -63,6 +63,7 @@ export default function Signup() {
           <article>
             {page === 1 ? (
               <form onSubmit={handleEmailCheckAndAlert}>
+                
                 <h4>Please enter your details (*required)</h4>
                 {/* <div className="signup-fields"> */}
                 <section>

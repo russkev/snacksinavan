@@ -3,8 +3,7 @@
   --background-blue: #F6F8F9;
   --background-white: #ffffff;
   --background-darker: #e0e8ed;
-  --background-warning: #fae8e8;
-  --background-warning-dark: #f0dbdb;
+
   --dark-text: #3c4048;
   --light-text: #696f7c;
   --shadow: #00133933;
@@ -27,9 +26,14 @@
 
   --primary: #FF740F;
   --primary-dark: #e36308;
+  --background-primary: #fff0e7;
 
-  --warning: #bf0101;
+  --warning: #bf0101;  
+  --background-warning: #fae8e8;
+  --background-warning-dark: #f0dbdb;
+  
   --success: #008800;
+  --background-success: #e8fae8;
 }
 
 html {
@@ -107,7 +111,7 @@ ul {
   justify-content: space-evenly;
 }
 
-table {
+/* table {
   border-collapse: separate;
   width: 80%;
   max-width: 800px;
@@ -140,9 +144,9 @@ hr {
   height: 2px;
   border: 0px;
   margin: 0.5rem 0 1rem;
-}
+} */
 
-textarea {
+/* textarea {
   font-size: 14px;
   font-family: inherit;
   border: none;
@@ -153,7 +157,7 @@ textarea {
   border-radius: 10px;
   box-sizing: border-box;
   resize: none;
-}
+} */
 
 fieldset {
   background-color: var(--background-blue);
