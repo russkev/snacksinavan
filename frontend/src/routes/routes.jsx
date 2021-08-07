@@ -88,26 +88,23 @@ export function RoutesMap() {
     <>
         <MainNav />
       <Switch>
-        {Object.keys(Routes).map((routeKey, i) => {
+        {Object.keys(Routes).map((routeKey) => {
           const route = Routes[routeKey];
           if (route.access === availability.LOGGED_IN_ONLY) {
             return (
               <LoggedInRoute key={routeKey} exact path={route.path}>
-                {/* <MainNav /> */}
                 {route.component()}
               </LoggedInRoute>
             );
           } else if (route.access === availability.LOGGED_OUT_ONLY) {
             return (
               <LoggedOutRoute key={routeKey} exact path={route.path}>
-                {/* <MainNav /> */}
                 {route.component()}
               </LoggedOutRoute>
             );
           } else {
             return (
               <Route key={routeKey} exact path={route.path}>
-                {/* <MainNav /> */}
                 {route.component()}
               </Route>
             );
@@ -115,7 +112,6 @@ export function RoutesMap() {
         })}
         <Route path="/van" />
         <Route>
-          {/* <MainNav /> */}
           <NotFound />
         </Route>
       </Switch>

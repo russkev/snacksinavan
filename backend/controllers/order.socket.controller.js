@@ -30,7 +30,16 @@ const orderListCustomer = async (socket) => {
         const customer = await userModel.findOne({ username: socket.handshake.auth.username });
         const orders = await orderModel
           .find({ customer: customer.id })
-          .populate(["snacks", "van"]);
+          // .populate(["snacks", "van"]);
+          .populate([
+            {
+              path: "snacks",
+              populate: {
+                path: "snack",
+                model: "Snack"
+              }
+            }, "van"
+          ])
         socket.emit("orderListCustomer", orders);
       } catch (error) {
         socket.emit("error", error.message);
@@ -44,13 +53,13 @@ const orderListCustomer = async (socket) => {
 const createOrder = async (io, socket) => {
   socket.on("createOrder", async (order) => {
     if (order.snacks && order.vanName) {
-      let orderedSnackIds = [];
+      let orderedSnacks = [];
       let customerId = "";
       let vanId = "";
       let van = null;
 
       try {
-        orderedSnackIds = await orderController.getSnackIds(order.snacks);
+        orderedSnacks = await orderController.getSnacks(order.snacks);
         customerId = await orderController.getCustomerId(socket.handshake.auth.username);
         vanId = await orderController.getVanId(order.vanName);
         van = await vanModel.findOne({ _id: vanId });
@@ -67,7 +76,7 @@ const createOrder = async (io, socket) => {
       }
 
       const newOrder = new orderModel({
-        snacks: orderedSnackIds,
+        snacks: orderedSnacks,
         customer: customerId,
         van: vanId,
       });
@@ -186,7 +195,7 @@ const rateOrder = async (io, socket) => {
 const orderModify = async (io, socket) => {
   socket.on("orderModify", async (info) => {
     if (info.orderId && info.snacks) {
-      orderedSnackIds = await orderController.getSnackIds(info.snacks);
+      orderedSnackIds = await orderController.getSnacks(info.snacks);
       try {
         await orderModel.updateOne(
           { _id: info.orderId },

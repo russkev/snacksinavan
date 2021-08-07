@@ -24,11 +24,11 @@ async function postOrderCompleted(socket, orderId, isCompleted) {
 export function calculateOrderTotals(order, setOrderTotals, delayDiscount) {
   if (order.snacks && delayDiscount) {
     let subTotal = 0;
-    if (order.snacks[0] && order.snacks[0].length > 0) {
-      order.snacks.forEach((snack) => (subTotal += snack.length * snack[0].price));
-    } else {
-      order.snacks.forEach((snack) => (subTotal += snack.price));
-    }
+
+    order.snacks.forEach(
+      (snackGroup) => (subTotal += snackGroup.quantity * snackGroup.snack.price)
+    );
+
     const lateDiscount = order.isDiscounted ? -delayDiscount * subTotal : 0;
     const cancelledDiscount =
       !order.isFulfilled && order.isCancelled ? -(subTotal + lateDiscount) : 0;

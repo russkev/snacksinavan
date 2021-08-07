@@ -1,0 +1,144 @@
+div.my-van {
+  border-top: 10px solid var(--van-my-van);
+  padding: 3rem;
+  height: calc(100vh - var(--header-van-height));
+  /* height: calc(100vh - 70px); */
+  /* height: 100vh; */
+  box-sizing: border-box;
+}
+
+div.my-van .van-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%
+}
+
+div.my-van > .container > h1 {
+  margin: 0;
+}
+
+div.my-van article {
+  display: grid;
+  grid-template-columns: 120px auto;
+  flex: 1;
+}
+
+div.my-van section.location {
+  display: grid;
+  grid-template-rows: min-content auto min-content min-content;
+  grid-column-gap: 1.5rem;
+  column-gap: 1.5rem;
+  gap: 1.5rem;
+}
+
+div.my-van button.logout {
+  width: 100px;
+  height: 38px;
+}
+
+div.my-van h1, div.my-van h3 {
+  display: inline-flex;
+}
+
+div.my-van div.submit {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-around;
+}
+
+div.my-van div.submit button {
+  width: 200px;
+}
+
+.my-van .switch, .my-van button.logout {
+  margin-top: 1rem;
+  margin-bottom: 3rem;
+}
+
+div.my-van section:first-child {
+  padding-right: 1.5rem;
+}
+
+div.my-van .van-map {
+  width: 100%;
+  min-height: 150px;
+  height: 100%;
+}
+
+div.my-van textarea {
+  resize: none;
+}
+
+.my-van .switch {
+  position: relative;
+  display: inline-block;
+  width: 100px;
+  height: 38px;
+}
+
+.my-van .switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.my-van-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--warning);
+  transition: .4s;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 10pt;
+}
+
+.my-van-slider:before {
+  position: absolute;
+  content: "";
+  height: 30px;
+  width: 30px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+}
+
+input:checked + .my-van-slider {
+  background-color: var(--success);
+}
+
+input:checked + .my-van-slider:before {
+  transform: translateX(62px);
+}
+
+.my-van-slider.round {
+  border-radius: 200px;
+}
+
+.my-van-slider.round:before {
+  border-radius: 50%
+}
+
+.van-slider-on {
+  display: none;
+  transform: translateX(-15px)
+}
+
+.van-slider-off {
+  transform: translateX(15px)
+}
+
+input:checked + .my-van-slider .van-slider-on{
+  display: block;
+}
+
+input:checked + .my-van-slider .van-slider-off{
+  display: none;
+}

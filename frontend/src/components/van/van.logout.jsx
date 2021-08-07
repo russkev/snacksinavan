@@ -10,11 +10,9 @@ export default function VanLogout() {
   };
 
   return (
-    <div className="my-van-section">
-      <h4 className="my-van-section-title">Account</h4>
-      <div className="center-content-container">
-        <button className="submit de-emphasised border" onClick={handleLogout}>Sign Out</button>
-      </div>
+    <div>
+      <h4>Account</h4>
+      <button className="logout" onClick={handleLogout}>Sign Out</button>
     </div>
   );
 }

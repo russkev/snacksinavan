@@ -156,7 +156,7 @@
   margin: 0;
 }
 
-.use-my-location{
+/* .use-my-location{
   background: white;
   height: 50px;
   display: flex;
@@ -164,86 +164,14 @@
   justify-content: center;
   width: 100%;
   margin-bottom: 2px;
-}
+} */
 
 .center-content-container {
   display: flex;
   justify-content: center;
 }
 
-.my-van-switch {
-  position: relative;
-  display: inline-block;
-  width: 100px;
-  height: 38px;
-}
 
-.my-van-switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.my-van-slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: darkred;
-  transition: .4s;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-size: 10pt;
-}
-
-.my-van-slider:before {
-  position: absolute;
-  content: "";
-  height: 30px;
-  width: 30px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  transition: .4s;
-}
-
-input:checked + .my-van-slider {
-  background-color: darkgreen;
-}
-
-input:checked + .my-van-slider:before {
-  transform: translateX(62px);
-}
-
-.my-van-slider.round {
-  border-radius: 200px;
-}
-
-.my-van-slider.round:before {
-  border-radius: 50%
-}
-
-.van-slider-on {
-  display: none;
-  transform: translateX(-15px)
-}
-
-.van-slider-off {
-  transform: translateX(15px)
-}
-
-input:checked + .my-van-slider .van-slider-on{
-  display: block;
-}
-
-input:checked + .my-van-slider .van-slider-off{
-  display: none;
-}
 
 .my-van-switches-container {
   background: white;

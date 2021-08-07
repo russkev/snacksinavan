@@ -1,5 +1,6 @@
 import React from "react";
 import useVanUser from "../hooks/useVanUser";
+import { LoadScript } from "@react-google-maps/api";
 import { Snackbar, handleShowSnackbar } from "../components/snackbar";
 import Loading from "../components/loading";
 import VanLocation from "../components/van/van.location";
@@ -8,6 +9,8 @@ import VanStoreStatus from "../components/van/van.store.status";
 import VanLogout from "../components/van/van.logout";
 import useVanMyVan from "../hooks/useVanMyVan";
 import VanSubmitChanges from "../components/van/van.submit.changes";
+import "../styling/van.my.van.css"
+const lib = ["places"];
 
 export default function VanMyVan() {
   const { vanName } = useVanUser();
@@ -15,27 +18,27 @@ export default function VanMyVan() {
   const { loading, snackMessage, isSuccess } = useVanMyVan();
 
   return (
-    <>
-      <div className="my-van-background">
-        <div className="my-van-card">
-          <h5 className="my-van-heading">{vanName}</h5>
-          <div className="my-van-section-container">
-            <div className="flex-column">
+      <LoadScript googleMapsApiKey={process.env.REACT_APP_MAP_KEY} libraries={lib}>
+      <div className="my-van">
+        <div className="van-container" >
+          <h1>
+            {vanName}
+          </h1>
+          <article>
+            <section className="status">
+              <VanStoreStatus />
+              <VanLogout />
+            </section>
+            <section className="location">
               <VanLocation />
               <VanLocationDescription />
-              <div className="vertical-gap-small" />
-              <VanSubmitChanges showSnackbar={handleShowSnackbar} />
-            </div>
-            <div className="my-van-switches-container">
-              <VanStoreStatus />
-              <div className="vertical-gap-medium" />
-              <VanLogout />
-            </div>
-          </div>
+              <VanSubmitChanges showSnackbar={handleShowSnackbar}/>
+            </section>
+          </article>
         </div>
       </div>
       <Snackbar message={snackMessage} isSuccess={isSuccess} />
       <Loading isLoading={loading} />
-    </>
+    </LoadScript>
   );
 }

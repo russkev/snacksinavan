@@ -1,5 +1,6 @@
 import React from "react";
 import useVanMyVan from "../../hooks/useVanMyVan";
+import InputContainer from "../input.container"
 
 export default function VanLocationDescription() {
   const {
@@ -8,19 +9,15 @@ export default function VanLocationDescription() {
   } = useVanMyVan()
 
   return (
-    <div className="my-van-section">
-      <fieldset className="search-element-fieldset">
-        <legend className="search-element-legend">Description</legend>
-        <textarea
-          rows="3"
-          className="my-van-input"
-          type="description"
-          id="description"
-          value={currentDescription}
-          onChange={onDescriptionChange}
-          />
-          </fieldset>
-        <div></div>
-    </div>
-  );
+    <InputContainer label="Description" value={currentDescription}>
+      <textarea
+        type="text"
+        id="van-location-description"
+        placeholder="Description"
+        value={currentDescription}
+        onChange={onDescriptionChange}
+        rows={3}
+      />
+    </InputContainer>
+  )
 }

@@ -4,6 +4,7 @@ import VanCard from "../components/van.card";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import SearchLocation from "../components/search.location";
 import haversine from "haversine-distance";
+import { Link } from "react-router-dom"
 import "../styling/home.css";
 import "../styling/customer.css";
 
@@ -46,6 +47,7 @@ export default function Home() {
           <section>
             <div>
               <h1>Find a van</h1>
+              <p>Are you a vendor? The van app is <Link to="/van">here</Link> </p>
               <SearchLocation setCurrentLocation={setLocation} />
               <div className="van-list">
                 {closestVans.map((van) => (
@@ -56,6 +58,7 @@ export default function Home() {
                   />
                 ))}
               </div>
+              <div className="blank-bottom" />
             </div>
           </section>
           <section className="map">

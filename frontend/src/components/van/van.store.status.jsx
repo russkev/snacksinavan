@@ -7,21 +7,19 @@ export default function VanStoreStatus() {
   const { toggleVanReady } = useVanMyVan();
 
   return (
-    <div className="my-van-section">
-      <h4 className="my-van-section-title">Store Status</h4>
-      <div className="center-content-container">
-        <label className="my-van-switch">
-          <input
-            type="checkbox"
-            onChange={toggleVanReady}
-            checked={vanDetails.readyForOrders ? vanDetails.readyForOrders : false}
-          />
-          <div className="my-van-slider round">
-            <span className="van-slider-on">Open</span>
-            <span className="van-slider-off">Closed</span>
-          </div>
-        </label>
-      </div>
+    <div>
+      <h4>Store status</h4>
+      <label className="switch">
+        <input
+          type="checkbox"
+          onChange={toggleVanReady}
+          checked={vanDetails.readyForOrders ? vanDetails.readyForOrders : false}
+        />
+        <div className="my-van-slider round">
+          <span className="van-slider-on">Open</span>
+          <span className="van-slider-off">Closed</span>
+        </div>
+      </label>
     </div>
   );
 }

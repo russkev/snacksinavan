@@ -1,5 +1,6 @@
 :root {
   --header-height: 50px;
+  --header-van-height: 70px;
   --background-blue: #F6F8F9;
   --background-white: #ffffff;
   --background-darker: #e0e8ed;
@@ -34,6 +35,18 @@
   
   --success: #008800;
   --background-success: #e8fae8;
+
+  --van-my-van: #00b8a6;
+  --background-van-my-van: #dffffb;
+
+  --van-orders: #c900c9;
+  --background-van-orders: #ffe1ff;
+
+  --van-fulfilled: #5e00c9;
+  --background-van-fulfilled: #efe1ff;
+
+  --van-past-orders: #0061c9;
+  --background-van-past-orders: #deeeff;
 }
 
 html {

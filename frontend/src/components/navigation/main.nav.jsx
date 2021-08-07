@@ -36,7 +36,7 @@ export default function MainNav() {
   });
 
   return (
-    <nav>
+    <nav className="customer">
       <MobileNav />
       <ul>
         <li>

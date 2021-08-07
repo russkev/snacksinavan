@@ -4,12 +4,12 @@ import useSnacks from "../hooks/useSnacks";
 import useGlobals from "../hooks/useGlobals";
 import DeleteIcon from "../media/delete.icon";
 
-export default function CartItemCard({ snackName }) {
+export default function CartItemCard({ snackId }) {
   const { updateCart, deleteFromCart, cart } = useCart();
-  const { snackFromName } = useSnacks();
+  const { snackFromId } = useSnacks();
   const { globals } = useGlobals();
 
-  const snack = snackFromName(snackName);
+  const snack = snackFromId(snackId);
   return (
     <div className="cart-item">
       <div>
@@ -19,27 +19,27 @@ export default function CartItemCard({ snackName }) {
           viewBox="0 0 24 24"
           width="24px"
           fill="var(--dark-text)"
-          onClick={() => deleteFromCart(snackName)}
+          onClick={() => deleteFromCart(snackId)}
         >
           <DeleteIcon />
         </svg>
-        <img src={snack.photo} width="50px" alt={snackName} />
+        <img src={snack.photo} width="50px" alt={snackId} />
         <section>
-          {snackName}
+          {snack.name}
           <div className="quantity">
             <button
               onClick={() => {
-                if (cart[snackName] > 1) {
+                if (cart[snackId] > 1) {
                   updateCart(snack, -1);
                 }
               }}
             >
               <span>&#8722;</span>
             </button>
-            <span>{cart[snackName]}</span>
+            <span>{cart[snackId]}</span>
             <button
               onClick={() => {
-                if (cart[snackName] < globals.maxItems) {
+                if (cart[snackId] < globals.maxItems) {
                   updateCart(snack, 1);
                 }
               }}
@@ -49,7 +49,7 @@ export default function CartItemCard({ snackName }) {
           </div>
         </section>
       </div>
-      <h4>${(snack.price * cart[snackName]).toFixed(2)}</h4>
+      <h4>${(snack.price * cart[snackId]).toFixed(2)}</h4>
     </div>
   );
 }

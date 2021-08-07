@@ -1,4 +1,4 @@
-nav ul, .mobile-nav {
+nav.customer ul, .mobile-nav {
   margin: 0;
   align-items: center;
   background-color: var(--background-white);
@@ -7,21 +7,21 @@ nav ul, .mobile-nav {
   outline: 2px solid var(--background-darker);
 }
 
-nav ul a.button {
+nav.customer ul a.button {
   width: 100px;
   height: 30px;
 }
 
-nav ul a.button.primary {
+nav.customer ul a.button.primary {
   margin-left: 1.5rem;
 }
 
-nav a {
+nav.customer a {
   color: var(--dark-text);
   text-decoration: none;
 }
 
-nav .login {
+nav.customer .login {
   cursor: pointer;
 }
 
@@ -164,7 +164,7 @@ li.account {
 }
 
 @media screen and (max-width: 800px) {
-  nav ul {
+  nav.customer ul {
     display: none;
   }
   .mobile-nav {

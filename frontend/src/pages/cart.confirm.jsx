@@ -56,7 +56,7 @@ export default function ConfirmCart() {
         </div>
         <section>
           {Object.keys(cart).map((cartItem) => {
-            return <CartItemCard key={cartItem} snackName={cartItem} />;
+            return <CartItemCard key={cartItem} snackId={cartItem} />;
           })}
         </section>
         <section>

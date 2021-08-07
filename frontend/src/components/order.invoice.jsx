@@ -1,5 +1,5 @@
 import React from "react";
-import groupSnacks from "../components/group.snacks";
+// import groupSnacks from "../components/group.snacks";
 
 function OrderDiscounts({ orderTotals }) {
   if (!orderTotals.discount) {
@@ -20,7 +20,7 @@ function OrderDiscounts({ orderTotals }) {
         ) : (
           <></>
         )}
-        {orderTotals.lateDiscount ? (
+        {orderTotals.cancelledDiscount ? (
           <div>
             <span>Discount (early cancellation):</span>
             <span>{`$${orderTotals.cancelledDiscount.toFixed(2)}`}</span>
@@ -34,20 +34,20 @@ function OrderDiscounts({ orderTotals }) {
 }
 
 export default function OrderInvoice({ order, orderTotals }) {
-  const groupedSnacks = order ? groupSnacks(order.snacks) : null;
-
   return (
     <div className="invoice">
       <h2>Invoice</h2>
       {order.isCancelled ? <h4>Cancelled order</h4> : <></>}
-      {groupedSnacks.map((snack) => (
-        <div key={snack[0].name}>
+      {order.snacks.map((snackGroup) => {
+        const snackItem = snackGroup.snack
+        return (
+        <div key={snackGroup._id}>
           <span>
-            <strong>{snack.length}x</strong> {snack[0].name}
+            <strong>{snackGroup.quantity}x</strong> {snackItem.name}
           </span>
-          <span>{`$${(snack.length * snack[0].price).toFixed(2)}`}</span>
+          <span>{`$${(snackGroup.quantity * snackItem.price).toFixed(2)}`}</span>
         </div>
-      ))}
+      )})}
       {orderTotals ? (
         <summary className="order-totals">
           <div>

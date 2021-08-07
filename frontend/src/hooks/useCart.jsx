@@ -8,6 +8,7 @@ import useUser from "./useUser";
 
 async function postOrder(socket, cart, van, onOrderSuccess) {
   // console.log(cart)
+  // console.log(cart)
   // var sendArr = [];
   // for (var i in cart) {
   //   for (var j = 0; j < cart[i]; j++) {
@@ -97,39 +98,48 @@ export default function useCart() {
     confirmCart.classList.add("slide-menu");
   }
 
+
   function updateCart(snack, count) {
-    const snackName = snack["name"];
-    let currCount = 0;
-    if (snack.name in cart) {
-      if (cart[snackName] + count > -1) {
-        currCount = count;
-        setCart({
-          ...cart,
-          [snackName]: cart[snackName] + count,
-        });
-      }
-    } else {
-      if (count > -1) {
-        currCount = count;
-        setCart({
-          ...cart,
-          [snackName]: currCount,
-        });
-      }
+    const snackId = snack["_id"];
+    if (cart[snackId] && cart[snackId] + count >= 0) {
+      cart[snackId] = cart[snackId] + count
+      setTotal(total + snack.price * count);
+    } else if (count >= 0) {
+      cart[snackId] = count
+      setTotal(total + snack.price * count);
     }
-    setTotal(total + snack.price * currCount);
+
+
+    // let currCount = 0;
+    // if (cart[snackId]) {
+    //   if (cart[snackId] + count > -1) {
+    //     currCount = count;
+    //     setCart({
+    //       ...cart,
+    //       [snackId]: cart[snackId] + count,
+    //     });
+    //   }
+    // } else {
+    //   if (count > -1) {
+    //     currCount = count;
+    //     setCart({
+    //       ...cart,
+    //       [snackId]: currCount,
+    //     });
+    //   }
+    // }
+    // setTotal(total + snack.price * currCount);
   }
 
   function appendCart(snack, count) {
-    const snackName = snack["name"];
-    const oldCount = cart[snackName] ? cart[snackName] : 0;
-    setCart({...cart, [snackName]: count})
+    const snackId = snack["_id"];
+    const oldCount = cart[snackId] ? cart[snackId] : 0;
+    setCart({...cart, [snackId]: count})
     setTotal(total - oldCount * snack.price + count * snack.price)
   }
 
   function deleteFromCart(snack) {
     const {[snack]: _, ...newCart} = cart;
-    console.log(newCart)
     setCart(newCart);
   }
 

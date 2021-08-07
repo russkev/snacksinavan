@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 // import "./App.css";
 import "./VanApp.css";
+import "./styling/van.css"
 import "./styling/button.css"
 import "./styling/snackbar.css"
 import { RoutesMap } from "./routes/routes";

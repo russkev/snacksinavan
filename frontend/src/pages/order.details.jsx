@@ -28,9 +28,7 @@ export default function OrderDetails() {
   const [timeLeftDisplay, setTimeLeftDisplay] = useState(
     order ? orderTimeLeft(order, globals.cancelTime, false) : 0
   );
-  // const [ratingValue, setRatingValue] = React.useState(2);
 
-  // const groupedSnacks = order ? groupSnacks(order.snacks) : null;
   const [location, setLocation] = useState({ lat: -37.81494, lng: 144.96867 });
   const { isShowing, toggle } = useModal();
 

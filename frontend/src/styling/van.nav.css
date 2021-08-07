@@ -1,0 +1,77 @@
+nav.van ul {
+  margin: 0
+}
+
+nav.van li a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.2rem;
+  width: 100px;
+  height: 60px;
+  justify-content: center;
+}
+
+nav.van svg {
+  fill: inherit;
+}
+
+nav.van a.my-van {
+  color: var(--van-my-van);
+  fill: var(--van-my-van);
+}
+nav.van a.my-van:hover, nav.van a.my-van:focus {
+  background: var(--background-van-my-van);
+}
+
+nav.van a.my-van.active {
+  background: var(--van-my-van);
+  color: var(--background-white);
+  fill: var(--background-white);
+}
+
+
+nav.van a.orders {
+  color: var(--van-orders);
+  fill: var(--van-orders);
+}
+
+nav.van a.orders:hover, nav.van a.orders:active {
+  background: var(--background-van-orders);
+}
+
+nav.van a.orders.active {
+  background: var(--van-orders);
+  color: var(--background-white);
+  fill: var(--background-white);
+}
+
+nav.van a.fulfilled {
+  color: var(--van-fulfilled);
+  fill: var(--van-fulfilled);
+}
+
+nav.van a.fulfilled:hover, nav.van a.fulfilled:focus {
+  background: var(--background-van-fulfilled);
+}
+
+nav.van a.fulfilled.active {
+  background: var(--van-fulfilled);
+  color: var(--background-white);
+  fill: var(--background-white);
+}
+
+nav.van a.past-orders {
+  color: var(--van-past-orders);
+  fill: var(--van-past-orders);
+}
+
+nav.van a.past-orders:hover, nav.van a.past-orders:focus {
+  background: var(--background-van-past-orders);
+}
+
+nav.van a.past-orders.active {
+  background: var(--van-past-orders);
+  color: var(--background-white);
+  fill: var(--background-white);
+}

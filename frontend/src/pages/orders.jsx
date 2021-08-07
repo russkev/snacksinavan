@@ -46,7 +46,7 @@ export default function Orders() {
               </tbody>
             </table>
           ) : (
-            pageOrders.map((order) => <Order key={order.id} order={order} isMobile />)
+            pageOrders.map((order) => <Order key={order._id} order={order} isMobile />)
           )}
         </div>
         <div className="pages">
@@ -78,28 +78,23 @@ function Order({ order, isMobile }) {
   const { orderTotals, orderStatus, handleOrderSelect } = useOrder(order);
   const dateTime = new Date(order.updatedAt);
   const date = dateTime.toLocaleDateString();
-  // const groupedSnacks = order ? groupSnacks(order.snacks) : null;
 
-  order.snacks.sort((a, b) => (a._id > b._id ? 1 : -1));
+  const snacksList = order.snacks.reduce(function (accumulator, snackGroup) {
+    return accumulator.concat(Array(snackGroup.quantity).fill(snackGroup.snack));
+  }, []);
 
   function Items() {
-    if (order.snacks.length <= 3) {
-      return order.snacks.map((snack, index) => {
-        return <img key={index} src={`../${snack.photo}`} alt={order.snacks[0].name}/>;
+    if (snacksList.length < 3) {
+      return snacksList.map((snackItem, index) => {
+        return <img key={index} src={`../${snackItem.photo}`} alt={snackItem.name} />;
       });
     } else {
       return (
         <>
-          <img 
-            src={`../${order.snacks[0].photo}`} 
-            alt={order.snacks[0].name} />
-          <img
-            src={`../${order.snacks[1].photo}`}
-            alt={order.snacks[1].name}
-            className="overlapping"
-          />
+          <img src={`../${snacksList[0].photo}`} alt={snacksList[0].name} />
+          <img src={`../${snacksList[1].photo}`} alt={snacksList[1].name} className="overlapping" />
           <span className="overlapping">
-            <p>{`+${order.snacks.length - 2}`}</p>
+            <p>{`+${snacksList.length - 2}`}</p>
           </span>
         </>
       );
