@@ -1,20 +1,29 @@
 .van-orders {
   border-top: 10px solid var(--van-orders);
-  background: var(--light-text);
+  background: var(--background-darker);
   height: calc(100vh - var(--header-van-height));
 }
 
 .van-order {
   margin: 1rem;
   border-radius: 5px;
-  display: grid;
-  grid-template-columns: minmax(200px, 2fr) auto auto;
+  /* display: grid;
+  grid-template-columns: minmax(200px, 2fr) auto auto; */
   overflow: clip;
+  display: flex;
 }
 
 .van-order section {
-  background: var(--background-blue);
+  background: var(--background-white);
   position: relative;
+}
+
+.van-order section.main-info {
+  flex: 1;
+}
+
+.van-order .main-info .details {
+  margin-right: 2rem;
 }
 
 .van-order .countdown {
@@ -23,12 +32,27 @@
 }
 
 .van-order .countdown > div {
-  flex: 1;
   margin: 1rem;
+  margin-top: 0;
   display: flex;
-  flex-direction: column;
   align-items: center;
   border-radius: 5px;
+  height: min-content;
+  flex-direction: row;
+  background-color: var(--background-blue);
+  padding: 0;
+  overflow: clip;
+}
+
+.van-order .countdown > div > div:first-child {
+  padding: 1rem;
+  padding-left: 2rem;
+  width: 145px;
+}
+
+.van-order .countdown > div > div:nth-child(2) {
+  width: 30px;
+  height: 100%;
 }
 
 .van-order .countdown h2 {
@@ -48,17 +72,40 @@
   left: 50%;
   bottom: 5px;
   transform: translateX(-50%) rotate(90deg);
-  transition-duration: 0.3s;
 }
 
 .van-order .chevron.expanded {
   transform: translateX(-50%) rotate(-90deg);
 }
 
+.van-order .fulfilled {
+  width: 130px;
+  display: flex;
+  justify-content: center;
+}
 
+.van-order .fulfilled button {
+  width: 100px;
+  margin: 1.5rem;
+  background-color: var(--background-van-orders);
+}
+
+.van-order .fulfilled button:hover, van-order .fulfilled:focus {
+  background-color: var(--background-van-orders-darker)
+}
+
+.van-order .fulfilled svg {
+  width: 4.2rem;
+  height: 4.2rem;
+  fill: var(--van-orders);
+  margin: 1.5rem;
+  animation: spin 1s linear infinite;
+}
 
 .van-order ul {
   flex-direction: column;
+  margin: 0;
+  margin-bottom: 4rem;
 }
 
 .van-order .details {
@@ -66,7 +113,15 @@
   justify-content: space-between;
   max-height: 0;
   overflow: hidden;
-  transition: all 0.4s ease-in-out;
+  margin-bottom: 4rem;
+  background-color: var(--background-blue);
+  justify-content: space-evenly;
+  border-radius: 5px;
+  flex-wrap: wrap;
+}
+
+.van-order .details, .van-order .chevron {
+  transition: all 0.4s ease-out;
 }
 
 .van-order .details.expanded {
@@ -74,17 +129,31 @@
 }
 
 .van-order .details > div {
-  margin-left: auto;
-  display: grid;
-  grid-template-columns: auto max-content;
-  column-gap: 15px;
-  justify-items: end;
   max-height: 160px;
+  display: grid;
+  grid-template-columns: max-content auto;
+  grid-column-gap: 1.5rem;
+  column-gap: 1.5rem;
+  margin: 0;
+  padding: 1.5rem;
+}
+
+.van-order .details > div > div:nth-child(2n-1) {
+  text-align: right;
 }
 
 @media screen and (max-width: 470px) {
   .van-order{
     display: flex;
     flex-direction: column;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }

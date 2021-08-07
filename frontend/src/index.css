@@ -36,17 +36,21 @@
   --success: #008800;
   --background-success: #e8fae8;
 
-  --van-my-van: #00b8a6;
-  --background-van-my-van: #dffffb;
+  --van-my-van: #009b8c;
+  --background-van-my-van: #cdfff8;
+  --background-van-my-van-darker: #acfff4;
 
   --van-orders: #c900c9;
   --background-van-orders: #ffe1ff;
+  --background-van-orders-darker: #ffc1ff;
 
   --van-fulfilled: #5e00c9;
   --background-van-fulfilled: #efe1ff;
+  --background-van-fulfilled-darker: #dcbeff;
 
   --van-past-orders: #0061c9;
   --background-van-past-orders: #deeeff;
+  --background-van-past-orders-darker: #badbff;
 }
 
 html {
