@@ -21,6 +21,7 @@ export default function VanMyVan() {
       <LoadScript googleMapsApiKey={process.env.REACT_APP_MAP_KEY} libraries={lib}>
       <div className="my-van">
         <div className="van-container" >
+          <h4>Van name</h4>
           <h1>
             {vanName}
           </h1>

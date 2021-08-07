@@ -5,9 +5,17 @@
   align-items: end;
 }
 
-.address-search fieldset{
-  border: 2px solid var(--un-focus);
+.address-search.columns{
+  grid-template-columns: auto 250px;
 }
+
+.address-search.columns button{
+  height: 50px;
+}
+
+/* .address-search fieldset{
+  border: 2px solid var(--un-focus);
+} */
 
 .use-my-location div{
   display: flex;

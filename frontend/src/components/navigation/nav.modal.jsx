@@ -58,7 +58,7 @@ function NavModal({ toggleMobileNav, isShowing }) {
         ) : (
           <></>
         )}
-        <div id="mobile-nav" className="nav-modal" tabIndex={-1}>
+        <aside id="mobile-nav" className="nav-modal" tabIndex={-1}>
           <button type="button" className="close" onClick={toggleMobileNav}>
             <svg>
               <ChevronLeftIcon />
@@ -74,7 +74,7 @@ function NavModal({ toggleMobileNav, isShowing }) {
             <hr />
             <AccountNav toggle={toggleMobileNav}/>
           </div>
-        </div>
+        </aside>
       </>,
       document.body
     );
@@ -89,7 +89,7 @@ function NavModal({ toggleMobileNav, isShowing }) {
           <></>
         )}
 
-        <div id="mobile-nav" className="nav-modal" tabIndex={-1}>
+        <aside id="mobile-nav" className="nav-modal" tabIndex={-1}>
           <button type="button" className="close" onClick={toggleMobileNav}>
             <svg>
               <ChevronLeftIcon />
@@ -114,7 +114,7 @@ function NavModal({ toggleMobileNav, isShowing }) {
               Signup
             </Link>
           </div>
-        </div>
+        </aside>
       </>,
       document.body
     );

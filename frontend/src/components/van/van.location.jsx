@@ -8,7 +8,11 @@ export default function VanLocation() {
 
   return (
     <>
-      <SearchLocation setCurrentLocation={setCurrentLocation} />
+      {!window.matchMedia("screen and (max-width: 850px)").matches ? (
+        <SearchLocation setCurrentLocation={setCurrentLocation} title="Location" columns/>
+      ) : (
+        <SearchLocation setCurrentLocation={setCurrentLocation} title="Location" />
+      )}
       <GoogleMap zoom={16} center={currentLocation} mapContainerClassName="van-map">
         <Marker label="You" position={currentLocation} onDragEnd={handleMarkerDragEnd} draggable />
       </GoogleMap>

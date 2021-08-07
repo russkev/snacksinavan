@@ -11,8 +11,17 @@ const orderListVan = (socket) => {
       const savedVan = await vanModel.findOne({ vanName: socket.handshake.auth.vanName });
       try {
         savedOrders = await orderModel
-          .find({ van: savedVan._id, isCancelled: false })
-          .populate(["customer", "snacks"]);
+        .find({ van: savedVan._id, isCancelled: false })
+        .populate([
+          {
+            path: "snacks",
+            populate: {
+              path: "snack",
+              model: "Snack",
+            },
+          },
+          "customer",
+        ]);
         socket.emit("getVanOrders", savedOrders);
       } catch (error) {
         socket.emit("error", error.message);

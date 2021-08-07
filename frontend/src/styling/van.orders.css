@@ -1,0 +1,90 @@
+.van-orders {
+  border-top: 10px solid var(--van-orders);
+  background: var(--light-text);
+  height: calc(100vh - var(--header-van-height));
+}
+
+.van-order {
+  margin: 1rem;
+  border-radius: 5px;
+  display: grid;
+  grid-template-columns: minmax(200px, 2fr) auto auto;
+  overflow: clip;
+}
+
+.van-order section {
+  background: var(--background-blue);
+  position: relative;
+}
+
+.van-order .countdown {
+  display: flex;
+  flex-direction: column;
+}
+
+.van-order .countdown > div {
+  flex: 1;
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 5px;
+}
+
+.van-order .countdown h2 {
+  font-weight: 600;
+  /* color: black; */
+}
+
+.van-order .countdown h4 {
+  margin: 1rem;
+  margin-bottom: 0;
+}
+
+.van-order .chevron {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  left: 50%;
+  bottom: 5px;
+  transform: translateX(-50%) rotate(90deg);
+  transition-duration: 0.3s;
+}
+
+.van-order .chevron.expanded {
+  transform: translateX(-50%) rotate(-90deg);
+}
+
+
+
+.van-order ul {
+  flex-direction: column;
+}
+
+.van-order .details {
+  display: flex;
+  justify-content: space-between;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.4s ease-in-out;
+}
+
+.van-order .details.expanded {
+  max-height: 250px;
+}
+
+.van-order .details > div {
+  margin-left: auto;
+  display: grid;
+  grid-template-columns: auto max-content;
+  column-gap: 15px;
+  justify-items: end;
+  max-height: 160px;
+}
+
+@media screen and (max-width: 470px) {
+  .van-order{
+    display: flex;
+    flex-direction: column;
+  }
+}

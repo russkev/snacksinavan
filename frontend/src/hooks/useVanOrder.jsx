@@ -109,14 +109,16 @@ export default function useVanOrder(order) {
 
   const toggleExpand = (event) => {
     event.preventDefault();
-    const expandableElement = document.getElementById(`detailsID${order._id}`);
-    if (expandableElement) {
-      if (expandableElement.className.includes("expanded")) {
-        expandableElement.className = "van-order-details";
+    // const expandableElement = document.getElementById(`detailsID${order._id}`);
+    const expandableElements = document.getElementsByClassName(order._id);
+
+    Array.from(expandableElements).forEach((expandableElement) => {
+      if (expandableElement.classList.contains("expanded")) {
+        expandableElement.classList.remove("expanded");
       } else {
-        expandableElement.className = "van-order-details  van-order-details-expanded";
+        expandableElement.classList.add("expanded");
       }
-    }
+    });
   };
 
   return {

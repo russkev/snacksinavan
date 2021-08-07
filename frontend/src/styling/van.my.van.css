@@ -13,10 +13,6 @@ div.my-van .van-container {
   height: 100%
 }
 
-div.my-van > .container > h1 {
-  margin: 0;
-}
-
 div.my-van article {
   display: grid;
   grid-template-columns: 120px auto;
@@ -36,6 +32,11 @@ div.my-van button.logout {
   height: 38px;
 }
 
+div.my-van h1 {
+  margin-top: -10px;
+  padding-top: 0;
+}
+
 div.my-van h1, div.my-van h3 {
   display: inline-flex;
 }
@@ -51,7 +52,7 @@ div.my-van div.submit button {
 }
 
 .my-van .switch, .my-van button.logout {
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   margin-bottom: 3rem;
 }
 

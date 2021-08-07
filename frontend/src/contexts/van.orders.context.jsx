@@ -11,11 +11,13 @@ export const VanOrdersContext = createContext([]);
 function getVanOrders(socket, setVanOrders) {
   socket.emit("requestVanOrders");
   socket.once("getVanOrders", (currentOrders) => {
-    const sortedOrders = currentOrders.sort(orderCompare).reverse();
-    sortedOrders.forEach((order) => {
-      order["snacks"] = groupSnacks(order.snacks);
-    });
-    setVanOrders(sortedOrders);
+    // const sortedOrders = currentOrders.sort(orderCompare).reverse();
+    // sortedOrders.forEach((order) => {
+    //   order["snacks"] = groupSnacks(order.snacks);
+    // });
+    // setVanOrders(sortedOrders);
+    console.log(currentOrders)
+    setVanOrders(currentOrders)
   });
   socket.on("error", (error) => console.log(error));
 }
