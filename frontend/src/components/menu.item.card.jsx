@@ -18,7 +18,6 @@ export default function MenuItemCard({ snack }) {
     }
   }, [cart, snack.name])
 
-  console.log(snack)
 
   return (
     <>

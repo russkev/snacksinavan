@@ -3,7 +3,6 @@ const Snack = require("../models/snack.model");
 // Handles customer feature 1: Gets all menu of all snacks
 const getAllSnacks = async (req, res) => {
   let result = await Snack.find({})
-  console.log(result)
   res.send(result);
 };
 
