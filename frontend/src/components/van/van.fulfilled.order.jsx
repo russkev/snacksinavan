@@ -1,6 +1,6 @@
 import React from "react";
 import useVanOrder from "../../hooks/useVanOrder";
-import VanOrderComplete from "./van.order.complete";
+import LoadingButton from "../loading.button";
 import VanOrderMain from "./van.order.main";
 import VanOrderTime from "./van.order.time";
 
@@ -19,22 +19,19 @@ export default function FulfilledOrder({ order }) {
 
   return (
     <div className="van fulfilled">
-      <VanOrderComplete
-        label="Collected"
-        isClicked={completedClicked}
-        setComplete={setIsCompleted}
-      />
+      <section>
+
+      <LoadingButton isLoading={completedClicked}>
+        <button onClick={setIsCompleted}>Collected</button>
+      </LoadingButton>
+      </section>
       <VanOrderMain
         order={order}
         orderTotals={orderTotals}
         date={date}
         toggleExpand={toggleExpand}
       />
-      <VanOrderTime 
-        titleText="Time of order:"
-        mainText={timeStamp}
-        subHeadingText={date}
-      />
+      <VanOrderTime titleText="Time of order:" mainText={timeStamp} subHeadingText={date} />
     </div>
   );
 }

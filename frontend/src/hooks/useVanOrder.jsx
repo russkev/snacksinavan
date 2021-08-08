@@ -56,10 +56,10 @@ const calculateTimeLeft = (order, discountTime, setTimeLeft, setOrderHue) => {
     const timeTaken = timePassedSeconds(order.updatedAt) / 60;
     if (timeTaken < discountTime) {
       const timeRatio = timeTaken / discountTime;
-      setOrderHue(Math.floor(linearInterpolate(ORDER_START_HUE, timeRatio, ORDER_END_HUE)))
+      setOrderHue(Math.floor(linearInterpolate(ORDER_START_HUE, timeRatio, ORDER_END_HUE)));
       // setOrderColor(linearInterpolateRGB(ORDER_START_COLOR, timeRatio, ORDER_END_COLOR));
     } else {
-      setOrderHue(ORDER_END_HUE)
+      setOrderHue(ORDER_END_HUE);
       // setOrderColor(linearInterpolateRGB(ORDER_START_COLOR, 1, ORDER_END_COLOR));
     }
     setTimeLeft(currTimeLeft);
@@ -74,7 +74,7 @@ export default function useVanOrder(order) {
   const [orderHue, setOrderHue] = useState(ORDER_START_HUE);
   const [orderTotals, setOrderTotals] = useState({ subtotal: 0, discount: 0, total: 0 });
   const [fulfilledClicked, setFulfilledClicked] = useState(false);
-  const [completedClicked, setCompletedClicked] = useState(false)
+  const [completedClicked, setCompletedClicked] = useState(false);
   const { globals } = useGlobals();
   const { vanSocket } = useVanOrders();
 
@@ -121,30 +121,35 @@ export default function useVanOrder(order) {
         window.removeEventListener("resize", resize, false);
         window.removeEventListener("load", resize, false);
       }
-    }
-  }, [order._id])
-
+    };
+  }, [order._id]);
 
   const setIsFulfilled = async (event) => {
     setFulfilledClicked(true);
     event.preventDefault();
-    try {
-      postOrderFulfilled(vanSocket, order._id, true);
-    } catch (error) {
-      console.log(error);
-      setFulfilledClicked(false);
-    }
+    setTimeout(() => {
+      try {
+        postOrderFulfilled(vanSocket, order._id, true);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setFulfilledClicked(false);
+      }
+    }, 500);
   };
 
   const setIsCompleted = async (event) => {
-    setCompletedClicked(true)
+    setCompletedClicked(true);
     event.preventDefault();
-    try {
-      postOrderCompleted(vanSocket, order._id, true);
-    } catch (error) {
-      setCompletedClicked(false)
-      console.log(error);
-    }
+    setTimeout(() => {
+      try {
+        postOrderCompleted(vanSocket, order._id, true);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setCompletedClicked(false);
+      }
+    }, 500);
   };
 
   const toggleExpand = (event) => {

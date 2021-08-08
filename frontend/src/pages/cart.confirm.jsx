@@ -3,7 +3,6 @@ import useCart from "../hooks/useCart.jsx";
 import useSnacks from "../hooks/useSnacks";
 import CartItemCard from "../components/cart.item.card";
 import TotalPrice from "../components/price.total";
-import SendOrderButton from "../components/send.order.button";
 import Routes from "../routes/routes";
 import { VanContext } from "../contexts/van.context.jsx";
 import useGlobals from "../hooks/useGlobals";
@@ -12,12 +11,23 @@ import useLogin from "../hooks/useLogin";
 import { Link } from "react-router-dom";
 import useOrders from "../hooks/useOrders";
 import ChevronLeftIcon from "../media/chevron.left.icon.jsx";
+import LoadingButton from "../components/loading.button.jsx";
 
 export default function ConfirmCart() {
   const { toggleLoginIsOpen } = useLogin();
   const { isAuthenticated } = useUser();
   const { globals } = useGlobals();
-  const { cart, total, setTotal, orderId, resetCart, displayMenu } = useCart();
+  const {
+    cart,
+    total,
+    setTotal,
+    orderId,
+    resetCart,
+    displayMenu,
+    submitLoading,
+    submitCart,
+    cartSize,
+  } = useCart();
   const { orderFromId } = useOrders();
   const order = orderId ? orderFromId(orderId) : null;
   const { loading, error } = useSnacks();
@@ -103,11 +113,20 @@ export default function ConfirmCart() {
             </>
           ) : (
             <div>
-              {van == null ? (
+              <LoadingButton isLoading={submitLoading}>
+                <button
+                  onClick={submitCart}
+                  disabled={!cartSize || !van}
+                  className={`primary soft-shadow ${cartSize && van ? "" : "disabled"}`}
+                >
+                  {orderId ? "Confirm Change" : "Confirm"}
+                </button>
+              </LoadingButton>
+              {/* {van == null  ? (
                 <SendOrderButton enabled={false} />
               ) : (
                 <SendOrderButton enabled={true} />
-              )}
+              )} */}
             </div>
           )}
           <div className="blank-bottom" />

@@ -40,7 +40,6 @@ export default function VanLogin() {
           <h3>Snacks in a Van</h3>
           <h1>Vendor App</h1>
           <h4>Please sign in</h4>
-
           <article>
             <form onSubmit={handleLoginSubmitAndAlert}>
               <section>

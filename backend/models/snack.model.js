@@ -16,14 +16,28 @@ const snackSchema = new mongoose.Schema({
     enum: ["drink", "food"],
     required: true,
   },
-  photo: { 
-    type: String,
-    required: true, 
+  photo: {
+    small: {
+      type: String,
+      required: true,
+    },
+    medium: {
+      type: String,
+      required: true,
+    },
+    large: {
+      type: String,
+      required: true,
+    },
+    full: {
+      type: String,
+      required: true,
+    },
   },
   description: {
     type: String,
     required: true,
-  }
+  },
 });
 
 const Snack = mongoose.model("Snack", snackSchema);

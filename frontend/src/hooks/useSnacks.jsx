@@ -24,7 +24,7 @@ function scrollToTarget(element, offset) {
 function getCategoryCards() {
   const categoryCards = [
     document.getElementById("Cappuccino"),
-    document.getElementById("Shortcrust Biscuit"),
+    document.getElementById("Gingernut Biscuit"),
   ];
   return categoryCards;
 }

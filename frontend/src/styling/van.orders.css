@@ -79,7 +79,6 @@ div.van .countdown > div > div:nth-child(2) {
 
 div.van .countdown h2 {
   font-weight: 600;
-  /* color: black; */
 }
 
 div.van .countdown h4 {
@@ -102,8 +101,6 @@ div.van .chevron.expanded {
 
 div.van .complete {
   width: 130px;
-  display: flex;
-  justify-content: center;
 }
 
 div.van .complete button {
@@ -128,13 +125,6 @@ div.van.fulfilled .complete button:hover, div.van.fulfilled .complete button:foc
   background-color: var(--background-van-fulfilled-darker)
 }
 
-div.van .complete svg {
-  width: 4.2rem;
-  height: 4.2rem;
-  margin: 1.5rem;
-  animation: spin 1s linear infinite;
-}
-
 div.van.order .complete svg {
   fill: var(--van-orders);
 }
@@ -151,7 +141,6 @@ div.van ul {
 
 div.van .details {
   justify-content: space-between;
-  /* max-height: 0; */
   overflow: hidden;
   margin-bottom: 4rem;
   background-color: var(--background-blue);
@@ -159,24 +148,16 @@ div.van .details {
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
-  /* display: grid; */
-  /* grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); */
-  
+ 
   height: 0px;
   overflow: hidden;
 }
-
-/* div.van .details > div {
-  overflow: hidden;
-} */
 
 div.van .details.with-rating {
   justify-content: flex-start;
 }
 
 div.van .details > div {
-  /* display: grid;
-  grid-template-columns: repeat(auto-fit, min-content); */
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -187,7 +168,6 @@ div.van .details, div.van .chevron {
 }
 
 div.van .details.expanded {
-  /* max-height: 250px; */
   height: var(--expanded-height);
 }
 
@@ -220,16 +200,6 @@ div.van .details div.section > div:nth-child(2n-1) {
     flex-direction: column;
   }
 }
-
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 
 div.calcChildSize {
   overflow: hidden;

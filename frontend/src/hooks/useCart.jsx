@@ -1,22 +1,14 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { CartContext } from "../contexts/cart.context.jsx";
 import useOrders from "../hooks/useOrders";
 import { VanContext } from "../contexts/van.context.jsx";
 import { useHistory } from "react-router-dom";
+import Routes from "../routes/routes";
 import useLogin from "./useLogin";
 import useUser from "./useUser";
+import useVans from "./useVans";
 
 async function postOrder(socket, cart, van, onOrderSuccess) {
-  // console.log(cart)
-  // console.log(cart)
-  // var sendArr = [];
-  // for (var i in cart) {
-  //   for (var j = 0; j < cart[i]; j++) {
-  //     sendArr.push(i);
-  //   }
-  // }
-
-  // console.log(sendArr)
   const toSend = {
     snacks: cart,
     vanName: van,
@@ -72,18 +64,22 @@ export default function useCart() {
   } = useContext(CartContext);
   const { setCurrentOrderId, socket } = useOrders();
   const { van, setVan } = useContext(VanContext);
+  const [ vanChoiceLoading, setVanChoiceLoading ] = useState(false)
   const history = useHistory();
   const { toggleLoginIsOpen } = useLogin();
   const { isAuthenticated } = useUser();
+  const { vanFromName } = useVans()
 
   function onOrderSuccess(orderId) {
-    history.push(`/customer/orders/${orderId}`);
-    setSubmitLoading(false)
     setCurrentOrderId(orderId);
     setCart({});
     setTotal(0);
     setOrderId("");
     setOrder();
+    setTimeout(() => {
+      setSubmitLoading(false)
+      history.push(`/customer/orders/${orderId}`);
+    }, 300)
   }
 
   function displayCart() {
@@ -98,6 +94,12 @@ export default function useCart() {
     confirmCart.classList.add("slide-menu");
   }
 
+  function updateVan(vanName) {
+    setVanChoiceLoading(true)
+    setVan(vanFromName(vanName))
+    history.push(Routes.SNACKS_MENU.path)
+    setVanChoiceLoading(false)
+  }
 
   function updateCart(snack, count) {
     const snackId = snack["_id"];
@@ -108,27 +110,6 @@ export default function useCart() {
       cart[snackId] = count
       setTotal(total + snack.price * count);
     }
-
-
-    // let currCount = 0;
-    // if (cart[snackId]) {
-    //   if (cart[snackId] + count > -1) {
-    //     currCount = count;
-    //     setCart({
-    //       ...cart,
-    //       [snackId]: cart[snackId] + count,
-    //     });
-    //   }
-    // } else {
-    //   if (count > -1) {
-    //     currCount = count;
-    //     setCart({
-    //       ...cart,
-    //       [snackId]: currCount,
-    //     });
-    //   }
-    // }
-    // setTotal(total + snack.price * currCount);
   }
 
   function appendCart(snack, count) {
@@ -159,10 +140,15 @@ export default function useCart() {
         }
       } catch (error) {
         console.log(error);
+        setSubmitLoading(false);
       }
+      // } finally {
+      //   setSubmitLoading(false);
+      // }
       return orderIsSuccessful;
     } else {
       toggleLoginIsOpen();
+      setSubmitLoading(false);
     }
   }
 
@@ -217,5 +203,7 @@ export default function useCart() {
     appendCart,
     displayCart,
     displayMenu,
+    updateVan,
+    vanChoiceLoading,
   };
 }

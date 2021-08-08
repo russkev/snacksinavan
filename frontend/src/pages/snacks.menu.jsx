@@ -2,37 +2,22 @@ import React from "react";
 import useSnacks, { category } from "../hooks/useSnacks";
 import MenuItemCard from "../components/menu.item.card";
 import useCart from "../hooks/useCart";
-import useVans from "../hooks/useVans";
 import EditIcon from "../media/edit.icon";
 import { Link } from "react-router-dom";
 import LocationIcon from "../media/location.icon";
 import CartIcon from "../media/cart.icon";
+import LoadingLogo from "../components/loading.logo";
 
 export default function Menu() {
   const { loading, snacks, error, updateCategory, setMouseIsOver } = useSnacks();
   const { van, displayCart, cartSize } = useCart();
-  const { vanFromName} = useVans();
-  if (loading) {
-    return <p>Loading...</p>;
-  }
-  if (error) {
-    return <p>Something went wrong: {error.message}</p>;
-  }
-  // var heading;
-  // if (!orderId) {
-  //   heading = "Menu";
-  // }
-  // else {
-  //   heading = "Change Order";
-  // }
 
   function VanInfo() {
-    const vanObject = vanFromName(van);
-    if (van && vanObject) {
+    if (van) {
       return (
         <div>
-          <h3>{van}</h3>
-          <p>{vanObject.locationDescription}</p>
+          <h3>{van.vanName}</h3>
+          <p>{van.locationDescription}</p>
         </div>
       );
     } else {
@@ -47,74 +32,72 @@ export default function Menu() {
 
   return (
     <>
-      <h1>Menu</h1>
-      <nav className="categories">
+      <LoadingLogo isLoading={loading} error={error} />
+      <div className="container">
+        <h1>Menu</h1>
+        <nav className="categories">
+          <div
+            onClick={() => {
+              updateCategory(0);
+            }}
+          >
+            <h2 className="category">Drinks</h2>
+            <div id="category-selector" className={`category-${category.drinks}`}></div>
+          </div>
+          <div
+            onClick={() => {
+              updateCategory(1);
+            }}
+          >
+            <h2 className="category inactive">Food</h2>
+          </div>
+        </nav>
         <div
-          onClick={() => {
-            updateCategory(0);
-          }}
+          className="menu-list"
+          id="menu-list-1"
+          onMouseEnter={() => setMouseIsOver(true)}
+          onMouseLeave={() => setMouseIsOver(false)}
         >
-          <h2 className="category">Drinks</h2>
-          <div id="category-selector" className={`category-${category.drinks}`}></div>
+          {snacks.length > 0 ? (
+            snacks.map((menuItem) => <MenuItemCard key={menuItem.name} snack={menuItem} />)
+          ) : (
+            <></>
+          )}
         </div>
-        <div
-          onClick={() => {
-            updateCategory(1);
-          }}
-        >
-          <h2 className="category inactive">Food</h2>
-        </div>
-      </nav>
-      <div
-        className="menu-list"
-        id="menu-list-1"
-        onMouseEnter={() => setMouseIsOver(true)}
-        onMouseLeave={() => setMouseIsOver(false)}
-      >
-        {snacks.length > 0 ? (
-          snacks.map((menuItem) => <MenuItemCard key={menuItem.name} snack={menuItem} />)
-        ) : (
-          <></>
-        )}
-      </div>
-      {/* <BackButton to={Routes.HOME.path} /> */}
-      <div className="menu-van">
-        <div style={van ? {} : { border: "2px solid var(--warning)" }}>
-          <Link to="/" className="soft-shadow button">
+        <div className="menu-van">
+          <div style={van ? {} : { border: "2px solid var(--warning)" }}>
+            <Link to="/" className="soft-shadow button">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="24px"
+                viewBox="0 0 24 24"
+                width="24px"
+                fill="#000000"
+              >
+                <EditIcon />
+              </svg>
+            </Link>
+            <h4>Your van</h4>
+            <section className="chosen-van">
+              <svg viewBox="0 0 24 24">
+                <LocationIcon />
+              </svg>
+              <VanInfo />
+            </section>
+          </div>
+          <button onClick={displayCart} className="cart-button primary soft-shadow mobile-only">
             <svg
-              xmlns="http://www.w3.org/2000/svg"
               height="24px"
               viewBox="0 0 24 24"
               width="24px"
-              fill="#000000"
             >
-              <EditIcon />
+              <CartIcon />
             </svg>
-          </Link>
-          <h4>Your van</h4>
-          <section>
-            <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 0 24 24" width="40px">
-              <LocationIcon />
-            </svg>
-            <VanInfo />
-          </section>
+            <div>{cartSize()}</div>
+          </button>
         </div>
-        <button onClick={displayCart} className="cart-button primary soft-shadow mobile-only">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            height="24px"
-            viewBox="0 0 24 24"
-            width="24px"
-            fill="#000000"
-          >
-            <CartIcon />
-          </svg>
-          <div>
-            {cartSize()}
-          </div>
-        </button>
+        <div className="blank-bottom" />
       </div>
-      <div className="blank-bottom" />
     </>
   );
 }

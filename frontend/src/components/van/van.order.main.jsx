@@ -53,14 +53,8 @@ export default function VanOrderMain({
     );
   }
 
-  // const elements = document.getElementsByClassName(`details with-rating ${order._id}`);
-  // Array.from(elements).forEach((element) => {
-  //   console.log(element.firstElementChild.offsetHeight);
-  // })
-
   return (
     <section className="main-info" onClick={(event) => toggleExpand(event)}>
-      {/* <section className="main-info"> */}
       <div>
         <h2>{order.customer.firstName}</h2>
         {order.isChanged === true ? <h4 className="van-order-title">CHANGED</h4> : <></>}

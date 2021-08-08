@@ -1,0 +1,75 @@
+.loading-logo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 10000;
+  background-color: var(--background-blue);
+}
+
+.loading-logo svg.circle {
+  width: 120px;
+  height: 120px;
+  animation: mainLoadingSpin 1s linear infinite;
+  fill: var(--primary);
+}
+
+.loading-logo svg.logo {
+  width: 80px;
+  height: 80px;
+}
+
+.loading-logo > div {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+}
+
+.loading-logo svg {
+  position: absolute;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.loading-logo p {
+  width: 100vw;
+  transform: translate(calc(-100vw/2), +50px) ;
+  padding: 1.5rem;
+  padding-top: 0rem;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+div.load-button {
+  overflow: visible;
+  display: flex;
+  justify-content: center;
+}
+
+.load-button svg {
+  width: 4.2rem;
+  height: 4.2rem;
+  margin: 1.5rem;
+  fill: var(--primary);
+  animation: spin 1s linear infinite;
+}
+
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+@keyframes mainLoadingSpin {
+  from {
+    transform: translateX(-50%) translateY(-50%) rotate(0deg)
+  }
+  to {
+    transform: translateX(-50%) translateY(-50%) rotate(360deg)
+  }
+}

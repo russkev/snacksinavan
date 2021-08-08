@@ -18,10 +18,12 @@ export default function MenuItemCard({ snack }) {
     }
   }, [cart, snack.name])
 
+  console.log(snack)
+
   return (
     <>
       <div className="menu-item-card" onClick={toggle} id={snack.name}>
-        <img src={snack.photo} alt={snack.name} />
+        <img src={snack.photo.medium} alt={snack.name} />
         <div>
           <section>
             <h3>{snack.name}</h3>
@@ -42,7 +44,7 @@ export default function MenuItemCard({ snack }) {
           {/* <div> */}
             <p>{snack.description}</p>
           {/* </div> */}
-          <img src={snack.photo} width="180px" alt={snack.name} />
+          <img src={snack.photo.medium} width="180px" alt={snack.name} />
           <p>Quantity</p>
           <div className="quantity">
             <button
