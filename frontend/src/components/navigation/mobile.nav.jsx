@@ -1,6 +1,7 @@
 import React from "react";
 import NavModal from "./nav.modal";
 import useModal, { toggleMobileNav } from "../../hooks/useModal";
+import HamburgerIcon from "../../media/hamburger.icon";
 
 
 export default function MobileNav() {
@@ -11,11 +12,13 @@ export default function MobileNav() {
 
   return (
     <div className="mobile-nav">
-      <span className="mobile-nav-button" onClick={toggle}>
-        &#9776;
+      <span onClick={toggle}>
+        <svg viewBox="0 0 24 24">
+          <HamburgerIcon />
+        </svg>
       </span>
-      <span className="mobile-nav-title">Snacks in a Van</span>
-      <NavModal toggleMobileNav={toggle} isShowing={isShowing}/>
+      <h5>Snacks in a Van</h5>
+      <NavModal toggleMobileNav={toggle} isShowing={isShowing} />
     </div>
   );
   }

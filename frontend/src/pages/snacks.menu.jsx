@@ -12,24 +12,6 @@ export default function Menu() {
   const { loading, snacks, error, updateCategory, setMouseIsOver } = useSnacks();
   const { van, displayCart, cartSize } = useCart();
 
-  function VanInfo() {
-    if (van) {
-      return (
-        <div>
-          <h3>{van.vanName}</h3>
-          <p>{van.locationDescription}</p>
-        </div>
-      );
-    } else {
-      return (
-        <p>
-          No van selected. You must <Link to="/">select a van</Link> to be able to complete an
-          order.
-        </p>
-      );
-    }
-  }
-
   return (
     <>
       <LoadingLogo isLoading={loading} error={error} />
@@ -65,32 +47,35 @@ export default function Menu() {
           )}
         </div>
         <div className="menu-van">
-          <div style={van ? {} : { border: "2px solid var(--warning)" }}>
+          <div>
             <Link to="/" className="soft-shadow button">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                height="24px"
-                viewBox="0 0 24 24"
-                width="24px"
-                fill="#000000"
-              >
+              <svg viewBox="0 0 24 24">
                 <EditIcon />
               </svg>
             </Link>
-            <h4>Your van</h4>
+            {/* <h4>Your van:</h4> */}
             <section className="chosen-van">
               <svg viewBox="0 0 24 24">
                 <LocationIcon />
               </svg>
-              <VanInfo />
+              <div>
+                <h4>Your van:</h4>
+                {van ? (
+                  <>
+                    <h3>{van.vanName}</h3>
+                    <p>{van.locationDescription}</p>
+                  </>
+                ) : (
+                  <p>
+                    <strong>No van selected</strong>
+                  </p>
+                )}
+              </div>
+              {/* <VanInfo /> */}
             </section>
           </div>
           <button onClick={displayCart} className="cart-button primary soft-shadow mobile-only">
-            <svg
-              height="24px"
-              viewBox="0 0 24 24"
-              width="24px"
-            >
+            <svg height="24px" viewBox="0 0 24 24" width="24px">
               <CartIcon />
             </svg>
             <div>{cartSize()}</div>

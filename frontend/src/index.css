@@ -100,6 +100,14 @@ h4 {
 }
 
 h5 {
+  font-size: 1.2rem;
+  color: var(--dark-text);
+  font-weight: 400;
+  margin: 0;
+}
+
+/* 
+h5 {
   font-size: 30pt;
   color: var(--dark-text);
   margin: 30px auto;
@@ -107,7 +115,7 @@ h5 {
   max-width: 400px;
   font-weight: 600;
   width: 80vw;
-}
+} */
 
 h6 {
   color: var(--dark-text);

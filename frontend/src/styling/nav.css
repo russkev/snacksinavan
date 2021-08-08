@@ -29,12 +29,24 @@ nav.customer .login {
   font-size: 2rem;
   /* padding-top: 1.5rem; */
   display: none;
+  outline: none;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
 }
 
-.mobile-nav span:first-child {
-  padding: 1.5rem;
+.mobile-nav span {
+  padding: 0 1.5rem;
+  padding: 0;
   cursor: pointer;
 }
+
+.mobile-nav svg, .mobile-nav > span {
+  width: 24px;
+  height: 24px;
+}
+
+
 
 .nav-modal {
   position: fixed;
@@ -170,16 +182,19 @@ li.account {
   .mobile-nav {
     display: flex;
   }
+  :root {
+    --header-height: 40px;
+  }
   /* .container {
     height: 100vh;
   } */
 }
 
-@media screen and (max-width: 300px) {
-  .mobile-nav span:nth-child(n+2) {
+/* @media screen and (max-width: 300px) {
+  .mobile-nav h5 {
     display: none;
   } 
-}
+} */
 
 @media screen and (max-height: 600px) {
   .nav-button.mobile {
