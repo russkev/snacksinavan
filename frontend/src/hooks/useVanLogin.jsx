@@ -51,6 +51,11 @@ export default function useVanLogin() {
     setPassword(event.target.value);
   };
 
+  const onDemoLogin = (event) => {
+    setVanName("Thelma");
+    setPassword("password")
+    handleLoginSubmit(event);
+  }
   
   return {
     vanName,
@@ -59,5 +64,6 @@ export default function useVanLogin() {
     onPasswordChange,
     error,
     handleLoginSubmit,
+    onDemoLogin,
   };
 }

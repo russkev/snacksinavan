@@ -1,0 +1,21 @@
+div.van-login.signup form section {
+  height: max-content;
+}
+
+div.van-login p, div.van-login h2, div.van-login h3, div.van-login h4 {
+  margin: 0 1.5rem;
+}
+
+div.van-login form p {
+  margin-top: 1.5rem;
+}
+
+div.van-login h1 {
+  text-align: center;
+}
+
+div.van-login button {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  width: 100%;
+}
