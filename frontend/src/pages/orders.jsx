@@ -4,6 +4,7 @@ import useSnacks from "../hooks/useSnacks";
 import useOrder from "../hooks/useOrder";
 import "../styling/orders.css";
 import ChevronLeftIcon from "../media/chevron.left.icon";
+import PaginationBar from "../components/pagination.bar";
 
 /* Takes in a customer's username and gets all of their orders and returns
 JSX with each of these orders in a table row. */
@@ -49,7 +50,7 @@ export default function Orders() {
             pageOrders.map((order) => <Order key={order._id} order={order} isMobile />)
           )}
         </div>
-        <div className="pages">
+        {/* <div className="pages">
           <p>{`${pageInfo.from} - ${pageInfo.to} of ${orders.length} orders`}</p>
           <div>
             <button
@@ -65,7 +66,13 @@ export default function Orders() {
               {">"}
             </button>
           </div>
-        </div>
+        </div> */}
+        <PaginationBar
+          orders={orders}
+          pageInfo={pageInfo}
+          onNextPage={onNextPage}
+          onPrevPage={onPrevPage}
+        />
       </div>
     );
   }

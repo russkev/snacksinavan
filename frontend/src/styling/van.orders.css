@@ -1,38 +1,47 @@
-.van-orders {
-  border-top: 10px solid var(--van-orders);
+.van-bg {
   background: var(--background-darker);
   height: calc(100vh - var(--header-van-height));
+  overflow: auto;
 }
 
-.van-order {
+.van-orders {
+  border-top: 10px solid var(--van-orders);
+}
+
+.van-fulfilled {
+  border-top: 10px solid var(--van-fulfilled);
+}
+
+.van-completed {
+  border-top: 10px solid var(--van-past-orders);
+}
+
+div.van {
   margin: 1rem;
   border-radius: 5px;
-  /* display: grid;
-  grid-template-columns: minmax(200px, 2fr) auto auto; */
   overflow: clip;
   display: flex;
 }
 
-.van-order section {
+div.van section {
   background: var(--background-white);
   position: relative;
 }
 
-.van-order section.main-info {
+div.van section.main-info {
   flex: 1;
 }
 
-.van-order .main-info .details {
+div.van .main-info .details {
   margin-right: 2rem;
 }
 
-.van-order .countdown {
+div.van .countdown {
   display: flex;
   flex-direction: column;
 }
 
-.van-order .countdown > div {
-  margin: 1rem;
+div.van .countdown > div {
   margin-top: 0;
   display: flex;
   align-items: center;
@@ -44,28 +53,41 @@
   overflow: clip;
 }
 
-.van-order .countdown > div > div:first-child {
+div.van.fulfilled .countdown > div > div:nth-child(2) {
+  background-color: var(--background-van-fulfilled);
+}
+
+div.van.completed .countdown > div > div:nth-child(2) {
+  background-color: var(--background-van-past-orders);
+}
+
+div.van .countdown > * {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+div.van .countdown > div > div:first-child {
   padding: 1rem;
   padding-left: 2rem;
   width: 145px;
 }
 
-.van-order .countdown > div > div:nth-child(2) {
+div.van .countdown > div > div:nth-child(2) {
   width: 30px;
   height: 100%;
 }
 
-.van-order .countdown h2 {
+div.van .countdown h2 {
   font-weight: 600;
   /* color: black; */
 }
 
-.van-order .countdown h4 {
+div.van .countdown h4 {
   margin: 1rem;
   margin-bottom: 0;
 }
 
-.van-order .chevron {
+div.van .chevron {
   width: 24px;
   height: 24px;
   position: absolute;
@@ -74,76 +96,126 @@
   transform: translateX(-50%) rotate(90deg);
 }
 
-.van-order .chevron.expanded {
+div.van .chevron.expanded {
   transform: translateX(-50%) rotate(-90deg);
 }
 
-.van-order .fulfilled {
+div.van .complete {
   width: 130px;
   display: flex;
   justify-content: center;
 }
 
-.van-order .fulfilled button {
+div.van .complete button {
   width: 100px;
   margin: 1.5rem;
+}
+
+div.van.order .complete button {
   background-color: var(--background-van-orders);
 }
 
-.van-order .fulfilled button:hover, van-order .fulfilled:focus {
+div.van.fulfilled .complete button {
+  background-color: var(--background-van-fulfilled);
+}
+
+
+div.van.order .complete button:hover, div.van.order .complete button:focus {
   background-color: var(--background-van-orders-darker)
 }
 
-.van-order .fulfilled svg {
+div.van.fulfilled .complete button:hover, div.van.fulfilled .complete button:focus {
+  background-color: var(--background-van-fulfilled-darker)
+}
+
+div.van .complete svg {
   width: 4.2rem;
   height: 4.2rem;
-  fill: var(--van-orders);
   margin: 1.5rem;
   animation: spin 1s linear infinite;
 }
 
-.van-order ul {
+div.van.order .complete svg {
+  fill: var(--van-orders);
+}
+
+div.van.fulfilled .complete svg {
+  fill: var(--van-fulfilled);
+}
+
+div.van ul {
   flex-direction: column;
   margin: 0;
   margin-bottom: 4rem;
 }
 
-.van-order .details {
-  display: flex;
+div.van .details {
   justify-content: space-between;
-  max-height: 0;
+  /* max-height: 0; */
   overflow: hidden;
   margin-bottom: 4rem;
   background-color: var(--background-blue);
-  justify-content: space-evenly;
   border-radius: 5px;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  /* display: grid; */
+  /* grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); */
+  
+  height: 0px;
+  overflow: hidden;
+}
+
+/* div.van .details > div {
+  overflow: hidden;
+} */
+
+div.van .details.with-rating {
+  justify-content: flex-start;
+}
+
+div.van .details > div {
+  /* display: grid;
+  grid-template-columns: repeat(auto-fit, min-content); */
+  display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
 }
 
-.van-order .details, .van-order .chevron {
+div.van .details, div.van .chevron {
   transition: all 0.4s ease-out;
 }
 
-.van-order .details.expanded {
-  max-height: 250px;
+div.van .details.expanded {
+  /* max-height: 250px; */
+  height: var(--expanded-height);
 }
 
-.van-order .details > div {
-  max-height: 160px;
+div.van .details div.section {
+  /* max-height: 0px; */
   display: grid;
   grid-template-columns: max-content auto;
+  grid-template-rows: repeat(5, min-content);
   grid-column-gap: 1.5rem;
   column-gap: 1.5rem;
   margin: 0;
   padding: 1.5rem;
 }
 
-.van-order .details > div > div:nth-child(2n-1) {
+
+
+div.van .details div.section > div:nth-child(2n-1) {
   text-align: right;
 }
 
+@media screen and (max-width: 800px) {
+  div.van .details.with-rating {
+    flex-direction: column;
+  }
+}
+
 @media screen and (max-width: 470px) {
-  .van-order{
+  .van{
     display: flex;
     flex-direction: column;
   }
@@ -156,4 +228,14 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+
+div.calcChildSize {
+  overflow: hidden;
+  height: 0;
+}
+
+div.calcChildSize > div {
+  overflow: hidden;
 }

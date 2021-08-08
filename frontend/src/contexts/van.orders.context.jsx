@@ -1,8 +1,7 @@
 import React, { createContext, useState, useEffect } from "react";
 import io from "socket.io-client";
-import groupSnacks from "../components/group.snacks";
 import useVanUser from "../hooks/useVanUser";
-import { orderCompare } from "../contexts/order.context";
+import { orderCompare, orderCompareReverse } from "./order.context";
 
 const ENDPOINT = process.env.REACT_APP_API_URL;
 
@@ -11,19 +10,30 @@ export const VanOrdersContext = createContext([]);
 function getVanOrders(socket, setVanOrders) {
   socket.emit("requestVanOrders");
   socket.once("getVanOrders", (currentOrders) => {
-    // const sortedOrders = currentOrders.sort(orderCompare).reverse();
-    // sortedOrders.forEach((order) => {
-    //   order["snacks"] = groupSnacks(order.snacks);
-    // });
-    // setVanOrders(sortedOrders);
-    console.log(currentOrders)
-    setVanOrders(currentOrders)
+    const newVanOrders = currentOrders.reduce(
+        (accumulator, vanOrder) => {
+          if (!vanOrder.isFulfilled && !vanOrder.isCompleted && !vanOrder.isCancelled) {
+            accumulator["unfulfilled"].push(vanOrder);
+          } else if (vanOrder.isFulfilled && !vanOrder.isCompleted && !vanOrder.isCancelled) {
+            accumulator["uncompleted"].push(vanOrder);
+          } else {
+            accumulator["completed"].push(vanOrder);
+          }
+          return accumulator;
+        },
+        { unfulfilled: [], uncompleted: [], completed: [] }
+      )
+
+      newVanOrders.unfulfilled.sort(orderCompareReverse);
+      newVanOrders.uncompleted.sort(orderCompareReverse);
+      newVanOrders.completed.sort(orderCompare);
+      setVanOrders(newVanOrders);
   });
   socket.on("error", (error) => console.log(error));
 }
 
 export const VanOrdersContextProvider = ({ children }) => {
-  const [vanOrders, setVanOrders] = useState([]);
+  const [vanOrders, setVanOrders] = useState({ unfulfilled: [], uncompleted: [], completed: [] });
   const { vanName, vanToken } = useVanUser();
   const [vanSocket, setVanSocket] = useState(null);
 
@@ -68,7 +78,6 @@ export const VanOrdersContextProvider = ({ children }) => {
 
   const value = {
     vanOrders,
-    setVanOrders,
     vanSocket,
     connectVanSocket,
   };

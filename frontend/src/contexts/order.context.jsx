@@ -12,6 +12,12 @@ export function orderCompare(orderA, orderB) {
   const dateB = new Date(orderB.updatedAt).getTime();
   return dateB - dateA;
 }
+
+export function orderCompareReverse(orderA, orderB) {
+  const dateA = new Date(orderA.updatedAt).getTime();
+  const dateB = new Date(orderB.updatedAt).getTime();
+  return dateA - dateB;
+}
 /* Contacts the backend API to get the orders for a given by customerUsername */
 async function getOrders(socket, setOrders, setError, setLoading) {
   socket.emit("requestCustomerOrders");

@@ -74,6 +74,7 @@ export default function useVanOrder(order) {
   const [orderHue, setOrderHue] = useState(ORDER_START_HUE);
   const [orderTotals, setOrderTotals] = useState({ subtotal: 0, discount: 0, total: 0 });
   const [fulfilledClicked, setFulfilledClicked] = useState(false);
+  const [completedClicked, setCompletedClicked] = useState(false)
   const { globals } = useGlobals();
   const { vanSocket } = useVanOrders();
 
@@ -96,6 +97,34 @@ export default function useVanOrder(order) {
     calculateOrderTotals(order, setOrderTotals, globals.delayDiscount);
   }, [order, globals.delayDiscount]);
 
+  useEffect(() => {
+    // Code snippet thanks to Jason Knight
+    // https://codepen.io/jason-knight/pen/XWjVZbg
+    const target = document.querySelector(`div.van .details.id-${order._id}`);
+
+    function resize() {
+      const expandedHeight = target.firstElementChild.offsetHeight + "px";
+      if (target.style.getPropertyValue("--expanded-height") !== expandedHeight) {
+        target.style.setProperty("--expanded-height", expandedHeight);
+      }
+    }
+
+    if (target) {
+      window.addEventListener("resize", resize, false);
+      window.addEventListener("load", resize, false);
+    }
+
+    resize();
+
+    return () => {
+      if (target) {
+        window.removeEventListener("resize", resize, false);
+        window.removeEventListener("load", resize, false);
+      }
+    }
+  }, [order._id])
+
+
   const setIsFulfilled = async (event) => {
     setFulfilledClicked(true);
     event.preventDefault();
@@ -108,18 +137,19 @@ export default function useVanOrder(order) {
   };
 
   const setIsCompleted = async (event) => {
+    setCompletedClicked(true)
     event.preventDefault();
     try {
       postOrderCompleted(vanSocket, order._id, true);
     } catch (error) {
+      setCompletedClicked(false)
       console.log(error);
     }
   };
 
   const toggleExpand = (event) => {
     event.preventDefault();
-    // const expandableElement = document.getElementById(`detailsID${order._id}`);
-    const expandableElements = document.getElementsByClassName(order._id);
+    const expandableElements = document.getElementsByClassName(`id-${order._id}`);
 
     Array.from(expandableElements).forEach((expandableElement) => {
       if (expandableElement.classList.contains("expanded")) {
@@ -139,5 +169,6 @@ export default function useVanOrder(order) {
     setIsCompleted,
     setIsFulfilled,
     fulfilledClicked,
+    completedClicked,
   };
 }

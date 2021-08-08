@@ -31,7 +31,6 @@ export default function useVanLogin() {
       const isAuthenticated = handleVanAuthenticate(result);
       if (isAuthenticated) {
         setError("SUCCESS")
-        console.log(result)
         connectVanSocket(result.vanName, result.token)
         return true;
       } else {

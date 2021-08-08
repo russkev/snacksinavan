@@ -1,5 +1,6 @@
 nav.van ul {
-  margin: 0
+  margin: 0;
+  overflow: auto;
 }
 
 nav.van li a {

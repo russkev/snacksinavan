@@ -4,7 +4,6 @@ import { VanOrdersContext } from "../contexts/van.orders.context"
 export default function useVanOrders() {
   const {
     vanOrders,
-    setVanOrders,
     vanSocket,
     connectVanSocket,
   } = useContext(VanOrdersContext);
@@ -13,7 +12,6 @@ export default function useVanOrders() {
 
   return {
     vanOrders,
-    setVanOrders,
     vanSocket,
     connectVanSocket,
   }

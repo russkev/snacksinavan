@@ -109,7 +109,7 @@
   min-width: min-content;
 }
 
-.orders div.pages {
+div.pages {
   display: flex;
   background-color: var(--background-blue);
   flex-direction: row;
@@ -119,7 +119,7 @@
   margin: 1rem;
 }
 
-.orders div.pages > * {
+div.pages > * {
   padding: 1rem;
 }
 
@@ -134,7 +134,7 @@
   background-color: var(--background-darker);
 }
 
-.pages button.disabled:hover, pages button.disabled:focus {
+.pages button.disabled:hover, .pages button.disabled:focus {
   background-color: var(--background-white);
 }
 

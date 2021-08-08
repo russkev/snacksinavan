@@ -2,6 +2,7 @@ import React from "react";
 import useRating from "../hooks/useRating";
 import StarFilledIcon from "../media/star.filled.icon";
 import InputContainer from "./input.container";
+import Stars from "./stars";
 
 export default function OrderRating({ order }) {
   // const { rating, setRating, handleRatingSubmit, comment, onCommentChange } = useOrder(order);
@@ -64,29 +65,7 @@ export default function OrderRating({ order }) {
         <div className="rating">
           <h2>Your Feedback</h2>
           <div className="submitted">
-            <div className="stars">
-              {[1, 2, 3, 4, 5].map((i) => {
-                if (i <= order.rating) {
-                  return (
-                    <span className="star filled" key={i}>
-                      <svg viewBox="0 0 24 24">
-                        {" "}
-                        <StarFilledIcon />{" "}
-                      </svg>
-                    </span>
-                  );
-                } else {
-                  return (
-                    <span className="star" key={i}>
-                      <svg viewBox="0 0 24 24">
-                        {" "}
-                        <StarFilledIcon />{" "}
-                      </svg>
-                    </span>
-                  );
-                }
-              })}
-            </div>
+            <Stars rating={order.rating} />
             <p>{order.feedback}</p>
           </div>
         </div>
