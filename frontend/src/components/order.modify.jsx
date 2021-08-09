@@ -5,6 +5,7 @@ import Routes from "../routes/routes";
 import useModal from "../hooks/useModal";
 import useCart from "../hooks/useCart";
 import useOrder from "../hooks/useOrder";
+import CloseIcon from "../media/close.icon";
 
 export default function OrderModify({ timeLeftDisplay, order }) {
   const { toggle, isShowing } = useModal();
@@ -15,8 +16,8 @@ export default function OrderModify({ timeLeftDisplay, order }) {
     setOrderCart(order);
   }
 
-  function cancelOrder() {
-    handleOrderCancel();
+  function cancelOrder(event) {
+    handleOrderCancel(event, timeLeftDisplay);
     toggle();
   }
 
@@ -27,20 +28,26 @@ export default function OrderModify({ timeLeftDisplay, order }) {
       <div>
         <button onClick={toggle}>Modify Order</button>
         <Modal toggleOpen={toggle} isOpen={isShowing}>
+          <button type="button" className="close" onClick={toggle}>
+            <svg viewBox="0 0 24 24" className="close">
+              <CloseIcon />
+            </svg>
+          </button>
           <div className="modify">
-            <button type="button" className="close" onClick={toggle}>
-              &times;
-            </button>
-            <p>How would you like to modify your order?</p>
-            <p>Time remaining to change or cancel your order: {timeLeftDisplay}</p>
-            <Link
-              to={Routes.SNACKS_MENU.path}
-              className="primary button soft-shadow"
-              onClick={changeOrder}
-            >
-              Change order
-            </Link>
-            <button onClick={cancelOrder}>Cancel order</button>
+            <div>
+              <h3>Modify order</h3>
+              <p>Time remaining to change or cancel your order without fee: {timeLeftDisplay}</p>
+            </div>
+            <div>
+              <Link
+                to={Routes.SNACKS_MENU.path}
+                className={`button ${timeLeftDisplay ? "" : "disabled"}`}
+                onClick={changeOrder}
+              >
+                Choose different items
+              </Link>
+            <button className="logout" onClick={cancelOrder}>CANCEL ORDER</button>
+            </div>
           </div>
         </Modal>
       </div>

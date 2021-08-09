@@ -1,9 +1,11 @@
 import React from "react";
 import generateUniqueId from "generate-unique-id";
 import useSignup from "../hooks/useSignup";
+import { Link } from "react-router-dom";
+import LoadingLogo from "./loading.logo";
 
-export default function DemoCreate() {
-  const { handleSignupSubmit } = useSignup();
+export default function DemoCreate({ children }) {
+  const { handleSignupSubmit, loading } = useSignup();
 
   function handleDemoCreate() {
     const start = generateUniqueId({
@@ -15,12 +17,12 @@ export default function DemoCreate() {
       length: 6,
       useLetters: true,
       useNumber: true,
-    })
+    });
     const end = generateUniqueId({
       length: 2,
       useLetters: false,
       useNumbers: true,
-    })
+    });
     const user = start.toUpperCase() + middle + end;
 
     handleSignupSubmit(null, {
@@ -36,8 +38,11 @@ export default function DemoCreate() {
   }
 
   return (
-    <button className="text-button" onClick={handleDemoCreate}>
-      create a demo account
-    </button>
+    <>
+      <Link to="#" onClick={handleDemoCreate}>
+        {children}
+      </Link>
+      <LoadingLogo isTransparent isLoading={loading} />
+    </>
   );
 }

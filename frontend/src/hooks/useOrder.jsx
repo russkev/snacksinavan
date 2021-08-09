@@ -40,8 +40,10 @@ function calculateOrderStatus(order, globals) {
   return status;
 }
 
-async function postOrderCancelled(socket, orderId) {
-  const info = {orderId: orderId, isCancelled: true};
+async function postOrderCancelled(socket, orderId, timeLeftDisplay) {
+  const info = timeLeftDisplay 
+  ? {orderId: orderId, isCancelled: true}
+  : {orderId: orderId, isCancelled: true, isFulfilled: true}
   socket.emit("cancelOrder", info);
   socket.on("error", (error) => console.log(error));
 }
@@ -111,8 +113,8 @@ export default function useOrder(order) {
   }
 
 
-  function handleOrderCancel(event) {
-    postOrderCancelled(socket, order._id);
+  function handleOrderCancel(event, timeLeftDisplay) {
+    postOrderCancelled(socket, order._id, timeLeftDisplay);
   }
 
   return {

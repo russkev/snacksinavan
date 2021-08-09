@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import useVans from "../hooks/useVans";
 import VanCard from "../components/van.card";
-import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
+import { GoogleMap, Marker } from "@react-google-maps/api";
 import SearchLocation from "../components/search.location";
 import haversine from "haversine-distance";
 import { Link } from "react-router-dom"
@@ -9,7 +9,6 @@ import "../styling/home.css";
 import "../styling/customer.css";
 import LoadingLogo from "../components/loading.logo";
 
-const lib = ["places"];
 
 async function selectVan(vanName) {
   let vanCards = document.getElementsByClassName("van-card");
@@ -43,7 +42,6 @@ export default function Home() {
         errorMessage={error}
       />
       <div className="container">
-        <LoadScript googleMapsApiKey={process.env.REACT_APP_MAP_KEY} libraries={lib}>
           <div className="split">
             <section>
               <div>
@@ -86,7 +84,6 @@ export default function Home() {
               </GoogleMap>
             </section>
           </div>
-        </LoadScript>
       </div>
     </>
   );

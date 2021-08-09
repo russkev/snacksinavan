@@ -8,6 +8,10 @@
   background-color: var(--background-blue);
 }
 
+.loading-logo.transparent {
+  background-color: var(--background-blue-transparent);
+}
+
 .loading-logo svg.circle {
   width: 120px;
   height: 120px;

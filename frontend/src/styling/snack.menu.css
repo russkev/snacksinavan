@@ -119,7 +119,8 @@ nav.categories h2.inactive {
 }
 
 .container > h1 {
-  padding: 1.5rem;
+  /* padding: 1.5rem; */
+  padding: 1.5rem 0;
 }
 
 .menu-item-card > div {
@@ -263,7 +264,7 @@ section.chosen-van > div {
 
 }
 
-@media screen and (max-width: 800px ) {
+@media screen and (max-width: 650px ) {
   .menu-cart h1 {
     font-size: 3rem;
     padding: 0 1rem;
@@ -329,7 +330,7 @@ section.chosen-van > div {
     font-size: 1.2rem;
   }
 
-  .cart-button {
+  .menu-cart .cart-button {
     margin-right: 0;
   }
 }

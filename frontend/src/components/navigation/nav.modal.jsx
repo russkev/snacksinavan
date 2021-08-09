@@ -1,11 +1,9 @@
 // Inspired by https://upmostly.com/tutorials/modal-components-react-custom-hooks
 import React from "react";
-import ReactDOM from "react-dom";
 import useLogin from "../../hooks/useLogin";
 import useUser from "../../hooks/useUser";
 import { Link } from "react-router-dom";
 import Routes from "../../routes/routes";
-// import useModal, { toggleMobileNav } from "../../hooks/useModal";
 import MenuBookIcon from "../../media/menu.book.icon";
 import SearchIcon from "../../media/search.icon";
 import ChevronLeftIcon from "../../media/chevron.left.icon";
@@ -46,10 +44,8 @@ function NavModal({ toggleMobileNav, isShowing }) {
     );
   }
 
-
-
   if (isAuthenticated) {
-    return ReactDOM.createPortal(
+    return (
       <>
         {isShowing ? (
           <div className="fill loading" onClick={toggleMobileNav}>
@@ -72,14 +68,13 @@ function NavModal({ toggleMobileNav, isShowing }) {
           <div>
             <h4>Account</h4>
             <hr />
-            <AccountNav toggle={toggleMobileNav}/>
+            <AccountNav toggle={toggleMobileNav} />
           </div>
         </aside>
-      </>,
-      document.body
+      </>
     );
   } else {
-    return ReactDOM.createPortal(
+    return (
       <>
         {isShowing ? (
           <div className="fill loading" onClick={toggleMobileNav}>
@@ -115,8 +110,7 @@ function NavModal({ toggleMobileNav, isShowing }) {
             </Link>
           </div>
         </aside>
-      </>,
-      document.body
+      </>
     );
   }
 }

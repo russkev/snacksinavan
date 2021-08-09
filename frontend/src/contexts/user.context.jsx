@@ -51,7 +51,13 @@ export const UserContextProvider = ({ children }) => {
 
   // Authenticate the user as soon as the page is loaded
   useEffect(() => {
-    authenticateLocalStorage(setUsername, setToken, setIsAuthenticated);
+    let mounted = true
+
+    if (mounted) {
+      authenticateLocalStorage(setUsername, setToken, setIsAuthenticated);
+    }
+
+    return () => mounted=false;
   }, []);
 
   const value = {

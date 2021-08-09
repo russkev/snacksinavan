@@ -1,5 +1,4 @@
 div.login-window {
-  width: calc(100vw - 6rem);
   max-width: 40rem;
   padding: 3rem;
 }
@@ -16,7 +15,12 @@ div.login-window h4 {
   margin-bottom: 0.3rem;
 }
 
-div.login-window form > button {
+div.login-window button.primary {
   width: 100%;
-  margin: 2.5rem 0;
+  margin: 3rem 0;
+}
+
+div.login-window p {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
 }

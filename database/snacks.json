@@ -1,73 +1,97 @@
 [{
-  "_id": {
-    "$oid": "60755881f0ecddc11494a350"
-  },
+  "_id": {"$oid": "60755881f0ecddc11494a350"},
+  "category": "drink",
+  "description": "Espresso shot, textured milk and froth. With a light dusting of chocolate.",
   "name": "Cappuccino",
-  "price": 4.3,
-  "category": "drink",
-  "photo": "snacks/Cappuccino.svg",
-  "description": "Our lovely Cappuccino is a delightful drink with ingredients!"
-},{
-  "_id": {
-    "$oid": "60755881f0ecddc11494a351"
+  "photo": {
+    "full": "snacks/full/Cappuccino.png",
+    "large": "snacks/large/Cappuccino.png",
+    "medium": "snacks/medium/Cappuccino.png",
+    "small": "snacks/small/Cappuccino.png"
   },
+  "price": "4.3"
+},{
+  "_id": {"$oid": "60755881f0ecddc11494a351"},
+  "category": "drink",
+  "description": "Espresso shot, steamed milk and a layer of foam.",
   "name": "Latte",
-  "price": 4.3,
-  "category": "drink",
-  "photo": "snacks/Latte.svg",
-  "description": "Our Latte is a must try! Contains milk."
-},{
-  "_id": {
-    "$oid": "60755881f0ecddc11494a352"
+  "photo": {
+    "full": "snacks/full/Latte.png",
+    "large": "snacks/large/Latte.png",
+    "medium": "snacks/medium/Latte.png",
+    "small": "snacks/small/Latte.png"
   },
+  "price": "4.3"
+},{
+  "_id": {"$oid": "60755881f0ecddc11494a352"},
+  "category": "drink",
+  "description": "Espresso shot, un-textured milk and a thin layer of foam.",
   "name": "Flat white",
-  "price": 4.3,
-  "category": "drink",
-  "photo": "snacks/FlatWhite.svg",
-  "description": "The Flat white is a favourite among our customers. Give it a try!"
-},{
-  "_id": {
-    "$oid": "60755881f0ecddc11494a353"
+  "photo": {
+    "full": "snacks/full/FlatWhite.png",
+    "large": "snacks/large/FlatWhite.png",
+    "medium": "snacks/medium/FlatWhite.png",
+    "small": "snacks/small/FlatWhite.png"
   },
+  "price": "4.3"
+},{
+  "_id": {"$oid": "60755881f0ecddc11494a353"},
+  "category": "drink",
+  "description": "Espresso shot poured over hot water.",
   "name": "Long black",
-  "price": 3.8,
-  "category": "drink",
-  "photo": "snacks/LongBlack.svg",
-  "description": "For our seasoned coffee drinkers."
-},{
-  "_id": {
-    "$oid": "60755881f0ecddc11494a354"
+  "photo": {
+    "full": "snacks/full/LongBlack.png",
+    "large": "snacks/large/LongBlack.png",
+    "medium": "snacks/medium/LongBlack.png",
+    "small": "snacks/small/LongBlack.png"
   },
-  "name": "Shortcrust Biscuit",
-  "price": 5,
+  "price": "3.8"
+},{
+  "_id": {"$oid": "60755881f0ecddc11494a354"},
   "category": "food",
-  "photo": "snacks/Shortcrust.svg",
-  "description": "Just need a biscuit? We have the biscuit for you!"
-},{
-  "_id": {
-    "$oid": "60755881f0ecddc11494a355"
+  "description": "Crisp and buttery, these biscuits are perfectly spiced with ginger, mplasses and cloves.",
+  "name": "Gingernut Biscuit",
+  "photo": {
+    "full": "snacks/full/Biscuit.png",
+    "large": "snacks/large/Biscuit.png",
+    "medium": "snacks/medium/Biscuit.png",
+    "small": "snacks/small/Biscuit.png"
   },
+  "price": "5"
+},{
+  "_id": {"$oid": "60755881f0ecddc11494a355"},
+  "category": "food",
+  "description": "Made with Belgian chocolate, these cookies are soft, chewy and delicious.",
   "name": "Choc Chip Cookie",
-  "price": 7.9,
-  "category": "food",
-  "photo": "snacks/ChocolateChip.svg",
-  "description": "If you're feeling better than our Plain biscuit then our Fancy biscuit is for you!"
-},{
-  "_id": {
-    "$oid": "60755881f0ecddc11494a356"
+  "photo": {
+    "full": "snacks/full/Cookie.png",
+    "large": "snacks/large/Cookie.png",
+    "medium": "snacks/medium/Cookie.png",
+    "small": "snacks/small/Cookie.png"
   },
-  "name": "Carrot Cake",
-  "price": 7,
-  "category": "food",
-  "photo": "snacks/CarrotCake.svg",
-  "description": "Our Small cake is a great treat!"
+  "price": "7.9"
 },{
-  "_id": {
-    "$oid": "60755881f0ecddc11494a357"
-  },
-  "name": "Chocolate Mud Cake",
-  "price": 12,
+  "_id": {"$oid": "60755881f0ecddc11494a356"},
   "category": "food",
-  "photo": "snacks/ChocolateMudCake.svg",
-  "description": "A Big cake perfect for celebrating an event!"
+  "description": "Buttery biscuit base, zesty lemon filling, topped with meringue.",
+  "name": "Lime Pie",
+  "photo": {
+    "full": "snacks/full/LimePie.png",
+    "large": "snacks/large/LimePie.png",
+    "medium": "snacks/medium/LimePie.png",
+    "small": "snacks/small/LimePie.png"
+  },
+  "price": "7"
+},{
+  "_id": {"$oid": "60755881f0ecddc11494a357"},
+  "category": "food",
+  "description": "Crispy on top, dense fudge in the middle and very chocolatey.",
+  "name": "Chocolate Brownie",
+  "photo": {
+    "full": "snacks/full/Brownie.png",
+    "large": "snacks/large/Brownie.png",
+    "medium": "snacks/medium/Brownie.png",
+    "small": "snacks/small/Brownie.png"
+  },
+  "price": "12"
 }]

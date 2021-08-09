@@ -12,7 +12,7 @@ export default function VanOrder({ order }) {
   const date = dateTime.toLocaleDateString();
 
   return (
-    <div className="van order">
+    <div className="van van-order">
       <section>
         <LoadingButton isLoading={fulfilledClicked}>
           <button onClick={setIsFulfilled}>Fulfilled</button>
@@ -28,6 +28,7 @@ export default function VanOrder({ order }) {
         titleText="Time left to prepare:"
         mainText={timeLeft}
         tagColor={`hsl(${orderHue}, ${ORDER_SATURATION}, ${ORDER_VALUE})`}
+        order={order}
       />
     </div>
   );

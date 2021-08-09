@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 // import "./App.css";
-import "./VanApp.css";
+// import "./VanApp.css";
 import "./styling/van.css"
 import "./styling/button.css"
 import "./styling/snackbar.css"
@@ -18,11 +18,15 @@ import { VanLoginContextProvider } from "./contexts/van.login.context";
 import { VanContextProvider } from "./contexts/van.context";
 import { VanOrdersContextProvider } from "./contexts/van.orders.context";
 import { GlobalsContextProvider } from "./contexts/globals.context";
+import { LoadScript } from "@react-google-maps/api"
+const lib = ["places"]
 
 function App() {
   // const [isCustomer, setIsCustomer] = useState(false)
   return (
     <Router>
+        <LoadScript googleMapsApiKey={process.env.REACT_APP_MAP_KEY} libraries={lib}>
+
       <GlobalsContextProvider>
         <Switch>
           <Route path="/van">
@@ -51,6 +55,7 @@ function App() {
           </Route>
         </Switch>
       </GlobalsContextProvider>
+      </LoadScript>
     </Router>
   );
 }

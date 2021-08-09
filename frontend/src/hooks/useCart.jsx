@@ -7,16 +7,18 @@ import Routes from "../routes/routes";
 import useLogin from "./useLogin";
 import useUser from "./useUser";
 import useVans from "./useVans";
+import { handleShowSnackbar } from "../components/snackbar.jsx";
 
-async function postOrder(socket, cart, van, onOrderSuccess) {
+async function postOrder(socket, cart, van, onOrderSuccess, onOrderFail) {
   const toSend = {
     snacks: cart,
-    vanName: van,
+    vanName: van.vanName,
   };
 
   socket.emit("createOrder", toSend);
   socket.on("error", (error) => {
     console.log(error);
+    onOrderFail(error);
     return false;
   });
 
@@ -28,20 +30,25 @@ async function postOrder(socket, cart, van, onOrderSuccess) {
   return newOrder;
 }
 
-async function postOrderUpdate(socket, cart, orderId, onOrderSuccess) {
-  var sendArr = [];
-  for (var i in cart) {
-    for (var j = 0; j < cart[i]; j++) {
-      sendArr.push(i);
-    }
-  }
+async function postOrderUpdate(socket, cart, orderId, onOrderSuccess, onOrderFail) {
+  // var sendArr = [];
+  // for (var i in cart) {
+  //   for (var j = 0; j < cart[i]; j++) {
+  //     sendArr.push(i);
+  //   }
+  // }
   const toSend = {
     orderId: orderId,
-    snacks: sendArr,
+    snacks: cart,
   };
   socket.emit("orderModify", toSend);
-  socket.on("error", (error) => console.log(error));
+  socket.on("error", (error) => {
+    console.log(error)
+    onOrderFail(error);
+    return false;
+  });
   const newOrder = await socket.on("orderModified", (changedOrder) => {
+    console.log(changedOrder)
     onOrderSuccess(changedOrder._id);
     return true;
   });
@@ -64,11 +71,13 @@ export default function useCart() {
   } = useContext(CartContext);
   const { setCurrentOrderId, socket } = useOrders();
   const { van, setVan } = useContext(VanContext);
-  const [ vanChoiceLoading, setVanChoiceLoading ] = useState(false)
+  const [vanChoiceLoading, setVanChoiceLoading] = useState(false);
+  const [cartError, setCartError] = useState("");
   const history = useHistory();
   const { toggleLoginIsOpen } = useLogin();
   const { isAuthenticated } = useUser();
-  const { vanFromName } = useVans()
+  const { vanFromName } = useVans();
+  const [isShowing, setIsShowing] = useState(false)
 
   function onOrderSuccess(orderId) {
     setCurrentOrderId(orderId);
@@ -77,37 +86,50 @@ export default function useCart() {
     setOrderId("");
     setOrder();
     setTimeout(() => {
-      setSubmitLoading(false)
+      setSubmitLoading(false);
       history.push(`/customer/orders/${orderId}`);
-    }, 300)
+    }, 300);
+  }
+
+  function onOrderFail(message) {
+    setSubmitLoading(false);
+    setCartError(message);
+    handleShowSnackbar();
   }
 
   function displayCart() {
     const confirmCart = document.getElementById("confirm-cart");
-    confirmCart.classList.remove("slide-menu")
-    confirmCart.classList.add("slide-cart")
+    confirmCart.classList.remove("slide-menu");
+    confirmCart.classList.add("slide-cart");
+    setIsShowing(true);
   }
-
+  
   function displayMenu() {
     const confirmCart = document.getElementById("confirm-cart");
     confirmCart.classList.remove("slide-cart");
     confirmCart.classList.add("slide-menu");
+    setIsShowing(false)
   }
 
   function updateVan(vanName) {
-    setVanChoiceLoading(true)
-    setVan(vanFromName(vanName))
-    history.push(Routes.SNACKS_MENU.path)
-    setVanChoiceLoading(false)
+    try {
+      setVanChoiceLoading(true);
+      setVan(vanFromName(vanName));
+      history.push(Routes.SNACKS_MENU.path);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setVanChoiceLoading(false);
+    }
   }
 
   function updateCart(snack, count) {
     const snackId = snack["_id"];
     if (cart[snackId] && cart[snackId] + count >= 0) {
-      cart[snackId] = cart[snackId] + count
+      cart[snackId] = cart[snackId] + count;
       setTotal(total + snack.price * count);
     } else if (count >= 0) {
-      cart[snackId] = count
+      cart[snackId] = count;
       setTotal(total + snack.price * count);
     }
   }
@@ -115,17 +137,17 @@ export default function useCart() {
   function appendCart(snack, count) {
     const snackId = snack["_id"];
     const oldCount = cart[snackId] ? cart[snackId] : 0;
-    setCart({...cart, [snackId]: count})
-    setTotal(total - oldCount * snack.price + count * snack.price)
+    setCart({ ...cart, [snackId]: count });
+    setTotal(total - oldCount * snack.price + count * snack.price);
   }
 
   function deleteFromCart(snack) {
-    const {[snack]: _, ...newCart} = cart;
+    const { [snack]: _, ...newCart } = cart;
     setCart(newCart);
   }
 
   async function submitCart(event) {
-    setSubmitLoading(true)
+    setSubmitLoading(true);
     if (isAuthenticated) {
       setOrderId("");
       if (event) {
@@ -134,17 +156,20 @@ export default function useCart() {
       var orderIsSuccessful = false;
       try {
         if (orderId) {
-          orderIsSuccessful = await postOrderUpdate(socket, cart, orderId, onOrderSuccess);
+          orderIsSuccessful = await postOrderUpdate(
+            socket,
+            cart,
+            orderId,
+            onOrderSuccess,
+            onOrderFail
+          );
         } else {
-          orderIsSuccessful = await postOrder(socket, cart, van, onOrderSuccess);
+          orderIsSuccessful = await postOrder(socket, cart, van, onOrderSuccess, onOrderFail);
         }
       } catch (error) {
         console.log(error);
         setSubmitLoading(false);
       }
-      // } finally {
-      //   setSubmitLoading(false);
-      // }
       return orderIsSuccessful;
     } else {
       toggleLoginIsOpen();
@@ -161,18 +186,13 @@ export default function useCart() {
   }
 
   function setOrderCart(order) {
-    var snacks = order["snacks"];
-    var total = 0;
-    var tempCart = {};
-    for (var i in snacks) {
-      if (snacks[i].name in tempCart) {
-        tempCart[snacks[i].name] = tempCart[snacks[i].name] + 1;
-      } else {
-        tempCart[snacks[i].name] = 1;
-      }
-      total += snacks[i].price;
-    }
-    setCart(tempCart);
+    const tempCart = {}
+
+    order.snacks.forEach((snackGroup) => {
+      tempCart[snackGroup.snack._id] = snackGroup.quantity;
+    })
+
+    setCart(tempCart)
     setVan(order.van.vanName);
     setOrderId(order._id);
     setOrder(order);
@@ -205,5 +225,7 @@ export default function useCart() {
     displayMenu,
     updateVan,
     vanChoiceLoading,
+    cartError,
+    isShowing,
   };
 }

@@ -55,20 +55,19 @@ export default function VanOrderMain({
 
   return (
     <section className="main-info" onClick={(event) => toggleExpand(event)}>
-      <div>
-        <h2>{order.customer.firstName}</h2>
-        {order.isChanged === true ? <h4 className="van-order-title">CHANGED</h4> : <></>}
-      </div>
-      <ul>
-        {order.snacks.map((snackGroup) => {
-          return (
-            <li key={snackGroup.snack.name}>
-              <strong>{snackGroup.quantity} x </strong>
-              {snackGroup.snack.name}
-            </li>
-          );
-        })}
-      </ul>
+          <div>
+            <h2>{order.customer.firstName}</h2>
+          </div>
+          <ul>
+            {order.snacks.map((snackGroup) => {
+              return (
+                <li key={snackGroup.snack.name}>
+                  <strong>{snackGroup.quantity} x </strong>
+                  {snackGroup.snack.name}
+                </li>
+              );
+            })}
+          </ul>
       {hasRating ? (
         <div className={`details with-rating id-${order._id}`}>
           <div className="content">

@@ -22,3 +22,7 @@
   align-items: center;
 }
 
+.use-my-location svg {
+  fill: var(--link-text);
+  margin-left: 1rem;
+}

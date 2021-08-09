@@ -8,9 +8,9 @@ import LocationIcon from "../media/location.icon";
 import CartIcon from "../media/cart.icon";
 import LoadingLogo from "../components/loading.logo";
 
-export default function Menu() {
+export default function SnacksMenu({displayCart}) {
   const { loading, snacks, error, updateCategory, setMouseIsOver } = useSnacks();
-  const { van, displayCart, cartSize } = useCart();
+  const { van, cartSize } = useCart();
 
   return (
     <>

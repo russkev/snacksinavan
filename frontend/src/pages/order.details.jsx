@@ -13,6 +13,7 @@ import OrderInvoice from "../components/order.invoice";
 import OrderMap from "../components/order.map";
 import OrderRating from "../components/order.rating";
 import "../styling/order.details.css";
+import LoadingLogo from "../components/loading.logo";
 
 /* Displays the full details of a single order matched by its id.
  */
@@ -42,16 +43,18 @@ export default function OrderDetails() {
   });
 
   if (loading) {
-    return <p>Loading...</p>;
+    return <LoadingLogo isLoading={true} />;
   } else if (error) {
-    return <p>Something went wrong: {error.message}</p>;
+    return <LoadingLogo isLoading={true} errorMessage={error.message} />
   } else if (!order) {
-    return <p>Order could not be found</p>;
+    return <LoadingLogo isLoading={true} errorMessage={"Order could not be found"} />
   } else {
     if (location.lat !== order.van.latitude && location.lng !== order.van.longitude) {
       setLocation({ lat: order.van.latitude, lng: order.van.longitude });
     }
+    // const orderIsNotFound = !loading && !error && !order ? "Order could not be found" : "";
     return (
+      <>
       <div className="order container">
         <h1>Order Details</h1>
         <OrderStatus order={order} orderStatus={orderStatus} />
@@ -69,6 +72,7 @@ export default function OrderDetails() {
         <BackButton to={Routes.CUSTOMER_ORDERS.path} />
         <CancelModal isShowing={isShowing} hide={toggle} order={order} />
       </div>
+      </>
     );
   }
 }

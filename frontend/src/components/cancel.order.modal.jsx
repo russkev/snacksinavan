@@ -1,6 +1,5 @@
 // Inspired by https://upmostly.com/tutorials/modal-components-react-custom-hooks
 import React from "react";
-import ReactDOM from "react-dom";
 import useOrders from "../hooks/useOrders"
 import { useHistory } from "react-router-dom";
 
@@ -12,8 +11,8 @@ function Modal(props) {
   const history = useHistory();
   
   if (isShowing) {
-    return ReactDOM.createPortal(
-      <React.Fragment>
+    return (
+      <>
         <div className="modal-overlay" />
         {/* Hide if clicked outside of modal */}
         <div
@@ -67,8 +66,7 @@ function Modal(props) {
           </div>
           </div>
         </div>
-      </React.Fragment>,
-      document.body
+      </>
     );
   } else {
     return <></>;

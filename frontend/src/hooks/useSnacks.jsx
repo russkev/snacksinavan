@@ -57,7 +57,6 @@ export default function useSnacks() {
 
     function handleSelectorMove() {
       const categoryCards = getCategoryCards();
-      // console.log(selectedCategory)
       if (menuItems && categoryCards[category.food] && selector) {
         if (
           isScrolledIntoView(categoryCards[category.food]) &&

@@ -4,6 +4,7 @@ import Modal from "./modal";
 import useModal from "../hooks/useModal";
 import useCart from "../hooks/useCart";
 import useGlobals from "../hooks/useGlobals";
+import CloseIcon from "../media/close.icon";
 
 export default function MenuItemCard({ snack }) {
   const { isShowing, toggle } = useModal();
@@ -38,10 +39,12 @@ export default function MenuItemCard({ snack }) {
         <div className="menu-item-modal">
           <h3>{snack.name}</h3>
           <button type="button" className="close" onClick={toggle}>
-            &times;
+            <svg viewBox="0 0 24 24" className="close">
+              <CloseIcon />
+            </svg>
           </button>
           {/* <div> */}
-            <p>{snack.description}</p>
+          <p>{snack.description}</p>
           {/* </div> */}
           <img src={snack.photo.medium} width="180px" alt={snack.name} />
           <p>Quantity</p>

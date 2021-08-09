@@ -1,16 +1,16 @@
 import React, { useState } from "react";
-import { Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import useLogin from "../hooks/useLogin";
 import useUser from "../hooks/useUser";
-import Loading from "../components/loading";
 import { handleShowSnackbar, Snackbar } from "../components/snackbar";
 import Routes from "../routes/routes";
 import InputContainer from "../components/input.container";
 import "../styling/login.css";
 import "../styling/input.css";
-//TODO:
-//  MyInfo page loads when not logged in but shouldn't
-//  Login window appears on logout
+import CloseIcon from "../media/close.icon";
+import LoadingButton from "../components/loading.button"; 
+import DemoCreate from "../components/demo.create";
+
 
 /**
  * @returns Login form component
@@ -56,15 +56,19 @@ export default function Login() {
       <>
         <div className="login-window">
           <h1>Sign in</h1>
-          <button
-            type="button"
-            className="close"
-            onClick={() => setLoginIsOpen(false)}
-          >
-            &times;
+          <button type="button" className="close" onClick={() => setLoginIsOpen(false)}>
+            <svg viewBox="0 0 24 24" className="close">
+              <CloseIcon />
+            </svg>
           </button>
           <div>
             <h4>Please enter your details</h4>
+                <p>
+                  Don't have an account?{" "}
+                  <Link to="#" onClick={handleSignupRedirect}>
+                    Sign up here
+                  </Link>
+                </p>
             <form onSubmit={handleLoginSubmitAndAlert}>
               <InputContainer label="Username" value={username}>
                 <input
@@ -73,6 +77,7 @@ export default function Login() {
                   placeholder="username"
                   value={username}
                   onChange={onUsernameChange}
+                  disabled={loading}
                 />
               </InputContainer>
               <InputContainer label="Password" value={password}>
@@ -82,24 +87,21 @@ export default function Login() {
                   placeholder="password"
                   value={password}
                   onChange={onPasswordChange}
+                  disabled={loading}
                 />
               </InputContainer>
-              <button type="submit" className="primary soft-shadow">
-                Okay
-              </button>
+              <LoadingButton isLoading={loading}>
+                <button type="submit" className="primary soft-shadow">
+                  Okay
+                </button>
+              </LoadingButton>
+              <p>Alternatively, <DemoCreate>make a demo account.</DemoCreate></p>
               <div className="sign-in-bottom-div">
-                <p>
-                  Don't have an account?
-                  <button className="text-button" onClick={handleSignupRedirect}>
-                    Sign up here
-                  </button>
-                </p>
               </div>
             </form>
           </div>
         </div>
         <Snackbar message={error} />
-        <Loading isLoading={loading} />
       </>
     );
   }

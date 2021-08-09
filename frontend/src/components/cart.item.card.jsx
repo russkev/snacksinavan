@@ -14,16 +14,12 @@ export default function CartItemCard({ snackId }) {
     <div className="cart-item">
       <div>
         <svg
-          xmlns="http://www.w3.org/2000/svg"
-          height="24px"
           viewBox="0 0 24 24"
-          width="24px"
-          fill="var(--dark-text)"
           onClick={() => deleteFromCart(snackId)}
         >
           <DeleteIcon />
         </svg>
-        <img src={snack.photo} width="50px" alt={snackId} />
+        <img src={snack.photo.small} width="50px" alt={snackId} />
         <section>
           {snack.name}
           <div className="quantity">

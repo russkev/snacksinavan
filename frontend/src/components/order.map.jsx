@@ -1,6 +1,5 @@
 import React from "react";
-import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
-const lib = ["places"];
+import { GoogleMap, Marker } from "@react-google-maps/api";
 
 export default function OrderMap({ order }) {
   const zoom = 14;
@@ -8,7 +7,7 @@ export default function OrderMap({ order }) {
 
   return (
     <>
-      <LoadScript googleMapsApiKey={process.env.REACT_APP_MAP_KEY} libraries={lib}>
+    <div></div>
         {!order.isCompleted ? (
           <GoogleMap mapContainerClassName="order-map" zoom={zoom} center={location}>
             <Marker
@@ -25,7 +24,6 @@ export default function OrderMap({ order }) {
         ) : (
           <></>
         )}
-      </LoadScript>
       <h4>{`Van: ${order.van.vanName}`}</h4>
       <div className="info-description">
         <span>{order.van.locationDescription}</span>

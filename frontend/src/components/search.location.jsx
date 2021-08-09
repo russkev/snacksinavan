@@ -3,6 +3,7 @@ import { Autocomplete } from "@react-google-maps/api";
 import "../styling/address.search.css";
 import "../styling/input.css";
 import InputContainer from "./input.container";
+import UseMyLocationIcon from "../media/use.my.location.icon";
 
 export default function SearchLocation({ setCurrentLocation, title, columns }) {
   const [autocomplete, setAutocomplete] = useState();
@@ -50,7 +51,9 @@ export default function SearchLocation({ setCurrentLocation, title, columns }) {
       <button onClick={onUseLocationClick} className="icon-button use-my-location">
         <div>
           Use my location
-          <span className="material-icons-outlined margin-left-small">my_location</span>
+          <svg viewBox="0 0 24 24">
+            <UseMyLocationIcon />
+          </svg>
         </div>
       </button>
     </div>

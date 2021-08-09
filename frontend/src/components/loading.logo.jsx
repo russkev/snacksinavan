@@ -2,10 +2,10 @@ import React from "react";
 import LoadingIcon from "../media/loading.icon";
 import LogoIcon from "../media/logo.icon";
 
-export default function LoadingLogo({ isLoading, errorMessage }) {
+export default function LoadingLogo({ isLoading, errorMessage, isTransparent }) {
   if (errorMessage) {
     return (
-      <div className="loading-logo">
+      <div className={`loading-logo ${isTransparent ? "transparent" : ""}`}>
         <div>
           <svg viewBox="0 0 500 500" className="logo">
             <LogoIcon />
@@ -17,7 +17,7 @@ export default function LoadingLogo({ isLoading, errorMessage }) {
   }
   if (isLoading) {
     return (
-      <div className="loading-logo">
+      <div className={`loading-logo ${isTransparent ? "transparent" : ""}`}>
         <div>
           <svg viewBox="0 0 100 100" className="circle">
             <LoadingIcon />

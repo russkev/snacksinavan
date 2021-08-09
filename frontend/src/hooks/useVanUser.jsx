@@ -16,6 +16,7 @@ export default function useVanUser() {
     resetVanDetails,
     vanToken,
     setVanToken,
+    initialLoginLoading,
   } = useContext(VanUserContext);
 
   /**
@@ -45,5 +46,6 @@ export default function useVanUser() {
     vanDetails,
     resetVanDetails,
     vanToken,
+    initialLoginLoading,
   };
 }

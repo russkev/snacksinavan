@@ -2,6 +2,7 @@
   --header-height: 50px;
   --header-van-height: 70px;
   --background-blue: #F6F8F9;
+  --background-blue-transparent: #F6F8F988;
   --background-white: #ffffff;
   --background-darker: #e0e8ed;
 
@@ -106,17 +107,6 @@ h5 {
   margin: 0;
 }
 
-/* 
-h5 {
-  font-size: 30pt;
-  color: var(--dark-text);
-  margin: 30px auto;
-  text-align: center;
-  max-width: 400px;
-  font-weight: 600;
-  width: 80vw;
-} */
-
 h6 {
   color: var(--dark-text);
 }
@@ -128,6 +118,8 @@ p {
 
 a {
   text-decoration: none;
+  color: var(--link-text);
+  font-weight: 500;
 }
 
 ul {
@@ -136,83 +128,12 @@ ul {
   justify-content: space-evenly;
 }
 
-/* table {
-  border-collapse: separate;
-  width: 80%;
-  max-width: 800px;
-  border: 5px solid var(--background-darker);
-  border-radius: 20px;
-  background-color: var(--background-white);
-  border-spacing: 0px;
-}
-
-tr:last-child td {
-  border: 1px none var(--orange);
-}
-
-th, td {
-  border-bottom: 1px solid var(--underline);
-  border-collapse: collapse;
-  padding: 14px
-}
-
-tr:first-child {
-  background-color: var(--background-darker);
-}
-
-tr:first-child th {
-  border-bottom: 1px none var(--orange);
-}
-
-hr {
-  background: var(--background-darker);
-  height: 2px;
-  border: 0px;
-  margin: 0.5rem 0 1rem;
-} */
-
-/* textarea {
-  font-size: 14px;
-  font-family: inherit;
-  border: none;
-  outline: none;
-  background-color: var(--background-white);
-  padding: 1em;
-  margin: 0;
-  border-radius: 10px;
-  box-sizing: border-box;
-  resize: none;
-} */
-
 fieldset {
   background-color: var(--background-blue);
 }
 
 svg {
   fill: var(--dark-text);
-}
-
-.material-icons-outlined {
-  font-family: 'Material Icons';
-  font-weight: normal;
-  font-style: normal;
-  font-size: 24px;  /* Preferred icon size */
-  display: inline-block;
-  line-height: 1;
-  text-transform: none;
-  letter-spacing: normal;
-  word-wrap: normal;
-  white-space: nowrap;
-  direction: ltr;
-
-  /* Support for all WebKit browsers. */
-  -webkit-font-smoothing: antialiased;
-  /* Support for Safari and Chrome. */
-  text-rendering: optimizeLegibility;
-
-  /* Support for Firefox. */
-  -moz-osx-font-smoothing: grayscale;
-
-  /* Support for IE. */
-  font-feature-settings: 'liga';
+  width: 24px;
+  height: 24px;
 }

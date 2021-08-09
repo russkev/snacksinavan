@@ -31,7 +31,7 @@ export default function FulfilledOrder({ order }) {
         date={date}
         toggleExpand={toggleExpand}
       />
-      <VanOrderTime titleText="Time of order:" mainText={timeStamp} subHeadingText={date} />
+      <VanOrderTime titleText="Time of order:" mainText={timeStamp} subHeadingText={date} order={order} />
     </div>
   );
 }

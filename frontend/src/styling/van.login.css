@@ -19,3 +19,11 @@ div.van-login button {
   margin-bottom: 3rem;
   width: 100%;
 }
+
+div.van-login article {
+  flex: unset;
+}
+
+div.van-login h1 + p {
+  margin-bottom: 2rem;
+}

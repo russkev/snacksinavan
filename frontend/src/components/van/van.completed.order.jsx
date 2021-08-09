@@ -30,6 +30,7 @@ export default function CompletedOrder({ order }) {
         titleText="Time of order"
         mainText={timeStamp}
         subHeadingText={date}
+        order={order}
       />
     </div>
   );

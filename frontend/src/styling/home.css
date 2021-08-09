@@ -21,16 +21,16 @@
   width: 100%;
 }
 
-/* .map canvas {
-  transform: translateY(-30px);
-} */
-
 .map img, .order-map img {
   filter: grayscale(80%) opacity(70%);
 }
 
 .highlighted {
   background-color: var(--background-blue);
+}
+
+.split .address-search button {
+  margin: 0;
 }
 
 @media screen and  (min-width: 800px) {

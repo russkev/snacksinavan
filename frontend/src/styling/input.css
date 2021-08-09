@@ -4,12 +4,10 @@ input, textarea {
   border: none;
   outline: none;
   background: none;
-  margin: 0.9rem 1.8rem;
+  margin: 0;
   /* border-radius: 100px; */
   width: 100%;
-  width: -webkit-fill-available;
-  width: stretch;
-  width: -moz-available;
+  
 }
 
 textarea {
@@ -17,7 +15,7 @@ textarea {
 }
 
 fieldset{
-  padding: 0;
+  padding: 0.9rem 1.8rem;
   margin: 0;
   border-radius: 1.5rem;
   border: 2px solid transparent;
@@ -28,7 +26,6 @@ fieldset:focus-within {
 }
 
 legend {
-  margin-left: 2rem;
   margin-bottom: -0.5rem;
   position: relative;
   font-size: 1.2rem;

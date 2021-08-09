@@ -5,6 +5,7 @@ import useOrder from "../hooks/useOrder";
 import "../styling/orders.css";
 import ChevronLeftIcon from "../media/chevron.left.icon";
 import PaginationBar from "../components/pagination.bar";
+import LoadingLogo from "../components/loading.logo";
 
 /* Takes in a customer's username and gets all of their orders and returns
 JSX with each of these orders in a table row. */
@@ -20,9 +21,9 @@ export default function Orders() {
   } = useOrders();
 
   if (ordersLoading) {
-    return <p>Loading...</p>;
+    return <LoadingLogo isLoading={true} />
   } else if (error) {
-    return <p>Something went wrong: {error.message}</p>;
+    return <LoadingLogo isLoading={ordersLoading} errorMessage={error.message} />
   } else {
     return (
       <div className="orders container">
@@ -50,23 +51,6 @@ export default function Orders() {
             pageOrders.map((order) => <Order key={order._id} order={order} isMobile />)
           )}
         </div>
-        {/* <div className="pages">
-          <p>{`${pageInfo.from} - ${pageInfo.to} of ${orders.length} orders`}</p>
-          <div>
-            <button
-              className={pageInfo.current === 1 ? "pages disabled" : "pages"}
-              onClick={onPrevPage}
-            >
-              {"<"}
-            </button>
-            <button
-              className={pageInfo.current === pageInfo.total ? "pages disabled" : "pages"}
-              onClick={onNextPage}
-            >
-              {">"}
-            </button>
-          </div>
-        </div> */}
         <PaginationBar
           orders={orders}
           pageInfo={pageInfo}
@@ -93,13 +77,13 @@ function Order({ order, isMobile }) {
   function Items() {
     if (snacksList.length < 3) {
       return snacksList.map((snackItem, index) => {
-        return <img key={index} src={`../${snackItem.photo}`} alt={snackItem.name} />;
+        return <img key={index} src={`../${snackItem.photo.small}`} alt={snackItem.name} />;
       });
     } else {
       return (
         <>
-          <img src={`../${snacksList[0].photo}`} alt={snacksList[0].name} />
-          <img src={`../${snacksList[1].photo}`} alt={snacksList[1].name} className="overlapping" />
+          <img src={`../${snacksList[0].photo.small}`} alt={snacksList[0].name} />
+          <img src={`../${snacksList[1].photo.small}`} alt={snacksList[1].name} className="overlapping" />
           <span className="overlapping">
             <p>{`+${snacksList.length - 2}`}</p>
           </span>

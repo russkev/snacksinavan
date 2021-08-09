@@ -30,6 +30,18 @@ div.van section {
 
 div.van section.main-info {
   flex: 1;
+  padding: 0 1.5rem;
+}
+
+div.van span.notice {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+div.van span.notice strong{
+  color: var(--warning);
+  text-transform: uppercase;
 }
 
 div.van .main-info .details {
@@ -43,14 +55,14 @@ div.van .countdown {
 
 div.van .countdown > div {
   margin-top: 0;
-  display: flex;
   align-items: center;
   border-radius: 5px;
   height: min-content;
-  flex-direction: row;
   background-color: var(--background-blue);
   padding: 0;
   overflow: clip;
+  display: grid;
+  grid-template-columns: auto 30px;
 }
 
 div.van.fulfilled .countdown > div > div:nth-child(2) {
@@ -100,15 +112,15 @@ div.van .chevron.expanded {
 }
 
 div.van .complete {
-  width: 130px;
+  min-width: 130px;
 }
 
 div.van .complete button {
-  width: 100px;
+  width: 100%;
   margin: 1.5rem;
 }
 
-div.van.order .complete button {
+div.van-order .complete button {
   background-color: var(--background-van-orders);
 }
 
@@ -117,7 +129,7 @@ div.van.fulfilled .complete button {
 }
 
 
-div.van.order .complete button:hover, div.van.order .complete button:focus {
+div.van-order .complete button:hover, div.van-order .complete button:focus {
   background-color: var(--background-van-orders-darker)
 }
 
@@ -125,7 +137,7 @@ div.van.fulfilled .complete button:hover, div.van.fulfilled .complete button:foc
   background-color: var(--background-van-fulfilled-darker)
 }
 
-div.van.order .complete svg {
+div.van-order .complete svg {
   fill: var(--van-orders);
 }
 
@@ -194,7 +206,7 @@ div.van .details div.section > div:nth-child(2n-1) {
   }
 }
 
-@media screen and (max-width: 470px) {
+@media screen and (max-width: 650px) {
   .van{
     display: flex;
     flex-direction: column;

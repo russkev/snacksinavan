@@ -2,11 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import useSignup from "../hooks/useSignup";
 import { Snackbar, handleShowSnackbar } from "../components/snackbar";
-import Loading from "../components/loading";
 import useLogin from "../hooks/useLogin";
 import InputContainer from "../components/input.container";
 import "../styling/signup.css";
 import DemoCreate from "../components/demo.create";
+import LoadingButton from "../components/loading.button";
 
 /**
  * @returns Form component for new users to sign up with
@@ -58,61 +58,60 @@ export default function Signup() {
               &times;
             </button>
           </Link>
-          {/* <div className="auth auth-signup">
-            <div className="card-light"> */}
           <article>
             {page === 1 ? (
               <form onSubmit={handleEmailCheckAndAlert}>
-                
                 <h4>Please enter your details (*required)</h4>
-                {/* <div className="signup-fields"> */}
                 <section>
-                <InputContainer label="First name*" value={userDetails.firstName}>
-                  <input
-                    required
-                    type="name"
-                    id="firstName"
-                    placeholder="first name*"
-                    value={userDetails.firstName}
-                    onChange={onFirstNameChange}
-                  />
-                </InputContainer>
-                <InputContainer label="Last name" value={userDetails.lastName}>
-                  <input
-                    type="name"
-                    id="lastName"
-                    placeholder="last name"
-                    value={userDetails.lastName}
-                    onChange={onLastNameChange}
-                  />
-                </InputContainer>
-                <InputContainer label="email*" value={userDetails.username}>
-                  <input
-                    required
-                    type="email"
-                    id="username"
-                    placeholder="email*"
-                    value={userDetails.username}
-                    onChange={onUsernameChange}
-                  />
-                </InputContainer>
+                  <InputContainer label="First name*" value={userDetails.firstName}>
+                    <input
+                      required
+                      type="name"
+                      id="firstName"
+                      placeholder="first name*"
+                      value={userDetails.firstName}
+                      onChange={onFirstNameChange}
+                      disabled={loading}
+                    />
+                  </InputContainer>
+                  <InputContainer label="Last name" value={userDetails.lastName}>
+                    <input
+                      type="name"
+                      id="lastName"
+                      placeholder="last name"
+                      value={userDetails.lastName}
+                      onChange={onLastNameChange}
+                      disabled={loading}
+                    />
+                  </InputContainer>
+                  <InputContainer label="email*" value={userDetails.username}>
+                    <input
+                      required
+                      type="email"
+                      id="username"
+                      placeholder="email*"
+                      value={userDetails.username}
+                      onChange={onUsernameChange}
+                      disabled={loading}
+                    />
+                  </InputContainer>
                 </section>
-                {/* </div> */}
 
                 <div className="submit-buttons">
                   <button type="button" disabled className="disabled full-width">
                     Back
                   </button>
-                  <button type="submit" className="primary soft-shadow full-width">
-                    Next
-                  </button>
+                  <LoadingButton isLoading={loading}>
+                    <button type="submit" className="primary soft-shadow full-width">
+                      Next
+                    </button>
+                  </LoadingButton>
                 </div>
               </form>
             ) : (
               <form onSubmit={handleSignupAndAlert}>
                 <h4>Please enter your details (*required)</h4>
                 <section>
-
                   <InputContainer label="Password*" value={userDetails.password}>
                     <input
                       required
@@ -121,6 +120,7 @@ export default function Signup() {
                       placeholder="password*"
                       value={userDetails.password}
                       onChange={onPasswordChange}
+                      disabled={loading}
                     />
                   </InputContainer>
                   <InputContainer label="Confirm password**" value={userDetails.passwordConfirm}>
@@ -131,6 +131,7 @@ export default function Signup() {
                       placeholder="confirm password*"
                       value={userDetails.passwordConfirm}
                       onChange={onPasswordConfirmChange}
+                      disabled={loading}
                     />
                   </InputContainer>
                 </section>
@@ -138,9 +139,11 @@ export default function Signup() {
                   <button type="button" className="full-width" onClick={handleBack}>
                     Back
                   </button>
-                  <button type="submit" className="primary soft-shadow full-width">
-                    Confirm
-                  </button>
+                  <LoadingButton isLoading={loading}>
+                    <button type="submit" className="primary soft-shadow full-width">
+                      Confirm
+                    </button>
+                  </LoadingButton>
                 </div>
               </form>
             )}
@@ -154,16 +157,15 @@ export default function Signup() {
               <Link to={redirectFromPath}>
                 <button className="full-width">Cancel</button>
               </Link>
-              <DemoCreate />
+              <p>
+                {" "}
+                Alternatively, <DemoCreate> make a demo account </DemoCreate>
+              </p>
             </section>
           </article>
         </div>
       </div>
-
-      {/* </div>
-      </div> */}
       <Snackbar message={error} />
-      <Loading isLoading={loading} />
     </>
   );
 }

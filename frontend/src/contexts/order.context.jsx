@@ -75,19 +75,25 @@ export const OrderContextProvider = ({ children }) => {
   // Update the list of orders when the user changes, when the isAuthenticated value changes
   // and when the currentOrder value changes.
   useEffect(() => {
-    if (socket && isAuthenticated && username) {
-      try {
-        getOrders(socket, setOrders, setError, setLoading);
-        socket.on("ordersChanged", (changeInfo) => {
-          if (changeInfo.customer === username) {
-            getOrders(socket, setOrders, setError, setLoading);
-          }
-        });
-      } catch (error) {
-        console.log(error);
-        setError(error);
+    let mounted = true;
+
+    if (mounted) {
+
+      if (socket && isAuthenticated && username) {
+        try {
+          getOrders(socket, setOrders, setError, setLoading);
+          socket.on("ordersChanged", (changeInfo) => {
+            if (changeInfo.customer === username) {
+              getOrders(socket, setOrders, setError, setLoading);
+            }
+          });
+        } catch (error) {
+          console.log(error);
+          setError(error);
+        }
       }
     }
+    return () => {mounted=false;}
   }, [socket, isAuthenticated, username]);
 
   const value = {

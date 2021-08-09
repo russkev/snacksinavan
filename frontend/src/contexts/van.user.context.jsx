@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect } from "react";
-import VanAPI from "../VanAPI"
+import VanAPI from "../VanAPI";
 
 export const defaultLocation = { lat: -37.7963, lng: 144.9616 };
 const defaultVan = {
@@ -15,8 +15,8 @@ export const VanUserContext = createContext([]);
 async function postAuthenticateVan() {
   try {
     const response = await VanAPI.post("/api/van/authenticate");
-    return response
-  } catch(error) {
+    return response;
+  } catch (error) {
     throw error;
   }
 }
@@ -24,88 +24,100 @@ async function postAuthenticateVan() {
 async function getVanDetails() {
   try {
     const response = await VanAPI.get("/api/van/vanDetails");
-    return response.data
-  } catch(error) {
-    throw error
+    return response.data;
+  } catch (error) {
+    throw error;
   }
 }
 
 async function postVanDetails(vanDetails) {
   try {
-    const response = await VanAPI.post("/api/van/setStatus", vanDetails)
-    return response.data
+    const response = await VanAPI.post("/api/van/setStatus", vanDetails);
+    return response.data;
   } catch (error) {
-    throw error
+    throw error;
   }
 }
 
-const authenticateLocalStorage = async (setVanName, setVanToken, setVanIsAuthenticated) => {
+const authenticateLocalStorage = async (
+  setVanName,
+  setVanToken,
+  setVanIsAuthenticated,
+  setLoading
+) => {
   try {
     const response = await postAuthenticateVan();
     if (response.data.vanAuthenticated === "true") {
       setVanIsAuthenticated(true);
       setVanName(response.data.vanName);
-      setVanToken(localStorage.getItem("vanToken"))
-      return true
+      setVanToken(localStorage.getItem("vanToken"));
+      return true;
     } else {
-      setVanIsAuthenticated(false)
-      return false
+      setVanIsAuthenticated(false);
+      return false;
     }
   } catch (error) {
     setVanIsAuthenticated(false);
-    return false
+    return false;
+  } finally {
+    setLoading(false);
   }
 };
 
 const storeVanDetails = async (setVanDetails) => {
   try {
-    const response = await getVanDetails()
+    const response = await getVanDetails();
     if (response.vanAuthenticated && response.vanAuthenticated === "false") {
-      throw new Error("Van not authorized")
+      throw new Error("Van not authorized");
     } else {
-      setVanDetails(response)
+      setVanDetails(response);
     }
-  } catch(error) {
-    setVanDetails(defaultVan)
+  } catch (error) {
+    setVanDetails(defaultVan);
   }
-}
-
+};
 
 export const VanUserContextProvider = ({ children }) => {
   const [vanName, setVanName] = useState("");
   const [vanToken, setVanToken] = useState("");
   const [vanIsAuthenticated, setVanIsAuthenticated] = useState(false);
-  const [vanDetails, setVanDetails] = useState(defaultVan)
+  const [vanDetails, setVanDetails] = useState(defaultVan);
+  const [initialLoginLoading, setInitialLoginLoading] = useState(true);
 
   useEffect(() => {
-    const authenticated = authenticateLocalStorage(setVanName, setVanToken, setVanIsAuthenticated);
+    const authenticated = authenticateLocalStorage(
+      setVanName,
+      setVanToken,
+      setVanIsAuthenticated,
+      setInitialLoginLoading
+    );
     if (authenticated) {
-      storeVanDetails(setVanDetails)
+      storeVanDetails(setVanDetails);
     }
-  }, [])
+  }, []);
 
   useEffect(() => {
     if (vanIsAuthenticated) {
-      storeVanDetails(setVanDetails)
+      storeVanDetails(setVanDetails);
     }
-  }, [vanIsAuthenticated])
+  }, [vanIsAuthenticated]);
 
   const updateVan = async (fieldsToUpdate) => {
-    const newVanDetails = {...vanDetails, ...fieldsToUpdate}
+    const newVanDetails = { ...vanDetails, ...fieldsToUpdate };
     try {
-      const response = await postVanDetails(newVanDetails)
+      const response = await postVanDetails(newVanDetails);
       setVanDetails(response);
       return response;
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   const resetVanDetails = () => {
-    setVanDetails(defaultVan)
-    setVanName("")
-    setVanIsAuthenticated(false)
-  }
+    setVanDetails(defaultVan);
+    setVanName("");
+    setVanIsAuthenticated(false);
+  };
 
   const value = {
     vanName,
@@ -117,7 +129,8 @@ export const VanUserContextProvider = ({ children }) => {
     resetVanDetails,
     vanToken,
     setVanToken,
+    initialLoginLoading
   };
 
-  return <VanUserContext.Provider value={value}>{children}</VanUserContext.Provider>
+  return <VanUserContext.Provider value={value}>{children}</VanUserContext.Provider>;
 };

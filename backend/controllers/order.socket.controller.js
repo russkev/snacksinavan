@@ -1,6 +1,7 @@
 const orderModel = require("../models/order.model");
 const vanModel = require("../models/van.model");
 const userModel = require("../models/user.model");
+const snackModel = require("../models/snack.model");
 const orderController = require("./order.controller");
 
 const ORDERS_CHANGED = "ordersChanged";
@@ -11,17 +12,11 @@ const orderListVan = (socket) => {
       const savedVan = await vanModel.findOne({ vanName: socket.handshake.auth.vanName });
       try {
         savedOrders = await orderModel
-        .find({ van: savedVan._id, isCancelled: false })
-        .populate([
-          {
-            path: "snacks",
-            populate: {
-              path: "snack",
-              model: "Snack",
-            },
-          },
-          "customer",
-        ]);
+          .find({ van: savedVan._id })
+          .populate("customer")
+          .populate("snacks")
+          .populate("snacks.snack");
+
         socket.emit("getVanOrders", savedOrders);
       } catch (error) {
         socket.emit("error", error.message);
@@ -39,16 +34,10 @@ const orderListCustomer = async (socket) => {
         const customer = await userModel.findOne({ username: socket.handshake.auth.username });
         const orders = await orderModel
           .find({ customer: customer.id })
-          // .populate(["snacks", "van"]);
-          .populate([
-            {
-              path: "snacks",
-              populate: {
-                path: "snack",
-                model: "Snack"
-              }
-            }, "van"
-          ])
+          .populate("van")
+          .populate("snacks")
+          .populate("snacks.snack");
+
         socket.emit("orderListCustomer", orders);
       } catch (error) {
         socket.emit("error", error.message);
@@ -107,6 +96,36 @@ const createOrder = async (io, socket) => {
       socket.emit("error", "Please include 'snacks' and 'vanName' value");
     }
     socket.emit("createOrderSuccess", true);
+  });
+};
+
+const orderModify = async (io, socket) => {
+  socket.on("orderModify", async (info) => {
+    if (info.orderId && info.snacks) {
+      orderedSnackIds = await orderController.getSnacks(info.snacks);
+      try {
+        await orderModel.updateOne(
+          { _id: info.orderId },
+          {
+            snacks: orderedSnackIds,
+            isChanged: true,
+          },
+          { timestamps: true }
+        );
+        const savedOrder = await orderModel.findOne({ _id: info.orderId });
+        const savedVan = await vanModel.findOne({ _id: savedOrder.van });
+        socket.emit("orderModified", savedOrder);
+        io.sockets.emit(ORDERS_CHANGED, {
+          customer: socket.handshake.auth.username,
+          van: savedVan.vanName,
+        });
+      } catch (error) {
+        socket.emit("error", error.message);
+        console.log(error);
+      }
+    } else {
+      socket.emit("error", "Missing orderId or snacks");
+    }
   });
 };
 
@@ -171,7 +190,7 @@ const completeOrder = async (io, socket) => {
 
 const rateOrder = async (io, socket) => {
   socket.on("rateOrder", async (info) => {
-    console.log(info)
+    console.log(info);
     if (info.orderId && info.rating && (info.feedback || info.feedback === "")) {
       try {
         await orderModel.updateOne(
@@ -201,47 +220,29 @@ const rateOrder = async (io, socket) => {
   });
 };
 
-const orderModify = async (io, socket) => {
-  socket.on("orderModify", async (info) => {
-    if (info.orderId && info.snacks) {
-      orderedSnackIds = await orderController.getSnacks(info.snacks);
-      try {
-        await orderModel.updateOne(
-          { _id: info.orderId },
-          {
-            snacks: orderedSnackIds,
-            isChanged: true,
-          },
-          { timestamps: true }
-        );
-        const savedOrder = await orderModel.findOne({ _id: info.orderId });
-        const savedVan = await vanModel.findOne({ _id: savedOrder.van });
-        socket.emit("orderModified", savedOrder);
-        io.sockets.emit(ORDERS_CHANGED, {
-          customer: socket.handshake.auth.username,
-          van: savedVan.vanName,
-        });
-      } catch (error) {
-        socket.emit("error", error.message);
-        console.log(error);
-      }
-    } else {
-      socket.emit("error", "Missing orderId or snacks");
-    }
-  });
-};
-
 const cancelOrder = async (io, socket) => {
   socket.on("cancelOrder", async (info) => {
     if (info.orderId && info.isCancelled) {
       try {
-        await orderModel.updateOne(
-          { _id: info.orderId },
-          {
-            isCancelled: info.isCancelled,
-          },
-          { timestamps: false }
-        );
+        if (info.isFulfilled) {
+          await orderModel.updateOne(
+            { _id: info.orderId },
+            {
+              isCancelled: info.isCancelled,
+              isFulfilled: info.isFulfilled,
+            },
+            { timestamps: false }
+          );
+        } else {
+          await orderModel.updateOne(
+            { _id: info.orderId },
+            {
+              isCancelled: info.isCancelled,
+            },
+            { timestamps: false }
+          );
+        }
+
         const savedOrder = await orderModel.findOne({ _id: info.orderId });
         const savedVan = await vanModel.findOne({ _id: savedOrder.van });
         socket.emit("orderCancelUpdated", savedOrder);

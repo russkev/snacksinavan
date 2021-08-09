@@ -16,6 +16,7 @@ button, a.button{
   transition-duration: 0.2s;
   display: inline-flex;
   cursor: pointer;
+  margin: 1.5rem 0;
 }
 
 button.logout, a.button.logout {
@@ -41,6 +42,7 @@ button.close {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 0;
 }
 
 button.close:hover, button.close:focus {
@@ -146,15 +148,23 @@ div.quantity > span {
   margin: 1.5rem;
 }
 
-button.disabled {
+button.disabled, a.disabled {
   opacity: 30%;
   cursor: unset;
 }
 
-button.primary.disabled:hover, button.primary.disabled:focus {
+button.primary.disabled:hover, 
+button.primary.disabled:focus,
+a.primary.disabled:hover, 
+a.primary.disabled:focus
+{
   background-color: var(--primary);
 }
 
-button.disabled:hover, button.disabled:focus {
+button.disabled:hover, 
+button.disabled:focus,
+a.disabled:hover, 
+a.disabled:focus 
+{
   background-color: var(--background-blue);
 }

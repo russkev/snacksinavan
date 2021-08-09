@@ -36,9 +36,13 @@ div.submit-buttons {
   margin-top: 2rem;
   width: 100%;
 }
+/* 
+div.submit-buttons button.primary {
+} */
 
-div.submit-buttons button:nth-child(2n) {
+div.submit-buttons > div {
   margin-left: 2rem;
+  width: 100%;
 }
 
 .signup article {

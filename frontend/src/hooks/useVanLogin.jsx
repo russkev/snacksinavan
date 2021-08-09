@@ -1,7 +1,7 @@
 import { useState } from "react";
 import VanAPI from "../VanAPI";
 import useVanUser from "../hooks/useVanUser";
-import useVanOrders from "./useVanOrders"
+import useVanOrders from "./useVanOrders";
 
 async function postVanLogin(vanName, password) {
   const body = {
@@ -20,25 +20,28 @@ async function postVanLogin(vanName, password) {
 export default function useVanLogin() {
   const [vanName, setVanName] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("")
+  const [error, setError] = useState("");
   const { handleVanAuthenticate } = useVanUser();
   const { connectVanSocket } = useVanOrders();
 
-  const handleLoginSubmit = async (event) => {
+  const handleLoginSubmit = async (event, inVanName, inPassword) => {
     event.preventDefault();
     try {
-      const result = await postVanLogin(vanName, password);
+      const result =
+        inVanName && inPassword
+          ? await postVanLogin(inVanName, inPassword)
+          : await postVanLogin(vanName, password);
       const isAuthenticated = handleVanAuthenticate(result);
       if (isAuthenticated) {
-        setError("SUCCESS")
-        connectVanSocket(result.vanName, result.token)
+        setError("SUCCESS");
+        connectVanSocket(result.vanName, result.token);
         return true;
       } else {
-        setError("Password and Van Name combination are invalid")
+        setError("Password and Van Name combination are invalid");
         return false;
       }
     } catch (err) {
-      setError("Server Failure")
+      setError("Server Failure");
       return false;
     }
   };
@@ -52,11 +55,9 @@ export default function useVanLogin() {
   };
 
   const onDemoLogin = (event) => {
-    setVanName("Thelma");
-    setPassword("password")
-    handleLoginSubmit(event);
-  }
-  
+    handleLoginSubmit(event, "Thelma", "password");
+  };
+
   return {
     vanName,
     onVanNameChange,
