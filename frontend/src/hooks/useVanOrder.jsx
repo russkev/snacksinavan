@@ -1,12 +1,9 @@
 import { useState, useEffect } from "react";
 import orderTimeLeft, { timePassedSeconds } from "../components/order.time.left";
-// import { linearInterpolateRGB } from "../components/util";
 import { linearInterpolate } from "../components/util";
 import useGlobals from "../hooks/useGlobals";
 import useVanOrders from "./useVanOrders";
 
-// export const ORDER_START_COLOR = [109, 197, 115];
-// export const ORDER_END_COLOR = [207, 67, 67];
 
 export const ORDER_START_HUE = 120;
 export const ORDER_END_HUE = 0;
@@ -57,10 +54,8 @@ const calculateTimeLeft = (order, discountTime, setTimeLeft, setOrderHue) => {
     if (timeTaken < discountTime) {
       const timeRatio = timeTaken / discountTime;
       setOrderHue(Math.floor(linearInterpolate(ORDER_START_HUE, timeRatio, ORDER_END_HUE)));
-      // setOrderColor(linearInterpolateRGB(ORDER_START_COLOR, timeRatio, ORDER_END_COLOR));
     } else {
       setOrderHue(ORDER_END_HUE);
-      // setOrderColor(linearInterpolateRGB(ORDER_START_COLOR, 1, ORDER_END_COLOR));
     }
     setTimeLeft(currTimeLeft);
   } else {
@@ -70,7 +65,6 @@ const calculateTimeLeft = (order, discountTime, setTimeLeft, setOrderHue) => {
 
 export default function useVanOrder(order) {
   const [timeLeft, setTimeLeft] = useState("");
-  // const [orderColor, setOrderColor] = useState("rgb(127, 127, 127)");
   const [orderHue, setOrderHue] = useState(ORDER_START_HUE);
   const [orderTotals, setOrderTotals] = useState({ subtotal: 0, discount: 0, total: 0 });
   const [fulfilledClicked, setFulfilledClicked] = useState(false);
@@ -167,7 +161,6 @@ export default function useVanOrder(order) {
 
   return {
     timeLeft,
-    // orderColor,
     orderHue,
     toggleExpand,
     orderTotals,
