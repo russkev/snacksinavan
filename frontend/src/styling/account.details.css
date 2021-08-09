@@ -1,8 +1,19 @@
+.my-info {
+  --max-width: 550px;
+}
+
 .my-info article {
   display: grid;
   grid-template-columns: max-content auto;
   width: 100%;
-  max-width: 550px;
+  max-width: var(--max-width)
+}
+
+.my-info h1 {
+  text-align: left;
+  max-width: var(--max-width);
+  width: 100vw;
+  padding-left: 1.5rem;
 }
 
 .my-info .container {
@@ -22,11 +33,33 @@
 }
 
 .my-info nav ul li {
-  padding: 1.5rem;
-  padding-right: 2.5rem;
+  /* padding: 1.5rem;
+  padding-right: 2.5rem; */
   width: 100%;
   box-sizing: border-box;
   color:var(--light-text);
+  cursor: pointer;
+  display: grid;
+  grid-template-columns: 5px 100px;
+  padding: 0;
+  /* height: 40px; */
+}
+
+.my-info nav ul li.selected>div {
+  background-color: var(--secondary);
+}
+
+.my-info nav ul li p {
+  padding: 1rem 1.5rem;
+}
+
+.my-info fieldset {
+  margin-bottom: 1.5rem;
+  margin-top: 1rem;
+}
+
+.my-info button {
+  width: 100%;
 }
 
 .my-info nav ul li.selected {
@@ -38,14 +71,19 @@
   background-color: var(--background-blue);
 }
 
+.my-info div.load-button {
+  width: 120px;
+}
 
 .my-info form {
-  width: 100%;
   padding: 1.5rem;
 }
 
 @media screen and (max-width: 550px) {
   #my-info-nav {
     display: none;
+  }
+  .my-info article {
+    grid-template-columns: auto;
   }
 }

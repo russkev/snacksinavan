@@ -5,6 +5,10 @@
   height: 100%;
 }
 
+.split h1 {
+  margin: 0;
+}
+
 .split section {
   overflow-y: auto;
   overflow-x:hidden

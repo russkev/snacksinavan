@@ -49,16 +49,15 @@ export default function useUserDetails() {
     SECURITY: 1,
   };
 
-  const [currentSection, setCurrentSection] = useState(infoSection.PERSONAL_DETAILS)
-  const [isMobile, setIsMobile] = useState(false)
-
+  const [currentSection, setCurrentSection] = useState(infoSection.PERSONAL_DETAILS);
+  const [isMobile, setIsMobile] = useState(false);
 
   const handleSectionChange = (event, section) => {
     if (event) {
-      event.preventDefault()
+      event.preventDefault();
     }
-    setCurrentSection(section)
-  }
+    setCurrentSection(section);
+  };
 
   useEffect(() => {
     function handleResize() {
@@ -68,8 +67,12 @@ export default function useUserDetails() {
       }
     }
     window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, [])
+    window.addEventListener("load", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   useEffect(() => {
     let mounted = true;
@@ -186,12 +189,12 @@ export default function useUserDetails() {
   };
 
   const onSelectPersonalDetails = (event) => {
-    handleSectionChange(event, infoSection.PERSONAL_DETAILS)
-  }
+    handleSectionChange(event, infoSection.PERSONAL_DETAILS);
+  };
 
   const onSelectSecurity = (event) => {
-    handleSectionChange(event, infoSection.SECURITY)
-  }
+    handleSectionChange(event, infoSection.SECURITY);
+  };
 
   return {
     loading,

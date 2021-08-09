@@ -112,7 +112,7 @@ div.please-login {
 }
 
 .cart-button svg {
-  fill: var(--background-white);
+  fill: var(--dark-text);
 }
 
 #confirm-cart {

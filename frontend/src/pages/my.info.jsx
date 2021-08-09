@@ -1,13 +1,10 @@
 import React from "react";
 
 import useUserDetails from "../hooks/useUserDetails";
-import { Link } from "react-router-dom";
 import { Snackbar, handleShowSnackbar } from "../components/snackbar";
-import useLogin from "../hooks/useLogin";
-import Loading from "../components/loading";
-import backButtonIcon from "../media/back_arrow.svg";
 import InputContainer from "../components/input.container";
 import "../styling/account.details.css";
+import LoadingButton from "../components/loading.button";
 
 export default function MyInfo() {
   const {
@@ -27,7 +24,6 @@ export default function MyInfo() {
     onSelectSecurity,
     isMobile,
   } = useUserDetails();
-  const { redirectFromPath } = useLogin();
 
   const handleUpdateAndAlert = (event) => {
     handleUpdateInfoSubmit(event).then(() => {
@@ -47,13 +43,15 @@ export default function MyInfo() {
                   onClick={onSelectPersonalDetails}
                   className={currentSection === infoSection.PERSONAL_DETAILS ? "selected" : ""}
                 >
-                  Account
+                  <div></div>
+                  <p>Account</p>
                 </li>
                 <li
                   onClick={onSelectSecurity}
                   className={currentSection === infoSection.SECURITY ? "selected" : ""}
                 >
-                  Security
+                  <div></div>
+                  <p>Security</p>
                 </li>
               </ul>
             </nav>
@@ -97,9 +95,9 @@ export default function MyInfo() {
               {currentSection === infoSection.SECURITY || isMobile ? (
                 <section>
                   <h3>Password</h3>
-                  <p>
+                  {/* <span>
                     Please leave password fields blank if you do not wish to change your password
-                  </p>
+                  </span> */}
                   <hr />
 
                   <InputContainer label="New password" value={newUserDetails.password}>
@@ -130,20 +128,17 @@ export default function MyInfo() {
                 <></>
               )}
               <section>
-                <button type="submit" className="primary soft-shadow">
-                  Update
-                </button>
+                <LoadingButton isLoading={loading}>
+                  <button type="submit" className="primary soft-shadow">
+                    Update
+                  </button>
+                </LoadingButton>
               </section>
             </form>
           </article>
         </div>
       </div>
-      <div>
-        <Link id="my-info-back" to={redirectFromPath} className="back-button">
-          <img src={backButtonIcon} alt="Back" />
-        </Link>
-      </div>
-      <Loading isLoading={loading} />
+      <div></div>
       <Snackbar message={message} isSuccess={isSuccess} />
     </>
   );

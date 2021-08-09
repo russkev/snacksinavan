@@ -86,6 +86,7 @@
   font-size: 1.2rem;
   margin-bottom: 2rem;
   cursor: pointer;
+  justify-content: space-evenly;
 }
 
 .orders .mobile span:first-child {
@@ -138,6 +139,12 @@ div.pages > * {
   background-color: var(--background-white);
 }
 
+#orders-break-points {
+  position: absolute;
+  z-index: 0;
+  height: 0;
+}
+
 @media screen and (max-width: 800px) {
   .orders > div {
     padding: 1rem;
@@ -155,4 +162,9 @@ div.pages > * {
     width: 8rem;
   }
 
+  #orders-break-points {
+    z-index: 1;
+    height: 10px;
+  }
 }
+

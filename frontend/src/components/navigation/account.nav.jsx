@@ -2,17 +2,17 @@ import React from "react"
 import MobileNavButton from "./mobile.nav.button"
 import Routes from "../../routes/routes";
 import OrdersIcon from "../../media/orders.icon";
-import AccountIcon from "../../media/account.icon";
 import useUser from "../../hooks/useUser";
+import SettingsIcon from "../../media/settings.icon";
 
 export default function AccountNav({toggle}) {
-  const { logoutUser } = useUser();
+  const { logoutUser, username } = useUser();
   function OrdersButton() {
     return (
       <MobileNavButton
         path={Routes.CUSTOMER_ORDERS.path}
         icon={OrdersIcon}
-        name="My Orders"
+        name="My orders"
         toggle={toggle}
       />
     );
@@ -30,8 +30,8 @@ export default function AccountNav({toggle}) {
     return (
       <MobileNavButton
         path={Routes.MY_INFO.path}
-        icon={AccountIcon}
-        name="My Details"
+        icon={SettingsIcon}
+        name="My details"
         toggle={toggle}
       />
     );
@@ -39,6 +39,7 @@ export default function AccountNav({toggle}) {
 
   return (
     <>
+      <p>{username}</p>
       <OrdersButton />
       <AccountButton />
       <button onClick={handleLogoutClicked} className="logout">

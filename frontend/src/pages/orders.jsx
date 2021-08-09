@@ -18,7 +18,9 @@ export default function Orders() {
     onPrevPage,
     pageInfo,
     orders,
+    breakLevel
   } = useOrders();
+
 
   if (ordersLoading) {
     return <LoadingLogo isLoading={true} />
@@ -27,9 +29,10 @@ export default function Orders() {
   } else {
     return (
       <div className="orders container">
+        <div id="orders-break-points" />
         <h1>My Orders</h1>
         <div>
-          {!window.matchMedia("screen and (max-width: 800px)").matches ? (
+          {!breakLevel ? (
             <table>
               <thead>
                 <tr>

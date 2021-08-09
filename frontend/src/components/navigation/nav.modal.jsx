@@ -5,13 +5,13 @@ import useUser from "../../hooks/useUser";
 import { Link } from "react-router-dom";
 import Routes from "../../routes/routes";
 import MenuBookIcon from "../../media/menu.book.icon";
-import SearchIcon from "../../media/search.icon";
 import ChevronLeftIcon from "../../media/chevron.left.icon";
 import MobileNavButton from "./mobile.nav.button";
 import AccountNav from "./account.nav";
+import LocationIcon from "../../media/location.icon";
 
 function NavModal({ toggleMobileNav, isShowing }) {
-  const { isAuthenticated } = useUser();
+  const { isAuthenticated, username } = useUser();
   const { toggleLoginIsOpen } = useLogin();
 
   function handleLoginClicked(event) {
@@ -26,7 +26,7 @@ function NavModal({ toggleMobileNav, isShowing }) {
     return (
       <MobileNavButton
         path={Routes.HOME.path}
-        icon={SearchIcon}
+        icon={LocationIcon}
         name="Find a van"
         toggle={toggleMobileNav}
       />
@@ -67,7 +67,7 @@ function NavModal({ toggleMobileNav, isShowing }) {
           </div>
           <div>
             <h4>Account</h4>
-            <hr />
+            <p>{username}</p>
             <AccountNav toggle={toggleMobileNav} />
           </div>
         </aside>

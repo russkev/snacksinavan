@@ -2,7 +2,7 @@ import React from "react"
 
 export default function PaginationBar({orders, pageInfo, onNextPage, onPrevPage}) {
   return (
-    <div className="pages">
+    <div className="orders pages">
       <p>{`${pageInfo.from} - ${pageInfo.to} of ${orders.length} orders`}</p>
       <div>
         <button

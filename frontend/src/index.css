@@ -7,7 +7,7 @@
   --background-darker: #e0e8ed;
 
   --dark-text: #3c4048;
-  --light-text: #696f7c;
+  --light-text: #8a91a1;
   --shadow: #00133933;
   --link-text: #435a8a;
   --focus: #296ea2;
@@ -26,9 +26,16 @@
   --history-strong: #8378E4;
   --my-van-strong: #5DB68B;
 
-  --primary: #FF740F;
+  /* --primary: #FF740F;
   --primary-dark: #e36308;
+  --background-primary: #fff0e7; */
+
+
+    --primary: #fda362;
+  --primary-dark: #d58b56;
   --background-primary: #fff0e7;
+
+  --secondary: #f8f0c6;
 
   --warning: #bf0101;  
   --background-warning: #fae8e8;
@@ -78,6 +85,7 @@ h1 {
   font-weight: 300;
   margin: 0;
   padding: 1.5rem 0;
+  margin-left: 1.5rem;
 }
 
 h3 {

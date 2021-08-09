@@ -9,7 +9,7 @@ export default function MobileNavButton({ path, icon, name, toggle }) {
   return (
     <NavLink
       onClick={toggleWithDelay}
-      className="nav-button mobile"
+      className="nav-button desktop"
       activeClassName="active"
       exact
       to={path}

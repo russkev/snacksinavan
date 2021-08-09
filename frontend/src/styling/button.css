@@ -79,7 +79,7 @@ button:focus, a.button:focus {
 
 button.primary, a.button.primary {
   background-color: var(--primary);
-  color: var(--background-white);
+  color: var(--dark-text);
 }
 
 /* button.primary:focus, a.button.primary:focus {

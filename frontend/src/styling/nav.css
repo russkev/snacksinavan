@@ -1,38 +1,72 @@
-nav.customer ul, .mobile-nav {
+nav.customer span.desktop, .mobile-nav {
   margin: 0;
   align-items: center;
   background-color: var(--background-white);
   margin-bottom: 2px;
-  height: calc(var(--header-height) - 2px);
-  outline: 2px solid var(--background-darker);
+  /* height: calc(var(--header-height) - 2px); */
+  /* outline: 2px solid var(--background-darker); */
+  height: var(--header-height);
 }
 
-nav.customer ul a.button {
+nav.customer span.desktop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 3rem;
+}
+
+nav.customer ul {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: min-content;
+  padding: 0;
+}
+
+nav.customer span.desktop a.button {
   width: 100px;
   height: 30px;
 }
 
-nav.customer ul a.button.primary {
+nav.customer span.desktop a.button.primary {
   margin-left: 1.5rem;
 }
 
-nav.customer a {
+/* nav.customer a {
   color: var(--dark-text);
   text-decoration: none;
-}
+} */
 
 nav.customer .login {
   cursor: pointer;
 }
 
 .mobile-nav {
-  font-size: 2rem;
+  /* font-size: 2rem; */
   /* padding-top: 1.5rem; */
   display: none;
   outline: none;
   justify-content: space-between;
   align-items: center;
   padding: 0 1rem;
+  box-sizing: border-box;
+}
+
+.mobile-nav a.nav-button, #account-popover a {
+  justify-content: flex-start;
+  padding-left: 3rem;
+  margin-bottom: 1rem;
+  font-size: 1.6rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#account-popover a.nav-button {
+  font-size: 1.4rem;
+}
+
+.mobile-nav a.nav-button svg, #account-popover a svg {
+  margin-right: 1.5rem;
 }
 
 .mobile-nav span {
@@ -54,7 +88,7 @@ nav.customer .login {
   left: -100%;
   z-index: 1050;
   width: 100%;
-  max-width: 400px;
+  max-width: 250px;
   height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
@@ -64,7 +98,7 @@ nav.customer .login {
   display: flex;
   transition: 0.4s ease-in-out;
   flex-direction: column;
-  padding: 3rem;
+  padding: 1.5rem;
   box-sizing: border-box;
 
   display: flex;
@@ -89,15 +123,21 @@ aside.expanded {
 .nav-modal h2 {
   margin-top: 4rem;
   margin-bottom: 1.5rem;
+  font-size: 2.4rem;
 }
 
 .nav-button {
-  color: var(--dark-text);
+  color: var(--light-text);
+  fill: var(--light-text);
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  background-color: var(--background-blue);
+  background-color: var(--background-white);
   border-radius: .5rem;
+}
+
+.nav-button svg {
+  fill: inherit;
 }
 
 .nav-button.mobile {
@@ -107,17 +147,50 @@ aside.expanded {
 }
 
 .nav-button.desktop {
-  padding: 0.3rem 0rem;
-  width: 17rem;
+  padding: 0.8rem 0rem;
+  width: 14rem;
   justify-content: center;
 }
 
-.nav-modal svg, nav ul svg {
-  width: 3rem;
-  height: 3rem;
+.account .nav-button {
+  color: var(--light-text);
+  fill: var(--light-text);
+}
+
+.account > .nav-button.desktop {
+  color: var(--dark-text);
+  fill: var(--dark-text);
+  background-color: var(--secondary);
+}
+
+.account .nav-button.menu {
+  padding: 0.8rem 1.5rem;
+  margin-bottom: 0.5rem; 
+}
+
+.account .nav-button.menu + button {
+  border-radius: 5px;
+  height: 40px;
+  margin: 0;
+}
+
+.nav-modal svg, .nav-button svg {
+  width: 2rem;
+  height: 2rem;
+}
+
+.nav-button:hover, .nav-button:focus {
+  background-color: var(--background-blue);
 }
 
 .nav-button.active {
+  color: var(--dark-text);
+  fill: var(--dark-text);
+}
+
+
+
+/* .nav-button.active {
   background-color: var(--light-text);
   color: var(--background-white);
 }
@@ -132,18 +205,35 @@ aside.expanded {
 
 .nav-button:hover, .nav-button:focus {
   background-color: var(--background-darker);
+} */
+
+nav.customer .sign-in a {
+  border-radius: 5px;
 }
 
 .nav-button svg{
-  margin-right: 1.5rem;
+  margin-right: 0.5rem;
 }
 
 .nav-modal .button {
   margin: 1.5rem 0;
 }
 
+.nav-modal p, #account-popover p {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
 button.logout {
   margin-top: 1rem;
+}
+
+.nav-modal button.logout, #account-popover button.logout {
+  border-radius: 5px;
+}
+
+#account-popover button.logout {
+  margin: 0;
 }
 
 #mobile-nav {
@@ -156,7 +246,7 @@ button.logout {
   transform: rotate(180deg)
 }
 
-li.account {
+span.account {
   position: relative
 }
 
@@ -167,16 +257,19 @@ li.account {
 #account-popover section {
   position: absolute;
   z-index: 4000;
-  width: 300px;
+  width: 200px;
   background-color: var(--background-white);
   right: 0;
-  padding: 1.5rem;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
+  border-radius: 5px;
+  box-shadow: 5px 5px 10px var(--shadow)
 }
 
 @media screen and (max-width: 800px) {
-  nav.customer ul {
+  nav.customer span.desktop {
     display: none;
   }
   .mobile-nav {
