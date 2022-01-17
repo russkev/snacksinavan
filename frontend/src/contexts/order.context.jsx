@@ -35,6 +35,21 @@ async function getOrders(socket, setOrders, setError, setLoading) {
   });
 }
 
+function handleSocketConnection(currentUsername, currentToken, setSocket) {
+  const identity = {
+    username: currentUsername,
+    token: `Bearer ${currentToken}`,
+  };
+  const newSocket = io(ENDPOINT, { auth: identity });
+  newSocket.on("connect", () => {
+    console.log(`New user socket connection: ${newSocket.id}`)
+  });
+  newSocket.on("disconnect", () => {
+    console.log(`User socket disconnected: ${newSocket.id}`)
+  })
+  setSocket(newSocket);
+}
+
 /**
  * Main order context provider.
  * Provides globally accessible and modifiable states for the useUser hook to interact with.
@@ -52,11 +67,7 @@ export const OrderContextProvider = ({ children }) => {
 
   const getSocketConnection = (currentUsername, currentToken, isReconnecting) => {
     if (currentUsername && currentToken && (!socket || isReconnecting)) {
-      const identity = {
-        username: currentUsername,
-        token: `Bearer ${currentToken}`,
-      };
-      setSocket(io(ENDPOINT, { auth: identity }));
+      handleSocketConnection(currentUsername, currentToken, setSocket);
     }
   };
 

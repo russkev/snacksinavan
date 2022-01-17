@@ -5,24 +5,28 @@ const path = require("path");
 const dotenv = require("dotenv");
 const socketIo = require("socket.io");
 const http = require("http");
-const vanRoute = require("./routes/api/van/van.route")
-const menuRouter = require("./routes/api/customer/menu.router")
-const accountRoute = require("./routes/api/customer/account.route")
-const globalsRoute = require("./routes/api/globals.route")
-require('./models');
+const vanRoute = require("./routes/api/van/van.route");
+const menuRouter = require("./routes/api/customer/menu.router");
+const accountRoute = require("./routes/api/customer/account.route");
+const globalsRoute = require("./routes/api/globals.route");
+require("./models");
 const logger = require("./middleware/logger");
-const authenticateSocket = require("./middleware/authenticate.socket")
-const origins = ["http://localhost:5000","https://snacks-in-a-van.netlify.app","http://localhost:3000"]
-
+const authenticateSocket = require("./middleware/authenticate.socket");
+const origins = [
+  "http://localhost:5000",
+  "https://snacks-in-a-van.netlify.app",
+  "http://localhost:3000",
+  "http://localhost:3006",
+];
 
 const app = express();
-dotenv.config()
+dotenv.config();
 // Allow access from the appropriate front end sites
 const corsOptions = {
   origin: origins,
-  optionsSuccessStatus: 200
+  optionsSuccessStatus: 200,
 };
-app.use(cors(corsOptions))
+app.use(cors(corsOptions));
 
 const PORT = process.env.PORT || 5000;
 // Use middleware
@@ -34,7 +38,7 @@ app.use(express.urlencoded({ extended: false }));
 
 // Set static folder
 // Allows all html / css files in frontend to be used as a path
-app.use(express.static(path.join(__dirname, 'client/build')));
+app.use(express.static(path.join(__dirname, "client/build")));
 
 // Routes (Note orders are handled by socket connection below)
 app.use("/api/menu", menuRouter);
@@ -46,24 +50,22 @@ app.use("/api/globals", globalsRoute);
 // Based on tutorial from:
 // https://www.valentinog.com/blog/socket-react/
 
-const server = http.createServer(app)
+const server = http.createServer(app);
 
 const io = socketIo(server, {
   cors: {
     origin: origins,
   },
 });
-io.use(authenticateSocket)
+io.use(authenticateSocket);
 require("./controllers/order.socket.controller.js")(io);
 
-
-
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname+'/client/build/index.html'));
+  res.sendFile(path.join(__dirname + "/client/build/index.html"));
 });
 
 server.listen(PORT, () => {
   console.log(`Snacks in a Van app is listening on port ${PORT}`);
-})
+});
 
-module.exports = app
+module.exports = app;

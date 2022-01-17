@@ -32,6 +32,21 @@ function getVanOrders(socket, setVanOrders) {
   socket.on("error", (error) => console.log(error));
 }
 
+function handleVanSocketConnection(vanName, vanToken, setVanSocket) {
+  const identity = {
+    vanName: vanName,
+    vanToken: `Bearer ${vanToken}`,
+  };
+  const newSocket = io(ENDPOINT, { auth: identity });
+  newSocket.on("connect", () => {
+    console.log(`New van socket connection: ${newSocket.id}.`);
+  });
+  newSocket.on("disconnect", () => {
+    console.log(`Van socket disconnected: ${newSocket.id}`);
+  });
+  setVanSocket(newSocket);
+}
+
 export const VanOrdersContextProvider = ({ children }) => {
   const [vanOrders, setVanOrders] = useState({ unfulfilled: [], uncompleted: [], completed: [] });
   const { vanName, vanToken } = useVanUser();
@@ -39,22 +54,14 @@ export const VanOrdersContextProvider = ({ children }) => {
 
   const connectVanSocket = (currentVanName, currentToken) => {
     if (currentVanName && currentToken) {
-      const identity = {
-        vanName: currentVanName,
-        vanToken: `Bearer ${currentToken}`,
-      };
-      setVanSocket(io(ENDPOINT, { auth: identity }));
+      handleVanSocketConnection(currentVanName, currentToken, setVanSocket)
     }
   };
 
   // Authenticate van with socket
   useEffect(() => {
     if (vanName && !vanSocket && vanToken) {
-      const identity = {
-        vanName: vanName,
-        vanToken: `Bearer ${vanToken}`,
-      };
-      setVanSocket(io(ENDPOINT, { auth: identity }));
+      handleVanSocketConnection(vanName, vanToken, setVanSocket);
     }
 
     return () => {

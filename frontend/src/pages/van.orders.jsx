@@ -10,8 +10,6 @@ export default function VanOrders() {
   const { vanOrders } = useVanOrders();
   const { pageInfo, pageOrders, onNextPage, onPrevPage } = usePagination(vanOrders.unfulfilled);
 
-  console.log(vanOrders)
-
   return (
     <div className="van-bg van-orders">
       <PaginationBar
