@@ -19,7 +19,7 @@ const orderListVan = (socket) => {
 
         socket.emit("getVanOrders", savedOrders);
       } catch (error) {
-        socket.emit("error", error.message);
+        socket.emit("error", `orderListVan error: ${error.message}`);
       }
     } else {
       socket.emit("error", "vanName not found in header");
@@ -40,7 +40,7 @@ const orderListCustomer = async (socket) => {
 
         socket.emit("orderListCustomer", orders);
       } catch (error) {
-        socket.emit("error", error.message);
+        socket.emit("error", `orderListCustomer error: ${error.message}`);
       }
     } else {
       socket.emit("error", "Username not found in header");
@@ -88,7 +88,7 @@ const createOrder = async (io, socket) => {
           van: van.vanName,
         });
       } catch (error) {
-        socket.emit("error", error.message);
+        socket.emit("error", `createOrder error: ${error.message}`);
         console.log(error);
         return;
       }
@@ -120,7 +120,7 @@ const orderModify = async (io, socket) => {
           van: savedVan.vanName,
         });
       } catch (error) {
-        socket.emit("error", error.message);
+        socket.emit("error", `orderModify error: ${error.message}`);
         console.log(error);
       }
     } else {
@@ -149,7 +149,7 @@ const fulfillOrder = async (io, socket) => {
           van: savedVan.vanName,
         });
       } catch (error) {
-        socket.emit("error", error.message);
+        socket.emit("error", `fulfillOrder error: ${error.message}`);
         console.log(error);
       }
     } else {
@@ -179,7 +179,7 @@ const completeOrder = async (io, socket) => {
           van: savedVan.vanName,
         });
       } catch (error) {
-        socket.emit("error", error.message);
+        socket.emit("error", `completeOrder error: ${error.message}`);
         console.log(error);
       }
     } else {
@@ -211,7 +211,7 @@ const rateOrder = async (io, socket) => {
           van: savedVan.vanName,
         });
       } catch (error) {
-        socket.emit("error", error.message);
+        socket.emit("error", `rateOrder error: ${error.message}`);
         console.log(error);
       }
     } else {
@@ -251,7 +251,7 @@ const cancelOrder = async (io, socket) => {
           van: savedVan.vanName,
         });
       } catch (error) {
-        socket.emit("error", error.message);
+        socket.emit("error", `cancelOrder error: ${error.message}`);
         console.log(error);
       }
     } else {
@@ -269,7 +269,7 @@ const getOrder = async (socket) => {
           .populate(["snacks", "van"]);
         socket.emit("order", savedOrder);
       } catch (error) {
-        socket.emit("error", error.message);
+        socket.emit("error", `getOrder error: ${error.message}`);
       }
     } else {
       socket.emit("error", "Missing orderId");
