@@ -12,25 +12,24 @@ function isScrolledIntoView(cardElement, containerElement) {
     const containerCentre = containerWidth / 2;
     const containerOffset = containerElement.offsetLeft;
     const rectangle = cardElement.getBoundingClientRect();
-    return rectangle.left < containerCentre + containerOffset; 
+    return rectangle.left < containerCentre + containerOffset;
   }
   return false;
 }
 
 function scrollToTarget(cardElement, containerElement, offset) {
   if (cardElement && containerElement) {
-
     const elementPosition = cardElement.offsetLeft;
     const containerOffset = containerElement.offsetLeft;
     containerElement.scrollLeft = elementPosition - containerOffset - offset;
   }
 }
 
-function getCategoryCards() {
-  const categoryCards = [
-    document.getElementById("Cappuccino"),
-    document.getElementById("Gingernut Biscuit"),
-  ];
+function getCategoryCards(firsts) {
+  const categoryCards = firsts.reduce(
+    (prev, curr) => prev.concat(document.getElementById(curr)),
+    []
+  );
   return categoryCards;
 }
 
@@ -64,7 +63,7 @@ function allowAnimationAfterPageLoad(selector) {
  * Main snacks hook. Provides data manipulation methods for the snacks menu
  */
 export default function useSnacks() {
-  const { snacks, loading, error } = useContext(SnackContext);
+  const { snacks, firsts, loading, error } = useContext(SnackContext);
   const [mouseIsOver, setMouseIsOver] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState(category.drinks);
   const [menuContainer, setMenuContainer] = useState(document.getElementById("menu-list-1"));
@@ -74,7 +73,7 @@ export default function useSnacks() {
     const selector = document.getElementById("category-selector");
 
     function handleSelectorMove() {
-      const categoryCards = getCategoryCards();
+      const categoryCards = getCategoryCards(firsts);
       const containerElement = document.getElementById("menu-list-1");
       if (containerElement && categoryCards[category.food] && selector) {
         if (
@@ -93,7 +92,6 @@ export default function useSnacks() {
       }
     }
 
-
     allowAnimationAfterPageLoad(selector);
     handleSelectorMove();
 
@@ -106,7 +104,7 @@ export default function useSnacks() {
         menuContainer.removeEventListener("scroll", handleSelectorMove);
       }
     };
-  }, [loading, selectedCategory, menuContainer]);
+  }, [loading, selectedCategory, menuContainer, firsts]);
 
   useEffect(() => {
     setMenuContainer(document.getElementById("menu-list-1"));
@@ -127,7 +125,7 @@ export default function useSnacks() {
   }, [loading, mouseIsOver, menuContainer]);
 
   function updateCategory(newCategory) {
-    const categoryCards = getCategoryCards();
+    const categoryCards = getCategoryCards(firsts);
     if (newCategory !== selectedCategory && categoryCards[category.drinks]) {
       if (newCategory === category.food) {
         scrollToTarget(categoryCards[category.food], menuContainer, 20);
@@ -155,5 +153,3 @@ export default function useSnacks() {
     setMouseIsOver,
   };
 }
-
-
