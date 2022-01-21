@@ -2,6 +2,7 @@
   margin: 0 auto;
   max-width: 1300px;
   height: calc(100vh - var(--header-height));
+  min-height: 600px;
 }
 
 
