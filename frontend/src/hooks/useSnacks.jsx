@@ -6,19 +6,24 @@ export const category = {
   food: 1,
 };
 
-function isScrolledIntoView(element) {
-  const container = document.getElementById("menu-list-1");
-  if (container) {
-    const containerWidth = container.clientWidth;
-    const rectangle = element.getBoundingClientRect();
-    return rectangle.left < containerWidth;
+function isScrolledIntoView(cardElement, containerElement) {
+  if (cardElement && containerElement) {
+    const containerWidth = containerElement.clientWidth;
+    const containerCentre = containerWidth / 2;
+    const containerOffset = containerElement.offsetLeft;
+    const rectangle = cardElement.getBoundingClientRect();
+    return rectangle.left < containerCentre + containerOffset; 
   }
   return false;
 }
 
-function scrollToTarget(element, offset) {
-  const elementPosition = element.offsetLeft;
-  document.getElementById("menu-list-1").scrollLeft = elementPosition;
+function scrollToTarget(cardElement, containerElement, offset) {
+  if (cardElement && containerElement) {
+
+    const elementPosition = cardElement.offsetLeft;
+    const containerOffset = containerElement.offsetLeft;
+    containerElement.scrollLeft = elementPosition - containerOffset - offset;
+  }
 }
 
 function getCategoryCards() {
@@ -43,6 +48,18 @@ function moveSelectorTo(selector, target) {
   selector.classList.add(`category-${target}`);
 }
 
+function allowAnimationAfterPageLoad(selector) {
+  if (selector) {
+    setTimeout(() => {
+      const titles = document.getElementsByClassName("category");
+      Array.from(titles).forEach((title) => {
+        title.style.animationDuration = "0.35s";
+      });
+      selector.style.animationDuration = "0.35s";
+    }, 400);
+  }
+}
+
 /**
  * Main snacks hook. Provides data manipulation methods for the snacks menu
  */
@@ -50,22 +67,24 @@ export default function useSnacks() {
   const { snacks, loading, error } = useContext(SnackContext);
   const [mouseIsOver, setMouseIsOver] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState(category.drinks);
+  const [menuContainer, setMenuContainer] = useState(document.getElementById("menu-list-1"));
 
   useEffect(() => {
-    const menuItems = document.getElementById("menu-list-1");
+    setMenuContainer(document.getElementById("menu-list-1"));
     const selector = document.getElementById("category-selector");
 
     function handleSelectorMove() {
       const categoryCards = getCategoryCards();
-      if (menuItems && categoryCards[category.food] && selector) {
+      const containerElement = document.getElementById("menu-list-1");
+      if (containerElement && categoryCards[category.food] && selector) {
         if (
-          isScrolledIntoView(categoryCards[category.food]) &&
+          isScrolledIntoView(categoryCards[category.food], containerElement) &&
           selectedCategory !== category.food
         ) {
           setSelectedCategory(category.food);
           moveSelectorTo(selector, category.food);
         } else if (
-          !isScrolledIntoView(categoryCards[category.food]) &&
+          !isScrolledIntoView(categoryCards[category.food], containerElement) &&
           selectedCategory !== category.drinks
         ) {
           setSelectedCategory(category.drinks);
@@ -74,53 +93,46 @@ export default function useSnacks() {
       }
     }
 
-    if (selector) {
-      setTimeout(() => {
-        const titles = document.getElementsByClassName("category");
-        Array.from(titles).forEach((title) => {
-          title.style.animationDuration = "0.35s";
-        });
-        selector.style.animationDuration = "0.35s";
-      }, 400);
-    }
+
+    allowAnimationAfterPageLoad(selector);
     handleSelectorMove();
 
-    if (menuItems) {
-      menuItems.addEventListener("scroll", handleSelectorMove);
+    if (menuContainer) {
+      menuContainer.addEventListener("scroll", handleSelectorMove);
     }
 
     return () => {
-      if (menuItems) {
-        menuItems.removeEventListener("scroll", handleSelectorMove);
+      if (menuContainer) {
+        menuContainer.removeEventListener("scroll", handleSelectorMove);
       }
     };
-  }, [loading, selectedCategory]);
+  }, [loading, selectedCategory, menuContainer]);
 
   useEffect(() => {
-    const menuItems = document.getElementById("menu-list-1");
+    setMenuContainer(document.getElementById("menu-list-1"));
 
     function handleWheel(event) {
       if (mouseIsOver) {
-        menuItems.scrollLeft += event.deltaY * 5;
+        menuContainer.scrollLeft += event.deltaY * 5;
       }
     }
 
-    if (menuItems) {
+    if (menuContainer) {
       window.addEventListener("wheel", handleWheel);
     }
 
     return () => {
       window.removeEventListener("wheel", handleWheel);
     };
-  }, [loading, mouseIsOver]);
+  }, [loading, mouseIsOver, menuContainer]);
 
   function updateCategory(newCategory) {
     const categoryCards = getCategoryCards();
     if (newCategory !== selectedCategory && categoryCards[category.drinks]) {
       if (newCategory === category.food) {
-        scrollToTarget(categoryCards[category.food], 50);
+        scrollToTarget(categoryCards[category.food], menuContainer, 20);
       } else {
-        scrollToTarget(categoryCards[category.drinks], 50);
+        scrollToTarget(categoryCards[category.drinks], menuContainer, 20);
       }
     }
   }
@@ -143,3 +155,5 @@ export default function useSnacks() {
     setMouseIsOver,
   };
 }
+
+
