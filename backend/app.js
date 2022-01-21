@@ -15,6 +15,7 @@ const authenticateSocket = require("./middleware/authenticate.socket");
 const origins = [
   "http://localhost:5000",
   "https://snacks-in-a-van.netlify.app",
+  /https:\/\/.*snacks-in-a-van\.netlify\.app/,
   "http://localhost:3000",
   "http://localhost:3006",
 ];
