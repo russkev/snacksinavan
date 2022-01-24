@@ -29,6 +29,8 @@ async function postUpdateDetails(username, firstName, lastName, password) {
   }
 }
 
+
+
 export default function useUserDetails() {
   const { username } = useUser();
   const [loading, setLoading] = useState(true);
@@ -59,20 +61,22 @@ export default function useUserDetails() {
     setCurrentSection(section);
   };
 
-  useEffect(() => {
-    function handleResize() {
-      const myInfoNavElement = document.getElementById("my-info-nav");
-      if (myInfoNavElement) {
-        setIsMobile(getComputedStyle(myInfoNavElement).display === "none");
-      }
+  function handleResize() {
+    const myInfoNavElement = document.getElementById("my-info-nav");
+    if (myInfoNavElement) {
+      setIsMobile(getComputedStyle(myInfoNavElement).display === "none");
     }
+  }
+
+  useEffect(() => {
+    handleResize()
     window.addEventListener("resize", handleResize);
     window.addEventListener("load", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("load", handleResize);
     };
-  }, []);
+  }, [loading]);
 
   useEffect(() => {
     let mounted = true;
