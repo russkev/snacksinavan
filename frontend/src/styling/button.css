@@ -149,7 +149,7 @@ div.quantity > span {
 }
 
 button.disabled, a.disabled {
-  /* opacity: 30%; */
+  opacity: 0.3;
   cursor: unset;
 }
 
