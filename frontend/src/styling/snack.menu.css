@@ -93,8 +93,8 @@ nav.categories h2.inactive {
 .menu-item-card {
   background-color: var(--background-blue);
   margin: 1.5rem;
-  width: 180px;
-  height: 380px;
+  width: 200px;
+  height: 400px;
   display: inline-block;
   display: inline-flex;
   flex-direction: column;
@@ -264,7 +264,8 @@ section.chosen-van > div {
 
 }
 
-@media screen and (max-width: 650px ) {
+@media  screen and (max-width: 650px ), 
+        screen and (max-height: 700px) {
   .menu-cart h1 {
     font-size: 3rem;
     padding: 0 1rem;
