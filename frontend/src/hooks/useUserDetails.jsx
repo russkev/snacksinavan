@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import API from "../API";
 import useUser from "./useUser";
 import { isValidPassword } from "./useSignup";
+import { useHistory } from "react-router-dom";
 
 async function getInfo(username) {
   try {
@@ -29,8 +30,6 @@ async function postUpdateDetails(username, firstName, lastName, password) {
   }
 }
 
-
-
 export default function useUserDetails() {
   const { username } = useUser();
   const [loading, setLoading] = useState(true);
@@ -45,6 +44,7 @@ export default function useUserDetails() {
     password: "",
     passwordConfirm: "",
   });
+  const history = useHistory()
 
   const infoSection = {
     PERSONAL_DETAILS: 0,
@@ -69,14 +69,14 @@ export default function useUserDetails() {
   }
 
   useEffect(() => {
-    handleResize()
+    handleResize();
     window.addEventListener("resize", handleResize);
     window.addEventListener("load", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
       window.removeEventListener("load", handleResize);
     };
-  }, [loading]);
+  }, [loading, history.location.pathname]);
 
   useEffect(() => {
     let mounted = true;
@@ -218,5 +218,6 @@ export default function useUserDetails() {
     onSelectPersonalDetails,
     onSelectSecurity,
     isMobile,
+    handleResize,
   };
 }

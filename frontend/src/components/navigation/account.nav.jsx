@@ -7,6 +7,7 @@ import SettingsIcon from "../../media/settings.icon";
 
 export default function AccountNav({toggle}) {
   const { logoutUser } = useUser();
+
   function OrdersButton() {
     return (
       <MobileNavButton
@@ -36,6 +37,7 @@ export default function AccountNav({toggle}) {
       />
     );
   }
+
 
   return (
     <>
