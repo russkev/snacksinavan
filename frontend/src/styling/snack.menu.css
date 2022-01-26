@@ -173,6 +173,7 @@ nav.categories h2.inactive {
 }
 
 .menu-item-modal img{
+  width: 180px;
   margin: 30px 0;
 }
 
@@ -264,8 +265,37 @@ section.chosen-van > div {
 
 }
 
+@media screen and (max-height: 575px) {
+  .menu-item-modal img {
+    width: 100px;
+  }
+
+  .menu-item-modal p {
+    max-width: 200px;
+  }
+
+  .menu-item-modal > section {
+    padding: 1rem;
+    width: 22rem;
+  }
+
+  .menu-item-modal h3 {
+    margin-top: 0px;
+  }
+
+  div.quantity > span {
+    width: 4rem;
+    height: 4rem;
+  }
+
+  div.quantity > button {
+    width: 2rem;
+    height: 2rem;
+  }
+}
+
 @media  screen and (max-width: 650px ), 
-        screen and (max-height: 70git br0px) {
+        screen and (max-height: 700px) {
   .menu-cart h1 {
     font-size: 3rem;
     padding: 0 1rem;

@@ -118,10 +118,11 @@ export default function useCart() {
   function updateCart(snack, count) {
     const snackId = snack["_id"];
     if (cart[snackId] && cart[snackId] + count >= 0) {
-      cart[snackId] = cart[snackId] + count;
+      const newCount = cart[snackId] + count;
+      setCart({...cart, [snackId]: newCount})
       setTotal(total + snack.price * count);
     } else if (count >= 0) {
-      cart[snackId] = count;
+      setCart({ ...cart, [snackId]: count });
       setTotal(total + snack.price * count);
     }
   }

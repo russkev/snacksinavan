@@ -2,10 +2,12 @@
   margin: 0 auto;
   max-width: 1300px;
   height: calc(100vh - var(--header-height));
-  min-height: 600px;
+  min-height: calc(520px - var(--header-height));
 }
 
-
+.no-overflow {
+  overflow: hidden;
+}
 
 .fill{
   position: fixed;
@@ -16,7 +18,7 @@
   top: 0;
   left: 0;
   z-index: 2000;
-
+  overflow: auto;
 }
 
 .loading{  

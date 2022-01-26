@@ -73,7 +73,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 1.4em;
-  color: var(--dark-text)
+  color: var(--dark-text);
 }
 
 code {
