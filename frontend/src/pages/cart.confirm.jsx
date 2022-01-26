@@ -142,7 +142,7 @@ export default function ConfirmCart({ isShowing, displayMenu }) {
                 </LoadingButton>
               </div>
             )}
-            {/* <div className="blank-bottom" /> */}
+            <div className="blank-bottom" />
           </section>
         </div>
         <Snackbar message={snackbarMessage()} />
