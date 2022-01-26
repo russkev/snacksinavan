@@ -46,7 +46,7 @@
 .cart {
   display: grid;
   height: 100%;
-  grid-template-rows: max-content auto max-content;
+  grid-template-rows: max-content minmax(auto, 700px) minmax(max-content, auto);
   box-sizing: border-box;
 }
 

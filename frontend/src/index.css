@@ -74,6 +74,17 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-size: 1.4em;
   color: var(--dark-text);
+  height: 100%;
+  height: -moz-available;
+  height: -webkit-fill-available;
+  height: fill-available;
+  height: 100vh;
+}
+
+#root {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 code {
