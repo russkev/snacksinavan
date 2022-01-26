@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import API from "../API";
 import useUser from "./useUser";
 import { isValidPassword } from "./useSignup";
+import { useHistory } from "react-router-dom";
 
 async function getInfo(username) {
   try {
@@ -43,6 +44,7 @@ export default function useUserDetails() {
     password: "",
     passwordConfirm: "",
   });
+  const history = useHistory()
 
   const infoSection = {
     PERSONAL_DETAILS: 0,
@@ -59,20 +61,22 @@ export default function useUserDetails() {
     setCurrentSection(section);
   };
 
-  useEffect(() => {
-    function handleResize() {
-      const myInfoNavElement = document.getElementById("my-info-nav");
-      if (myInfoNavElement) {
-        setIsMobile(getComputedStyle(myInfoNavElement).display === "none");
-      }
+  function handleResize() {
+    const myInfoNavElement = document.getElementById("my-info-nav");
+    if (myInfoNavElement) {
+      setIsMobile(getComputedStyle(myInfoNavElement).display === "none");
     }
+  }
+
+  useEffect(() => {
+    handleResize();
     window.addEventListener("resize", handleResize);
     window.addEventListener("load", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("load", handleResize);
     };
-  }, []);
+  }, [loading, history.location.pathname]);
 
   useEffect(() => {
     let mounted = true;
@@ -214,5 +218,6 @@ export default function useUserDetails() {
     onSelectPersonalDetails,
     onSelectSecurity,
     isMobile,
+    handleResize,
   };
 }

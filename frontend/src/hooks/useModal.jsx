@@ -6,23 +6,48 @@ export function toggleMobileNav(setIsShowing) {
   if (modalElement) {
     if (modalElement.classList.contains("expanded")) {
       modalElement.classList.remove("expanded");
-      setIsShowing(false)
+      setIsShowing(false);
     } else {
       modalElement.classList.add("expanded");
-      setIsShowing(true)
+      setIsShowing(true);
     }
   }
 }
 
+export function disableContainerOverflow() {
+  const containers = document.getElementsByClassName("container");
+  const body = document.getElementById("body");
+  Array.prototype.forEach.call(containers, function (container) {
+    container.classList.add("no-overflow");
+  });
+  if(body) {
+    body.classList.add("no-overflow");
+  }
+}
+
+export function enableContainerOverflow() {
+  const containers = document.getElementsByClassName("container");
+  const body = document.getElementById("body");
+  Array.prototype.forEach.call(containers, function (container) {
+    container.classList.remove("no-overflow");
+  });
+  if(body) {
+    body.classList.remove("no-overflow");
+  }
+}
 
 function useModal() {
   const [isShowing, setIsShowing] = useState(false);
 
   function toggle() {
-    setIsShowing(!isShowing);
+    const newIsShowing = !isShowing;
+    if (newIsShowing) {
+      disableContainerOverflow()
+    } else {
+      enableContainerOverflow()
+    }
+    setIsShowing(newIsShowing);
   }
-
-
 
   // Return the isShowing state and function to toggle if it is showing
   return {

@@ -1,5 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 import { SnackContext } from "../contexts/snack.context";
+import { enableContainerOverflow, disableContainerOverflow } from "./useModal";
 
 export const category = {
   drinks: 0,
@@ -117,6 +118,12 @@ export default function useSnacks() {
 
     if (menuContainer) {
       window.addEventListener("wheel", handleWheel);
+    }
+
+    if (mouseIsOver) {
+      disableContainerOverflow();
+    } else {
+      enableContainerOverflow();
     }
 
     return () => {

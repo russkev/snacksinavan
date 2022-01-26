@@ -6,7 +6,8 @@ import useUser from "../../hooks/useUser";
 import SettingsIcon from "../../media/settings.icon";
 
 export default function AccountNav({toggle}) {
-  const { logoutUser, username } = useUser();
+  const { logoutUser } = useUser();
+
   function OrdersButton() {
     return (
       <MobileNavButton
@@ -37,9 +38,9 @@ export default function AccountNav({toggle}) {
     );
   }
 
+
   return (
     <>
-      <p>{username}</p>
       <OrdersButton />
       <AccountButton />
       <button onClick={handleLogoutClicked} className="logout">

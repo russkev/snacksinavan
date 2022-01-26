@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import useSnacks, { category } from "../hooks/useSnacks";
 import MenuItemCard from "../components/menu.item.card";
 import useCart from "../hooks/useCart";
@@ -7,10 +7,14 @@ import { Link } from "react-router-dom";
 import LocationIcon from "../media/location.icon";
 import CartIcon from "../media/cart.icon";
 import LoadingLogo from "../components/loading.logo";
+import MenuItemModal from "../components/menu.item.modal";
+import useModal from "../hooks/useModal";
 
-export default function SnacksMenu({displayCart}) {
+export default function SnacksMenu({ displayCart }) {
   const { loading, snacks, error, updateCategory, setMouseIsOver } = useSnacks();
   const { van, cartSize } = useCart();
+  const [snack, setSnack] = useState({});
+  const { isShowing, toggle } = useModal();
 
   return (
     <>
@@ -41,7 +45,14 @@ export default function SnacksMenu({displayCart}) {
           onMouseLeave={() => setMouseIsOver(false)}
         >
           {snacks.length > 0 ? (
-            snacks.map((menuItem) => <MenuItemCard key={menuItem.name} snack={menuItem} />)
+            snacks.map((menuItem) => (
+              <MenuItemCard
+                key={menuItem.name}
+                snack={menuItem}
+                setSnack={setSnack}
+                toggleModal={toggle}
+              />
+            ))
           ) : (
             <></>
           )}
@@ -53,7 +64,6 @@ export default function SnacksMenu({displayCart}) {
                 <EditIcon />
               </svg>
             </Link>
-            {/* <h4>Your van:</h4> */}
             <section className="chosen-van">
               <svg viewBox="0 0 24 24">
                 <LocationIcon />
@@ -83,6 +93,7 @@ export default function SnacksMenu({displayCart}) {
         </div>
         <div className="blank-bottom" />
       </div>
+      <MenuItemModal toggle={toggle} isShowing={isShowing} snack={snack} />
     </>
   );
 }

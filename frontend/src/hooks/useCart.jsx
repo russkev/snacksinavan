@@ -3,7 +3,6 @@ import { CartContext } from "../contexts/cart.context.jsx";
 import useOrders from "../hooks/useOrders";
 import { VanContext } from "../contexts/van.context.jsx";
 import { useHistory } from "react-router-dom";
-import Routes from "../routes/routes";
 import useLogin from "./useLogin";
 import useUser from "./useUser";
 import useVans from "./useVans";
@@ -31,12 +30,6 @@ async function postOrder(socket, cart, van, onOrderSuccess, onOrderFail) {
 }
 
 async function postOrderUpdate(socket, cart, orderId, onOrderSuccess, onOrderFail) {
-  // var sendArr = [];
-  // for (var i in cart) {
-  //   for (var j = 0; j < cart[i]; j++) {
-  //     sendArr.push(i);
-  //   }
-  // }
   const toSend = {
     orderId: orderId,
     snacks: cart,
@@ -115,7 +108,6 @@ export default function useCart() {
     try {
       setVanChoiceLoading(true);
       setVan(vanFromName(vanName));
-      history.push(Routes.SNACKS_MENU.path);
     } catch (error) {
       console.log(error);
     } finally {
@@ -126,10 +118,11 @@ export default function useCart() {
   function updateCart(snack, count) {
     const snackId = snack["_id"];
     if (cart[snackId] && cart[snackId] + count >= 0) {
-      cart[snackId] = cart[snackId] + count;
+      const newCount = cart[snackId] + count;
+      setCart({...cart, [snackId]: newCount})
       setTotal(total + snack.price * count);
     } else if (count >= 0) {
-      cart[snackId] = count;
+      setCart({ ...cart, [snackId]: count });
       setTotal(total + snack.price * count);
     }
   }
