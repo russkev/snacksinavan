@@ -49,6 +49,8 @@
 .order.container {
   max-width: 800px;
   padding: 1.5rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .order article {
@@ -80,7 +82,7 @@
   margin: 0;
 }
 
-.order .invoice > div, .order-totals > div {
+.order .invoice-main > div, .order-totals > div {
   display: flex;
   justify-content: space-between;
 }
@@ -139,10 +141,14 @@ span.star.filled {
   fill: var(--primary)
 }
 
+.invoice-main {
+  padding: 1rem;
+}
 
 .order-totals {
   background: var(--background-blue);
   margin-top: 3rem;
+  padding: 1rem;
 }
 
 .order strong {
@@ -174,6 +180,10 @@ span.star.filled {
   margin: 1.5rem 0;
 }
 
+svg.back-button {
+  width: 6rem;
+  height: 6rem;
+}
 
 @media screen and (max-width: 700px) {
   .order article {

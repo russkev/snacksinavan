@@ -15,8 +15,14 @@
 }
 
 .orders thead {
-  background-color: var(--background-blue);
+  /* background-color: var(--background-blue); */
   text-align: left;
+
+}
+
+.orders tbody tr {
+  background-color: var(--background-blue-transparent);
+  border-bottom: 15px solid var(--background-white);
 }
 
 .orders img, .orders img+span {
@@ -112,7 +118,7 @@
 
 div.pages {
   display: flex;
-  background-color: var(--background-blue);
+  background-color: var(--background-white);
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -127,7 +133,7 @@ div.pages > * {
 .pages button {
   width: 3rem;
   height: 3rem;
-  background: var(--background-white);
+  background: var(--background-blue);
   margin: 3px;
 }
 

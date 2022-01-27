@@ -86,6 +86,9 @@ export const OrderContextProvider = ({ children }) => {
   // Update the list of orders when the user changes, when the isAuthenticated value changes
   // and when the currentOrder value changes.
   useEffect(() => {
+    if (!orders){
+      setLoading(true)
+    }
     let mounted = true;
 
     if (mounted) {
@@ -101,11 +104,12 @@ export const OrderContextProvider = ({ children }) => {
         } catch (error) {
           console.log(error);
           setError(error);
+          setLoading(false)
         }
       }
     }
     return () => {mounted=false;}
-  }, [socket, isAuthenticated, username]);
+  }, [socket, isAuthenticated, username, orders]);
 
   const value = {
     loading,

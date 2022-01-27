@@ -3,17 +3,24 @@ import { timeLeft } from "./order.time.left";
 import useGlobals from "../hooks/useGlobals";
 
 function ProgressBar({order, secsLeft, globals}) {
+
+  function progressWidth() {
+    const discountTimeSeconds = globals.discountTime * 60;
+    const discountTimeLeft = globals.discountTime - secsLeft;
+    if (secsLeft > discountTimeSeconds) {
+      return "0%"
+    } else {
+      return ((discountTimeLeft / discountTimeSeconds) * 100).toString() + "%"
+    }
+  }
+
   if (!order.isCompleted && !order.isFulfilled && !order.isCancelled) {
     // Order still in progress
     return (
       <div className="progress">
         <div
           style={{
-            width:
-              (
-                ((globals.discountTime * 60 - secsLeft) / (globals.discountTime * 60)) *
-                100
-              ).toString() + "%",
+            width: progressWidth()
           }}
         />
       </div>
