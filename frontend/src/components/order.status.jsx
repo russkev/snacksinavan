@@ -2,15 +2,17 @@ import React from "react";
 import { timeLeft } from "./order.time.left";
 import useGlobals from "../hooks/useGlobals";
 
-function ProgressBar({order, secsLeft, globals}) {
+function ProgressBar({order, remainingTime, globals}) {
 
   function progressWidth() {
-    const discountTimeSeconds = globals.discountTime * 60;
-    const discountTimeLeft = globals.discountTime - secsLeft;
-    if (secsLeft > discountTimeSeconds) {
+    const totalTime = globals.discountTime * 60;
+    const usedTime = Math.max(totalTime - remainingTime, 0);
+    const usedRatio = usedTime / totalTime;
+
+    if (remainingTime > totalTime) {
       return "0%"
     } else {
-      return ((discountTimeLeft / discountTimeSeconds) * 100).toString() + "%"
+      return (usedRatio * 100).toString() + "%"
     }
   }
 
@@ -76,14 +78,13 @@ export default function OrderStatus({ order, orderStatus }) {
     secsLeft = 0;
   } else {
     secsLeft = currentTimeLeft.minutes * 60 + currentTimeLeft.seconds;
-    readyIn = (currentTimeLeft.minutes + 1).toString() + " Minutes!";
+    readyIn = (Math.min(currentTimeLeft.minutes + 1, globals.discountTime)).toString() + " Minutes!";
   }
-
   if (orderStatus && orderStatus.comment) {
     return (
       <>
         <OrderStatusText order={order} orderStatus={orderStatus} readyIn={readyIn} />
-        <ProgressBar order={order} secsLeft={secsLeft} globals={globals} />
+        <ProgressBar order={order} remainingTime={secsLeft} globals={globals} />
       </>
     );
   } else {

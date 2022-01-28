@@ -7,6 +7,7 @@ import useLogin from "./useLogin";
 import useUser from "./useUser";
 import useVans from "./useVans";
 import { handleShowSnackbar } from "../components/snackbar.jsx";
+import { OrderContext } from "../contexts/order.context.jsx";
 
 async function postOrder(socket, cart, van, onOrderSuccess, onOrderFail) {
   const toSend = {
@@ -62,6 +63,10 @@ export default function useCart() {
     submitLoading,
     setSubmitLoading,
   } = useContext(CartContext);
+
+  const {
+    setLoading,
+  } = useContext(OrderContext)
   const { setCurrentOrderId, socket } = useOrders();
   const { van, setVan } = useContext(VanContext);
   const [vanChoiceLoading, setVanChoiceLoading] = useState(false);
@@ -73,11 +78,13 @@ export default function useCart() {
   const [isShowing, setIsShowing] = useState(false)
 
   function onOrderSuccess(orderId) {
+    setLoading(true)
     setCurrentOrderId(orderId);
     setCart({});
     setTotal(0);
     setOrderId("");
     setOrder();
+
     setTimeout(() => {
       setSubmitLoading(false);
       history.push(`/customer/orders/${orderId}`);

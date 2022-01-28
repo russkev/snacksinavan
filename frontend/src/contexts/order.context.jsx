@@ -113,6 +113,7 @@ export const OrderContextProvider = ({ children }) => {
 
   const value = {
     loading,
+    setLoading,
     error,
     orders,
     currentOrderId,
