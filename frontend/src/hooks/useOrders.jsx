@@ -9,7 +9,6 @@ export default function useOrders() {
     currentOrderId,
     setCurrentOrderId,
     loading,
-    setLoading,
     error,
     socket,
     getSocketConnection,
@@ -38,7 +37,6 @@ export default function useOrders() {
     function handleOrderResize() {
       const ordersNavElement = document.getElementById("orders-break-points");
       if (ordersNavElement) {
-        // console.log(getComputedStyle(ordersNavElement).zIndex);
         setBreakLevel(parseInt(getComputedStyle(ordersNavElement).zIndex));
       }
     }
