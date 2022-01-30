@@ -73,7 +73,7 @@ export default function useSignup() {
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false)
   const { handleAuthenticate } = useUser();
-  const { getSocketConnection } = useOrders();
+  const { initSocket } = useOrders();
   
 
   const handleSignupSubmit = async (event, argDetails) => {
@@ -104,7 +104,7 @@ export default function useSignup() {
       );
       const result = await postLogin(detailsToSubmit.username, detailsToSubmit.password);
       handleAuthenticate(result);
-      getSocketConnection(result.username, result.token, true)
+      initSocket(result.username, result.token, true)
       setPage(1)
       setUserDetails( { 
         firstName: "",

@@ -41,14 +41,22 @@ function handleSocketConnection(currentUsername, currentToken, setSocket) {
     token: `Bearer ${currentToken}`,
   };
   const newSocket = io(ENDPOINT, { auth: identity });
+  let socketId = 0;
   newSocket.on("connect", () => {
-    console.log(`New user socket connection: ${newSocket.id}`)
+    socketId = newSocket.id
+    console.log(`New user socket connection: ${socketId}`);
   });
   newSocket.on("disconnect", () => {
-    console.log(`User socket disconnected: ${newSocket.id}`)
+    console.log(`User socket disconnected: ${socketId}`);
   })
   setSocket(newSocket);
 }
+
+const getSocketConnection = (currentUsername, currentToken, isReconnecting, socket, setSocket) => {
+  if (currentUsername && currentToken && (!socket || isReconnecting)) {
+    handleSocketConnection(currentUsername, currentToken, setSocket);
+  }
+};
 
 /**
  * Main order context provider.
@@ -62,59 +70,57 @@ export const OrderContextProvider = ({ children }) => {
   const [currentOrderId, setCurrentOrderId] = useState("");
   const { username, token, isAuthenticated } = useUser();
   const [loading, setLoading] = useState(true);
+  const [newOrderLoading, setNewOrderLoading] = useState(true);
   const [error, setError] = useState("");
   const [socket, setSocket] = useState(null);
 
-  const getSocketConnection = (currentUsername, currentToken, isReconnecting) => {
-    if (currentUsername && currentToken && (!socket || isReconnecting)) {
-      handleSocketConnection(currentUsername, currentToken, setSocket);
-    }
-  };
 
   useEffect(() => {
-    getSocketConnection(username, token, false);
+    getSocketConnection(username, token, false, socket, setSocket);
 
     return () => {
       if (socket) {
         socket.disconnect();
       }
     };
-    // Don't need to include getSocketConnection
-    //eslint-disable-next-line
   }, [username, socket, token]);
 
-  // Update the list of orders when the user changes, when the isAuthenticated value changes
-  // and when the currentOrder value changes.
+  function initSocket(username, token, isReconnecting) {
+    getSocketConnection(username, token, isReconnecting, socket, setSocket)
+  }
+
+  // // Update the list of orders when the user changes, when the isAuthenticated value changes
+  // // and when the currentOrder value changes.
   useEffect(() => {
-    let mounted = true;
+    if (socket && isAuthenticated && username) {
+      try {
 
-    if (mounted) {
-
-      if (socket && isAuthenticated && username) {
-        try {
-          getOrders(socket, setOrders, setError, setLoading);
-          socket.on("ordersChanged", (changeInfo) => {
-            if (changeInfo.customer === username) {
-              getOrders(socket, setOrders, setError, setLoading);
-            }
-          });
-        } catch (error) {
-          console.log(error);
-          setError(error);
-        }
+        getOrders(socket, setOrders, setError, setLoading);
+        socket.on("ordersChanged", (changeInfo) => {
+          if (changeInfo.customer === username) {
+            // setLoading(true)
+            getOrders(socket, setOrders, setError, setLoading);
+          }
+        })
+      } catch (error) {
+        console.log(error);
+        setError(error);
+        setLoading(false);
       }
     }
-    return () => {mounted=false;}
-  }, [socket, isAuthenticated, username]);
+  }, [socket, username, isAuthenticated]);
 
   const value = {
     loading,
+    setLoading,
+    newOrderLoading,
+    setNewOrderLoading,
     error,
     orders,
     currentOrderId,
     setCurrentOrderId,
     socket,
-    getSocketConnection,
+    initSocket
   };
 
   return <OrderContext.Provider value={value}>{children}</OrderContext.Provider>;

@@ -8,7 +8,7 @@ import "../styling/van.orders.css";
 // Displays all the active orders for the logged in van
 export default function VanOrders() {
   const { vanOrders } = useVanOrders();
-  const { pageInfo, pageOrders, onNextPage, onPrevPage } = usePagination(vanOrders.unfulfilled);
+  const { pageInfo, onNextPage, onPrevPage } = usePagination(vanOrders.unfulfilled);
 
   return (
     <div className="van-bg van-orders">
@@ -18,7 +18,7 @@ export default function VanOrders() {
         onNextPage={onNextPage}
         onPrevPage={onPrevPage}
       />
-      {pageOrders.map((vanOrder) => {
+      {pageInfo.orders.map((vanOrder) => {
         return <VanOrder key={vanOrder._id} order={vanOrder} />;
       })}
       <PaginationBar

@@ -7,7 +7,7 @@ import PaginationBar from "../components/pagination.bar";
 // Displays all the completed orders (order history) for the logged in van
 export default function VanOrderHistory() {
   const { vanOrders } = useVanOrders();
-  const { pageInfo, pageOrders, onNextPage, onPrevPage } = usePagination(vanOrders.completed);
+  const { pageInfo, onNextPage, onPrevPage } = usePagination(vanOrders.completed);
 
   return (
     <div className="van-bg van-completed">
@@ -17,7 +17,7 @@ export default function VanOrderHistory() {
         onNextPage={onNextPage}
         onPrevPage={onPrevPage}
       />
-      {pageOrders.map((vanOrder) => {
+      {pageInfo.orders.map((vanOrder) => {
         return <CompletedOrder key={vanOrder._id} order={vanOrder} />;
       })}
       <PaginationBar

@@ -52,7 +52,7 @@ export default function ConfirmCart({ isShowing, displayMenu }) {
       cantUpdate = true;
     }
   }
-  if (loading) {
+  if (loading || submitLoading) {
     return <LoadingLogo isLoading={true} />;
   } else if (error) {
     return <LoadingLogo isLoading={loading} errorMessage={error} />;

@@ -36,18 +36,21 @@ function OrderDiscounts({ orderTotals }) {
 export default function OrderInvoice({ order, orderTotals }) {
   return (
     <div className="invoice">
-      <h2>Invoice</h2>
-      {order.isCancelled ? <h4>Cancelled order</h4> : <></>}
-      {order.snacks.map((snackGroup) => {
-        const snackItem = snackGroup.snack
-        return (
-        <div key={snackGroup._id}>
-          <span>
-            <strong>{snackGroup.quantity}x</strong> {snackItem.name}
-          </span>
-          <span>{`$${(snackGroup.quantity * snackItem.price).toFixed(2)}`}</span>
-        </div>
-      )})}
+      <div className="invoice-main">
+        <h2>Invoice</h2>
+        {order.isCancelled ? <h4>Cancelled order</h4> : <></>}
+        {order.snacks.map((snackGroup) => {
+          const snackItem = snackGroup.snack;
+          return (
+            <div key={snackGroup._id}>
+              <span>
+                <strong>{snackGroup.quantity}x</strong> {snackItem.name}
+              </span>
+              <span>{`$${(snackGroup.quantity * snackItem.price).toFixed(2)}`}</span>
+            </div>
+          );
+        })}
+      </div>
       {orderTotals ? (
         <summary className="order-totals">
           <div>

@@ -2,18 +2,27 @@ import React from "react";
 import { timeLeft } from "./order.time.left";
 import useGlobals from "../hooks/useGlobals";
 
-function ProgressBar({order, secsLeft, globals}) {
+function ProgressBar({order, remainingTime, globals}) {
+
+  function progressWidth() {
+    const totalTime = globals.discountTime * 60;
+    const usedTime = Math.max(totalTime - remainingTime, 0);
+    const usedRatio = usedTime / totalTime;
+
+    if (remainingTime > totalTime) {
+      return "0%"
+    } else {
+      return (usedRatio * 100).toString() + "%"
+    }
+  }
+
   if (!order.isCompleted && !order.isFulfilled && !order.isCancelled) {
     // Order still in progress
     return (
       <div className="progress">
         <div
           style={{
-            width:
-              (
-                ((globals.discountTime * 60 - secsLeft) / (globals.discountTime * 60)) *
-                100
-              ).toString() + "%",
+            width: progressWidth()
           }}
         />
       </div>
@@ -69,14 +78,13 @@ export default function OrderStatus({ order, orderStatus }) {
     secsLeft = 0;
   } else {
     secsLeft = currentTimeLeft.minutes * 60 + currentTimeLeft.seconds;
-    readyIn = (currentTimeLeft.minutes + 1).toString() + " Minutes!";
+    readyIn = (Math.min(currentTimeLeft.minutes + 1, globals.discountTime)).toString() + " Minutes!";
   }
-
   if (orderStatus && orderStatus.comment) {
     return (
       <>
         <OrderStatusText order={order} orderStatus={orderStatus} readyIn={readyIn} />
-        <ProgressBar order={order} secsLeft={secsLeft} globals={globals} />
+        <ProgressBar order={order} remainingTime={secsLeft} globals={globals} />
       </>
     );
   } else {

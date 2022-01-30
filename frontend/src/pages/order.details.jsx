@@ -45,33 +45,36 @@ export default function OrderDetails() {
   if (loading) {
     return <LoadingLogo isLoading={true} />;
   } else if (error) {
+    console.log(error.message)
     return <LoadingLogo isLoading={true} errorMessage={error.message} />
   } else if (!order) {
-    return <LoadingLogo isLoading={true} errorMessage={"Order could not be found"} />
+    const message = "Order could not be found";
+    console.log(`Error: ${message}`)
+    return <LoadingLogo isLoading={true} errorMessage={message} />
   } else {
     if (location.lat !== order.van.latitude && location.lng !== order.van.longitude) {
       setLocation({ lat: order.van.latitude, lng: order.van.longitude });
     }
-    // const orderIsNotFound = !loading && !error && !order ? "Order could not be found" : "";
     return (
       <>
-      <div className="order container">
-        <h1>Order Details</h1>
-        <OrderStatus order={order} orderStatus={orderStatus} />
-        <article className="order-details">
-          <section className="order-map">
-            <OrderMap order={order} />
-          </section>
-          <section>
-            <OrderInvoice order={order} orderTotals={orderTotals} />
-            <OrderModify timeLeftDisplay={timeLeftDisplay} order={order} />
-            <OrderRating order={order}/>
-          </section>
-        </article>
-        <div className="blank-bottom" />
-        <BackButton to={Routes.CUSTOMER_ORDERS.path} />
-        <CancelModal isShowing={isShowing} hide={toggle} order={order} />
-      </div>
+        <div className="order container">
+          <h1>Order Details</h1>
+          <OrderStatus order={order} orderStatus={orderStatus} />
+          <article className="order-details">
+            <section className="order-map">
+              <OrderMap order={order} />
+            </section>
+            <section>
+              <OrderInvoice order={order} orderTotals={orderTotals} />
+              <OrderModify timeLeftDisplay={timeLeftDisplay} order={order} />
+              <OrderRating order={order} />
+            </section>
+          </article>
+          <div className="blank-bottom" />
+          <BackButton to={Routes.CUSTOMER_ORDERS.path} />
+          <div className="blank-bottom" />
+          <CancelModal isShowing={isShowing} hide={toggle} order={order} />
+        </div>
       </>
     );
   }

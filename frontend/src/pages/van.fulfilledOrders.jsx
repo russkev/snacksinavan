@@ -7,7 +7,7 @@ import PaginationBar from "../components/pagination.bar";
 // Displays all the fulfilled (and not completed) orders for the logged in van
 export default function VanOrders() {
   const { vanOrders } = useVanOrders();
-  const { pageInfo, pageOrders, onNextPage, onPrevPage } = usePagination(vanOrders.uncompleted);
+  const { pageInfo, onNextPage, onPrevPage } = usePagination(vanOrders.uncompleted);
 
 
   return (
@@ -18,7 +18,7 @@ export default function VanOrders() {
         onNextPage={onNextPage}
         onPrevPage={onPrevPage}
       />
-      {pageOrders.map((vanOrder) => {
+      {pageInfo.orders.map((vanOrder) => {
         return <FulfilledOrder key={vanOrder._id} order={vanOrder} />;
       })}
       <PaginationBar
