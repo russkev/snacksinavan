@@ -4,18 +4,20 @@ import { useState } from "react";
 import usePagination from "./usePagination";
 
 export default function useOrders() {
-  const {
-    orders,
-    currentOrderId,
-    setCurrentOrderId,
+  const { 
+    orders, 
+    currentOrderId, 
+    setCurrentOrderId, 
     loading,
-    error,
-    socket,
-    getSocketConnection,
+    setLoading, 
+    error, 
+    socket, 
+    initSocket 
   } = useContext(OrderContext);
 
   const [orderSnacks, setOrderSnacks] = useState();
-  const { pageInfo, pageOrders, onNextPage, onPrevPage } = usePagination(orders);
+  const { pageInfo, onNextPage, onPrevPage } =
+    usePagination(orders);
   function orderFromId(orderId) {
     const foundOrder = orders.find((order) => order._id === orderId);
     return foundOrder;
@@ -31,7 +33,6 @@ export default function useOrders() {
   function currentOrder() {
     return orderFromId(currentOrderId);
   }
-
 
   useEffect(() => {
     function handleOrderResize() {
@@ -51,6 +52,7 @@ export default function useOrders() {
 
   return {
     loading,
+    setLoading,
     orders,
     error,
     currentOrderId,
@@ -61,11 +63,10 @@ export default function useOrders() {
     orderFromId,
     cancelOrder,
     socket,
-    pageOrders,
     onNextPage,
     onPrevPage,
     pageInfo,
-    getSocketConnection,
+    initSocket,
     breakLevel,
   };
 }

@@ -1,86 +1,93 @@
-import { useEffect, useState } from "react"
+import { useEffect, useReducer } from "react";
 
 const ORDERS_PER_PAGE = 3;
 
-function initializePageInfo(orders, pageInfo, setPageInfo) {
-  if (orders) {
-    setPageInfo({
-      ...pageInfo,
-      total: Math.ceil(orders.length / ORDERS_PER_PAGE),
-      from: Math.min(orders.length, 1),
-      to: Math.min(ORDERS_PER_PAGE, orders.length),
-    });
-  }
-}
+const initialPaginationState = {
+  current: 1,
+  total: 1,
+  from: 0,
+  to: 0,
+  orders: [],
+};
 
-function initializeCurrentPage(orders, pageInfo, setPageOrders) {
-  const from = ORDERS_PER_PAGE * (pageInfo.current - 1);
-  const to = ORDERS_PER_PAGE * pageInfo.current;
-  if (orders) {
-    setPageOrders(orders.slice(from, to));
-  }
-}
-
-function handleNextPage(orders, pageInfo, setPageInfo, setPageOrders) {
-  const from = ORDERS_PER_PAGE * pageInfo.current;
-  const to = ORDERS_PER_PAGE * (pageInfo.current + 1);
-  if (pageInfo.current < pageInfo.total) {
-    setPageOrders(orders.slice(from, to));
-    setPageInfo({
-      ...pageInfo,
-      current: pageInfo.current + 1,
-      from: from + 1,
-      to: Math.min(to, orders.length),
-    });
-  }
-}
-
-function handlePrevPage(orders, pageInfo, setPageInfo, setPageOrders) {
-  const from = ORDERS_PER_PAGE * (pageInfo.current - 2);
-  const to = ORDERS_PER_PAGE * (pageInfo.current - 1);
-  if (pageInfo.current > 1) {
-    setPageOrders(
-      orders.slice(
-        ORDERS_PER_PAGE * (pageInfo.current - 2),
-        ORDERS_PER_PAGE * (pageInfo.current - 1)
-      )
-    );
-    setPageInfo({ ...pageInfo, current: pageInfo.current - 1, from: from + 1, to: to });
+function paginationReducer(paginationInfo, {type, allOrders}) {
+  switch (type) {
+    case "initial":
+      if (allOrders) {
+        const from = ORDERS_PER_PAGE * (paginationInfo.current - 1);
+        const to = ORDERS_PER_PAGE * paginationInfo.current;
+        return {
+          ...paginationInfo,
+          total: Math.ceil(allOrders.length / ORDERS_PER_PAGE),
+          from: Math.min(allOrders.length, 1),
+          to: Math.min(ORDERS_PER_PAGE, allOrders.length),
+          orders: allOrders.slice(from, to),
+        };
+      } else {
+        return paginationInfo;
+      }
+    case "nextPage":
+      if (paginationInfo.current < paginationInfo.total) {
+        const from = ORDERS_PER_PAGE * paginationInfo.current;
+        const to = ORDERS_PER_PAGE * (paginationInfo.current + 1);
+        return {
+          ...paginationInfo,
+          current: paginationInfo.current + 1,
+          from: from + 1,
+          to: Math.min(to, allOrders.length),
+          orders: allOrders.slice(from, to),
+        };
+      } else {
+        return paginationInfo;
+      }
+    case "prevPage":
+      if (paginationInfo.current > 1) {
+        const from = ORDERS_PER_PAGE * (paginationInfo.current - 2);
+        const to = ORDERS_PER_PAGE * (paginationInfo.current - 1);
+        return {
+          ...paginationInfo,
+          current: paginationInfo.current - 1,
+          from: from + 1,
+          to: to,
+          orders: allOrders.slice(
+            ORDERS_PER_PAGE * (paginationInfo.current - 2),
+            ORDERS_PER_PAGE * (paginationInfo.current - 1)
+          ),
+        };
+      } else {
+        return paginationInfo;
+      }
+    default:
+      return paginationInfo;
   }
 }
 
 export default function usePagination(orders) {
-  const [pageInfo, setPageInfo] = useState({ current: 1, total: 1 });
-  const [pageOrders, setPageOrders] = useState([]);
+  const [pageInfo, dispatch] = useReducer(paginationReducer, initialPaginationState);
 
   useEffect(() => {
-    initializePageInfo(orders, pageInfo, setPageInfo)
-    // Including pageInfo in the dependency array will cause an infinite loop
-    // eslint-disable-next-line
-  },[orders])
+    let ignore = false;
 
-  useEffect(() => {
-    initializeCurrentPage(orders, pageInfo, setPageOrders);
-    // Including pageInfo in the dependency array will cause an infinite loop
-    // eslint-disable-next-line
-  }, [orders])
+    if (!ignore) {
+      dispatch({ type: "initial", allOrders: orders });
+      ignore = true;
+    }
+    return () => { ignore = true; }
+  }, [orders]);
 
   const onNextPage = (event) => {
     event.preventDefault();
-    handleNextPage(orders, pageInfo, setPageInfo, setPageOrders);
+    dispatch({ type: "nextPage", allOrders: orders });
   };
 
   const onPrevPage = (event) => {
     event.preventDefault();
-    handlePrevPage(orders, pageInfo, setPageInfo, setPageOrders);
+    dispatch({ type: "prevPage", allOrders: orders });
   };
 
   return {
     pageInfo,
-    pageOrders,
     onNextPage,
-    onPrevPage
-  }
-
-
+    onPrevPage,
+  };
 }

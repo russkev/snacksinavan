@@ -45,14 +45,16 @@ export default function OrderDetails() {
   if (loading) {
     return <LoadingLogo isLoading={true} />;
   } else if (error) {
+    console.log(error.message)
     return <LoadingLogo isLoading={true} errorMessage={error.message} />
   } else if (!order) {
-    return <LoadingLogo isLoading={true} errorMessage={"Order could not be found"} />
+    const message = "Order could not be found";
+    console.log(`Error: ${message}`)
+    return <LoadingLogo isLoading={true} errorMessage={message} />
   } else {
     if (location.lat !== order.van.latitude && location.lng !== order.van.longitude) {
       setLocation({ lat: order.van.latitude, lng: order.van.longitude });
     }
-    // const orderIsNotFound = !loading && !error && !order ? "Order could not be found" : "";
     return (
       <>
       <div className="order container">

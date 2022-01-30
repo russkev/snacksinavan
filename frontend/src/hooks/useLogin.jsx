@@ -36,7 +36,7 @@ export default function useLogin() {
   const { loginIsOpen, setLoginIsOpen, redirectToPath, redirectFromPath, toggleLoginIsOpen } = useContext(
     LoginContext
   );
-  const {getSocketConnection} = useOrders();
+  const {initSocket} = useOrders();
 
   const LOGIN_FAILURE_MESSAGE = "Invalid username or password";
   const SERVER_ERROR_MESSAGE = "Something went wrong with the server";
@@ -48,7 +48,7 @@ export default function useLogin() {
       const result = await postLogin(username, password);
       const isAuthenticated = handleAuthenticate(result);
       if (isAuthenticated) {
-        getSocketConnection(username, result.token, true);
+        initSocket(username, result.token, true);
         return true
       } else {
         setError(LOGIN_FAILURE_MESSAGE);
@@ -57,9 +57,7 @@ export default function useLogin() {
     } catch (err) {
       setError(SERVER_ERROR_MESSAGE);
       return false
-    } finally {
-      setLoading(false)
-    }
+    } 
   };
 
   const onUsernameChange = (event) => {

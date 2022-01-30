@@ -12,7 +12,6 @@ JSX with each of these orders in a table row. */
 export default function Orders() {
   const {
     loading: ordersLoading,
-    pageOrders,
     error,
     onNextPage,
     onPrevPage,
@@ -45,13 +44,13 @@ export default function Orders() {
                 </tr>
               </thead>
               <tbody>
-                {pageOrders.map((order) => (
+                {pageInfo.orders.map((order) => (
                   <Order key={order._id} order={order} />
                 ))}
               </tbody>
             </table>
           ) : (
-            pageOrders.map((order) => <Order key={order._id} order={order} isMobile />)
+            pageInfo.orders.map((order) => <Order key={order._id} order={order} isMobile />)
           )}
         </div>
         <PaginationBar

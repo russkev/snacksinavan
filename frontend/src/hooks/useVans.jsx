@@ -25,8 +25,8 @@ export default function useVans() {
 
     const fetchVans = async () => {
       try {
-        const vans = await getVans()
-        setVans(vans)
+        const fetchedVans = await getVans()
+        setVans(fetchedVans)
         setLoading(false)
       } catch(error) {
         console.log(error)
@@ -39,6 +39,7 @@ export default function useVans() {
       fetchVans()
     }
     return function cleanup() {
+      setVans([])
       mounted = false;
     }
   }, []);

@@ -65,7 +65,7 @@ export default function useCart() {
   } = useContext(CartContext);
 
   const {
-    setLoading,
+    setLoading
   } = useContext(OrderContext)
   const { setCurrentOrderId, socket } = useOrders();
   const { van, setVan } = useContext(VanContext);
@@ -79,12 +79,13 @@ export default function useCart() {
 
   function onOrderSuccess(orderId) {
     setLoading(true)
+    setSubmitLoading(true)
     setCurrentOrderId(orderId);
     setCart({});
     setTotal(0);
     setOrderId("");
     setOrder();
-
+    
     setTimeout(() => {
       setSubmitLoading(false);
       history.push(`/customer/orders/${orderId}`);
@@ -164,7 +165,13 @@ export default function useCart() {
             onOrderFail
           );
         } else {
-          orderIsSuccessful = await postOrder(socket, cart, van, onOrderSuccess, onOrderFail);
+          orderIsSuccessful = await postOrder(
+            socket, 
+            cart, 
+            van, 
+            onOrderSuccess, 
+            onOrderFail
+          );
         }
       } catch (error) {
         console.log(error);
