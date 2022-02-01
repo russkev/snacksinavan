@@ -2,6 +2,7 @@ import { useContext, useEffect } from "react";
 import { defaultLocation } from "../contexts/van.user.context";
 import { VanMyVanContext } from "../contexts/van.my.van.context";
 import useVanUser from "../hooks/useVanUser";
+import useSnackbar from "./useSnackbar";
 
 export default function useVanMyVan() {
   const {
@@ -10,16 +11,15 @@ export default function useVanMyVan() {
     loading,
     setLoading,
     snackMessage,
-    setSnackMessage,
     currentDescription,
     setCurrentDescription,
     isSuccess,
-    setIsSuccess,
     currentLocation,
     setCurrentLocation,
   } = useContext(VanMyVanContext);
 
   const { vanIsAuthenticated, vanDetails, updateVan, resetVanDetails } = useVanUser();
+  const { handleSnackbarMessage } = useSnackbar()
 
   /**
    * Location
@@ -67,14 +67,12 @@ export default function useVanMyVan() {
         latitude: currentLocation.lat,
         longitude: currentLocation.lng,
       });
-      setIsSuccess(true);
-      setSnackMessage("Van location information updated");
+      handleSnackbarMessage("Van location information updated", true);
       setLocationIsChanged(false);
       setLoading(false);
       return true;
     } catch (error) {
-      setIsSuccess(false);
-      setSnackMessage(error);
+      handleSnackbarMessage(error, false);
       console.log(error);
       setLoading(false);
       return false;
@@ -116,18 +114,15 @@ export default function useVanMyVan() {
       .then((result) => {
         setLoading(false);
         if (result.readyForOrders) {
-          setIsSuccess(true);
-          setSnackMessage("Van is now OPEN");
+          handleSnackbarMessage("Van is now OPEN", true);
           return;
         } else {
-          setIsSuccess(true);
-          setSnackMessage("Van is now CLOSED");
+          handleSnackbarMessage("Van is now CLOSED", true);
           return;
         }
       })
       .catch((error) => {
-        setIsSuccess(false);
-        setSnackMessage(error);
+        handleSnackbarMessage(error, false)
         return;
       });
   };
@@ -140,7 +135,6 @@ export default function useVanMyVan() {
     localStorage.setItem("vanToken", "");
     localStorage.setItem("vanName", "");
     setCurrentLocation(defaultLocation);
-    setSnackMessage("");
     resetVanDetails();
   };
 

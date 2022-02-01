@@ -2,6 +2,7 @@ import { useState } from "react";
 import VanAPI from "../VanAPI";
 import useVanUser from "../hooks/useVanUser";
 import useVanOrders from "./useVanOrders";
+import useSnackbar from "./useSnackbar";
 
 async function postVanLogin(vanName, password) {
   const body = {
@@ -20,11 +21,13 @@ async function postVanLogin(vanName, password) {
 export default function useVanLogin() {
   const [vanName, setVanName] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [vanLoginLoading, setVanLoginLoading] = useState(false);
+  const { handleSnackbarMessage } = useSnackbar();
   const { handleVanAuthenticate } = useVanUser();
   const { connectVanSocket } = useVanOrders();
 
   const handleLoginSubmit = async (event, inVanName, inPassword) => {
+    setVanLoginLoading(true)
     event.preventDefault();
     try {
       const result =
@@ -33,15 +36,18 @@ export default function useVanLogin() {
           : await postVanLogin(vanName, password);
       const isAuthenticated = handleVanAuthenticate(result);
       if (isAuthenticated) {
-        setError("SUCCESS");
+        handleSnackbarMessage("Login successful", true);
         connectVanSocket(result.vanName, result.token);
+        setVanLoginLoading(false)
         return true;
       } else {
-        setError("Password and Van Name combination are invalid");
+        handleSnackbarMessage("Password and Van Name combination are invalid", false);
+        setVanLoginLoading(false)
         return false;
       }
     } catch (err) {
-      setError("Server Failure");
+      handleSnackbarMessage("Server Failure", false);
+      setVanLoginLoading(false)
       return false;
     }
   };
@@ -63,8 +69,9 @@ export default function useVanLogin() {
     onVanNameChange,
     password,
     onPasswordChange,
-    error,
+    // error,
     handleLoginSubmit,
     onDemoLogin,
+    vanLoginLoading,
   };
 }

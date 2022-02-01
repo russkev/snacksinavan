@@ -64,7 +64,7 @@ function allowAnimationAfterPageLoad(selector) {
  * Main snacks hook. Provides data manipulation methods for the snacks menu
  */
 export default function useSnacks() {
-  const { snacks, firsts, loading, error } = useContext(SnackContext);
+  const { snacks, firsts, loading, getSnacksError } = useContext(SnackContext);
   const [mouseIsOver, setMouseIsOver] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState(category.drinks);
   const [menuContainer, setMenuContainer] = useState(document.getElementById("menu-list-1"));
@@ -153,7 +153,7 @@ export default function useSnacks() {
   return {
     loading,
     snacks,
-    error,
+    getSnacksError,
     snackFromId,
     snackFromName,
     updateCategory,

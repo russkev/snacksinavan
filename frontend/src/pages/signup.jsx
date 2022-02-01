@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import useSignup from "../hooks/useSignup";
-import { Snackbar, handleShowSnackbar } from "../components/snackbar";
 import useLogin from "../hooks/useLogin";
 import InputContainer from "../components/input.container";
 import "../styling/signup.css";
@@ -14,7 +13,6 @@ import LoadingButton from "../components/loading.button";
 export default function Signup() {
   const {
     userDetails,
-    error,
     page,
     loading,
     onFirstNameChange,
@@ -27,25 +25,7 @@ export default function Signup() {
     handleBack,
   } = useSignup();
 
-  const { redirectFromPath } = useLogin();
-
-  const { toggleLoginIsOpen } = useLogin();
-
-  const handleEmailCheckAndAlert = (event) => {
-    handleEmailCheck(event).then((result) => {
-      if (!result) {
-        handleShowSnackbar();
-      }
-    });
-  };
-
-  const handleSignupAndAlert = (event) => {
-    handleSignupSubmit(event).then((result) => {
-      if (!result) {
-        handleShowSnackbar();
-      }
-    });
-  };
+  const { redirectFromPath, toggleLoginIsOpen } = useLogin();
 
   return (
     <>
@@ -60,7 +40,7 @@ export default function Signup() {
           </Link>
           <article>
             {page === 1 ? (
-              <form onSubmit={handleEmailCheckAndAlert}>
+              <form onSubmit={handleEmailCheck}>
                 <h4>Please enter your details (*required)</h4>
                 <section>
                   <InputContainer label="First name*" value={userDetails.firstName}>
@@ -109,7 +89,7 @@ export default function Signup() {
                 </div>
               </form>
             ) : (
-              <form onSubmit={handleSignupAndAlert}>
+              <form onSubmit={handleSignupSubmit}>
                 <h4>Please enter your details (*required)</h4>
                 <section>
                   <InputContainer label="Password*" value={userDetails.password}>
@@ -165,7 +145,6 @@ export default function Signup() {
           </article>
         </div>
       </div>
-      <Snackbar message={error} />
     </>
   );
 }

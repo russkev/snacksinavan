@@ -1,7 +1,6 @@
 import React from "react";
 
 import useUserDetails from "../hooks/useUserDetails";
-import { Snackbar, handleShowSnackbar } from "../components/snackbar";
 import InputContainer from "../components/input.container";
 import "../styling/account.details.css";
 import LoadingButton from "../components/loading.button";
@@ -16,20 +15,12 @@ export default function MyInfo() {
     onPasswordChange,
     onPasswordConfirmChange,
     handleUpdateInfoSubmit,
-    message,
-    isSuccess,
     currentSection,
     infoSection,
     onSelectPersonalDetails,
     onSelectSecurity,
     isMobile,
   } = useUserDetails();
-
-  const handleUpdateAndAlert = (event) => {
-    handleUpdateInfoSubmit(event).then(() => {
-      handleShowSnackbar();
-    });
-  };
 
   return (
     <>
@@ -55,7 +46,7 @@ export default function MyInfo() {
                 </li>
               </ul>
             </nav>
-            <form onSubmit={handleUpdateAndAlert} autoComplete="off">
+            <form onSubmit={handleUpdateInfoSubmit} autoComplete="off">
               {currentSection === infoSection.PERSONAL_DETAILS || isMobile ? (
                 <section>
                   <h3>Personal Details</h3>
@@ -95,9 +86,6 @@ export default function MyInfo() {
               {currentSection === infoSection.SECURITY || isMobile ? (
                 <section>
                   <h3>Password</h3>
-                  {/* <span>
-                    Please leave password fields blank if you do not wish to change your password
-                  </span> */}
                   <hr />
 
                   <InputContainer label="New password" value={newUserDetails.password}>
@@ -139,7 +127,6 @@ export default function MyInfo() {
         </div>
       </div>
       <div></div>
-      <Snackbar message={message} isSuccess={isSuccess} />
     </>
   );
 }

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import useLogin from "../hooks/useLogin";
 import useUser from "../hooks/useUser";
-import { handleShowSnackbar, Snackbar } from "../components/snackbar";
 import Routes from "../routes/routes";
 import InputContainer from "../components/input.container";
 import "../styling/login.css";
@@ -22,22 +21,13 @@ export default function Login() {
     onUsernameChange,
     onPasswordChange,
     handleLoginSubmit,
-    loading,
-    error,
+    loginLoading,
     setLoginIsOpen,
     redirectToPath,
   } = useLogin();
 
   const { isAuthenticated } = useUser();
   const [signupRedirect, setSignupRedirect] = useState(false);
-
-  const handleLoginSubmitAndAlert = (event) => {
-    handleLoginSubmit(event).then((result) => {
-      if (!result) {
-        handleShowSnackbar();
-      }
-    });
-  };
 
   const handleSignupRedirect = (event) => {
     event.preventDefault();
@@ -69,15 +59,15 @@ export default function Login() {
                     Sign up here
                   </Link>
                 </p>
-            <form onSubmit={handleLoginSubmitAndAlert}>
-              <InputContainer label="Username" value={username}>
+            <form onSubmit={handleLoginSubmit}>
+              <InputContainer label="email" value={username}>
                 <input
                   type="email"
                   id="username"
-                  placeholder="username"
+                  placeholder="email"
                   value={username}
                   onChange={onUsernameChange}
-                  disabled={loading}
+                  disabled={loginLoading}
                 />
               </InputContainer>
               <InputContainer label="Password" value={password}>
@@ -87,10 +77,10 @@ export default function Login() {
                   placeholder="password"
                   value={password}
                   onChange={onPasswordChange}
-                  disabled={loading}
+                  disabled={loginLoading}
                 />
               </InputContainer>
-              <LoadingButton isLoading={loading}>
+              <LoadingButton isLoading={loginLoading}>
                 <button type="submit" className="primary soft-shadow">
                   Okay
                 </button>
@@ -101,7 +91,6 @@ export default function Login() {
             </form>
           </div>
         </div>
-        <Snackbar message={error} />
       </>
     );
   }

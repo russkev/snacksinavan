@@ -8,9 +8,9 @@ export default function useOrders() {
     orders, 
     currentOrderId, 
     setCurrentOrderId, 
-    loading,
-    setLoading, 
-    error, 
+    ordersLoading,
+    setOrdersLoading, 
+    getOrdersError, 
     socket, 
     initSocket 
   } = useContext(OrderContext);
@@ -51,10 +51,10 @@ export default function useOrders() {
   }, [setBreakLevel]);
 
   return {
-    loading,
-    setLoading,
+    ordersLoading,
+    setOrdersLoading,
     orders,
-    error,
+    getOrdersError,
     currentOrderId,
     setCurrentOrderId,
     orderSnacks,

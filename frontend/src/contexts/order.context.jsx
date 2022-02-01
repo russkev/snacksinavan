@@ -69,9 +69,9 @@ export const OrderContextProvider = ({ children }) => {
   const [orders, setOrders] = useState([]);
   const [currentOrderId, setCurrentOrderId] = useState("");
   const { username, token, isAuthenticated } = useUser();
-  const [loading, setLoading] = useState(true);
+  const [ordersLoading, setOrdersLoading] = useState(true);
   const [newOrderLoading, setNewOrderLoading] = useState(true);
-  const [error, setError] = useState("");
+  const [getOrdersError, setGetOrdersError] = useState("");
   const [socket, setSocket] = useState(null);
 
 
@@ -95,27 +95,26 @@ export const OrderContextProvider = ({ children }) => {
     if (socket && isAuthenticated && username) {
       try {
 
-        getOrders(socket, setOrders, setError, setLoading);
+        getOrders(socket, setOrders, setGetOrdersError, setOrdersLoading);
         socket.on("ordersChanged", (changeInfo) => {
           if (changeInfo.customer === username) {
-            // setLoading(true)
-            getOrders(socket, setOrders, setError, setLoading);
+            getOrders(socket, setOrders, setGetOrdersError, setOrdersLoading);
           }
         })
       } catch (error) {
         console.log(error);
-        setError(error);
-        setLoading(false);
+        setGetOrdersError(error);
+        setOrdersLoading(false);
       }
     }
   }, [socket, username, isAuthenticated]);
 
   const value = {
-    loading,
-    setLoading,
+    ordersLoading,
+    setOrdersLoading,
     newOrderLoading,
     setNewOrderLoading,
-    error,
+    getOrdersError,
     orders,
     currentOrderId,
     setCurrentOrderId,

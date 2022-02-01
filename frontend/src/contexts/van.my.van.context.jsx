@@ -6,8 +6,6 @@ export const VanMyVanContext = createContext([]);
 export const VanMyVanContextProvider = ({ children }) => {
   const [locationIsChanged, setLocationIsChanged] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [snackMessage, setSnackMessage] = useState("");
-  const [isSuccess, setIsSuccess] = useState(true);
   const [currentDescription, setCurrentDescription] = useState("");
   const [currentLocation, setCurrentLocation] = useState(defaultLocation);
 
@@ -18,12 +16,8 @@ export const VanMyVanContextProvider = ({ children }) => {
     setLocationIsChanged,
     loading,
     setLoading,
-    snackMessage,
-    setSnackMessage,
     currentDescription,
     setCurrentDescription,
-    isSuccess,
-    setIsSuccess,
     currentLocation,
     setCurrentLocation,
   };
