@@ -8,6 +8,7 @@
 div.my-van {
   border-top: 10px solid var(--van-my-van);
   display: flex;
+  justify-content: center;
   /* box-sizing: border-box; */
 }
 
