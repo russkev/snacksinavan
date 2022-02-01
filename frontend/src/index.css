@@ -1,6 +1,7 @@
 :root {
   --header-height: 50px;
   --header-van-height: 70px;
+  --max-width-van: 140rem;
   --background-blue: #F6F8F9;
   --background-blue-transparent: #F6F8F988;
   --background-white: #ffffff;

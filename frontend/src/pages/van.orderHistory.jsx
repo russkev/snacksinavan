@@ -11,21 +11,23 @@ export default function VanOrderHistory() {
 
   return (
     <div className="van-bg van-completed">
-      <PaginationBar
-        orders={vanOrders.completed}
-        pageInfo={pageInfo}
-        onNextPage={onNextPage}
-        onPrevPage={onPrevPage}
-      />
-      {pageInfo.orders.map((vanOrder) => {
-        return <CompletedOrder key={vanOrder._id} order={vanOrder} />;
-      })}
-      <PaginationBar
-        orders={vanOrders.completed}
-        pageInfo={pageInfo}
-        onNextPage={onNextPage}
-        onPrevPage={onPrevPage}
-      />
+      <section>
+        <PaginationBar
+          orders={vanOrders.completed}
+          pageInfo={pageInfo}
+          onNextPage={onNextPage}
+          onPrevPage={onPrevPage}
+        />
+        {pageInfo.orders.map((vanOrder) => {
+          return <CompletedOrder key={vanOrder._id} order={vanOrder} />;
+        })}
+        <PaginationBar
+          orders={vanOrders.completed}
+          pageInfo={pageInfo}
+          onNextPage={onNextPage}
+          onPrevPage={onPrevPage}
+        />
+      </section>
     </div>
   );
 }

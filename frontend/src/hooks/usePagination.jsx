@@ -1,6 +1,6 @@
 import { useEffect, useReducer } from "react";
 
-const ORDERS_PER_PAGE = 3;
+const ORDERS_PER_PAGE = 10;
 
 const initialPaginationState = {
   current: 1,

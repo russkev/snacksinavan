@@ -9,24 +9,25 @@ export default function VanOrders() {
   const { vanOrders } = useVanOrders();
   const { pageInfo, onNextPage, onPrevPage } = usePagination(vanOrders.uncompleted);
 
-
   return (
     <div className="van-bg van-fulfilled">
-      <PaginationBar
-        orders={vanOrders.uncompleted}
-        pageInfo={pageInfo}
-        onNextPage={onNextPage}
-        onPrevPage={onPrevPage}
-      />
-      {pageInfo.orders.map((vanOrder) => {
-        return <FulfilledOrder key={vanOrder._id} order={vanOrder} />;
-      })}
-      <PaginationBar
-        orders={vanOrders.uncompleted}
-        pageInfo={pageInfo}
-        onNextPage={onNextPage}
-        onPrevPage={onPrevPage}
-      />
+      <section>
+        <PaginationBar
+          orders={vanOrders.uncompleted}
+          pageInfo={pageInfo}
+          onNextPage={onNextPage}
+          onPrevPage={onPrevPage}
+        />
+        {pageInfo.orders.map((vanOrder) => {
+          return <FulfilledOrder key={vanOrder._id} order={vanOrder} />;
+        })}
+        <PaginationBar
+          orders={vanOrders.uncompleted}
+          pageInfo={pageInfo}
+          onNextPage={onNextPage}
+          onPrevPage={onPrevPage}
+        />
+      </section>
     </div>
   );
 }
