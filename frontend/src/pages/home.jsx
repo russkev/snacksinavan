@@ -9,7 +9,6 @@ import "../styling/home.css";
 import "../styling/customer.css";
 import LoadingLogo from "../components/loading.logo";
 
-
 async function selectVan(vanName) {
   let vanCards = document.getElementsByClassName("van-card");
   Array.from(vanCards).forEach((vanCard) => {
@@ -22,7 +21,7 @@ async function selectVan(vanName) {
 
 
 export default function Home() {
-  const { loading, vans, error } = useVans();
+  const { loading, vans, vansError } = useVans();
   const [location, setLocation] = useState({ lat: -37.81494, lng: 144.96867 });
   const zoom = 12;
 
@@ -39,7 +38,7 @@ export default function Home() {
     <>
       <LoadingLogo
         isLoading={loading}
-        errorMessage={error}
+        errorMessage={vansError}
       />
       <div className="container">
           <div className="split">

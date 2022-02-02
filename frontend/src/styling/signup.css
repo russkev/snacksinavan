@@ -36,9 +36,6 @@ div.submit-buttons {
   margin-top: 2rem;
   width: 100%;
 }
-/* 
-div.submit-buttons button.primary {
-} */
 
 div.submit-buttons > div {
   margin-left: 2rem;
@@ -70,6 +67,7 @@ div.submit-buttons > div {
   flex-direction: column;
   margin: 0 3rem;
   justify-content: center;
+  max-width: 43rem;
 }
 
 @media screen and (max-width: 650px) {

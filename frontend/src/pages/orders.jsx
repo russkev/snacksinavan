@@ -11,8 +11,8 @@ import LoadingLogo from "../components/loading.logo";
 JSX with each of these orders in a table row. */
 export default function Orders() {
   const {
-    loading: ordersLoading,
-    error,
+    ordersLoading,
+    getOrdersError,
     onNextPage,
     onPrevPage,
     pageInfo,
@@ -23,8 +23,8 @@ export default function Orders() {
 
   if (ordersLoading) {
     return <LoadingLogo isLoading={true} />
-  } else if (error) {
-    return <LoadingLogo isLoading={ordersLoading} errorMessage={error.message} />
+  } else if (getOrdersError) {
+    return <LoadingLogo isLoading={ordersLoading} errorMessage={getOrdersError.message} />
   } else {
     return (
       <div className="orders container">

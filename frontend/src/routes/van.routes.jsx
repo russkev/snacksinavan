@@ -9,6 +9,7 @@ import { availability } from "./routes";
 import { VanLoggedInRoute, VanLoggedOutRoute  } from "./protectedVanRoutes";
 import VanMainNav from "../components/van_navigation/van.main.nav"
 import { VanMyVanContextProvider } from "../contexts/van.my.van.context";
+import { Snackbar } from "../components/snackbar";
 
 
 const VanRoutes = {
@@ -52,6 +53,7 @@ export function VanRoutesMap() {
                 <VanLoggedInRoute key={routeKey} exact path={route.path}>
                   <VanMainNav />
                   {route.component()}
+                  <Snackbar />
                 </VanLoggedInRoute>
               );
           }
@@ -59,6 +61,7 @@ export function VanRoutesMap() {
               return (
                 <VanLoggedOutRoute key={routeKey} exact path={route.path}>
                   {route.component()}
+                  <Snackbar />
                 </VanLoggedOutRoute>
               );
           }
@@ -66,6 +69,7 @@ export function VanRoutesMap() {
               return (
                 <Route key={routeKey} exact path={route.path}>
                   {route.component()}
+                  <Snackbar />
                 </Route>
               );
           }

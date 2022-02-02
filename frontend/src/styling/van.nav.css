@@ -1,3 +1,14 @@
+nav.van {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+nav.van section {
+  max-width: var(--max-width-van);
+  width: 100%;
+}
+
 nav.van ul {
   margin: 0;
   overflow: auto;

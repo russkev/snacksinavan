@@ -3,6 +3,7 @@ import API from "../API";
 import useUser from "./useUser";
 import { isValidPassword } from "./useSignup";
 import { useHistory } from "react-router-dom";
+import useSnackbar from "./useSnackbar";
 
 async function getInfo(username) {
   try {
@@ -34,17 +35,15 @@ export default function useUserDetails() {
   const { username } = useUser();
   const [loading, setLoading] = useState(true);
   const [info, setInfo] = useState(null);
-  const [error, setError] = useState(null);
   const [fetchNew, setFetchNew] = useState(false);
-  const [message, setMessage] = useState(error);
-  const [isSuccess, setIsSuccess] = useState(false);
   const [newUserDetails, setNewUserDetails] = useState({
     firstName: "",
     lastName: "",
     password: "",
     passwordConfirm: "",
   });
-  const history = useHistory()
+  const history = useHistory();
+  const { handleSnackbarMessage } = useSnackbar();
 
   const infoSection = {
     PERSONAL_DETAILS: 0,
@@ -93,7 +92,7 @@ export default function useUserDetails() {
         })
         .catch((e) => {
           console.log(e);
-          setError(e);
+          handleSnackbarMessage(e, false);
           setLoading(false);
         });
     }
@@ -108,16 +107,15 @@ export default function useUserDetails() {
     if (newUserDetails.password || newUserDetails.passwordConfirm) {
       if (newUserDetails.password !== newUserDetails.passwordConfirm) {
         event.preventDefault();
-        setError("Passwords do not match");
-        setMessage("Passwords do not match");
-        setIsSuccess(false);
+        handleSnackbarMessage("Passwords do not match", false);
         return false;
       }
       if (!isValidPassword(newUserDetails.password)) {
         event.preventDefault();
-        setError("Passwords must be 8 characters long and include one letter and one number!");
-        setMessage("Passwords must be 8 characters long and include one letter and one number!");
-        setIsSuccess(false);
+        handleSnackbarMessage(
+          "Passwords must be 8 characters long and include one letter and one number!",
+          false
+        );
         return false;
       }
       setLoading(true);
@@ -130,15 +128,12 @@ export default function useUserDetails() {
           newUserDetails.password
         );
         setLoading(false);
-        setMessage(result.msg);
-        setIsSuccess(true);
+        handleSnackbarMessage(result.msg, true)
         setNewUserDetails({ ...newUserDetails, passwordConfirm: "", password: "" });
         setFetchNew(!fetchNew);
         return true;
       } catch (err) {
-        setError(err);
-        setIsSuccess(false);
-        setMessage(err);
+        handleSnackbarMessage(err, false)
         setLoading(false);
       }
     } else {
@@ -147,9 +142,7 @@ export default function useUserDetails() {
         newUserDetails.lastName === info.lastName
       ) {
         event.preventDefault();
-        setError("Information unchanged");
-        setMessage("Information unchanged");
-        setIsSuccess(false);
+        handleSnackbarMessage("Information unchanged", false);
         setLoading(false);
         return false;
       } else {
@@ -162,14 +155,12 @@ export default function useUserDetails() {
             newUserDetails.lastName,
             ""
           );
-          setMessage(result.msg);
-          setIsSuccess(true);
+          handleSnackbarMessage(result.msg, true);
           setFetchNew(!fetchNew);
           setLoading(false);
           return true;
         } catch (err) {
-          setError(err);
-          setMessage(err);
+          handleSnackbarMessage(err, false)
           setLoading(false);
         }
       }
@@ -203,15 +194,12 @@ export default function useUserDetails() {
   return {
     loading,
     info,
-    error,
     newUserDetails,
     onFirstNameChange,
     onLastNameChange,
     onPasswordChange,
     onPasswordConfirmChange,
     handleUpdateInfoSubmit,
-    message,
-    isSuccess,
     infoSection,
     currentSection,
     handleSectionChange,

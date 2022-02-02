@@ -11,14 +11,14 @@ import MenuItemModal from "../components/menu.item.modal";
 import useModal from "../hooks/useModal";
 
 export default function SnacksMenu({ displayCart }) {
-  const { loading, snacks, error, updateCategory, setMouseIsOver } = useSnacks();
+  const { loading, snacks, getSnacksError, updateCategory, setMouseIsOver } = useSnacks();
   const { van, cartSize } = useCart();
   const [snack, setSnack] = useState({});
   const { isShowing, toggle } = useModal();
 
   return (
     <>
-      <LoadingLogo isLoading={loading} error={error} />
+      <LoadingLogo isLoading={loading} error={getSnacksError} />
       <div className="container">
         <h1>Menu</h1>
         <nav className="categories">
@@ -81,7 +81,6 @@ export default function SnacksMenu({ displayCart }) {
                   </p>
                 )}
               </div>
-              {/* <VanInfo /> */}
             </section>
           </div>
           <button onClick={displayCart} className="cart-button primary soft-shadow mobile-only">

@@ -2,18 +2,20 @@ import { useContext, useEffect } from "react";
 import { OrderContext } from "../contexts/order.context";
 import { useState } from "react";
 import usePagination from "./usePagination";
+import { useHistory } from "react-router-dom";
 
 export default function useOrders() {
   const { 
     orders, 
     currentOrderId, 
     setCurrentOrderId, 
-    loading,
-    setLoading, 
-    error, 
+    ordersLoading,
+    setOrdersLoading, 
+    getOrdersError, 
     socket, 
     initSocket 
   } = useContext(OrderContext);
+  const history = useHistory();
 
   const [orderSnacks, setOrderSnacks] = useState();
   const { pageInfo, onNextPage, onPrevPage } =
@@ -34,27 +36,28 @@ export default function useOrders() {
     return orderFromId(currentOrderId);
   }
 
-  useEffect(() => {
-    function handleOrderResize() {
-      const ordersNavElement = document.getElementById("orders-break-points");
-      if (ordersNavElement) {
-        setBreakLevel(parseInt(getComputedStyle(ordersNavElement).zIndex));
-      }
+  function handleOrderResize() {
+    const ordersNavElement = document.getElementById("orders-break-points");
+    if (ordersNavElement) {
+      setBreakLevel(parseInt(getComputedStyle(ordersNavElement).zIndex));
     }
+  }
 
+  useEffect(() => {
+    handleOrderResize();
     window.addEventListener("resize", handleOrderResize);
     window.addEventListener("load", handleOrderResize);
     return () => {
       window.removeEventListener("resize", handleOrderResize);
       window.removeEventListener("resize", handleOrderResize);
     };
-  }, [setBreakLevel]);
+  }, [ordersLoading, history.location.pathname]);
 
   return {
-    loading,
-    setLoading,
+    ordersLoading,
+    setOrdersLoading,
     orders,
-    error,
+    getOrdersError,
     currentOrderId,
     setCurrentOrderId,
     orderSnacks,

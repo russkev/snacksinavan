@@ -3,6 +3,7 @@ import API from "../API";
 import useUser from "./useUser";
 import { postLogin } from "./useLogin";
 import useOrders from "./useOrders";
+import useSnackbar from "./useSnackbar";
 
 
 /**
@@ -69,11 +70,11 @@ export default function useSignup() {
     }
   );
   const [userIsAvailable, setUserIsAvailable] = useState(false);
-  const [error, setError] = useState(null);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false)
   const { handleAuthenticate } = useUser();
   const { initSocket } = useOrders();
+  const { handleSnackbarMessage } = useSnackbar();
   
 
   const handleSignupSubmit = async (event, argDetails) => {
@@ -84,13 +85,16 @@ export default function useSignup() {
     const detailsToSubmit = argDetails ? argDetails : userDetails;
     
     if (!isValidPassword(detailsToSubmit.password)) {
-      setError("Passwords must be 8 characters long and include one letter and one number!");
+      handleSnackbarMessage(
+        "Passwords must be 8 characters long and include one letter and one number!",
+        false
+      );
       return false;
     }
 
     if (detailsToSubmit.password !== detailsToSubmit.passwordConfirm)
     {
-      setError("Passwords do not match");
+      handleSnackbarMessage("Passwords do not match", false);
       return false;
     }
 
@@ -114,7 +118,7 @@ export default function useSignup() {
         passwordConfirm: "", 
       });
     } catch (err) {
-      setError(err);
+      handleSnackbarMessage(err, false);
     } finally {
       setLoading(false)
     }
@@ -134,10 +138,10 @@ export default function useSignup() {
         }
         return true;
       }
-      setError("Email is already registered");
+      handleSnackbarMessage("Email is already registered", false);
       return false;
     } catch (err) {
-      setError(err);
+      handleSnackbarMessage(err, false);
       return false;
     } finally {
       setLoading(false);
@@ -174,7 +178,6 @@ export default function useSignup() {
   return {
     userIsAvailable,
     userDetails,
-    error,
     page,
     loading,
     handleBack,

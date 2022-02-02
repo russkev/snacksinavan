@@ -61,7 +61,7 @@ export const SnackContextProvider = ({ children }) => {
   const [snacks, setSnacks] = useState([]);
   const [firsts, setFirsts] = useState([]); // First of each category to appear
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [getSnacksError, setGetSnacksError] = useState(null);
 
   // Get all the snacks as soon as page loads
   useEffect(() => {
@@ -74,7 +74,7 @@ export const SnackContextProvider = ({ children }) => {
           setFirsts(fetchedSnacks.firsts);
         } catch (error) {
           console.log(error);
-          setError(error);
+          setGetSnacksError(error);
         } finally {
           setLoading(false);
         }
@@ -92,7 +92,7 @@ export const SnackContextProvider = ({ children }) => {
     snacks,
     firsts,
     loading,
-    error,
+    getSnacksError,
   };
 
   return <SnackContext.Provider value={value}>{children}</SnackContext.Provider>;

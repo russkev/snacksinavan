@@ -1,20 +1,15 @@
 import React from "react";
 import useVanMyVan from "../../hooks/useVanMyVan";
 
-export default function VanSubmitChanges({showSnackbar}) {
+export default function VanSubmitChanges() {
   const { handleLocationSubmit, locationIsChanged, onLocationCancel } = useVanMyVan();
 
-  const handleLocationSubmitAndAlert = (event) => {
-    handleLocationSubmit(event).then(() => {
-        showSnackbar();
-    });
-  };
   return (
     <div className="submit">
       <button
         className={locationIsChanged ? "primary soft-shadow" : "primary soft-shadow disabled"}
         type="button"
-        onClick={handleLocationSubmitAndAlert}
+        onClick={handleLocationSubmit}
         disabled={!locationIsChanged}
       >
         Confirm changes

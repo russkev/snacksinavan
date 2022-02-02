@@ -9,7 +9,6 @@ import { Link } from "react-router-dom";
 import useOrders from "../hooks/useOrders";
 import ChevronLeftIcon from "../media/chevron.left.icon.jsx";
 import LoadingButton from "../components/loading.button.jsx";
-import { Snackbar } from "../components/snackbar.jsx";
 import LoadingLogo from "../components/loading.logo.jsx";
 
 export default function ConfirmCart({ isShowing, displayMenu }) {
@@ -23,23 +22,14 @@ export default function ConfirmCart({ isShowing, displayMenu }) {
     submitLoading,
     submitCart,
     cartSize,
-    cartError,
   } = useCart();
   const { orderFromId } = useOrders();
   const order = orderId ? orderFromId(orderId) : null;
-  const { loading, error } = useSnacks();
+  const { loading, getSnacksError } = useSnacks();
   const { van } = useContext(VanContext);
 
-  function snackbarMessage() {
-    let message = "";
-    if (error) {
-      message += error + " ";
-    }
-    if (cartError) {
-      message += cartError;
-    }
-    return message;
-  }
+
+
 
   var cantUpdate = false;
   if (orderId) {
@@ -54,8 +44,8 @@ export default function ConfirmCart({ isShowing, displayMenu }) {
   }
   if (loading || submitLoading) {
     return <LoadingLogo isLoading={true} />;
-  } else if (error) {
-    return <LoadingLogo isLoading={loading} errorMessage={error} />;
+  } else if (getSnacksError) {
+    return <LoadingLogo isLoading={loading} errorMessage={getSnacksError} />;
   } else {
     var heading;
     if (!orderId) {
@@ -145,7 +135,6 @@ export default function ConfirmCart({ isShowing, displayMenu }) {
             <div className="blank-bottom" />
           </section>
         </div>
-        <Snackbar message={snackbarMessage()} />
       </>
     );
   }

@@ -2,10 +2,19 @@
   background: var(--background-darker);
   height: calc(100vh - var(--header-van-height));
   overflow: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .van-orders {
   border-top: 10px solid var(--van-orders);
+
+}
+
+.van-bg > section {
+  max-width: var(--max-width-van);
+  width: 100%;
 }
 
 .van-fulfilled {

@@ -12,6 +12,7 @@ import Orders from "../pages/orders";
 import OrderDetails from "../pages/order.details";
 import NotFound from "../pages/not.found";
 import MainNav from "../components/navigation/main.nav";
+import { Snackbar } from "../components/snackbar";
 
 export const availability = {
   ALL: 0,
@@ -86,7 +87,7 @@ export function getLoggedOutOnlyPaths() {
 export function RoutesMap() {
   return (
     <>
-        <MainNav />
+      <MainNav />
       <Switch>
         {Object.keys(Routes).map((routeKey) => {
           const route = Routes[routeKey];
@@ -94,18 +95,21 @@ export function RoutesMap() {
             return (
               <LoggedInRoute key={routeKey} exact path={route.path}>
                 {route.component()}
+                <Snackbar />
               </LoggedInRoute>
             );
           } else if (route.access === availability.LOGGED_OUT_ONLY) {
             return (
               <LoggedOutRoute key={routeKey} exact path={route.path}>
                 {route.component()}
+                <Snackbar />
               </LoggedOutRoute>
             );
           } else {
             return (
               <Route key={routeKey} exact path={route.path}>
                 {route.component()}
+                <Snackbar />
               </Route>
             );
           }
@@ -113,6 +117,7 @@ export function RoutesMap() {
         <Route path="/van" />
         <Route>
           <NotFound />
+          <Snackbar />
         </Route>
       </Switch>
       <LoginModal />

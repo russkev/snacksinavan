@@ -3,10 +3,10 @@ import { Link, Redirect } from "react-router-dom";
 import useVanLogin from "../hooks/useVanLogin";
 import useVanUser from "../hooks/useVanUser";
 import VanRoutes from "../routes/van.routes";
-import { handleShowSnackbar, Snackbar } from "../components/snackbar";
 import InputContainer from "../components/input.container";
 import "../styling/van.login.css";
 import LoadingLogo from "../components/loading.logo";
+import LoadingButton from "../components/loading.button";
 
 export default function VanLogin() {
   const {
@@ -14,20 +14,12 @@ export default function VanLogin() {
     onVanNameChange,
     password,
     onPasswordChange,
-    error,
     handleLoginSubmit,
     onDemoLogin,
+    vanLoginLoading,
   } = useVanLogin();
 
   const { vanIsAuthenticated, initialLoginLoading } = useVanUser();
-
-  const handleLoginSubmitAndAlert = (event) => {
-    handleLoginSubmit(event).then((result) => {
-      if (!result) {
-        handleShowSnackbar();
-      }
-    });
-  };
 
   if (vanIsAuthenticated) {
     return <Redirect push to={VanRoutes.MY_VAN.path} />;
@@ -45,7 +37,7 @@ export default function VanLogin() {
           </p>
           <h4>Please sign in</h4>
           <article>
-            <form onSubmit={handleLoginSubmitAndAlert}>
+            <form onSubmit={handleLoginSubmit}>
               <section>
                 <InputContainer label="Van name" value={vanName}>
                   <input
@@ -67,9 +59,11 @@ export default function VanLogin() {
                 </InputContainer>
               </section>
               <div>
-                <button type="submit" className="primary soft-shadow">
-                  SUBMIT
-                </button>
+                <LoadingButton isLoading={vanLoginLoading}>
+                  <button type="submit" className="primary soft-shadow">
+                    SUBMIT
+                  </button>
+                </LoadingButton>
               </div>
               <p>
                 Want a <strong>demo</strong>? click{" "}
@@ -82,7 +76,6 @@ export default function VanLogin() {
           </article>
         </div>
       </div>
-      <Snackbar message={error} />
       <LoadingLogo isLoading={initialLoginLoading} />
     </>
   );

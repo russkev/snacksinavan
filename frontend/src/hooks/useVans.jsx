@@ -14,7 +14,7 @@ async function getVans() {
 export default function useVans() {
   const [loading, setLoading] = useState(true);
   const [vans, setVans] = useState([]);
-  const [error, setError] = useState(null);
+  const [vansError, setVansError] = useState(null);
 
   function vanFromName(vanName) {
     return vans.find((van) => van.vanName === vanName);
@@ -30,7 +30,7 @@ export default function useVans() {
         setLoading(false)
       } catch(error) {
         console.log(error)
-        setError(error)
+        setVansError(error)
         setLoading(false)
       }
     }
@@ -47,7 +47,7 @@ export default function useVans() {
   return {
     loading,
     vans,
-    error,
+    vansError,
     vanFromName
   };
 }

@@ -18,7 +18,7 @@ import LoadingLogo from "../components/loading.logo";
 /* Displays the full details of a single order matched by its id.
  */
 export default function OrderDetails() {
-  const { orderFromId, loading, error } = useOrders();
+  const { orderFromId, ordersLoading, getOrdersError } = useOrders();
   const { globals } = useGlobals();
   const orderId = window.location.pathname.split("/").pop();
   const order = orderId ? orderFromId(orderId) : null;
@@ -42,14 +42,13 @@ export default function OrderDetails() {
     }
   });
 
-  if (loading) {
+  if (ordersLoading) {
     return <LoadingLogo isLoading={true} />;
-  } else if (error) {
-    console.log(error.message)
-    return <LoadingLogo isLoading={true} errorMessage={error.message} />
+  } else if (getOrdersError) {
+    console.log(getOrdersError.message)
+    return <LoadingLogo isLoading={true} errorMessage={getOrdersError.message} />
   } else if (!order) {
     const message = "Order could not be found";
-    console.log(`Error: ${message}`)
     return <LoadingLogo isLoading={true} errorMessage={message} />
   } else {
     if (location.lat !== order.van.latitude && location.lng !== order.van.longitude) {

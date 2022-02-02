@@ -1,8 +1,9 @@
 import { useState, useContext } from "react";
 import API from "../API";
 import useUser from "./useUser";
-import { LoginContext } from "../contexts/login.context"
-import useOrders from "./useOrders"
+import { LoginContext } from "../contexts/login.context";
+import useOrders from "./useOrders";
+import useSnackbar from "./useSnackbar";
 
 /**
  * Send login information to the backend
@@ -30,34 +31,40 @@ export async function postLogin(username, password) {
 export default function useLogin() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false)
+  const [loginLoading, setLoginLoading] = useState(false);
   const { handleAuthenticate } = useUser();
-  const { loginIsOpen, setLoginIsOpen, redirectToPath, redirectFromPath, toggleLoginIsOpen } = useContext(
-    LoginContext
-  );
-  const {initSocket} = useOrders();
+  const { 
+    loginIsOpen, 
+    setLoginIsOpen, 
+    redirectToPath, 
+    redirectFromPath, 
+    toggleLoginIsOpen 
+  } = useContext(LoginContext);
+  const { initSocket } = useOrders();
+  const { handleSnackbarMessage } = useSnackbar();
 
   const LOGIN_FAILURE_MESSAGE = "Invalid username or password";
   const SERVER_ERROR_MESSAGE = "Something went wrong with the server";
 
   const handleLoginSubmit = async (event) => {
-    setLoading(true)
+    setLoginLoading(true);
     event.preventDefault();
     try {
       const result = await postLogin(username, password);
       const isAuthenticated = handleAuthenticate(result);
       if (isAuthenticated) {
         initSocket(username, result.token, true);
-        return true
+        return true;
       } else {
-        setError(LOGIN_FAILURE_MESSAGE);
-        return false
+        handleSnackbarMessage(LOGIN_FAILURE_MESSAGE, false);
+        setLoginLoading(false);
+        return false;
       }
     } catch (err) {
-      setError(SERVER_ERROR_MESSAGE);
-      return false
-    } 
+      handleSnackbarMessage(SERVER_ERROR_MESSAGE, false)
+      setLoginLoading(false)
+      return false;
+    }
   };
 
   const onUsernameChange = (event) => {
@@ -71,8 +78,7 @@ export default function useLogin() {
   return {
     username,
     password,
-    error,
-    loading,
+    loginLoading,
     loginIsOpen,
     setLoginIsOpen,
     onUsernameChange,
