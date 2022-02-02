@@ -31,8 +31,8 @@ export const LoginContextProvider = ({ children }) => {
   const [loginIsOpen, setLoginIsOpen] = useState(false);
   const loggedInOnlyPaths = getLoggedInOnlyPaths();
   const loggedOutOnlyPaths = getLoggedOutOnlyPaths();
-  const [redirectToPath, setRedirectToPath] = useState(Routes.HOME.path);
-  const [redirectFromPath, setRedirectFromPath] = useState(Routes.HOME.path);
+  const [redirectToPath, setRedirectToPath] = useState(Routes.VAN_CHOICE.path);
+  const [redirectFromPath, setRedirectFromPath] = useState(Routes.VAN_CHOICE.path);
   const { isAuthenticated } = useUser();
   const location = useLocation();
 

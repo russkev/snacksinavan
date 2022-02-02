@@ -46,7 +46,7 @@ export default function MainNav() {
               className="nav-button desktop"
               activeClassName="active"
               exact
-              to={Routes.HOME.path}
+              to={Routes.VAN_CHOICE.path}
               onClick={(e) => e.currentTarget.blur()}
             >
               <svg viewBox="0 0 24 24">

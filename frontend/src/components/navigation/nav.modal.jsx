@@ -25,7 +25,7 @@ function NavModal({ toggleMobileNav, isShowing }) {
   function FindAVanButton() {
     return (
       <MobileNavButton
-        path={Routes.HOME.path}
+        path={Routes.VAN_CHOICE.path}
         icon={LocationIcon}
         name="Find a van"
         toggle={toggleMobileNav}

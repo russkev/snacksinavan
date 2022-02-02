@@ -1635,3 +1635,18 @@ td img {
 
   
 }
+
+.orange-color {
+  background-color: var(--orange-bg);
+  color: var(--orange-fg);
+}
+
+.pink-color {
+  background-color: var(--pink-bg);
+  color: var(--pink-fg);
+}
+
+.yellow-color {
+  background-color: var(--yellow-bg);
+  color: var(--yellow-fg);
+}
