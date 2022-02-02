@@ -1,16 +1,4 @@
-.signup {
-  width: 100%;
-  position: fixed;
-  margin: 0;
-  padding:0;
-  top: 0;
-  bottom: 0;
-  background: var(--background-white);
-  z-index: 1000;
-  overflow-x: hidden;
-  overflow-y: scroll;
-  display: flex;
-}
+
 
 .signup > div:first-child {
   width: 30%;
@@ -59,15 +47,6 @@ div.submit-buttons > div {
 
 .signup form section {
   height: 220px;
-}
-
-.signup .container {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  margin: 0 3rem;
-  justify-content: center;
-  max-width: 43rem;
 }
 
 @media screen and (max-width: 650px) {

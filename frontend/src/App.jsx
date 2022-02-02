@@ -4,6 +4,7 @@ import "./styling/van.css";
 import "./styling/button.css";
 import "./styling/snackbar.css";
 import "./styling/loading.css";
+import "./styling/theme.css";
 import { RoutesMap } from "./routes/routes";
 import { VanRoutesMap } from "./routes/van.routes";
 import { UserContextProvider } from "./contexts/user.context";

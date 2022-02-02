@@ -26,7 +26,7 @@ export default function VanLogin() {
   }
   return (
     <>
-      <div className="van-login signup">
+      <div className="van-login full-screen signup">
         <div></div>
         <div className="van-container container">
           <p>Welcome to</p>

@@ -29,7 +29,7 @@ export default function Signup() {
 
   return (
     <>
-      <div className="signup">
+      <div className="full-screen signup">
         <div></div>
         <div className="container">
           <h1>Sign up for account</h1>

@@ -1,0 +1,87 @@
+
+.container .orange-color {
+  background-color: var(--orange-bg);
+  color: var(--orange-fg);
+}
+
+.container .pink-color {
+  background-color: var(--pink-bg);
+  color: var(--pink-fg);
+}
+
+.container .yellow-color {
+  background-color: var(--yellow-bg);
+  color: var(--yellow-fg);
+}
+
+.container button.orange-color:hover,
+.container button.orange-color:focus,
+.container a.button.orange-color:hover,
+.container a.button.orange-color:focus
+{
+  background-color: var(--orange-bg-dark);
+}   
+
+.container button.pink-color:hover,
+.container button.pink-color:focus,
+.container a.button.pink-color:hover,
+.container a.button.pink-color:focus
+{
+  background-color: var(--pink-bg-dark);
+}   
+
+.container button.yellow-color:hover,
+.container button.yellow-color:focus,
+.container a.button.yellow-color:hover,
+.container a.button.yellow-color:focus
+{
+  background-color: var(--yellow-bg-dark);
+}
+
+.full-screen {
+  width: 100%;
+  position: fixed;
+  margin: 0;
+  padding:0;
+  top: 0;
+  bottom: 0;
+  background: var(--background-white);
+  z-index: 1000;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  display: flex;
+}
+
+.full-screen .container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 0 3rem;
+  justify-content: center;
+  max-width: 43rem;
+}
+
+.logo-text-big {
+  display: grid;
+}
+
+.logo-text-big svg {
+  width: 100%;
+  height: unset;
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.logo-text-big svg:nth-child(1) {
+  fill: var(--orange-fg)
+}
+
+.logo-text-big svg:nth-child(2) {
+  fill: var(--yellow-fg)
+}
+
+.logo-text-big svg:nth-child(3) {
+  fill: var(--pink-fg)
+}
+
+

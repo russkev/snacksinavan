@@ -5,7 +5,7 @@ import ChooseVan from "../pages/choose.van";
 import Signup from "../pages/signup";
 import Login from "../pages/login";
 import MyInfo from "../pages/my.info";
-import AppChoice from "../pages/app.choice";
+import ChooseApp from "../pages/choose.app";
 
 import { LoggedInRoute, LoggedOutRoute } from "./protected.routes";
 import LoginModal from "../components/login.modal";
@@ -30,7 +30,7 @@ const CUSTOMER_PREFIX = "/customer"
 const Routes = {
   HOME: {
     path: "/",
-    component: AppChoice,
+    component: ChooseApp,
     access: availability.ALL,
   },
   VAN_CHOICE: {

@@ -32,13 +32,16 @@
   --background-primary: #fff0e7; */
 
 
-  --pink-bg: #FFF7F8;
+  --pink-bg: #ffeaed;
+  --pink-bg-dark: #ffc0c7;
   --pink-fg: #A7636B;
 
   --orange-bg: #FFEEDE;
+  --orange-bg-dark: #ffdebd;
   --orange-fg: #895A2E;
 
-  --yellow-bg: #FFFBE7;
+  --yellow-bg: #fffae0;
+  --yellow-bg-dark: #fff2b6;
   --yellow-fg: #6A5C14;
   
   --primary: #fda362;
