@@ -2,6 +2,7 @@
   --header-height: 50px;
   --header-van-height: 70px;
   --max-width-van: 140rem;
+  --max-width-customer: 130rem;
   --background-blue: #F6F8F9;
   --background-blue-transparent: #F6F8F988;
   --background-white: #ffffff;
@@ -32,27 +33,33 @@
   --background-primary: #fff0e7; */
 
 
+  --pink-bg-light: #fff6f7;
   --pink-bg: #ffeaed;
-  --pink-bg-dark: #ffc0c7;
+  --pink-bg-dark: #ffd5da;
+  --pink-bg-bright: #ff4359;
   --pink-fg: #A7636B;
 
+  --orange-bg-light: #fff7ef;
   --orange-bg: #FFEEDE;
   --orange-bg-dark: #ffdebd;
+  --orange-bg-bright: #ff8e24;
   --orange-fg: #895A2E;
 
+  --yellow-bg-light: #fffdf3;
   --yellow-bg: #fffae0;
   --yellow-bg-dark: #fff2b6;
+  --yellow-bg-bright: #ffdd32;
   --yellow-fg: #6A5C14;
   
-  --primary: #fda362;
-  --primary-dark: #d58b56;
+  --primary: #ffb783;
+  --primary-dark: #ffa666;
   --background-primary: #fff0e7;
 
   --secondary: #f8f0c6;
 
   --warning: #bf0101;  
-  --background-warning: #fae8e8;
-  --background-warning-dark: #f0dbdb;
+  --warning-bg: #fae8e8;
+  --warning-bg-dark: #ffd4d4;
   
   --success: #008800;
   --background-success: #e8fae8;
@@ -165,7 +172,7 @@ fieldset {
 }
 
 svg {
-  fill: var(--dark-text);
   width: 24px;
   height: 24px;
+  margin-right: 1rem;
 }

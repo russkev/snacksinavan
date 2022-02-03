@@ -9,6 +9,7 @@ import ChevronLeftIcon from "../../media/chevron.left.icon";
 import MobileNavButton from "./mobile.nav.button";
 import AccountNav from "./account.nav";
 import LocationIcon from "../../media/location.icon";
+import NavLogo from "./nav.logo";
 
 function NavModal({ toggleMobileNav, isShowing }) {
   const { isAuthenticated, username } = useUser();
@@ -29,6 +30,7 @@ function NavModal({ toggleMobileNav, isShowing }) {
         icon={LocationIcon}
         name="Find a van"
         toggle={toggleMobileNav}
+        className="yellow-color"
       />
     );
   }
@@ -40,6 +42,7 @@ function NavModal({ toggleMobileNav, isShowing }) {
         icon={MenuBookIcon}
         name="Menu"
         toggle={toggleMobileNav}
+        className="yellow-color"
       />
     );
   }
@@ -61,7 +64,8 @@ function NavModal({ toggleMobileNav, isShowing }) {
             </svg>
           </button>
           <div>
-            <h2>Snacks in a Van</h2>
+            {/* <h2>Snacks in a Van</h2> */}
+            <NavLogo />
             <FindAVanButton />
             <SnacksMenuButton />
           </div>

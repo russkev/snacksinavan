@@ -1,6 +1,6 @@
 .container {
   margin: 0 auto;
-  max-width: 1300px;
+  max-width: var(--max-width-customer);
   min-height: calc(520px - var(--header-height));
   flex: 1 1 auto;
   width: 100%;

@@ -1,42 +1,60 @@
 
-.container .orange-color {
+.orange-color, .container .orange-color {
   background-color: var(--orange-bg);
   color: var(--orange-fg);
+  fill: var(--orange-fg);
 }
 
-.container .pink-color {
+.pink-color, .container .pink-color {
   background-color: var(--pink-bg);
   color: var(--pink-fg);
+  fill: var(--pink-fg);
 }
 
-.container .yellow-color {
+.yellow-color, .container .yellow-color {
   background-color: var(--yellow-bg);
   color: var(--yellow-fg);
+  fill: var(--yellow-fg);
 }
 
-.container button.orange-color:hover,
-.container button.orange-color:focus,
-.container a.button.orange-color:hover,
-.container a.button.orange-color:focus
+.warning-color, .container .warning-color {
+  background-color: var(--warning-bg);
+  color: var(--warning);
+  fill: var(--warning);
+  border: 3px solid var(--warning);
+}
+
+button.orange-color:hover,
+button.orange-color:focus,
+a.button.orange-color:hover,
+a.button.orange-color:focus
 {
   background-color: var(--orange-bg-dark);
 }   
 
-.container button.pink-color:hover,
-.container button.pink-color:focus,
-.container a.button.pink-color:hover,
-.container a.button.pink-color:focus
+button.pink-color:hover,
+button.pink-color:focus,
+a.button.pink-color:hover,
+a.button.pink-color:focus
 {
   background-color: var(--pink-bg-dark);
 }   
 
-.container button.yellow-color:hover,
-.container button.yellow-color:focus,
-.container a.button.yellow-color:hover,
-.container a.button.yellow-color:focus
+button.yellow-color:hover,
+button.yellow-color:focus,
+a.button.yellow-color:hover,
+a.button.yellow-color:focus
 {
   background-color: var(--yellow-bg-dark);
 }
+
+button.warning-color:hover,
+button.warning-color:focus,
+a.button.warning-color:hover,
+a.button.warning-color:focus
+{
+  background-color: var(--warning-bg-dark);
+}   
 
 .full-screen {
   width: 100%;
@@ -88,4 +106,8 @@
 .blank-bottom {
   width: 100%;
   height: 4rem;
+}
+
+.zero-bottom-margin {
+  margin-bottom: 0;
 }
