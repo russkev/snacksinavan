@@ -35,11 +35,11 @@ export default function ChooseApp() {
             <Link className="big orange-color button" to={Routes.VAN_CHOICE.path}>
               Customer App
             </Link>
-            <div></div>
             <Link className="big yellow-color button" to={VanRoutes.LOGIN.path}>
               Vendor App
             </Link>
           </section>
+            <div className="blank-bottom"></div>
         </nav>
       </div>
     </>

@@ -59,6 +59,7 @@
   margin: 0 3rem;
   justify-content: center;
   max-width: 43rem;
+  min-height: unset;
 }
 
 .logo-text-big {
@@ -84,4 +85,7 @@
   fill: var(--pink-fg)
 }
 
-
+.blank-bottom {
+  width: 100%;
+  height: 4rem;
+}

@@ -13,9 +13,9 @@ div.choose-app nav.container section {
   display: flex;
   flex-direction: column;
   height: 100%;
-  margin: 3rem 0;
+  margin: 1rem;
   justify-content: space-between;
-  max-height: 40rem;
+  max-height: 30rem;
 }
 
 div.choose-app aside section {
@@ -29,3 +29,60 @@ div.choose-app .logo {
   height: unset;
 }
 
+@media (orientation: portrait) {
+  .choose-app.choose-app.full-screen .container {
+    margin: 0 auto;
+  }
+}
+
+@media screen and (max-height: 800px) {
+  div.choose-app aside section {
+    width: 25rem;
+  }
+}
+
+@media  screen and (max-height: 550px) and (orientation: portrait),
+        screen and (max-width: 570px) and (orientation: landscape),
+        screen and (max-height: 380px) and (orientation: landscape) {
+  div.choose-app aside section {
+    width: 20rem;
+  }
+}
+
+@media  screen and (max-width: 550px),
+        screen and (max-height: 650px) {
+  .choose-app a.button {
+    height: 4.3rem;
+    font-size: 1.4rem;
+  }
+
+  .choose-app.choose-app.full-screen .container {
+    max-width: 30rem;
+  }
+
+  div.choose-app nav.container section {
+    max-height: 15rem;
+  }
+}
+
+@media (orientation: portrait) {
+  .choose-app.full-screen {
+    display: grid;
+  }
+
+  div.choose-app aside {
+    width: 100%;
+    max-width: unset;
+  }
+}
+
+@media screen and (max-width: 900px) and (orientation: portrait) {
+
+  .choose-app.choose-app.full-screen .container {
+    min-height: 18rem;
+  }
+
+  div.choose-app aside section {
+    padding: 4rem 6rem;
+  }
+}
