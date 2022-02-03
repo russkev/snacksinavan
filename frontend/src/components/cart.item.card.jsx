@@ -19,7 +19,7 @@ export default function CartItemCard({ snackId }) {
         >
           <DeleteIcon />
         </svg>
-        <img src={snack.photo.small} width="50px" alt={snackId} />
+        <img src={`../${snack.photo.small}`} width="50px" alt={snackId} />
         <section>
           {snack.name}
           <div className="quantity">

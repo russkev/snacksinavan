@@ -252,6 +252,7 @@ nav.categories h2.inactive {
 
 .menu-van svg {
   fill: var(--dark-text);
+  margin: 0;
 }
 
 section.chosen-van svg {
@@ -298,7 +299,7 @@ section.chosen-van > div {
         screen and (max-height: 700px) {
   .menu-cart h1 {
     font-size: 3rem;
-    padding: 0 1rem;
+    padding: 1rem;
     padding-bottom: 2rem;
     line-height: 0.9;
   }

@@ -6,10 +6,12 @@ export default function MenuItemCard({ snack, setSnack, toggleModal }) {
     toggleModal();
   };
 
+  console.log(snack)
+
   return (
     <>
       <div className="menu-item-card" onClick={handleMenuCardClick} id={snack.name}>
-        <img src={snack.photo.medium} alt={snack.name} />
+        <img src={`../${snack.photo.medium}`} alt={snack.name} />
         <div>
           <section>
             <h3>{snack.name}</h3>
