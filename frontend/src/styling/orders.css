@@ -15,13 +15,13 @@
 }
 
 .orders thead {
-  /* background-color: var(--background-blue); */
+  /* background-color: var(--grey-bg); */
   text-align: left;
 
 }
 
 .orders tbody tr {
-  background-color: var(--background-blue-transparent);
+  background-color: var(--grey-bg-transparent);
   border-bottom: 15px solid var(--background-white);
 }
 
@@ -61,8 +61,8 @@
 }
 
 .orders span.orange {
-  color: var(--primary);
-  background-color: var(--background-primary)
+  color: var(--primary-bg);
+  background-color: var(--primary-bg-light)
 }
 
 .orders span.black {
@@ -95,7 +95,7 @@
   margin-bottom: 2rem;
   cursor: pointer;
   justify-content: space-evenly;
-  background-color: var(--background-blue);
+  background-color: var(--grey-bg);
 }
 
 .orders .mobile span:first-child {
@@ -136,7 +136,7 @@ div.pages > * {
 .pages button {
   width: 3rem;
   height: 3rem;
-  background: var(--background-blue);
+  background: var(--grey-bg);
   margin: 3px;
 }
 

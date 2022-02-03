@@ -3,14 +3,12 @@
   --header-van-height: 70px;
   --max-width-van: 140rem;
   --max-width-customer: 130rem;
-  --background-blue: #F6F8F9;
-  --background-blue-transparent: #F6F8F988;
   --background-white: #ffffff;
   --background-darker: #e0e8ed;
 
   --dark-text: #3c4048;
   --light-text: #8a91a1;
-  --shadow: #00133933;
+  --shadow: #c16a2a54;
   --link-text: #435a8a;
   --focus: #296ea2;
   --un-focus: #b6c8d5;
@@ -28,9 +26,9 @@
   --history-strong: #8378E4;
   --my-van-strong: #5DB68B;
 
-  /* --primary: #FF740F;
-  --primary-dark: #e36308;
-  --background-primary: #fff0e7; */
+  /* --primary-bg: #FF740F;
+  --primary-bg-dark: #e36308;
+  --primary-bg-light: #fff0e7; */
 
 
   --pink-bg-light: #fff6f7;
@@ -51,9 +49,27 @@
   --yellow-bg-bright: #ffdd32;
   --yellow-fg: #6A5C14;
   
-  --primary: #ffb783;
-  --primary-dark: #ffa666;
-  --background-primary: #fff0e7;
+  --blue-bg-light: #f4f9ff;
+  --blue-bg: #e6f3ff;
+  --blue-bg-dark: #d5ebff;
+  --blue-bg-bright: #5cb0ff;
+  --blue-fg: #2a4761;
+  
+  --grey-bg-light: #f6f8fa;
+  --grey-bg: #f3f4f5;
+  --grey-bg-dark: #cbd1d6;
+  --grey-fg: #e5e8eb;
+  --grey-bg-transparent: #F6F8F988;
+  --grey-shadow: #1c1a682e;
+
+
+
+  --primary-bg-light: #fff0e7;
+  --primary-bg: #ffb783;
+  --primary-bg-dark: #ffa666;
+  --primary-fg: #4f2e17;
+  --primary-shadow: #c16a2a54;
+
 
   --secondary: #f8f0c6;
 
@@ -168,7 +184,7 @@ ul {
 }
 
 fieldset {
-  background-color: var(--background-blue);
+  background-color: var(--grey-bg);
 }
 
 svg {

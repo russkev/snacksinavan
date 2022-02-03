@@ -4,7 +4,7 @@ div.login-window {
 }
 
 div.login-window fieldset {
-  background-color: var(--background-blue);
+  background-color: var(--grey-bg);
 }
 
 div.login-window fieldset:nth-child(n+2) {

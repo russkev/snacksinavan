@@ -135,7 +135,7 @@ export default function Signup() {
                 </button>
               </p>
               <Link to={redirectFromPath}>
-                <button className="full-width">Cancel</button>
+                <button className="secondary full-width">Cancel</button>
               </Link>
               <p>
                 {" "}

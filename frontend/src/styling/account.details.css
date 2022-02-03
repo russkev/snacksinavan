@@ -68,7 +68,7 @@
 }
 
 .my-info nav ul li:hover, .my-info nav ul li:focus {
-  background-color: var(--background-blue);
+  background-color: var(--grey-bg);
 }
 
 .my-info div.load-button {

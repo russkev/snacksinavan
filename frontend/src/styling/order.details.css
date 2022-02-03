@@ -13,10 +13,10 @@
 
   background-image: linear-gradient(
     90deg, 
-    var(--background-blue) 0%, 
+    var(--grey-bg) 0%, 
     var(--background-darker) 33%,
     var(--background-darker) 66%, 
-    var(--background-blue) 100%
+    var(--grey-bg) 100%
     );
   background-size: 75px 75px;
   animation: move 0.3s linear infinite;
@@ -25,7 +25,7 @@
 
 .order .progress > div {
   height: 100%;
-  background-color: var(--primary);
+  background-color: var(--primary-bg);
   min-width: 0.5%;
 }
 
@@ -138,7 +138,7 @@ span.star.hovered svg{
 }
 
 span.star.filled {
-  fill: var(--primary)
+  fill: var(--primary-bg)
 }
 
 .invoice-main {
@@ -146,13 +146,13 @@ span.star.filled {
 }
 
 .order-totals {
-  background: var(--background-blue);
+  background: var(--grey-bg);
   margin-top: 3rem;
   padding: 1rem;
 }
 
 .order strong {
-  color: var(--primary)
+  color: var(--primary-bg)
 }
 
 .order .modify {

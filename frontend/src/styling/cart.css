@@ -65,7 +65,7 @@
 }
 
 .cart > section:nth-child(3) {
-  background-color: var(--background-blue);
+  background-color: var(--grey-bg);
   border-radius: 20px 20px 0 0;
 }
 
@@ -118,7 +118,7 @@ div.please-login {
 
 #confirm-cart {
   background-color: var(--background-white);
-  box-shadow: 0px 10px 10px var(--shadow);
+  box-shadow: 0px 10px 10px var(--grey-shadow);
   height: 100%;
 }
 

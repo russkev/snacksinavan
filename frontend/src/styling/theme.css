@@ -54,7 +54,39 @@ a.button.warning-color:hover,
 a.button.warning-color:focus
 {
   background-color: var(--warning-bg-dark);
+}
+
+button.orange-color.disabled:hover,
+button.orange-color.disabled:focus,
+a.button.orange-color.disabled:hover,
+a.button.orange-color.disabled:focus
+{
+  background-color: var(--orange-bg);
 }   
+
+button.pink-color.disabled:hover,
+button.pink-color.disabled:focus,
+a.button.pink-color.disabled:hover,
+a.button.pink-color.disabled:focus
+{
+  background-color: var(--pink-bg);
+}   
+
+button.yellow-color.disabled:hover,
+button.yellow-color.disabled:focus,
+a.button.yellow-color.disabled:hover,
+a.button.yellow-color.disabled:focus
+{
+  background-color: var(--yellow-bg);
+}
+
+button.warning-color.disabled:hover,
+button.warning-color.disabled:focus,
+a.button.warning-color.disabled:hover,
+a.button.warning-color.disabled:focus
+{
+  background-color: var(--warning-bg);
+}  
 
 .full-screen {
   width: 100%;

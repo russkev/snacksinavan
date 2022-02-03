@@ -3,7 +3,7 @@
 .signup > div:first-child {
   width: 30%;
   height: 100%;
-  background-color: var(--light-text);
+  background-color: var(--pink-bg);
 }
 
 .signup .close {
@@ -12,7 +12,7 @@
 }
 
 .signup fieldset {
-  background-color: var(--background-blue);
+  background-color: var(--grey-bg);
 }
 
 .signup fieldset:nth-child(n+2) {

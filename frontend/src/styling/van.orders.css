@@ -67,7 +67,7 @@ div.van .countdown > div {
   align-items: center;
   border-radius: 5px;
   height: min-content;
-  background-color: var(--background-blue);
+  background-color: var(--grey-bg);
   padding: 0;
   overflow: clip;
   display: grid;
@@ -164,7 +164,7 @@ div.van .details {
   justify-content: space-between;
   overflow: hidden;
   margin-bottom: 4rem;
-  background-color: var(--background-blue);
+  background-color: var(--grey-bg);
   border-radius: 5px;
   display: flex;
   justify-content: space-evenly;

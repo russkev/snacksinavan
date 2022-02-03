@@ -181,7 +181,7 @@ a.button.nav-button {
 }
 
 /* .nav-button:hover, .nav-button:focus {
-  background-color: var(--background-blue);
+  background-color: var(--grey-bg);
 } */
 
 .nav-button.active {
@@ -238,7 +238,7 @@ button.logout {
   border-radius: 5px;
 }
 
-.nav-logo {
+.nav-logo a {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -283,7 +283,7 @@ span.account {
   flex-direction: column;
   box-sizing: border-box;
   border-radius: 5px;
-  box-shadow: 5px 5px 10px var(--shadow)
+  box-shadow: 5px 5px 10px var(--grey-shadow)
 }
 
 @media screen and (max-width: 800px) {
