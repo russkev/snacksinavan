@@ -4,9 +4,9 @@ import VanRoutes from "../routes/van.routes";
 import { Link } from "react-router-dom";
 import LogoIcon from "../media/logo.icon";
 import "../styling/choose.app.css";
-import LogoTextBigSnacks from "../media/logo.text.big.snacks";
-import LogoTextBigInA from "../media/logo.text.big.in.a";
-import LogoTextBigVan from "../media/logo.text.big.van";
+import LogoText from "../components/LogoText";
+
+
 
 export default function ChooseApp() {
   return (
@@ -17,17 +17,7 @@ export default function ChooseApp() {
             <svg viewBox="0 0 500 500" className="logo">
               <LogoIcon />
             </svg>
-            <div className="logo-text-big">
-              <svg viewBox="0 0 275 196">
-                <LogoTextBigSnacks />
-              </svg>
-              <svg viewBox="0 0 275 196">
-                <LogoTextBigInA />
-              </svg>
-              <svg viewBox="0 0 275 196">
-                <LogoTextBigVan />
-              </svg>
-            </div>
+            <LogoText />
           </section>
         </aside>
         <nav className="container">
@@ -45,3 +35,5 @@ export default function ChooseApp() {
     </>
   );
 }
+
+

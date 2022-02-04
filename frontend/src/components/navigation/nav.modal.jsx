@@ -64,7 +64,6 @@ function NavModal({ toggleMobileNav, isShowing }) {
             </svg>
           </button>
           <div>
-            {/* <h2>Snacks in a Van</h2> */}
             <NavLogo />
             <FindAVanButton />
             <SnacksMenuButton />
@@ -95,13 +94,13 @@ function NavModal({ toggleMobileNav, isShowing }) {
             </svg>
           </button>
           <div>
-            <h2>Snacks in a Van</h2>
+            <NavLogo />
             <FindAVanButton />
             <SnacksMenuButton />
             <hr />
           </div>
           <div>
-            <Link to="#" onClick={handleLoginClicked} className="button">
+            <Link to="#" onClick={handleLoginClicked} className="secondary button">
               Login
             </Link>
             <Link

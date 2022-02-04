@@ -65,7 +65,7 @@
 }
 
 .cart > section:nth-child(3) {
-  background-color: var(--grey-bg);
+  background-color: var(--blue-bg);
   border-radius: 20px 20px 0 0;
 }
 

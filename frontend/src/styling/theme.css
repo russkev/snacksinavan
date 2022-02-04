@@ -112,27 +112,27 @@ a.button.warning-color.disabled:focus
   min-height: unset;
 }
 
-.logo-text-big {
+.logo-text {
   display: grid;
 }
 
-.logo-text-big svg {
+.logo-text svg {
   width: 100%;
   height: unset;
   grid-column: 1;
   grid-row: 1;
 }
 
-.logo-text-big svg:nth-child(1) {
-  fill: var(--orange-fg)
+.logo-text svg:nth-child(1) {
+  fill: var(--orange-bright)
 }
 
-.logo-text-big svg:nth-child(2) {
-  fill: var(--yellow-fg)
+.logo-text svg:nth-child(2) {
+  fill: var(--yellow-bright)
 }
 
-.logo-text-big svg:nth-child(3) {
-  fill: var(--pink-fg)
+.logo-text svg:nth-child(3) {
+  fill: var(--pink-bright)
 }
 
 .blank-bottom {

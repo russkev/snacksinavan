@@ -2,6 +2,7 @@ import React from "react";
 import LogoIcon from "../../media/logo.icon";
 import Routes from "../../routes/routes";
 import { Link } from "react-router-dom";
+import LogoText from "../LogoText";
 
 export default function NavLogo() {
   return (
@@ -10,7 +11,7 @@ export default function NavLogo() {
         <svg viewBox="0 0 500 500">
           <LogoIcon />
         </svg>
-        Snacks in a Van
+        <LogoText />
       </Link>
     </div>
   );

@@ -43,6 +43,9 @@ export default function MainNav() {
       <span className="desktop">
         <ul>
           <li>
+            <NavLogo />
+          </li>
+          <li>
             <NavLink
               className="desktop yellow-color nav-button button"
               activeClassName="active"
@@ -71,7 +74,6 @@ export default function MainNav() {
             </NavLink>
           </li>
         </ul>
-        <NavLogo />
         {isAuthenticated ? (
           <span className="account">
             <Link className="desktop pink-color nav-button button" to="#" onClick={toggleAccount}>
