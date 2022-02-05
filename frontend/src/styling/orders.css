@@ -52,7 +52,7 @@
 
 .orders span.red {
   color: var(--warning);
-  background-color: var(--background-warning);
+  background-color: var(--warning-bg);
 }
 
 .orders span.green {
@@ -61,8 +61,8 @@
 }
 
 .orders span.orange {
-  color: var(--primary-bg);
-  background-color: var(--primary-bg-light)
+  color: var(--orange-fg);
+  background-color: var(--orange-bg-dark)
 }
 
 .orders span.black {

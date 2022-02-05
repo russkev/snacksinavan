@@ -203,7 +203,11 @@ div.van .details div.section {
   padding: 1.5rem;
 }
 
-
+.disappear-right {
+  transform: translateX(50%);
+  opacity: 0%;
+  transition-duration: 0.5s;
+}
 
 div.van .details div.section > div:nth-child(2n-1) {
   text-align: right;
@@ -230,3 +234,4 @@ div.calcChildSize {
 div.calcChildSize > div {
   overflow: hidden;
 }
+

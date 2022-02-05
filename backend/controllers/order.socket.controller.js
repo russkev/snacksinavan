@@ -144,10 +144,14 @@ const fulfillOrder = async (io, socket) => {
         const savedVan = await vanModel.findOne({ _id: savedOrder.van });
         const customer = await userModel.findOne({ _id: savedOrder.customer });
         socket.emit("orderFulfilledUpdated", savedOrder);
-        io.sockets.emit(ORDERS_CHANGED, {
-          customer: customer.username,
-          van: savedVan.vanName,
-        });
+        
+        // Timeout allows for slide animation
+        setTimeout(() => {
+          io.sockets.emit(ORDERS_CHANGED, {
+            customer: customer.username,
+            van: savedVan.vanName,
+          });
+        }, 500);
       } catch (error) {
         socket.emit("error", `fulfillOrder error: ${error.message}`);
         console.log(error);
@@ -174,10 +178,14 @@ const completeOrder = async (io, socket) => {
         const customer = await userModel.findOne({ _id: savedOrder.customer });
 
         socket.emit("orderCompleteUpdated", savedOrder);
-        io.sockets.emit(ORDERS_CHANGED, {
-          customer: customer.username,
-          van: savedVan.vanName,
-        });
+
+        // Timeout allows for slide animation
+        setTimeout(() => {
+          io.sockets.emit(ORDERS_CHANGED, {
+            customer: customer.username,
+            van: savedVan.vanName,
+          });
+        }, 500);
       } catch (error) {
         socket.emit("error", `completeOrder error: ${error.message}`);
         console.log(error);

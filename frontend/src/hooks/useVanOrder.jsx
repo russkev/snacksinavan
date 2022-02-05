@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import orderTimeLeft, { timePassedSeconds } from "../components/order.time.left";
 import { linearInterpolate } from "../components/util";
 import useGlobals from "../hooks/useGlobals";
+import useSnackbar from "./useSnackbar";
 import useVanOrders from "./useVanOrders";
-
 
 export const ORDER_START_HUE = 120;
 export const ORDER_END_HUE = 0;
@@ -11,17 +11,29 @@ export const ORDER_SATURATION = "60%";
 export const ORDER_VALUE = "50%";
 
 // Sets an order's isFulfilled status in the database
-async function postOrderFulfilled(socket, orderId, isFulfilled) {
+async function postOrderFulfilled(socket, orderId, isFulfilled, handleFinish) {
   const orderUpdate = { orderId: orderId, isFulfilled: isFulfilled };
   socket.emit("fulfillOrder", orderUpdate);
-  socket.on("error", (error) => console.log(error));
+  socket.on("orderFulfilledUpdated", () => {
+    handleFinish(true, "");
+  });
+  socket.on("error", (error) => {
+    console.log(error);
+    handleFinish(false, error);
+  });
 }
 
 // Sets an order's isCompleted status in the database
-async function postOrderCompleted(socket, orderId, isCompleted) {
+async function postOrderCompleted(socket, orderId, isCompleted, handleFinish) {
   const info = { orderId: orderId, isComplete: isCompleted };
   socket.emit("completeOrder", info);
-  socket.on("error", (error) => console.log(error));
+  socket.on("orderCompleteUpdated", () => {
+    handleFinish(true, "");
+  });
+  socket.on("error", (error) => {
+    console.log(error)
+    handleFinish(false, error)
+  });
 }
 
 export function calculateOrderTotals(order, setOrderTotals, delayDiscount) {
@@ -69,6 +81,7 @@ export default function useVanOrder(order) {
   const [orderTotals, setOrderTotals] = useState({ subtotal: 0, discount: 0, total: 0 });
   const [fulfilledClicked, setFulfilledClicked] = useState(false);
   const [completedClicked, setCompletedClicked] = useState(false);
+  const { handleSnackbarMessage } = useSnackbar()
   const { globals } = useGlobals();
   const { vanSocket } = useVanOrders();
 
@@ -118,32 +131,48 @@ export default function useVanOrder(order) {
     };
   }, [order._id]);
 
+  const handleFulfilledFinish = (isSuccess, error) => {
+    setFulfilledClicked(false); 
+    if (isSuccess) {
+      const orderCardElement = document.getElementById(`van-order-card-${order._id}`);
+      if (orderCardElement) {
+        orderCardElement.classList.add("disappear-right");
+      }
+    } else {
+      handleSnackbarMessage(error);
+    }
+  };
+
+  const handleCompletedFinish = (isSuccess, error) => {
+    setCompletedClicked(false)
+    if (isSuccess) {
+      const orderCardElement = document.getElementById(`van-fulfilled-card-${order._id}`);
+      if (orderCardElement) {
+        orderCardElement.classList.add("disappear-right");
+      }
+    } else {
+      handleSnackbarMessage(error);
+    }
+  }
+
   const setIsFulfilled = async (event) => {
     setFulfilledClicked(true);
     event.preventDefault();
-    setTimeout(() => {
-      try {
-        postOrderFulfilled(vanSocket, order._id, true);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setFulfilledClicked(false);
-      }
-    }, 500);
+    try {
+      postOrderFulfilled(vanSocket, order._id, true, handleFulfilledFinish);
+    } catch (error) {
+      handleSnackbarMessage(error)
+    }
   };
 
   const setIsCompleted = async (event) => {
     setCompletedClicked(true);
     event.preventDefault();
-    setTimeout(() => {
-      try {
-        postOrderCompleted(vanSocket, order._id, true);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setCompletedClicked(false);
-      }
-    }, 500);
+    try {
+      postOrderCompleted(vanSocket, order._id, true, handleCompletedFinish);
+    } catch (error) {
+      handleSnackbarMessage(error);
+    }
   };
 
   const toggleExpand = (event) => {
