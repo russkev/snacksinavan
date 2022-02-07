@@ -181,34 +181,9 @@ a.button.nav-button {
   height: 2rem;
 }
 
-/* .nav-button:hover, .nav-button:focus {
-  background-color: var(--grey-bg);
-} */
-
 .nav-button.active {
-  /* color: var(--dark-text);
-  fill: var(--dark-text); */
-  opacity: 80%;
+  opacity: 0.8;
 }
-
-
-
-/* .nav-button.active {
-  background-color: var(--light-text);
-  color: var(--background-white);
-}
-
-.nav-button.active svg {
-  fill: var(--background-white);
-}
-
-.nav-button.active:hover, .nav-button.active:focus {
-  background-color: var(--dark-text);
-}
-
-.nav-button:hover, .nav-button:focus {
-  background-color: var(--background-darker);
-} */
 
 nav.customer .sign-in {
   display: flex;
