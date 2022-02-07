@@ -26,6 +26,7 @@ nav.van li a {
 
 nav.van svg {
   fill: inherit;
+  margin: 0;
 }
 
 nav.van a.my-van {
