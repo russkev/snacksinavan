@@ -154,17 +154,6 @@ a.button.nav-button {
   justify-content: center;
 }
 
-/* .account .nav-button {
-  color: var(--light-text);
-  fill: var(--light-text);
-}
-
-.account > .nav-button.desktop {
-  color: var(--dark-text);
-  fill: var(--dark-text);
-  background-color: var(--secondary);
-} */
-
 .account .nav-button.menu {
   padding: 0.8rem 1.5rem;
   margin-bottom: 0.5rem; 
@@ -274,9 +263,6 @@ span.account {
   :root {
     --header-height: 40px;
   }
-  /* .container {
-    height: 100vh;
-  } */
 }
 
 @media screen and (max-height: 600px) {

@@ -13,10 +13,6 @@
   height: 50px;
 }
 
-/* .address-search fieldset{
-  border: 2px solid var(--un-focus);
-} */
-
 .use-my-location div{
   display: flex;
   align-items: center;

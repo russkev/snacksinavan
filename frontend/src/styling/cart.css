@@ -157,7 +157,6 @@ div.please-login {
     top: 0;
     bottom: 0;
     transition-duration: 0.3s;
-    /* transition-timing-function: cubic-bezier(1, 0, 0, 1); */
     width: 500px;
     max-width: 100%;
     transition-timing-function: ease-in-out;
@@ -168,12 +167,10 @@ div.please-login {
   }
 
   .menu-cart .slide-cart {
-    /* left: 0px; */
     right: 0px;
   }
 
   .menu-cart .slide-menu {
-    /* left: 100vw; */
     right: -100vw;
   }
   

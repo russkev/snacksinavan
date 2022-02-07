@@ -69,10 +69,6 @@
   flex-direction: column;
 }
 
-/* .order article section > div:nth-child(2n) {
-  margin-top: 3rem;
-} */
-
 .order article a, .order article button {
   margin-top: 1.5rem;
   width: 100%;

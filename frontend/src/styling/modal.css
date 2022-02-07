@@ -21,16 +21,6 @@
     border-radius: 0px;
     overflow-y: auto;
   }
-
-  /* .cancel-modal-buttons{
-    flex-direction: column;
-  }
-  .yes-cancel{
-    margin: 10px 0;
-  }
-  .no-cancel{
-    margin: 10px 0;
-  } */
 }
 
 #modal-window .close svg {

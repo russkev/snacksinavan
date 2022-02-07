@@ -6,8 +6,6 @@ button, a.button{
   font-weight: 500;
   border: 2px solid transparent;
   outline: 2px solid transparent;
-  /* background-color: var(--grey-bg); */
-  /* color: var(--link-text); */
   border: 2px solid transparent;
   height: 4.2rem;
   display: flex;
@@ -51,30 +49,8 @@ button.close {
 }
 
 button.close:hover, button.close:focus {
-  /* background-color: var(--grey-bg); */
   border: none;
 }
-
-
-/* button:hover,  */
-/* a.button:hover,  */
-/* button:focus,  */
-/* a.button:focus { */
-  /* background-color: var(--background-darker); */
-  /* border: 2px solid transparent; */
-
-  /* border: none; */
-  /* outline: none; */
-/* } */
-
-/* button:focus,  */
-/* a.button:focus { */
-  /* border: 2px solid var(--focus);  */
-  /* border: none; */
-  /* outline: none; */
-  /* background-color: var() */
-  /* border: 2px solid transparent; */
-/* } */
 
 button.square,
 a.button.square {
@@ -104,10 +80,6 @@ a.button.secondary {
   color: var(--blue-fg);
   fill: var(--blue-fg);
 }
-
-/* button.primary:focus, a.button.primary:focus {
-  border: 2px solid;
-} */
 
 button.primary:hover, 
 a.button.primary:hover, 
@@ -215,11 +187,3 @@ a.secondary.disabled:focus
 {
   background-color: var(--blue-bg);
 }
-
-/* button.disabled:hover, 
-button.disabled:focus,
-a.disabled:hover, 
-a.disabled:focus 
-{
-  background-color: var(--grey-bg);
-} */
