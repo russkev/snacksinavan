@@ -4,7 +4,7 @@ import VanRoutes from "../routes/van.routes";
 import { Link } from "react-router-dom";
 import LogoIcon from "../media/logo.icon";
 import "../styling/choose.app.css";
-import LogoText from "../components/LogoText";
+import LogoText from "../components/logo.text";
 
 export default function ChooseApp() {
   return (

@@ -7,6 +7,7 @@ import InputContainer from "../components/input.container";
 import "../styling/van.login.css";
 import LoadingLogo from "../components/loading.logo";
 import LoadingButton from "../components/loading.button";
+import Routes from "../routes/routes"
 
 export default function VanLogin() {
   const {
@@ -33,7 +34,7 @@ export default function VanLogin() {
           <h3>Snacks in a Van</h3>
           <h1>Vendor App</h1>
           <p>
-            Looking for a snack? The customer app is <Link to="/">here</Link>
+            Looking for a snack? The customer app is <Link to={Routes.VAN_CHOICE.path}>here</Link>
           </p>
           <h4>Please sign in</h4>
           <article>

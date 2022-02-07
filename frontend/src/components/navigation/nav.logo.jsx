@@ -2,7 +2,7 @@ import React from "react";
 import LogoIcon from "../../media/logo.icon";
 import Routes from "../../routes/routes";
 import { Link } from "react-router-dom";
-import LogoText from "../LogoText";
+import LogoText from "../logo.text";
 
 export default function NavLogo() {
   return (
