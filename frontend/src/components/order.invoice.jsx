@@ -1,5 +1,5 @@
 import React from "react";
-// import groupSnacks from "../components/group.snacks";
+
 
 function OrderDiscounts({ orderTotals }) {
   if (!orderTotals.discount) {

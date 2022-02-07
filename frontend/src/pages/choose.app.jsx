@@ -6,8 +6,6 @@ import LogoIcon from "../media/logo.icon";
 import "../styling/choose.app.css";
 import LogoText from "../components/LogoText";
 
-
-
 export default function ChooseApp() {
   return (
     <>

@@ -1,8 +1,6 @@
 import { useContext } from "react";
 import { SnackbarContext } from "../contexts/snackbar.context";
 
-
-
 export default function useSnackbar() {
   const { 
     snackbarMessage, 

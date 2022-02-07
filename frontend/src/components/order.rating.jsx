@@ -5,7 +5,6 @@ import InputContainer from "./input.container";
 import Stars from "./stars";
 
 export default function OrderRating({ order }) {
-  // const { rating, setRating, handleRatingSubmit, comment, onCommentChange } = useOrder(order);
   const {
     hoverOnRating,
     hoverOffRating,

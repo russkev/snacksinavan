@@ -32,9 +32,6 @@ export default function DemoCreate({ children }) {
       password: user,
       passwordConfirm: user,
     });
-    // const userDetails = {
-    //   firstName: randomString
-    // }
   }
 
   return (

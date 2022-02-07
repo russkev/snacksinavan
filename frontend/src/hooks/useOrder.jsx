@@ -77,9 +77,7 @@ export default function useOrder(order) {
   const [orderTotals, setOrderTotals] = useState({ subtotal: 0, discount: 0, total: 0 });
   const { globals } = useGlobals();
   const [orderStatus, setOrderStatus] = useState({});
-  // const [rating, setRating] = useState(0)
   const { socket } = useOrders();
-  // const [comment, setComment] = useState("");
   const history = useHistory();
 
   // Regularly update the amount of time left

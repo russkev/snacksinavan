@@ -27,10 +27,7 @@ export default function ConfirmCart({ isShowing, displayMenu }) {
   const order = orderId ? orderFromId(orderId) : null;
   const { loading, getSnacksError } = useSnacks();
   const { van } = useContext(VanContext);
-
-
-
-
+  
   var cantUpdate = false;
   if (orderId) {
     if (
