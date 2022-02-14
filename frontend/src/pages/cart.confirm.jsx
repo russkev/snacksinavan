@@ -10,6 +10,7 @@ import useOrders from "../hooks/useOrders";
 import ChevronLeftIcon from "../media/chevron.left.icon.jsx";
 import LoadingButton from "../components/loading.button.jsx";
 import LoadingLogo from "../components/loading.logo.jsx";
+import Routes from "../routes/routes"
 
 export default function ConfirmCart({ isShowing, displayMenu }) {
   const { globals } = useGlobals();
@@ -27,9 +28,6 @@ export default function ConfirmCart({ isShowing, displayMenu }) {
   const order = orderId ? orderFromId(orderId) : null;
   const { loading, getSnacksError } = useSnacks();
   const { van } = useContext(VanContext);
-
-
-
 
   var cantUpdate = false;
   if (orderId) {
@@ -85,7 +83,7 @@ export default function ConfirmCart({ isShowing, displayMenu }) {
                   <span>
                     No van selected. <br />
                     Please{" "}
-                    <Link to="/" onClick={displayMenu}>
+                    <Link to={Routes.VAN_CHOICE.path} onClick={displayMenu}>
                       select a van to proceed
                     </Link>{" "}
                   </span>

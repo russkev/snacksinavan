@@ -8,7 +8,6 @@ export const LoginContext = createContext([]);
 export function pathIncludes(pathList, targetPath) {
   let result = false;
   pathList.every((path) => {
-    // console.log(`this: ${path}, target: ${targetPath}`)
     if (path.endsWith(":id")) {
       const currPath = path.slice(0, -4);
       let currTargetPath = targetPath.split("/");
@@ -31,8 +30,8 @@ export const LoginContextProvider = ({ children }) => {
   const [loginIsOpen, setLoginIsOpen] = useState(false);
   const loggedInOnlyPaths = getLoggedInOnlyPaths();
   const loggedOutOnlyPaths = getLoggedOutOnlyPaths();
-  const [redirectToPath, setRedirectToPath] = useState(Routes.HOME.path);
-  const [redirectFromPath, setRedirectFromPath] = useState(Routes.HOME.path);
+  const [redirectToPath, setRedirectToPath] = useState(Routes.VAN_CHOICE.path);
+  const [redirectFromPath, setRedirectFromPath] = useState(Routes.VAN_CHOICE.path);
   const { isAuthenticated } = useUser();
   const location = useLocation();
 
@@ -60,19 +59,15 @@ export const LoginContextProvider = ({ children }) => {
 
         if (!pathIsLoggedOutOnly && !pathIsLoggedInOnly) {
           // User requested path that everyone has access to
-          // console.log(`from path1: ${currPath}`);
           setRedirectFromPath(currPath);
           if (!loginIsOpen) {
-            // console.log(`to path1: ${currPath}`);
             setRedirectToPath(currPath);
           }
         } else if (!isAuthenticated && pathIsLoggedInOnly) {
           // User not logged in and the requested path is one they need to be logged in for
-          // console.log(`to path2: ${currPath}`);
           setRedirectToPath(currPath);
         } else if (isAuthenticated && pathIsLoggedOutOnly) {
           // User is logged in and the requested path is one they need to be logged out for
-          // console.log(`from path2: ${currPath}`);
           setRedirectFromPath(currPath);
         }
       }
@@ -89,7 +84,6 @@ export const LoginContextProvider = ({ children }) => {
     if ("pathname" in location) {
       const currPath = location.pathname;
 
-      // if (loggedInOnlyPaths.includes(currPath)) {
       if (pathIncludes(loggedInOnlyPaths, currPath)) {
         toggleLoginIsOpen();
       }

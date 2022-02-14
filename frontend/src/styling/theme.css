@@ -1,0 +1,145 @@
+
+.orange-color, .container .orange-color {
+  background-color: var(--orange-bg);
+  color: var(--orange-fg);
+  fill: var(--orange-fg);
+}
+
+.pink-color, .container .pink-color {
+  background-color: var(--pink-bg);
+  color: var(--pink-fg);
+  fill: var(--pink-fg);
+}
+
+.yellow-color, .container .yellow-color {
+  background-color: var(--yellow-bg);
+  color: var(--yellow-fg);
+  fill: var(--yellow-fg);
+}
+
+.warning-color, .container .warning-color {
+  background-color: var(--warning-bg);
+  color: var(--warning);
+  fill: var(--warning);
+  border: 3px solid var(--warning);
+}
+
+button.orange-color:hover,
+button.orange-color:focus,
+a.button.orange-color:hover,
+a.button.orange-color:focus
+{
+  background-color: var(--orange-bg-dark);
+}   
+
+button.pink-color:hover,
+button.pink-color:focus,
+a.button.pink-color:hover,
+a.button.pink-color:focus
+{
+  background-color: var(--pink-bg-dark);
+}   
+
+button.yellow-color:hover,
+button.yellow-color:focus,
+a.button.yellow-color:hover,
+a.button.yellow-color:focus
+{
+  background-color: var(--yellow-bg-dark);
+}
+
+button.warning-color:hover,
+button.warning-color:focus,
+a.button.warning-color:hover,
+a.button.warning-color:focus
+{
+  background-color: var(--warning-bg-dark);
+}
+
+button.orange-color.disabled:hover,
+button.orange-color.disabled:focus,
+a.button.orange-color.disabled:hover,
+a.button.orange-color.disabled:focus
+{
+  background-color: var(--orange-bg);
+}   
+
+button.pink-color.disabled:hover,
+button.pink-color.disabled:focus,
+a.button.pink-color.disabled:hover,
+a.button.pink-color.disabled:focus
+{
+  background-color: var(--pink-bg);
+}   
+
+button.yellow-color.disabled:hover,
+button.yellow-color.disabled:focus,
+a.button.yellow-color.disabled:hover,
+a.button.yellow-color.disabled:focus
+{
+  background-color: var(--yellow-bg);
+}
+
+button.warning-color.disabled:hover,
+button.warning-color.disabled:focus,
+a.button.warning-color.disabled:hover,
+a.button.warning-color.disabled:focus
+{
+  background-color: var(--warning-bg);
+}  
+
+.full-screen {
+  width: 100%;
+  position: fixed;
+  margin: 0;
+  padding:0;
+  top: 0;
+  bottom: 0;
+  background: var(--background-white);
+  z-index: 1000;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  display: flex;
+}
+
+.full-screen .container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 0 3rem;
+  justify-content: center;
+  max-width: 43rem;
+  min-height: unset;
+}
+
+.logo-text {
+  display: grid;
+}
+
+.logo-text svg {
+  width: 100%;
+  height: unset;
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.logo-text svg:nth-child(1) {
+  fill: var(--orange-bright)
+}
+
+.logo-text svg:nth-child(2) {
+  fill: var(--yellow-bright)
+}
+
+.logo-text svg:nth-child(3) {
+  fill: var(--pink-bright)
+}
+
+.blank-bottom {
+  width: 100%;
+  height: 4rem;
+}
+
+.zero-bottom-margin {
+  margin-bottom: 0;
+}

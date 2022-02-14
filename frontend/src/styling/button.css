@@ -6,8 +6,6 @@ button, a.button{
   font-weight: 500;
   border: 2px solid transparent;
   outline: 2px solid transparent;
-  background-color: var(--background-blue);
-  color: var(--link-text);
   border: 2px solid transparent;
   height: 4.2rem;
   display: flex;
@@ -17,6 +15,11 @@ button, a.button{
   display: inline-flex;
   cursor: pointer;
   margin: 1.5rem 0;
+}
+
+button.big, a.big.button {
+  height: 100px;
+  font-size: 2.2rem;
 }
 
 button.logout, a.button.logout {
@@ -46,25 +49,13 @@ button.close {
 }
 
 button.close:hover, button.close:focus {
-  background-color: var(--background-blue);
   border: none;
 }
 
-
-button:hover, a.button:hover, button:focus, a.button:focus {
-  background-color: var(--background-darker);
-  border: 2px solid transparent;
-
-  /* border: none; */
-  /* outline: none; */
-}
-
-button:focus, a.button:focus {
-  /* border: 2px solid var(--focus);  */
-  /* border: none; */
-  /* outline: none; */
-  /* background-color: var() */
-  border: 2px solid transparent;
+button.square,
+a.button.square {
+  border-radius: 0.5rem;
+  height: 3.6rem;
 }
 
 .icon-button {
@@ -77,20 +68,31 @@ button:focus, a.button:focus {
   outline: 2px solid transparent;
 }
 
-button.primary, a.button.primary {
-  background-color: var(--primary);
-  color: var(--dark-text);
+button.primary,
+a.button.primary {
+  background-color: var(--primary-bg);
+  color: var(--primary-fg);
 }
 
-/* button.primary:focus, a.button.primary:focus {
-  border: 2px solid;
-} */
+button.secondary,
+a.button.secondary {
+  background-color: var(--blue-bg);
+  color: var(--blue-fg);
+  fill: var(--blue-fg);
+}
 
 button.primary:hover, 
 a.button.primary:hover, 
 button.primary:focus, 
 a.button.primary:focus {
-  background-color: var(--primary-dark);
+  background-color: var(--primary-bg-dark);
+}
+
+button.secondary:hover, 
+a.button.secondary:hover, 
+button.secondary:focus, 
+a.button.secondary:focus {
+  background-color: var(--blue-bg-dark);
 }
 
 button.soft-shadow, 
@@ -99,15 +101,32 @@ button.soft-shadow.disabled:hover,
 button.soft-shadow.disabled:focus,
 a.soft-shadow.disabled:hover, 
 a.soft-shadow.disabled:focus {
-  box-shadow: 1rem 1rem 2rem var(--shadow);
+  box-shadow: 1rem 1rem 2rem var(--grey-shadow);
 }
 
 button.soft-shadow:hover, a.soft-shadow:hover {
-  box-shadow: 0.8rem 0.8rem 1.6rem var(--shadow);
+  box-shadow: 0.8rem 0.8rem 1.6rem var(--grey-shadow);
 }
 
 button.soft-shadow:active, a.soft-shadow:active {
-  box-shadow: 0.4rem 0.4rem 0.8rem var(--shadow);
+  box-shadow: 0.4rem 0.4rem 0.8rem var(--grey-shadow);
+}
+
+button.primary.soft-shadow, 
+a.primary.soft-shadow, 
+button.primary.soft-shadow.disabled:hover, 
+button.primary.soft-shadow.disabled:focus,
+a.primary.soft-shadow.disabled:hover, 
+a.primary.soft-shadow.disabled:focus {
+  box-shadow: 1rem 1rem 2rem var(--primary-shadow);
+}
+
+button.primary.soft-shadow:hover, a.primary.soft-shadow:hover {
+  box-shadow: 0.8rem 0.8rem 1.6rem var(--primary-shadow);
+}
+
+button.primary.soft-shadow:active, a.primary.soft-shadow:active {
+  box-shadow: 0.4rem 0.4rem 0.8rem var(--primary-shadow);
 }
 
 .text-button{
@@ -140,7 +159,7 @@ div.quantity > button {
 div.quantity > span {
   width: 6rem;
   height: 6rem;
-  background-color: var(--background-blue);
+  background-color: var(--grey-bg);
   display: inline-flex;
   border-radius: 100%;
   justify-content: center;
@@ -158,13 +177,13 @@ button.primary.disabled:focus,
 a.primary.disabled:hover, 
 a.primary.disabled:focus
 {
-  background-color: var(--primary);
+  background-color: var(--primary-bg);
 }
 
-button.disabled:hover, 
-button.disabled:focus,
-a.disabled:hover, 
-a.disabled:focus 
+button.secondary.disabled:hover, 
+button.secondary.disabled:focus,
+a.secondary.disabled:hover, 
+a.secondary.disabled:focus
 {
-  background-color: var(--background-blue);
+  background-color: var(--blue-bg);
 }

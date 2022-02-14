@@ -1,10 +1,11 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import MenuCart from "../pages/menu.cart";
-import Home from "../pages/home";
+import ChooseVan from "../pages/choose.van";
 import Signup from "../pages/signup";
 import Login from "../pages/login";
 import MyInfo from "../pages/my.info";
+import ChooseApp from "../pages/choose.app";
 
 import { LoggedInRoute, LoggedOutRoute } from "./protected.routes";
 import LoginModal from "../components/login.modal";
@@ -20,6 +21,8 @@ export const availability = {
   LOGGED_OUT_ONLY: 2,
 };
 
+const CUSTOMER_PREFIX = "/customer"
+
 /**
  * The list of paths in the whole site.
  * All paths should be added here and the map function will deal with them appropriately
@@ -27,36 +30,41 @@ export const availability = {
 const Routes = {
   HOME: {
     path: "/",
-    component: Home,
+    component: ChooseApp,
+    access: availability.ALL,
+  },
+  VAN_CHOICE: {
+    path: CUSTOMER_PREFIX + "/chooseVan",
+    component: ChooseVan,
     access: availability.ALL,
   },
   SNACKS_MENU: {
-    path: "/menu",
+    path: CUSTOMER_PREFIX + "/menu",
     component: MenuCart,
     access: availability.ALL,
   },
   SIGNUP: {
-    path: "/signup",
+    path: CUSTOMER_PREFIX + "/signup",
     component: Signup,
     access: availability.LOGGED_OUT_ONLY,
   },
   LOGIN: {
-    path: "/login",
+    path: CUSTOMER_PREFIX + "/login",
     component: Login,
     access: availability.LOGGED_OUT_ONLY,
   },
   MY_INFO: {
-    path: "/info",
+    path: CUSTOMER_PREFIX + "/info",
     component: MyInfo,
     access: availability.LOGGED_IN_ONLY,
   },
   CUSTOMER_ORDERS: {
-    path: "/customer/orders",
+    path: CUSTOMER_PREFIX + "/orders",
     component: Orders,
     access: availability.LOGGED_IN_ONLY,
   },
   CUSTOM_ORDER: {
-    path: "/customer/orders/:id",
+    path: CUSTOMER_PREFIX + "/orders/:id",
     component: OrderDetails,
     access: availability.LOGGED_IN_ONLY,
   },

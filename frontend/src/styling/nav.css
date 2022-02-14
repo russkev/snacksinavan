@@ -1,11 +1,15 @@
+nav.customer {
+  display: flex;
+  justify-content: center;
+  background-color: var(--pink-bg-light);
+}
+
 nav.customer span.desktop, .mobile-nav {
   margin: 0;
   align-items: center;
-  background-color: var(--background-white);
   margin-bottom: 2px;
-  /* height: calc(var(--header-height) - 2px); */
-  /* outline: 2px solid var(--background-darker); */
   height: var(--header-height);
+  width: 100%;
 }
 
 nav.customer span.desktop {
@@ -13,6 +17,8 @@ nav.customer span.desktop {
   align-items: center;
   justify-content: space-between;
   padding: 0 3rem;
+  max-width: var(--max-width-customer);
+  width: 100%;
 }
 
 nav.customer ul {
@@ -24,26 +30,20 @@ nav.customer ul {
 }
 
 nav.customer span.desktop a.button {
-  width: 100px;
-  height: 30px;
+  width: 12rem;
+  height: 3rem;
 }
 
 nav.customer span.desktop a.button.primary {
   margin-left: 1.5rem;
 }
 
-/* nav.customer a {
-  color: var(--dark-text);
-  text-decoration: none;
-} */
 
 nav.customer .login {
   cursor: pointer;
 }
 
 .mobile-nav {
-  /* font-size: 2rem; */
-  /* padding-top: 1.5rem; */
   display: none;
   outline: none;
   justify-content: space-between;
@@ -55,6 +55,7 @@ nav.customer .login {
 .mobile-nav a.nav-button, #account-popover a {
   justify-content: flex-start;
   padding-left: 3rem;
+  margin: 0;
   margin-bottom: 1rem;
   font-size: 1.6rem;
   width: 100%;
@@ -80,7 +81,9 @@ nav.customer .login {
   height: 24px;
 }
 
-
+nav.customer span.desktop a.button.square {
+  height: 4rem;
+}
 
 .nav-modal {
   position: fixed;
@@ -110,7 +113,7 @@ nav.customer .login {
 
 aside.expanded {
   left: 0;
-  box-shadow: 0px 10px 10px var(--shadow);
+  box-shadow: 0px 10px 10px var(--grey-shadow);
 }
 
 .nav-modal > div{
@@ -120,20 +123,19 @@ aside.expanded {
   padding-bottom: 3rem;
 }
 
-.nav-modal h2 {
-  margin-top: 4rem;
+.nav-modal h2, .nav-modal .nav-logo {
+  margin-top: 0.5rem;
   margin-bottom: 1.5rem;
-  font-size: 2.4rem;
+  margin-left: 1rem;
+  font-size: 2rem;
 }
 
-.nav-button {
-  color: var(--light-text);
-  fill: var(--light-text);
+a.button.nav-button {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  background-color: var(--background-white);
+  justify-content: center;
   border-radius: .5rem;
+  margin: 1.5rem 1rem;
 }
 
 .nav-button svg {
@@ -147,20 +149,9 @@ aside.expanded {
 }
 
 .nav-button.desktop {
-  padding: 0.8rem 0rem;
+  padding: 0.1rem 0.8rem;
   width: 14rem;
   justify-content: center;
-}
-
-.account .nav-button {
-  color: var(--light-text);
-  fill: var(--light-text);
-}
-
-.account > .nav-button.desktop {
-  color: var(--dark-text);
-  fill: var(--dark-text);
-  background-color: var(--secondary);
 }
 
 .account .nav-button.menu {
@@ -179,33 +170,13 @@ aside.expanded {
   height: 2rem;
 }
 
-.nav-button:hover, .nav-button:focus {
-  background-color: var(--background-blue);
-}
-
 .nav-button.active {
-  color: var(--dark-text);
-  fill: var(--dark-text);
+  opacity: 0.8;
 }
 
-
-
-/* .nav-button.active {
-  background-color: var(--light-text);
-  color: var(--background-white);
+nav.customer .sign-in {
+  display: flex;
 }
-
-.nav-button.active svg {
-  fill: var(--background-white);
-}
-
-.nav-button.active:hover, .nav-button.active:focus {
-  background-color: var(--dark-text);
-}
-
-.nav-button:hover, .nav-button:focus {
-  background-color: var(--background-darker);
-} */
 
 nav.customer .sign-in a {
   border-radius: 5px;
@@ -230,6 +201,20 @@ button.logout {
 
 .nav-modal button.logout, #account-popover button.logout {
   border-radius: 5px;
+}
+
+.nav-logo a {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 12rem;
+}
+
+.nav-logo svg {
+  /* width: 3rem; */
+  width: unset;
+  height: 3.5rem;
+  margin-right: 0.5rem;
 }
 
 #account-popover button.logout {
@@ -258,14 +243,14 @@ span.account {
   position: absolute;
   z-index: 4000;
   width: 200px;
-  background-color: var(--background-white);
+  background-color: var(--pink-bg-light);
   right: 0;
   padding: 1rem;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
   border-radius: 5px;
-  box-shadow: 5px 5px 10px var(--shadow)
+  box-shadow: 5px 5px 10px var(--grey-shadow)
 }
 
 @media screen and (max-width: 800px) {
@@ -278,16 +263,7 @@ span.account {
   :root {
     --header-height: 40px;
   }
-  /* .container {
-    height: 100vh;
-  } */
 }
-
-/* @media screen and (max-width: 300px) {
-  .mobile-nav h5 {
-    display: none;
-  } 
-} */
 
 @media screen and (max-height: 600px) {
   .nav-button.mobile {

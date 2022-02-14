@@ -30,7 +30,7 @@
 
 .my-van-card{
   margin: 15px;
-  background: var(--background-blue);
+  background: var(--grey-bg);
   border-radius: 10px;
   display: flex;
   flex-direction: column;

@@ -18,12 +18,11 @@ export default function FulfilledOrder({ order }) {
   let date = dateTime.toLocaleDateString();
 
   return (
-    <div className="van fulfilled">
+    <div id={`van-fulfilled-card-${order._id}`} className="van fulfilled">
       <section>
-
-      <LoadingButton isLoading={completedClicked}>
-        <button onClick={setIsCompleted}>Collected</button>
-      </LoadingButton>
+        <LoadingButton isLoading={completedClicked}>
+          <button onClick={setIsCompleted}>Collected</button>
+        </LoadingButton>
       </section>
       <VanOrderMain
         order={order}
@@ -31,7 +30,12 @@ export default function FulfilledOrder({ order }) {
         date={date}
         toggleExpand={toggleExpand}
       />
-      <VanOrderTime titleText="Time of order:" mainText={timeStamp} subHeadingText={date} order={order} />
+      <VanOrderTime
+        titleText="Time of order:"
+        mainText={timeStamp}
+        subHeadingText={date}
+        order={order}
+      />
     </div>
   );
 }

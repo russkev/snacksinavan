@@ -15,8 +15,7 @@ nav.categories > div {
 }
 
 nav.categories > div > div {
-  background-color: var(--primary);
-  /* width: 100%; */
+  background-color: var(--primary-bg);
   height: 4px;
 }
 
@@ -91,7 +90,7 @@ nav.categories h2.inactive {
 }
 
 .menu-item-card {
-  background-color: var(--background-blue);
+  background-color: var(--grey-bg);
   margin: 1.5rem;
   width: 200px;
   height: 400px;
@@ -216,7 +215,7 @@ nav.categories h2.inactive {
 }
 
 .menu-van > div {
-  background: var(--background-blue);
+  background: var(--grey-bg);
   margin: 0 1.5rem;
   box-sizing: border-box;
   max-width: 500px;
@@ -233,7 +232,7 @@ nav.categories h2.inactive {
   top: -2rem;
   width: 40px;
   height: 40px;
-  background: var(--background-blue);
+  background: var(--grey-bg);
   border-radius: 100%;
   display: flex;
   justify-content: center;
@@ -252,6 +251,7 @@ nav.categories h2.inactive {
 
 .menu-van svg {
   fill: var(--dark-text);
+  margin: 0;
 }
 
 section.chosen-van svg {
@@ -298,7 +298,7 @@ section.chosen-van > div {
         screen and (max-height: 700px) {
   .menu-cart h1 {
     font-size: 3rem;
-    padding: 0 1rem;
+    padding: 1rem;
     padding-bottom: 2rem;
     line-height: 0.9;
   }

@@ -5,18 +5,18 @@
   bottom: 0;
   right: 0;
   z-index: 10000;
-  background-color: var(--background-blue);
+  background-color: var(--grey-bg);
 }
 
 .loading-logo.transparent {
-  background-color: var(--background-blue-transparent);
+  background-color: var(--grey-bg-transparent);
 }
 
 .loading-logo svg.circle {
   width: 120px;
   height: 120px;
   animation: mainLoadingSpin 1s linear infinite;
-  fill: var(--primary);
+  fill: var(--primary-bg);
 }
 
 .loading-logo svg.logo {
@@ -54,7 +54,7 @@ div.load-button {
   width: 4.2rem;
   height: 4.2rem;
   margin: 1.5rem;
-  fill: var(--primary);
+  fill: var(--primary-bg);
   animation: spin 1s linear infinite;
 }
 

@@ -2,14 +2,13 @@
   --header-height: 50px;
   --header-van-height: 70px;
   --max-width-van: 140rem;
-  --background-blue: #F6F8F9;
-  --background-blue-transparent: #F6F8F988;
+  --max-width-customer: 130rem;
   --background-white: #ffffff;
   --background-darker: #e0e8ed;
 
   --dark-text: #3c4048;
   --light-text: #8a91a1;
-  --shadow: #00133933;
+  --shadow: #c16a2a54;
   --link-text: #435a8a;
   --focus: #296ea2;
   --un-focus: #b6c8d5;
@@ -27,23 +26,59 @@
   --history-strong: #8378E4;
   --my-van-strong: #5DB68B;
 
-  /* --primary: #FF740F;
-  --primary-dark: #e36308;
-  --background-primary: #fff0e7; */
+  /* --primary-bg: #FF740F;
+  --primary-bg-dark: #e36308;
+  --primary-bg-light: #fff0e7; */
 
 
-    --primary: #fda362;
-  --primary-dark: #d58b56;
-  --background-primary: #fff0e7;
+  --pink-bg-light: #fff6f7;
+  --pink-bg: #ffeaed;
+  --pink-bg-dark: #ffd5da;
+  --pink-bright: #ce515f;
+  --pink-fg: #A7636B;
+
+  --orange-bg-light: #fff7ef;
+  --orange-bg: #FFEEDE;
+  --orange-bg-dark: #ffdebd;
+  --orange-bright: #d08f53;
+  --orange-fg: #855d38;
+
+  --yellow-bg-light: #fffdf3;
+  --yellow-bg: #fffae0;
+  --yellow-bg-dark: #fff2b6;
+  --yellow-bright: #ae9620;
+  --yellow-fg: #6A5C14;
+  
+  --blue-bg-light: #f4f9ff;
+  --blue-bg: #e6f3ff;
+  --blue-bg-dark: #d5ebff;
+  --blue-bright: #5cb0ff;
+  --blue-fg: #3b6285;
+  
+  --grey-bg-light: #f6f8fa;
+  --grey-bg: #f3f4f5;
+  --grey-bg-dark: #cbd1d6;
+  --grey-fg: #e5e8eb;
+  --grey-bg-transparent: #F6F8F988;
+  --grey-shadow: #1c1a682e;
+
+
+
+  --primary-bg-light: #fff0e7;
+  --primary-bg: #ffb783;
+  --primary-bg-dark: #ffa666;
+  --primary-fg: #4f2e17;
+  --primary-shadow: #c16a2a54;
+
 
   --secondary: #f8f0c6;
 
   --warning: #bf0101;  
-  --background-warning: #fae8e8;
-  --background-warning-dark: #f0dbdb;
+  --warning-bg: #fae8e8;
+  --warning-bg-dark: #ffd4d4;
   
   --success: #008800;
-  --background-success: #e8fae8;
+  --background-success: #d3ffd3;
 
   --van-my-van: #009b8c;
   --background-van-my-van: #cdfff8;
@@ -149,11 +184,11 @@ ul {
 }
 
 fieldset {
-  background-color: var(--background-blue);
+  background-color: var(--grey-bg);
 }
 
 svg {
-  fill: var(--dark-text);
   width: 24px;
   height: 24px;
+  margin-right: 1rem;
 }

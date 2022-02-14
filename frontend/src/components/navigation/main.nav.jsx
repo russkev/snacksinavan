@@ -9,6 +9,7 @@ import MenuBookIcon from "../../media/menu.book.icon";
 import AccountNav from "./account.nav";
 import LocationIcon from "../../media/location.icon";
 import AccountCircleIcon from "../../media/account.circle.icon";
+import NavLogo from "./nav.logo";
 
 export default function MainNav() {
   const { isAuthenticated } = useUser();
@@ -42,11 +43,14 @@ export default function MainNav() {
       <span className="desktop">
         <ul>
           <li>
+            <NavLogo />
+          </li>
+          <li>
             <NavLink
-              className="nav-button desktop"
+              className="desktop yellow-color nav-button button"
               activeClassName="active"
               exact
-              to={Routes.HOME.path}
+              to={Routes.VAN_CHOICE.path}
               onClick={(e) => e.currentTarget.blur()}
             >
               <svg viewBox="0 0 24 24">
@@ -57,7 +61,7 @@ export default function MainNav() {
           </li>
           <li>
             <NavLink
-              className="nav-button desktop"
+              className="desktop yellow-color nav-button button"
               activeClassName="active"
               exact
               to={Routes.SNACKS_MENU.path}
@@ -70,14 +74,9 @@ export default function MainNav() {
             </NavLink>
           </li>
         </ul>
-        {/* <li>
-          <Link className="nav-link" to={Routes.CUSTOMER_ORDERS.path}>
-            My Orders
-          </Link>
-        </li> */}
         {isAuthenticated ? (
           <span className="account">
-            <Link className="nav-button desktop" to="#" onClick={toggleAccount}>
+            <Link className="desktop pink-color nav-button button" to="#" onClick={toggleAccount}>
               <svg viewBox="0 0 24 24">
                 <AccountCircleIcon />
               </svg>
@@ -92,10 +91,14 @@ export default function MainNav() {
           </span>
         ) : (
           <span className="sign-in">
-            <Link onClick={handleLoginClicked} className="button" to="#">
+            <Link
+              onClick={handleLoginClicked}
+              className="desktop pink-color nav-button button"
+              to="#"
+            >
               Login
             </Link>
-            <Link className="primary button" to={Routes.SIGNUP.path}>
+            <Link className="desktop primary nav-button button" to={Routes.SIGNUP.path}>
               Signup
             </Link>
           </span>

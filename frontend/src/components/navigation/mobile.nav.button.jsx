@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-export default function MobileNavButton({ path, icon, name, toggle }) {
+export default function MobileNavButton({ path, icon, name, toggle, className }) {
   
   // Popup menu doesn't work without delay
   const toggleWithDelay = () => setTimeout(() => toggle(), 10)
@@ -9,7 +9,7 @@ export default function MobileNavButton({ path, icon, name, toggle }) {
   return (
     <NavLink
       onClick={toggleWithDelay}
-      className="nav-button desktop"
+      className={className + " square desktop button"}
       activeClassName="active"
       exact
       to={path}

@@ -31,7 +31,7 @@ export default function MenuItemModal({toggle, isShowing, snack}) {
             </svg>
           </button>
           <p>{snack.description}</p>
-          <img src={snack.photo.medium} alt={snack.name} />
+          <img src={`../${snack.photo.medium}`} alt={snack.name} />
           <p>Quantity</p>
           <div className="quantity">
             <button

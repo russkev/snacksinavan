@@ -9,6 +9,7 @@ import CartIcon from "../media/cart.icon";
 import LoadingLogo from "../components/loading.logo";
 import MenuItemModal from "../components/menu.item.modal";
 import useModal from "../hooks/useModal";
+import Routes from "../routes/routes";
 
 export default function SnacksMenu({ displayCart }) {
   const { loading, snacks, getSnacksError, updateCategory, setMouseIsOver } = useSnacks();
@@ -59,7 +60,7 @@ export default function SnacksMenu({ displayCart }) {
         </div>
         <div className="menu-van">
           <div>
-            <Link to="/" className="soft-shadow button">
+            <Link to={Routes.VAN_CHOICE.path} className="soft-shadow button">
               <svg viewBox="0 0 24 24">
                 <EditIcon />
               </svg>

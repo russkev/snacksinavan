@@ -29,7 +29,7 @@ export default function Signup() {
 
   return (
     <>
-      <div className="signup">
+      <div className="full-screen signup">
         <div></div>
         <div className="container">
           <h1>Sign up for account</h1>
@@ -135,7 +135,7 @@ export default function Signup() {
                 </button>
               </p>
               <Link to={redirectFromPath}>
-                <button className="full-width">Cancel</button>
+                <button className="secondary full-width">Cancel</button>
               </Link>
               <p>
                 {" "}

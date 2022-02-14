@@ -5,7 +5,7 @@ import { GoogleMap, Marker } from "@react-google-maps/api";
 import SearchLocation from "../components/search.location";
 import haversine from "haversine-distance";
 import { Link } from "react-router-dom"
-import "../styling/home.css";
+import "../styling/choose.van.css";
 import "../styling/customer.css";
 import LoadingLogo from "../components/loading.logo";
 
@@ -20,7 +20,7 @@ async function selectVan(vanName) {
 }
 
 
-export default function Home() {
+export default function ChooseVan() {
   const { loading, vans, vansError } = useVans();
   const [location, setLocation] = useState({ lat: -37.81494, lng: 144.96867 });
   const zoom = 12;

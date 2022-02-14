@@ -48,7 +48,7 @@ export default function SearchLocation({ setCurrentLocation, title, columns }) {
           </Autocomplete>
         </InputContainer>
       </div>
-      <button onClick={onUseLocationClick} className="icon-button use-my-location">
+      <button onClick={onUseLocationClick} className="secondary icon-button use-my-location">
         <div>
           Use my location
           <svg viewBox="0 0 24 24">

@@ -5,40 +5,49 @@ import VanMyVan from "../pages/van.my.van";
 import VanOrders from "../pages/van.orders";
 import VanOrderHistory from "../pages/van.orderHistory";
 import VanFulfilledOrders from "../pages/van.fulfilledOrders";
-import { availability } from "./routes";
 import { VanLoggedInRoute, VanLoggedOutRoute  } from "./protectedVanRoutes";
 import VanMainNav from "../components/van_navigation/van.main.nav"
 import { VanMyVanContextProvider } from "../contexts/van.my.van.context";
 import { Snackbar } from "../components/snackbar";
 
+const availability = {
+  ALL: 0,
+  LOGGED_IN_ONLY: 1,
+  LOGGED_OUT_ONLY: 2,
+};
+
+const VAN_PREFIX = "/van"
 
 const VanRoutes = {
   LOGIN: {
-    path: "/van",
+    path: VAN_PREFIX,
     component: VanLogin,
     access: availability.LOGGED_OUT_ONLY,
   },
   MY_VAN: {
-    path: "/van/myVan",
-    component: 
-      () => (<VanMyVanContextProvider><VanMyVan /></VanMyVanContextProvider>),
+    path: VAN_PREFIX + "/myVan",
+    component: () => (
+      <VanMyVanContextProvider>
+        <VanMyVan />
+      </VanMyVanContextProvider>
+    ),
     access: availability.LOGGED_IN_ONLY,
   },
   ORDERS: {
-    path: "/van/orders",
+    path: VAN_PREFIX + "/orders",
     component: VanOrders,
     access: availability.LOGGED_IN_ONLY,
   },
   FULFILLED: {
-    path: "/van/fulfilled",
+    path: VAN_PREFIX + "/fulfilled",
     component: VanFulfilledOrders,
     access: availability.LOGGED_IN_ONLY,
   },
   PAST_ORDERS: {
-    path: "/van/pastOrders",
+    path: VAN_PREFIX + "/pastOrders",
     component: VanOrderHistory,
-    access: availability.LOGGED_IN_ONLY
-  }
+    access: availability.LOGGED_IN_ONLY,
+  },
 };
 
 

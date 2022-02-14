@@ -12,7 +12,7 @@ export default function VanLogout() {
   return (
     <div>
       <h4>Account</h4>
-      <button className="logout" onClick={handleLogout}>Sign Out</button>
+      <button className="warning-color full-width" onClick={handleLogout}>Sign Out</button>
     </div>
   );
 }
