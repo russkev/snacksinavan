@@ -2,15 +2,12 @@
     <img src=frontend/src/logo.svg altText="Logo" style="margin-bottom:30px">
 </p>
 <h1 align="center">
-    Team Whelk - Snacks in a Van app
+    Snacks in a Van app
 <h1>
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/7413316f-2cdd-4979-9018-b1d09dac8c17/deploy-status)](https://app.netlify.com/sites/snacks-in-a-van/deploys)
 
-# Welcome
-
-This is a food van app designed as a group project for INFO30005 – Web Information Technologies
-
+[Live site](https://snacks-in-a-van.netlify.app/)
 
 # Table of contents
 * [Features](#features)
@@ -26,20 +23,14 @@ This is a food van app designed as a group project for INFO30005 – Web Informa
 
 
 # Features
- - Users can access the snack menu and add to their cart before having to log in / sign up or select a van.
- - Once a user has logged in, they are taken back to the page they came from (if applicable).
- - Users can create an account from the sign in page.
- - Navigation buttons move from header bar to menu drawer when screen size is too small.
- - If a logged out user tries to access any page they should be logged in for, a login window pops up.
- - Navigation buttons automatically change depending on whether a user is logged in or not.
- - Most pages have a back button to take them back to the logical previous page.
- - Orders are updated live on both the customer and vendor apps. This allows vendors to see changes as they happen live and for customers to know exactly when their order is ready.
- - User can watch the expected progress of their order and see where the van they ordered from is located directly from the order details page.
- - A loading animation plays while a page is loading so users are aware that something is happening and they are not stuck.
- - The map has a search bar and "use my location" button to make it easy for the user to find the nearest vans.
- - The vendor app hides unnecessary information about an order until expanded.
- - Pagination is used on the customer's orders page so they can focus on recent orders.
- - Snackbar popup for success / failure information.
+ - Fully functional customer and vendor apps
+ - Socket API for instant updates on orders
+ - Theme created from scratch, no component library
+ - Secure account creation and login using JWT tokens and React Router
+ - Automatic login popup and redirection based on logged in status and current page
+ - Demo accounts for easy trial of all site components
+ - Responsive design
+ - Google maps integration for finding closest van to customer
 
 
 # Getting started
@@ -64,11 +55,11 @@ If everything is already set up, these are the commands you need to run the enti
  - `sudo service mongodb start`
 
 ## Backend
-  - Navigate to `src` folder
+  - Navigate to `src/backend` folder
   - Run `npm start`
 
 ## Frontend
-  - Navigate to `src/client`
+  - Navigate to `src/frontend`
   - Run `npm start` to run the frontend website.
 
 # Debugging in vsCode
@@ -85,9 +76,10 @@ If everything is already set up, these are the commands you need to run the enti
   - Tabs should be 2 spaces
 		
 # Technologies
-* NodeJs
-* Express
-* React
+ - NodeJs
+ - Express
+ - React
+ - MongoDB
 	
 # Team Members
  - Will Mason
@@ -95,35 +87,3 @@ If everything is already set up, these are the commands you need to run the enti
  - Cooper Marshall
  - Ethan Edge
  - Liam Wardlaw
-
-# API
-
-## Routes
-
-  - `api/auth/signup` POST signup information (username, password, etc.)
-  - `api/auth/userCheck/:username` GET (check) whether user exists
-  - `api/auth/info/:username` GET information about a specific user
-  - `api/auth/info/update` POST Update the information about a specific user
-  - `api/auth/login` POST the login information (email and password). Returns token if successful.
-  - `api/auth/authenticate`POST (check) that an email and password are valid
-  - `api/menu/` GET all menu items
-  - `api/:name` GET the details of a specific menu item
-  - `api/van/login` POST the login information for a van (vanName and password)
-  - `api/van/authenticate` POST (check) that a specific van exists
-  - `api/van/vanDetails` GET details about a specific van
-  - `api/van/setStatus` POST the updated van information
-  - `api/van/all` GET the list of all vans
-  - `api/globals/` GET the list of all global variables (discount amount, etc.)
-
-## Socket connections
-Note: customer and van methods are in the same file here because they require the same io function to be able to interact with each other properly.
- - `ordersChanged` The main update method. Sends information about what was updated to all connected sockets. This allows the connected apps to choose whether to request an update of the data they are interested in. This will depend on whether they involve the appropriate van / user
- - `orderListVan` A list of all orders for a particular van
- - `createOrder` Send a new order
- - `fulfillOrder` Mark an order as fulfilled
- - `completeOrder` Mark an order as completed
- - `orderListCustomer` Get all orders for a specific customer
- - `getOrder` Get a specific order based on an ID
- - `orderModify` Update an existing order with new information. This will cause the `updatedAt` time to be updated which will in turn cause the related timers to be reset
- - `cancelOrder` Mark an order as cancelled (but keep it in the database)
- - `rateOrder` Send a rating and feedback message for a specific order
